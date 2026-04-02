@@ -4,10 +4,10 @@ import jwt from 'jsonwebtoken';
 import prisma from '../lib/prisma';
 
 export const register = async (req: Request, res: Response) => {
-  const { nombre, email, password } = req.body;
+  const { nombre, email, password, telefono, fecha_nacimiento, foto_url } = req.body;
   const hash = await bcrypt.hash(password, 10);
   const usuario = await prisma.usuario.create({
-    data: { nombre, email, password: hash }
+    data: { nombre, email, password: hash, telefono, foto_url, fecha_nacimiento: fecha_nacimiento ? new Date(fecha_nacimiento) : undefined }
   });
   res.json({ id: usuario.id, nombre: usuario.nombre, email: usuario.email });
 };

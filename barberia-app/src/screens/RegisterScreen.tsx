@@ -1,21 +1,46 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator, ScrollView, Image } from 'react-native';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import * as ImagePicker from 'expo-image-picker';
 import { theme } from '../theme';
 import api from '../services/api';
 
 export default function RegisterScreen({ navigation }: any) {
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
+  const [telefono, setTelefono] = useState('');
+  const [fechaNacimiento, setFechaNacimiento] = useState<Date | null>(null);
+  const [showDatePicker, setShowDatePicker] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmar, setConfirmar] = useState('');
+  const [foto, setFoto] = useState<string | null>(null);
   const [errores, setErrores] = useState<any>({});
   const [loading, setLoading] = useState(false);
+  const [exitoso, setExitoso] = useState(false);
+
+  const handleSeleccionarFoto = async () => {
+    const permiso = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (!permiso.granted) return;
+    const resultado = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: 'images',
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 0.3,
+      base64: true
+    });
+    if (!resultado.canceled && resultado.assets[0].base64) {
+      setFoto(`data:image/jpeg;base64,${resultado.assets[0].base64}`);
+    }
+  };
 
   const validar = () => {
     const e: any = {};
     if (!nombre.trim()) e.nombre = 'El nombre es requerido';
     if (!email.trim()) e.email = 'El email es requerido';
     else if (!/\S+@\S+\.\S+/.test(email)) e.email = 'Email inválido';
+    if (!telefono.trim()) e.telefono = 'El teléfono es requerido';
+    else if (!/^\d{7,15}$/.test(telefono)) e.telefono = 'Teléfono inválido';
+    if (!fechaNacimiento) e.fechaNacimiento = 'La fecha de nacimiento es requerida';
     if (!password.trim()) e.password = 'La contraseña es requerida';
     else if (password.length < 6) e.password = 'Mínimo 6 caracteres';
     if (password !== confirmar) e.confirmar = 'Las contraseñas no coinciden';
@@ -27,8 +52,9 @@ export default function RegisterScreen({ navigation }: any) {
     if (!validar()) return;
     try {
       setLoading(true);
-      await api.post('/auth/register', { nombre, email, password });
-      navigation.navigate('Login');
+      await api.post('/auth/register', { nombre, email, telefono, fecha_nacimiento: fechaNacimiento, password, foto_url: foto });
+      setExitoso(true);
+      setTimeout(() => navigation.navigate('Login'), 2500);
     } catch {
       setErrores({ general: 'Este email ya está registrado' });
     } finally {
@@ -43,13 +69,32 @@ export default function RegisterScreen({ navigation }: any) {
         <Text style={styles.subtitle}>Únete a The Barber</Text>
       </View>
 
+      {exitoso && (
+        <View style={styles.successBox}>
+          <Text style={styles.successText}>✅ ¡Cuenta creada exitosamente!</Text>
+          <Text style={styles.successSubtext}>Redirigiendo al inicio de sesión...</Text>
+        </View>
+      )}
+
       {errores.general && (
         <View style={styles.errorBox}>
           <Text style={styles.errorBoxText}>{errores.general}</Text>
         </View>
       )}
 
-      <Text style={styles.label}>Nombre</Text>
+      <Text style={styles.label}>Foto de perfil (opcional)</Text>
+      <TouchableOpacity style={styles.fotoContainer} onPress={handleSeleccionarFoto}>
+        {foto ? (
+          <Image source={{ uri: foto }} style={styles.fotoPreview} />
+        ) : (
+          <View style={styles.fotoPlaceholder}>
+            <Text style={styles.fotoIcon}>📷</Text>
+            <Text style={styles.fotoTexto}>Toca para agregar foto</Text>
+          </View>
+        )}
+      </TouchableOpacity>
+
+      <Text style={styles.label}>Nombre completo</Text>
       <TextInput
         style={[styles.input, errores.nombre && styles.inputError]}
         placeholder="Tu nombre completo"
@@ -70,6 +115,37 @@ export default function RegisterScreen({ navigation }: any) {
         autoCapitalize="none"
       />
       {errores.email && <Text style={styles.error}>{errores.email}</Text>}
+
+      <Text style={styles.label}>Teléfono</Text>
+      <TextInput
+        style={[styles.input, errores.telefono && styles.inputError]}
+        placeholder="Ej: 3001234567"
+        placeholderTextColor={theme.colors.gray}
+        value={telefono}
+        onChangeText={setTelefono}
+        keyboardType="phone-pad"
+      />
+      {errores.telefono && <Text style={styles.error}>{errores.telefono}</Text>}
+
+      <Text style={styles.label}>Fecha de nacimiento</Text>
+      <TouchableOpacity
+        style={[styles.datePicker, errores.fechaNacimiento && styles.inputError]}
+        onPress={() => setShowDatePicker(true)}
+      >
+        <Text style={fechaNacimiento ? styles.dateText : styles.datePlaceholder}>
+          {fechaNacimiento ? fechaNacimiento.toLocaleDateString('es-ES', { dateStyle: 'long' }) : 'Seleccionar fecha'}
+        </Text>
+        <Text>📅</Text>
+      </TouchableOpacity>
+      {errores.fechaNacimiento && <Text style={styles.error}>{errores.fechaNacimiento}</Text>}
+
+      <DateTimePickerModal
+        isVisible={showDatePicker}
+        mode="date"
+        maximumDate={new Date()}
+        onConfirm={(date) => { setFechaNacimiento(date); setShowDatePicker(false); }}
+        onCancel={() => setShowDatePicker(false)}
+      />
 
       <Text style={styles.label}>Contraseña</Text>
       <TextInput
@@ -115,9 +191,20 @@ const styles = StyleSheet.create({
   error: { color: theme.colors.error, fontSize: 12, marginBottom: 10 },
   errorBox: { backgroundColor: '#3a1a1a', padding: 12, borderRadius: 8, marginBottom: 16, borderWidth: 1, borderColor: theme.colors.error },
   errorBoxText: { color: theme.colors.error, textAlign: 'center' },
+  datePicker: { borderWidth: 1, borderColor: theme.colors.lightGray, borderRadius: 8, padding: 14, marginBottom: 4, backgroundColor: theme.colors.card, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  dateText: { color: theme.colors.white, fontSize: 15 },
+  datePlaceholder: { color: theme.colors.gray, fontSize: 15 },
   btn: { backgroundColor: theme.colors.gold, padding: 16, borderRadius: 8, alignItems: 'center', marginTop: 8, marginBottom: 16 },
   btnDisabled: { backgroundColor: theme.colors.lightGray },
   btnText: { color: theme.colors.background, fontSize: 15, fontWeight: 'bold', letterSpacing: 2 },
   link: { textAlign: 'center', color: theme.colors.gray },
   linkBold: { fontWeight: 'bold', color: theme.colors.gold },
+  successBox: { backgroundColor: '#1a3a2a', padding: 16, borderRadius: 8, marginBottom: 16, borderWidth: 1, borderColor: theme.colors.success, alignItems: 'center' },
+  successText: { color: theme.colors.success, fontWeight: 'bold', fontSize: 16 },
+  successSubtext: { color: theme.colors.success, fontSize: 12, marginTop: 4, opacity: 0.8 },
+  fotoContainer: { marginBottom: 16, alignItems: 'center' },
+  fotoPreview: { width: 90, height: 90, borderRadius: 45, borderWidth: 2, borderColor: theme.colors.gold },
+  fotoPlaceholder: { width: 90, height: 90, borderRadius: 45, backgroundColor: theme.colors.card, borderWidth: 2, borderColor: theme.colors.lightGray, borderStyle: 'dashed', justifyContent: 'center', alignItems: 'center' },
+  fotoIcon: { fontSize: 24 },
+  fotoTexto: { color: theme.colors.gray, fontSize: 10, marginTop: 4, textAlign: 'center' },
 });

@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../theme';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
@@ -42,9 +43,9 @@ function ClienteTabs({ navigation }: any) {
       tabBarStyle: { backgroundColor: theme.colors.card, borderTopColor: theme.colors.lightGray },
       headerShown: false
     }}>
-      <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Barberos' }} />
-      <Tab.Screen name="MisCitas" component={MisCitasScreen} options={{ title: 'Mis Citas' }} />
-      <Tab.Screen name="Perfil" component={PerfilScreen} options={{ title: 'Perfil' }} />
+      <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Barberos', tabBarIcon: ({ color, size }) => <Ionicons name="cut" color={color} size={size} /> }} />
+      <Tab.Screen name="MisCitas" component={MisCitasScreen} options={{ title: 'Mis Citas', tabBarIcon: ({ color, size }) => <Ionicons name="calendar" color={color} size={size} /> }} />
+      <Tab.Screen name="Perfil" component={PerfilScreen} options={{ title: 'Perfil', tabBarIcon: ({ color, size }) => <Ionicons name="person" color={color} size={size} /> }} />
       <Tab.Screen
         name="Salir"
         component={LogoutTab}
@@ -52,8 +53,8 @@ function ClienteTabs({ navigation }: any) {
           title: 'Salir',
           tabBarButton: () => (
             <TouchableOpacity onPress={handleLogout} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingBottom: 4 }}>
-              <Text style={{ fontSize: 20, marginBottom: 2 }}>🚪</Text>
-              <Text style={{ fontSize: 10, color: theme.colors.error, fontWeight: 'bold' }}>Salir</Text>
+              <Ionicons name="log-out-outline" size={22} color={theme.colors.error} />
+              <Text style={{ fontSize: 10, color: theme.colors.error, fontWeight: 'bold', marginTop: 2 }}>Salir</Text>
             </TouchableOpacity>
           )
         }}
@@ -80,12 +81,12 @@ function AdminTabs({ navigation }: any) {
       tabBarStyle: { backgroundColor: theme.colors.card, borderTopColor: theme.colors.lightGray },
       headerShown: false
     }}>
-      <Tab.Screen name="Admin" component={AdminScreen} options={{ title: 'Citas' }} />
-      <Tab.Screen name="Barberos" component={BarberosAdminScreen} options={{ title: 'Barberos' }} />
-      <Tab.Screen name="Servicios" component={ServiciosAdminScreen} options={{ title: 'Servicios' }} />
-      <Tab.Screen name="Configuracion" component={ConfiguracionScreen} options={{ title: 'Config' }} />
-      <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Ver App' }} />
-      <Tab.Screen name="Perfil" component={PerfilScreen} options={{ title: 'Perfil' }} />
+      <Tab.Screen name="Admin" component={AdminScreen} options={{ title: 'Citas', tabBarIcon: ({ color, size }) => <Ionicons name="calendar" color={color} size={size} /> }} />
+      <Tab.Screen name="Barberos" component={BarberosAdminScreen} options={{ title: 'Barberos', tabBarIcon: ({ color, size }) => <Ionicons name="cut" color={color} size={size} /> }} />
+      <Tab.Screen name="Servicios" component={ServiciosAdminScreen} options={{ title: 'Servicios', tabBarIcon: ({ color, size }) => <Ionicons name="pricetag" color={color} size={size} /> }} />
+      <Tab.Screen name="Configuracion" component={ConfiguracionScreen} options={{ title: 'Config', tabBarIcon: ({ color, size }) => <Ionicons name="settings" color={color} size={size} /> }} />
+      <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Ver App', tabBarIcon: ({ color, size }) => <Ionicons name="eye" color={color} size={size} /> }} />
+      <Tab.Screen name="Perfil" component={PerfilScreen} options={{ title: 'Perfil', tabBarIcon: ({ color, size }) => <Ionicons name="person" color={color} size={size} /> }} />
       <Tab.Screen
         name="Salir"
         component={LogoutTab}
@@ -93,8 +94,8 @@ function AdminTabs({ navigation }: any) {
           title: 'Salir',
           tabBarButton: () => (
             <TouchableOpacity onPress={handleLogout} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingBottom: 4 }}>
-              <Text style={{ fontSize: 20, marginBottom: 2 }}>🚪</Text>
-              <Text style={{ fontSize: 10, color: theme.colors.error, fontWeight: 'bold' }}>Salir</Text>
+              <Ionicons name="log-out-outline" size={22} color={theme.colors.error} />
+              <Text style={{ fontSize: 10, color: theme.colors.error, fontWeight: 'bold', marginTop: 2 }}>Salir</Text>
             </TouchableOpacity>
           )
         }}

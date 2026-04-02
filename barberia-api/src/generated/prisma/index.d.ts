@@ -6357,6 +6357,7 @@ export namespace Prisma {
 
   export type HorarioWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    barberoId_dia_semana?: HorarioBarberoIdDia_semanaCompoundUniqueInput
     AND?: HorarioWhereInput | HorarioWhereInput[]
     OR?: HorarioWhereInput[]
     NOT?: HorarioWhereInput | HorarioWhereInput[]
@@ -6365,7 +6366,7 @@ export namespace Prisma {
     hora_inicio?: StringFilter<"Horario"> | string
     hora_fin?: StringFilter<"Horario"> | string
     barbero?: XOR<BarberoRelationFilter, BarberoWhereInput>
-  }, "id">
+  }, "id" | "barberoId_dia_semana">
 
   export type HorarioOrderByWithAggregationInput = {
     id?: SortOrder
@@ -6995,6 +6996,11 @@ export namespace Prisma {
     usuarioId?: SortOrder
     barberoId?: SortOrder
     servicioId?: SortOrder
+  }
+
+  export type HorarioBarberoIdDia_semanaCompoundUniqueInput = {
+    barberoId: number
+    dia_semana: number
   }
 
   export type HorarioCountOrderByAggregateInput = {

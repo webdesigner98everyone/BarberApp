@@ -55,4 +55,6 @@ model Horario {
   dia_semana  Int
   hora_inicio String
   hora_fin    String
+
+  @@unique([barberoId, dia_semana])
 }

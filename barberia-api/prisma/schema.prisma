@@ -9,13 +9,16 @@ datasource db {
 }
 
 model Usuario {
-  id        Int       @id @default(autoincrement())
-  nombre    String
-  email     String    @unique
-  password  String
-  rol       String    @default("cliente")
-  reservas  Reserva[]
-  createdAt DateTime  @default(now())
+  id                Int       @id @default(autoincrement())
+  nombre            String
+  email             String    @unique
+  password          String
+  rol               String    @default("cliente")
+  telefono          String?
+  foto_url          String?  @db.LongText
+  fecha_nacimiento  DateTime?
+  reservas          Reserva[]
+  createdAt         DateTime  @default(now())
 }
 
 model Barbero {

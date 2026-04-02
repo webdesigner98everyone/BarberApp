@@ -128,6 +128,9 @@ exports.Prisma.UsuarioScalarFieldEnum = {
   email: 'email',
   password: 'password',
   rol: 'rol',
+  telefono: 'telefono',
+  foto_url: 'foto_url',
+  fecha_nacimiento: 'fecha_nacimiento',
   createdAt: 'createdAt'
 };
 

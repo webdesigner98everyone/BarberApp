@@ -77,5 +77,13 @@ npm install
 npx prisma migrate dev
 npm run dev
 
+---
+## Mobile app setup
+cd barberia-app
+npm install
+npx expo start
+Scan the QR code with Expo Go on your phone.
+
+---
 👨‍💻 Author
 Luis Alberto Forero Guzman - Full Stack Developer

@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator, ScrollView, Image } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import * as ImagePicker from 'expo-image-picker';
+import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../theme';
 import api from '../services/api';
 
@@ -14,6 +15,8 @@ export default function RegisterScreen({ navigation }: any) {
   const [password, setPassword] = useState('');
   const [confirmar, setConfirmar] = useState('');
   const [foto, setFoto] = useState<string | null>(null);
+  const [codigoAdmin, setCodigoAdmin] = useState('');
+  const [mostrarCodigo, setMostrarCodigo] = useState(false);
   const [errores, setErrores] = useState<any>({});
   const [loading, setLoading] = useState(false);
   const [exitoso, setExitoso] = useState(false);
@@ -57,7 +60,7 @@ export default function RegisterScreen({ navigation }: any) {
     if (!validar()) return;
     try {
       setLoading(true);
-      await api.post('/auth/register', { nombre, email, telefono, fecha_nacimiento: fechaNacimiento, password, foto_url: foto });
+      await api.post('/auth/register', { nombre, email, telefono, fecha_nacimiento: fechaNacimiento, password, foto_url: foto, codigo_admin: codigoAdmin || undefined });
       setExitoso(true);
       setTimeout(() => navigation.navigate('Login'), 2500);
     } catch {
@@ -196,6 +199,25 @@ export default function RegisterScreen({ navigation }: any) {
       />
       {errores.confirmar && <Text style={styles.error}>{errores.confirmar}</Text>}
 
+      <TouchableOpacity onPress={() => setMostrarCodigo(!mostrarCodigo)} style={styles.codigoToggle}>
+        <Ionicons name={mostrarCodigo ? 'chevron-up' : 'chevron-down'} size={16} color={theme.colors.gold} />
+        <Text style={styles.codigoToggleText}>¿Eres administrador de una barbería?</Text>
+      </TouchableOpacity>
+
+      {mostrarCodigo && (
+        <>
+          <Text style={styles.label}>Código de administrador</Text>
+          <TextInput
+            style={styles.input}
+            value={codigoAdmin}
+            onChangeText={setCodigoAdmin}
+            placeholder="Ingresa el código"
+            placeholderTextColor={theme.colors.gray}
+            autoCapitalize="characters"
+          />
+        </>
+      )}
+
       <TouchableOpacity style={[styles.btn, loading && styles.btnDisabled]} onPress={handleRegister} disabled={loading}>
         {loading ? <ActivityIndicator color={theme.colors.background} /> : <Text style={styles.btnText}>REGISTRARSE</Text>}
       </TouchableOpacity>
@@ -234,4 +256,6 @@ const styles = StyleSheet.create({
   fotoPlaceholder: { width: 90, height: 90, borderRadius: 45, backgroundColor: theme.colors.card, borderWidth: 2, borderColor: theme.colors.lightGray, borderStyle: 'dashed', justifyContent: 'center', alignItems: 'center' },
   fotoIcon: { fontSize: 24 },
   fotoTexto: { color: theme.colors.gray, fontSize: 10, marginTop: 4, textAlign: 'center' },
+  codigoToggle: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12, paddingVertical: 8 },
+  codigoToggleText: { color: theme.colors.gold, fontSize: 13, fontWeight: '600' },
 });

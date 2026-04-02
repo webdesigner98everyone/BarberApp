@@ -26,6 +26,7 @@ model Barbero {
   nombre       String
   especialidad String
   foto         String?
+  categorias   String    @default("Cabello")
   reservas     Reserva[]
   horarios     Horario[]
 }

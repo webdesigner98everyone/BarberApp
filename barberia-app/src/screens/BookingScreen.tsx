@@ -17,7 +17,7 @@ export default function BookingScreen({ route, navigation }: any) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    api.get('/servicios').then(({ data }) => setServicios(data));
+    api.get(`/barberos/${barbero.id}/servicios`).then(({ data }) => setServicios(data));
   }, []);
 
   useEffect(() => {

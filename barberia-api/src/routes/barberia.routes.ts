@@ -8,6 +8,17 @@ const router = Router();
 
 router.get('/barberos', getBarberos);
 router.post('/barberos', createBarbero);
+router.get('/barberos/:id/servicios', async (req, res) => {
+  const { id } = req.params;
+  const prisma = (await import('../lib/prisma')).default;
+  const barbero = await prisma.barbero.findUnique({ where: { id: Number(id) } });
+  if (!barbero) return res.status(404).json({ error: 'Especialista no encontrado' });
+  const categorias = barbero.categorias.split(',').map((c: string) => c.trim());
+  const servicios = await prisma.servicio.findMany({
+    where: { activo: true, categoria: { in: categorias } }
+  });
+  res.json(servicios);
+});
 router.get('/servicios', getServicios);
 router.post('/servicios', createServicio);
 router.get('/horarios/disponibles', getHorariosDisponibles);

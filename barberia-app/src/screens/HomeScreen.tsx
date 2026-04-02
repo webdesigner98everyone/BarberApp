@@ -32,7 +32,7 @@ export default function HomeScreen({ navigation }: any) {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.brand}>✂️ THE BARBER</Text>
-        <Text style={styles.title}>Nuestros Barberos</Text>
+        <Text style={styles.title}>Nuestros Especialistas</Text>
         <Text style={styles.subtitle}>Selecciona tu especialista</Text>
       </View>
 

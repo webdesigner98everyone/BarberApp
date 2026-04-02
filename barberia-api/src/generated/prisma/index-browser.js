@@ -138,7 +138,8 @@ exports.Prisma.BarberoScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
   especialidad: 'especialidad',
-  foto: 'foto'
+  foto: 'foto',
+  categorias: 'categorias'
 };
 
 exports.Prisma.ServicioScalarFieldEnum = {

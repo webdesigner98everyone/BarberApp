@@ -7,9 +7,9 @@ export const getBarberos = async (_req: Request, res: Response) => {
 };
 
 export const createBarbero = async (req: Request, res: Response) => {
-  const { nombre, especialidad, foto } = req.body;
+  const { nombre, especialidad, foto, categorias } = req.body;
   const barbero = await prisma.barbero.create({
-    data: { nombre, especialidad, foto }
+    data: { nombre, especialidad, foto, categorias: categorias ?? 'Cabello' }
   });
   res.json(barbero);
 };

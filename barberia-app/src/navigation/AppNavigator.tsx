@@ -43,7 +43,7 @@ function ClienteTabs({ navigation }: any) {
       tabBarStyle: { backgroundColor: theme.colors.card, borderTopColor: theme.colors.lightGray },
       headerShown: false
     }}>
-      <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Barberos', tabBarIcon: ({ color, size }) => <Ionicons name="cut" color={color} size={size} /> }} />
+      <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Especialistas', tabBarIcon: ({ color, size }) => <Ionicons name="cut" color={color} size={size} /> }} />
       <Tab.Screen name="MisCitas" component={MisCitasScreen} options={{ title: 'Mis Citas', tabBarIcon: ({ color, size }) => <Ionicons name="calendar" color={color} size={size} /> }} />
       <Tab.Screen name="Perfil" component={PerfilScreen} options={{ title: 'Perfil', tabBarIcon: ({ color, size }) => <Ionicons name="person" color={color} size={size} /> }} />
       <Tab.Screen
@@ -82,7 +82,7 @@ function AdminTabs({ navigation }: any) {
       headerShown: false
     }}>
       <Tab.Screen name="Admin" component={AdminScreen} options={{ title: 'Citas', tabBarIcon: ({ color, size }) => <Ionicons name="calendar" color={color} size={size} /> }} />
-      <Tab.Screen name="Barberos" component={BarberosAdminScreen} options={{ title: 'Barberos', tabBarIcon: ({ color, size }) => <Ionicons name="cut" color={color} size={size} /> }} />
+      <Tab.Screen name="Barberos" component={BarberosAdminScreen} options={{ title: 'Especialistas', tabBarIcon: ({ color, size }) => <Ionicons name="cut" color={color} size={size} /> }} />
       <Tab.Screen name="Servicios" component={ServiciosAdminScreen} options={{ title: 'Servicios', tabBarIcon: ({ color, size }) => <Ionicons name="pricetag" color={color} size={size} /> }} />
       <Tab.Screen name="Configuracion" component={ConfiguracionScreen} options={{ title: 'Config', tabBarIcon: ({ color, size }) => <Ionicons name="settings" color={color} size={size} /> }} />
       <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Ver App', tabBarIcon: ({ color, size }) => <Ionicons name="eye" color={color} size={size} /> }} />

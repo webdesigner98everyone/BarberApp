@@ -2354,6 +2354,7 @@ export namespace Prisma {
     nombre: string | null
     especialidad: string | null
     foto: string | null
+    categorias: string | null
   }
 
   export type BarberoMaxAggregateOutputType = {
@@ -2361,6 +2362,7 @@ export namespace Prisma {
     nombre: string | null
     especialidad: string | null
     foto: string | null
+    categorias: string | null
   }
 
   export type BarberoCountAggregateOutputType = {
@@ -2368,6 +2370,7 @@ export namespace Prisma {
     nombre: number
     especialidad: number
     foto: number
+    categorias: number
     _all: number
   }
 
@@ -2385,6 +2388,7 @@ export namespace Prisma {
     nombre?: true
     especialidad?: true
     foto?: true
+    categorias?: true
   }
 
   export type BarberoMaxAggregateInputType = {
@@ -2392,6 +2396,7 @@ export namespace Prisma {
     nombre?: true
     especialidad?: true
     foto?: true
+    categorias?: true
   }
 
   export type BarberoCountAggregateInputType = {
@@ -2399,6 +2404,7 @@ export namespace Prisma {
     nombre?: true
     especialidad?: true
     foto?: true
+    categorias?: true
     _all?: true
   }
 
@@ -2493,6 +2499,7 @@ export namespace Prisma {
     nombre: string
     especialidad: string
     foto: string | null
+    categorias: string
     _count: BarberoCountAggregateOutputType | null
     _avg: BarberoAvgAggregateOutputType | null
     _sum: BarberoSumAggregateOutputType | null
@@ -2519,6 +2526,7 @@ export namespace Prisma {
     nombre?: boolean
     especialidad?: boolean
     foto?: boolean
+    categorias?: boolean
     reservas?: boolean | Barbero$reservasArgs<ExtArgs>
     horarios?: boolean | Barbero$horariosArgs<ExtArgs>
     _count?: boolean | BarberoCountOutputTypeDefaultArgs<ExtArgs>
@@ -2530,6 +2538,7 @@ export namespace Prisma {
     nombre?: boolean
     especialidad?: boolean
     foto?: boolean
+    categorias?: boolean
   }
 
   export type BarberoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2549,6 +2558,7 @@ export namespace Prisma {
       nombre: string
       especialidad: string
       foto: string | null
+      categorias: string
     }, ExtArgs["result"]["barbero"]>
     composites: {}
   }
@@ -2924,6 +2934,7 @@ export namespace Prisma {
     readonly nombre: FieldRef<"Barbero", 'String'>
     readonly especialidad: FieldRef<"Barbero", 'String'>
     readonly foto: FieldRef<"Barbero", 'String'>
+    readonly categorias: FieldRef<"Barbero", 'String'>
   }
     
 
@@ -7028,7 +7039,8 @@ export namespace Prisma {
     id: 'id',
     nombre: 'nombre',
     especialidad: 'especialidad',
-    foto: 'foto'
+    foto: 'foto',
+    categorias: 'categorias'
   };
 
   export type BarberoScalarFieldEnum = (typeof BarberoScalarFieldEnum)[keyof typeof BarberoScalarFieldEnum]
@@ -7227,6 +7239,7 @@ export namespace Prisma {
     nombre?: StringFilter<"Barbero"> | string
     especialidad?: StringFilter<"Barbero"> | string
     foto?: StringNullableFilter<"Barbero"> | string | null
+    categorias?: StringFilter<"Barbero"> | string
     reservas?: ReservaListRelationFilter
     horarios?: HorarioListRelationFilter
   }
@@ -7236,6 +7249,7 @@ export namespace Prisma {
     nombre?: SortOrder
     especialidad?: SortOrder
     foto?: SortOrderInput | SortOrder
+    categorias?: SortOrder
     reservas?: ReservaOrderByRelationAggregateInput
     horarios?: HorarioOrderByRelationAggregateInput
   }
@@ -7248,6 +7262,7 @@ export namespace Prisma {
     nombre?: StringFilter<"Barbero"> | string
     especialidad?: StringFilter<"Barbero"> | string
     foto?: StringNullableFilter<"Barbero"> | string | null
+    categorias?: StringFilter<"Barbero"> | string
     reservas?: ReservaListRelationFilter
     horarios?: HorarioListRelationFilter
   }, "id">
@@ -7257,6 +7272,7 @@ export namespace Prisma {
     nombre?: SortOrder
     especialidad?: SortOrder
     foto?: SortOrderInput | SortOrder
+    categorias?: SortOrder
     _count?: BarberoCountOrderByAggregateInput
     _avg?: BarberoAvgOrderByAggregateInput
     _max?: BarberoMaxOrderByAggregateInput
@@ -7272,6 +7288,7 @@ export namespace Prisma {
     nombre?: StringWithAggregatesFilter<"Barbero"> | string
     especialidad?: StringWithAggregatesFilter<"Barbero"> | string
     foto?: StringNullableWithAggregatesFilter<"Barbero"> | string | null
+    categorias?: StringWithAggregatesFilter<"Barbero"> | string
   }
 
   export type ServicioWhereInput = {
@@ -7620,6 +7637,7 @@ export namespace Prisma {
     nombre: string
     especialidad: string
     foto?: string | null
+    categorias?: string
     reservas?: ReservaCreateNestedManyWithoutBarberoInput
     horarios?: HorarioCreateNestedManyWithoutBarberoInput
   }
@@ -7629,6 +7647,7 @@ export namespace Prisma {
     nombre: string
     especialidad: string
     foto?: string | null
+    categorias?: string
     reservas?: ReservaUncheckedCreateNestedManyWithoutBarberoInput
     horarios?: HorarioUncheckedCreateNestedManyWithoutBarberoInput
   }
@@ -7637,6 +7656,7 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     especialidad?: StringFieldUpdateOperationsInput | string
     foto?: NullableStringFieldUpdateOperationsInput | string | null
+    categorias?: StringFieldUpdateOperationsInput | string
     reservas?: ReservaUpdateManyWithoutBarberoNestedInput
     horarios?: HorarioUpdateManyWithoutBarberoNestedInput
   }
@@ -7646,6 +7666,7 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     especialidad?: StringFieldUpdateOperationsInput | string
     foto?: NullableStringFieldUpdateOperationsInput | string | null
+    categorias?: StringFieldUpdateOperationsInput | string
     reservas?: ReservaUncheckedUpdateManyWithoutBarberoNestedInput
     horarios?: HorarioUncheckedUpdateManyWithoutBarberoNestedInput
   }
@@ -7655,12 +7676,14 @@ export namespace Prisma {
     nombre: string
     especialidad: string
     foto?: string | null
+    categorias?: string
   }
 
   export type BarberoUpdateManyMutationInput = {
     nombre?: StringFieldUpdateOperationsInput | string
     especialidad?: StringFieldUpdateOperationsInput | string
     foto?: NullableStringFieldUpdateOperationsInput | string | null
+    categorias?: StringFieldUpdateOperationsInput | string
   }
 
   export type BarberoUncheckedUpdateManyInput = {
@@ -7668,6 +7691,7 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     especialidad?: StringFieldUpdateOperationsInput | string
     foto?: NullableStringFieldUpdateOperationsInput | string | null
+    categorias?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServicioCreateInput = {
@@ -8130,6 +8154,7 @@ export namespace Prisma {
     nombre?: SortOrder
     especialidad?: SortOrder
     foto?: SortOrder
+    categorias?: SortOrder
   }
 
   export type BarberoAvgOrderByAggregateInput = {
@@ -8141,6 +8166,7 @@ export namespace Prisma {
     nombre?: SortOrder
     especialidad?: SortOrder
     foto?: SortOrder
+    categorias?: SortOrder
   }
 
   export type BarberoMinOrderByAggregateInput = {
@@ -8148,6 +8174,7 @@ export namespace Prisma {
     nombre?: SortOrder
     especialidad?: SortOrder
     foto?: SortOrder
+    categorias?: SortOrder
   }
 
   export type BarberoSumOrderByAggregateInput = {
@@ -9045,6 +9072,7 @@ export namespace Prisma {
     nombre: string
     especialidad: string
     foto?: string | null
+    categorias?: string
     horarios?: HorarioCreateNestedManyWithoutBarberoInput
   }
 
@@ -9053,6 +9081,7 @@ export namespace Prisma {
     nombre: string
     especialidad: string
     foto?: string | null
+    categorias?: string
     horarios?: HorarioUncheckedCreateNestedManyWithoutBarberoInput
   }
 
@@ -9134,6 +9163,7 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     especialidad?: StringFieldUpdateOperationsInput | string
     foto?: NullableStringFieldUpdateOperationsInput | string | null
+    categorias?: StringFieldUpdateOperationsInput | string
     horarios?: HorarioUpdateManyWithoutBarberoNestedInput
   }
 
@@ -9142,6 +9172,7 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     especialidad?: StringFieldUpdateOperationsInput | string
     foto?: NullableStringFieldUpdateOperationsInput | string | null
+    categorias?: StringFieldUpdateOperationsInput | string
     horarios?: HorarioUncheckedUpdateManyWithoutBarberoNestedInput
   }
 
@@ -9179,6 +9210,7 @@ export namespace Prisma {
     nombre: string
     especialidad: string
     foto?: string | null
+    categorias?: string
     reservas?: ReservaCreateNestedManyWithoutBarberoInput
   }
 
@@ -9187,6 +9219,7 @@ export namespace Prisma {
     nombre: string
     especialidad: string
     foto?: string | null
+    categorias?: string
     reservas?: ReservaUncheckedCreateNestedManyWithoutBarberoInput
   }
 
@@ -9210,6 +9243,7 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     especialidad?: StringFieldUpdateOperationsInput | string
     foto?: NullableStringFieldUpdateOperationsInput | string | null
+    categorias?: StringFieldUpdateOperationsInput | string
     reservas?: ReservaUpdateManyWithoutBarberoNestedInput
   }
 
@@ -9218,6 +9252,7 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     especialidad?: StringFieldUpdateOperationsInput | string
     foto?: NullableStringFieldUpdateOperationsInput | string | null
+    categorias?: StringFieldUpdateOperationsInput | string
     reservas?: ReservaUncheckedUpdateManyWithoutBarberoNestedInput
   }
 

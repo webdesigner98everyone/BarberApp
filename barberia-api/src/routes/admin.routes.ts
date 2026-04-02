@@ -20,10 +20,10 @@ router.get('/barberos', getBarberos);
 router.post('/barberos', createBarbero);
 router.put('/barberos/:id', async (req, res) => {
   const { id } = req.params;
-  const { nombre, especialidad, foto } = req.body;
+  const { nombre, especialidad, foto, categorias } = req.body;
   const barbero = await (await import('../lib/prisma')).default.barbero.update({
     where: { id: Number(id) },
-    data: { nombre, especialidad, foto }
+    data: { nombre, especialidad, foto, categorias }
   });
   res.json(barbero);
 });

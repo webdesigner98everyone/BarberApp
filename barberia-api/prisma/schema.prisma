@@ -22,10 +22,11 @@ model Usuario {
 }
 
 model Barbero {
-  id           Int       @id @default(autoincrement())
+  id           Int                    @id @default(autoincrement())
   nombre       String
   especialidad String
   foto         String?
+  categorias   String                 @default("Cabello")
   reservas     Reserva[]
   horarios     Horario[]
 }

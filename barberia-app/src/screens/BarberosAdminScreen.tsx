@@ -11,32 +11,59 @@ interface Barbero {
   foto: string | null;
 }
 
+const CATEGORIAS_DISPONIBLES = ['Cabello', 'Barba', 'Uñas', 'Tratamientos', 'General'];
+
 const BarberoModal = ({ visible, barbero, onClose, onSave }: any) => {
   const [nombre, setNombre] = useState(barbero?.nombre ?? '');
   const [especialidad, setEspecialidad] = useState(barbero?.especialidad ?? '');
+  const [categoriasSeleccionadas, setCategoriasSeleccionadas] = useState<string[]>(
+    barbero?.categorias ? barbero.categorias.split(',').map((c: string) => c.trim()) : ['Cabello']
+  );
 
   React.useEffect(() => {
     setNombre(barbero?.nombre ?? '');
     setEspecialidad(barbero?.especialidad ?? '');
+    setCategoriasSeleccionadas(
+      barbero?.categorias ? barbero.categorias.split(',').map((c: string) => c.trim()) : ['Cabello']
+    );
   }, [barbero]);
+
+  const toggleCategoria = (cat: string) => {
+    setCategoriasSeleccionadas((prev) =>
+      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
+    );
+  };
 
   return (
     <Modal visible={visible} transparent animationType="slide">
       <View style={styles.modalOverlay}>
         <View style={styles.modalContent}>
-          <Text style={styles.modalTitle}>{barbero ? 'Editar Barbero' : 'Nuevo Barbero'}</Text>
+          <Text style={styles.modalTitle}>{barbero ? 'Editar Especialista' : 'Nuevo Especialista'}</Text>
 
           <Text style={styles.label}>Nombre</Text>
           <TextInput style={styles.input} value={nombre} onChangeText={setNombre} placeholder="Nombre completo" placeholderTextColor={theme.colors.gray} />
 
           <Text style={styles.label}>Especialidad</Text>
-          <TextInput style={styles.input} value={especialidad} onChangeText={setEspecialidad} placeholder="Ej: Corte clásico" placeholderTextColor={theme.colors.gray} />
+          <TextInput style={styles.input} value={especialidad} onChangeText={setEspecialidad} placeholder="Ej: Estilista profesional" placeholderTextColor={theme.colors.gray} />
+
+          <Text style={styles.label}>Categorías que maneja</Text>
+          <View style={styles.categoriasRow}>
+            {CATEGORIAS_DISPONIBLES.map((cat) => (
+              <TouchableOpacity
+                key={cat}
+                style={[styles.categoriaChip, categoriasSeleccionadas.includes(cat) && styles.categoriaChipSelected]}
+                onPress={() => toggleCategoria(cat)}
+              >
+                <Text style={[styles.categoriaChipText, categoriasSeleccionadas.includes(cat) && styles.categoriaChipTextSelected]}>{cat}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
 
           <View style={styles.modalBtns}>
             <TouchableOpacity style={styles.cancelModalBtn} onPress={onClose}>
               <Text style={styles.cancelModalText}>Cancelar</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.saveBtn} onPress={() => onSave({ nombre, especialidad })}>
+            <TouchableOpacity style={styles.saveBtn} onPress={() => onSave({ nombre, especialidad, categorias: categoriasSeleccionadas.join(',') })}>
               <Text style={styles.saveBtnText}>Guardar</Text>
             </TouchableOpacity>
           </View>
@@ -64,19 +91,20 @@ export default function BarberosAdminScreen({ navigation }: any) {
     b.especialidad.toLowerCase().includes(filtro.toLowerCase())
   );
 
-  const handleSave = async ({ nombre, especialidad }: any) => {
+  const handleSave = async ({ nombre, especialidad, categorias }: any) => {
     if (!nombre.trim() || !especialidad.trim()) return Alert.alert('Error', 'Todos los campos son requeridos');
+    if (!categorias) return Alert.alert('Error', 'Selecciona al menos una categoría');
     try {
       if (barberoEditando) {
-        await api.put(`/admin/barberos/${barberoEditando.id}`, { nombre, especialidad });
+        await api.put(`/admin/barberos/${barberoEditando.id}`, { nombre, especialidad, categorias });
       } else {
-        await api.post('/admin/barberos', { nombre, especialidad });
+        await api.post('/admin/barberos', { nombre, especialidad, categorias });
       }
       setModalVisible(false);
       setBarberoEditando(null);
       cargar();
     } catch {
-      Alert.alert('Error', 'No se pudo guardar el barbero');
+      Alert.alert('Error', 'No se pudo guardar el especialista');
     }
   };
 
@@ -131,6 +159,7 @@ export default function BarberosAdminScreen({ navigation }: any) {
             <View style={styles.info}>
               <Text style={styles.nombre}>{item.nombre}</Text>
               <Text style={styles.especialidad}>{item.especialidad}</Text>
+              <Text style={styles.categorias}>{item.categorias?.split(',').join(' · ')}</Text>
             </View>
             <View style={styles.acciones}>
               <TouchableOpacity style={styles.perfilBtn} onPress={() => navigation.navigate('BarberoPerfil', { barbero: item })}>
@@ -172,6 +201,7 @@ const styles = StyleSheet.create({
   info: { flex: 1 },
   nombre: { fontSize: 15, fontWeight: 'bold', color: theme.colors.white },
   especialidad: { color: theme.colors.gray, fontSize: 13, marginTop: 2 },
+  categorias: { color: theme.colors.gold, fontSize: 11, marginTop: 2 },
   acciones: { flexDirection: 'row', gap: 8 },
   perfilBtn: { backgroundColor: '#1a2a3a', padding: 8, borderRadius: 8 },
   perfilText: { fontSize: 16 },
@@ -191,4 +221,9 @@ const styles = StyleSheet.create({
   cancelModalText: { color: theme.colors.gray, fontWeight: 'bold' },
   saveBtn: { flex: 1, backgroundColor: theme.colors.gold, padding: 14, borderRadius: 8, alignItems: 'center' },
   saveBtnText: { color: theme.colors.background, fontWeight: 'bold' },
+  categoriasRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 16 },
+  categoriaChip: { paddingHorizontal: 12, paddingVertical: 6, borderRadius: 20, borderWidth: 1, borderColor: theme.colors.lightGray },
+  categoriaChipSelected: { backgroundColor: theme.colors.gold, borderColor: theme.colors.gold },
+  categoriaChipText: { color: theme.colors.gray, fontSize: 12 },
+  categoriaChipTextSelected: { color: theme.colors.background, fontWeight: 'bold' },
 });

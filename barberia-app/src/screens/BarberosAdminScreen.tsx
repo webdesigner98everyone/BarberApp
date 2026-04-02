@@ -87,8 +87,8 @@ export default function BarberosAdminScreen({ navigation }: any) {
         try {
           await api.delete(`/admin/barberos/${barbero.id}`);
           cargar();
-        } catch {
-          Alert.alert('Error', 'No se puede eliminar, tiene reservas activas');
+        } catch (error: any) {
+          Alert.alert('No se puede eliminar', error.response?.data?.error ?? 'Error al eliminar el barbero');
         }
       }}
     ]);

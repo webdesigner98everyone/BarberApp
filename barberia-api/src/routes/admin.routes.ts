@@ -27,7 +27,12 @@ router.put('/barberos/:id', async (req, res) => {
 });
 router.delete('/barberos/:id', async (req, res) => {
   const { id } = req.params;
-  await (await import('../lib/prisma')).default.barbero.delete({ where: { id: Number(id) } });
+  const prisma = (await import('../lib/prisma')).default;
+  const pendientes = await prisma.reserva.count({ where: { barberoId: Number(id), estado: 'pendiente' } });
+  if (pendientes > 0) return res.status(400).json({ error: `Este barbero tiene ${pendientes} cita(s) pendiente(s). Cancélalas primero antes de eliminarlo.` });
+  await prisma.reserva.deleteMany({ where: { barberoId: Number(id) } });
+  await prisma.horario.deleteMany({ where: { barberoId: Number(id) } });
+  await prisma.barbero.delete({ where: { id: Number(id) } });
   res.json({ message: 'Barbero eliminado' });
 });
 router.get('/barberos/:id/horarios', async (req, res) => {

@@ -145,7 +145,10 @@ exports.Prisma.ServicioScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
   precio: 'precio',
-  duracion_minutos: 'duracion_minutos'
+  duracion_minutos: 'duracion_minutos',
+  categoria: 'categoria',
+  activo: 'activo',
+  predefinido: 'predefinido'
 };
 
 exports.Prisma.ReservaScalarFieldEnum = {

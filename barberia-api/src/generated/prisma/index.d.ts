@@ -3306,6 +3306,9 @@ export namespace Prisma {
     nombre: string | null
     precio: number | null
     duracion_minutos: number | null
+    categoria: string | null
+    activo: boolean | null
+    predefinido: boolean | null
   }
 
   export type ServicioMaxAggregateOutputType = {
@@ -3313,6 +3316,9 @@ export namespace Prisma {
     nombre: string | null
     precio: number | null
     duracion_minutos: number | null
+    categoria: string | null
+    activo: boolean | null
+    predefinido: boolean | null
   }
 
   export type ServicioCountAggregateOutputType = {
@@ -3320,6 +3326,9 @@ export namespace Prisma {
     nombre: number
     precio: number
     duracion_minutos: number
+    categoria: number
+    activo: number
+    predefinido: number
     _all: number
   }
 
@@ -3341,6 +3350,9 @@ export namespace Prisma {
     nombre?: true
     precio?: true
     duracion_minutos?: true
+    categoria?: true
+    activo?: true
+    predefinido?: true
   }
 
   export type ServicioMaxAggregateInputType = {
@@ -3348,6 +3360,9 @@ export namespace Prisma {
     nombre?: true
     precio?: true
     duracion_minutos?: true
+    categoria?: true
+    activo?: true
+    predefinido?: true
   }
 
   export type ServicioCountAggregateInputType = {
@@ -3355,6 +3370,9 @@ export namespace Prisma {
     nombre?: true
     precio?: true
     duracion_minutos?: true
+    categoria?: true
+    activo?: true
+    predefinido?: true
     _all?: true
   }
 
@@ -3449,6 +3467,9 @@ export namespace Prisma {
     nombre: string
     precio: number
     duracion_minutos: number
+    categoria: string
+    activo: boolean
+    predefinido: boolean
     _count: ServicioCountAggregateOutputType | null
     _avg: ServicioAvgAggregateOutputType | null
     _sum: ServicioSumAggregateOutputType | null
@@ -3475,6 +3496,9 @@ export namespace Prisma {
     nombre?: boolean
     precio?: boolean
     duracion_minutos?: boolean
+    categoria?: boolean
+    activo?: boolean
+    predefinido?: boolean
     reservas?: boolean | Servicio$reservasArgs<ExtArgs>
     _count?: boolean | ServicioCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["servicio"]>
@@ -3485,6 +3509,9 @@ export namespace Prisma {
     nombre?: boolean
     precio?: boolean
     duracion_minutos?: boolean
+    categoria?: boolean
+    activo?: boolean
+    predefinido?: boolean
   }
 
   export type ServicioInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3502,6 +3529,9 @@ export namespace Prisma {
       nombre: string
       precio: number
       duracion_minutos: number
+      categoria: string
+      activo: boolean
+      predefinido: boolean
     }, ExtArgs["result"]["servicio"]>
     composites: {}
   }
@@ -3876,6 +3906,9 @@ export namespace Prisma {
     readonly nombre: FieldRef<"Servicio", 'String'>
     readonly precio: FieldRef<"Servicio", 'Float'>
     readonly duracion_minutos: FieldRef<"Servicio", 'Int'>
+    readonly categoria: FieldRef<"Servicio", 'String'>
+    readonly activo: FieldRef<"Servicio", 'Boolean'>
+    readonly predefinido: FieldRef<"Servicio", 'Boolean'>
   }
     
 
@@ -7005,7 +7038,10 @@ export namespace Prisma {
     id: 'id',
     nombre: 'nombre',
     precio: 'precio',
-    duracion_minutos: 'duracion_minutos'
+    duracion_minutos: 'duracion_minutos',
+    categoria: 'categoria',
+    activo: 'activo',
+    predefinido: 'predefinido'
   };
 
   export type ServicioScalarFieldEnum = (typeof ServicioScalarFieldEnum)[keyof typeof ServicioScalarFieldEnum]
@@ -7093,6 +7129,13 @@ export namespace Prisma {
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
   /**
    * Deep Input Types
@@ -7239,6 +7282,9 @@ export namespace Prisma {
     nombre?: StringFilter<"Servicio"> | string
     precio?: FloatFilter<"Servicio"> | number
     duracion_minutos?: IntFilter<"Servicio"> | number
+    categoria?: StringFilter<"Servicio"> | string
+    activo?: BoolFilter<"Servicio"> | boolean
+    predefinido?: BoolFilter<"Servicio"> | boolean
     reservas?: ReservaListRelationFilter
   }
 
@@ -7247,6 +7293,9 @@ export namespace Prisma {
     nombre?: SortOrder
     precio?: SortOrder
     duracion_minutos?: SortOrder
+    categoria?: SortOrder
+    activo?: SortOrder
+    predefinido?: SortOrder
     reservas?: ReservaOrderByRelationAggregateInput
   }
 
@@ -7258,6 +7307,9 @@ export namespace Prisma {
     nombre?: StringFilter<"Servicio"> | string
     precio?: FloatFilter<"Servicio"> | number
     duracion_minutos?: IntFilter<"Servicio"> | number
+    categoria?: StringFilter<"Servicio"> | string
+    activo?: BoolFilter<"Servicio"> | boolean
+    predefinido?: BoolFilter<"Servicio"> | boolean
     reservas?: ReservaListRelationFilter
   }, "id">
 
@@ -7266,6 +7318,9 @@ export namespace Prisma {
     nombre?: SortOrder
     precio?: SortOrder
     duracion_minutos?: SortOrder
+    categoria?: SortOrder
+    activo?: SortOrder
+    predefinido?: SortOrder
     _count?: ServicioCountOrderByAggregateInput
     _avg?: ServicioAvgOrderByAggregateInput
     _max?: ServicioMaxOrderByAggregateInput
@@ -7281,6 +7336,9 @@ export namespace Prisma {
     nombre?: StringWithAggregatesFilter<"Servicio"> | string
     precio?: FloatWithAggregatesFilter<"Servicio"> | number
     duracion_minutos?: IntWithAggregatesFilter<"Servicio"> | number
+    categoria?: StringWithAggregatesFilter<"Servicio"> | string
+    activo?: BoolWithAggregatesFilter<"Servicio"> | boolean
+    predefinido?: BoolWithAggregatesFilter<"Servicio"> | boolean
   }
 
   export type ReservaWhereInput = {
@@ -7616,6 +7674,9 @@ export namespace Prisma {
     nombre: string
     precio: number
     duracion_minutos: number
+    categoria?: string
+    activo?: boolean
+    predefinido?: boolean
     reservas?: ReservaCreateNestedManyWithoutServicioInput
   }
 
@@ -7624,6 +7685,9 @@ export namespace Prisma {
     nombre: string
     precio: number
     duracion_minutos: number
+    categoria?: string
+    activo?: boolean
+    predefinido?: boolean
     reservas?: ReservaUncheckedCreateNestedManyWithoutServicioInput
   }
 
@@ -7631,6 +7695,9 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     precio?: FloatFieldUpdateOperationsInput | number
     duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    predefinido?: BoolFieldUpdateOperationsInput | boolean
     reservas?: ReservaUpdateManyWithoutServicioNestedInput
   }
 
@@ -7639,6 +7706,9 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     precio?: FloatFieldUpdateOperationsInput | number
     duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    predefinido?: BoolFieldUpdateOperationsInput | boolean
     reservas?: ReservaUncheckedUpdateManyWithoutServicioNestedInput
   }
 
@@ -7647,12 +7717,18 @@ export namespace Prisma {
     nombre: string
     precio: number
     duracion_minutos: number
+    categoria?: string
+    activo?: boolean
+    predefinido?: boolean
   }
 
   export type ServicioUpdateManyMutationInput = {
     nombre?: StringFieldUpdateOperationsInput | string
     precio?: FloatFieldUpdateOperationsInput | number
     duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    predefinido?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ServicioUncheckedUpdateManyInput = {
@@ -7660,6 +7736,9 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     precio?: FloatFieldUpdateOperationsInput | number
     duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    predefinido?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ReservaCreateInput = {
@@ -8086,11 +8165,19 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type ServicioCountOrderByAggregateInput = {
     id?: SortOrder
     nombre?: SortOrder
     precio?: SortOrder
     duracion_minutos?: SortOrder
+    categoria?: SortOrder
+    activo?: SortOrder
+    predefinido?: SortOrder
   }
 
   export type ServicioAvgOrderByAggregateInput = {
@@ -8104,6 +8191,9 @@ export namespace Prisma {
     nombre?: SortOrder
     precio?: SortOrder
     duracion_minutos?: SortOrder
+    categoria?: SortOrder
+    activo?: SortOrder
+    predefinido?: SortOrder
   }
 
   export type ServicioMinOrderByAggregateInput = {
@@ -8111,6 +8201,9 @@ export namespace Prisma {
     nombre?: SortOrder
     precio?: SortOrder
     duracion_minutos?: SortOrder
+    categoria?: SortOrder
+    activo?: SortOrder
+    predefinido?: SortOrder
   }
 
   export type ServicioSumOrderByAggregateInput = {
@@ -8133,6 +8226,14 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type UsuarioRelationFilter = {
@@ -8442,6 +8543,10 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type ReservaUpdateManyWithoutServicioNestedInput = {
     create?: XOR<ReservaCreateWithoutServicioInput, ReservaUncheckedCreateWithoutServicioInput> | ReservaCreateWithoutServicioInput[] | ReservaUncheckedCreateWithoutServicioInput[]
     connectOrCreate?: ReservaCreateOrConnectWithoutServicioInput | ReservaCreateOrConnectWithoutServicioInput[]
@@ -8687,6 +8792,11 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[]
@@ -8701,6 +8811,14 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type ReservaCreateWithoutUsuarioInput = {
@@ -8947,6 +9065,9 @@ export namespace Prisma {
     nombre: string
     precio: number
     duracion_minutos: number
+    categoria?: string
+    activo?: boolean
+    predefinido?: boolean
   }
 
   export type ServicioUncheckedCreateWithoutReservasInput = {
@@ -8954,6 +9075,9 @@ export namespace Prisma {
     nombre: string
     precio: number
     duracion_minutos: number
+    categoria?: string
+    activo?: boolean
+    predefinido?: boolean
   }
 
   export type ServicioCreateOrConnectWithoutReservasInput = {
@@ -9036,6 +9160,9 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     precio?: FloatFieldUpdateOperationsInput | number
     duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    predefinido?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ServicioUncheckedUpdateWithoutReservasInput = {
@@ -9043,6 +9170,9 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     precio?: FloatFieldUpdateOperationsInput | number
     duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    predefinido?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type BarberoCreateWithoutHorariosInput = {

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import prisma from '../lib/prisma';
 
 export const getServicios = async (_req: Request, res: Response) => {
-  const servicios = await prisma.servicio.findMany();
+  const servicios = await prisma.servicio.findMany({ where: { activo: true } });
   res.json(servicios);
 };
 

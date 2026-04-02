@@ -35,6 +35,9 @@ model Servicio {
   nombre           String
   precio           Float
   duracion_minutos Int
+  categoria        String    @default("General")
+  activo           Boolean   @default(true)
+  predefinido      Boolean   @default(false)
   reservas         Reserva[]
 }
 

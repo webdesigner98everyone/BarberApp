@@ -39,17 +39,32 @@ router.delete('/barberos/:id', async (req, res) => {
 });
 router.get('/configuracion', getConfiguracion);
 router.put('/configuracion', updateConfiguracion);
-router.get('/servicios', getServicios);
+router.get('/servicios', async (_req, res) => {
+  const prisma = (await import('../lib/prisma')).default;
+  const servicios = await prisma.servicio.findMany({ orderBy: [{ categoria: 'asc' }, { nombre: 'asc' }] });
+  res.json(servicios);
+});
 router.post('/servicios', createServicio);
 router.put('/servicios/:id', async (req, res) => {
   const { id } = req.params;
-  const { nombre, precio, duracion_minutos } = req.body;
+  const { nombre, precio, duracion_minutos, categoria } = req.body;
   const prisma = (await import('../lib/prisma')).default;
   const servicio = await prisma.servicio.update({
     where: { id: Number(id) },
-    data: { nombre, precio: Number(precio), duracion_minutos: Number(duracion_minutos) }
+    data: { nombre, precio: Number(precio), duracion_minutos: Number(duracion_minutos), categoria }
   });
   res.json(servicio);
+});
+router.patch('/servicios/:id/toggle', async (req, res) => {
+  const { id } = req.params;
+  const prisma = (await import('../lib/prisma')).default;
+  const servicio = await prisma.servicio.findUnique({ where: { id: Number(id) } });
+  if (!servicio) return res.status(404).json({ error: 'Servicio no encontrado' });
+  const updated = await prisma.servicio.update({
+    where: { id: Number(id) },
+    data: { activo: !servicio.activo }
+  });
+  res.json(updated);
 });
 router.delete('/servicios/:id', async (req, res) => {
   const { id } = req.params;

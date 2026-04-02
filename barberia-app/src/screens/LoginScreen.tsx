@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator, ScrollView, Keyboard } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { theme } from '../theme';
 import api from '../services/api';
@@ -9,6 +9,7 @@ export default function LoginScreen({ navigation }: any) {
   const [password, setPassword] = useState('');
   const [errores, setErrores] = useState<any>({});
   const [loading, setLoading] = useState(false);
+  const passwordRef = useRef<TextInput>(null);
 
   const validar = () => {
     const e: any = {};
@@ -21,6 +22,7 @@ export default function LoginScreen({ navigation }: any) {
   };
 
   const handleLogin = async () => {
+    Keyboard.dismiss();
     if (!validar()) return;
     try {
       setLoading(true);
@@ -36,7 +38,11 @@ export default function LoginScreen({ navigation }: any) {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      keyboardShouldPersistTaps="always"
+      showsVerticalScrollIndicator={false}
+    >
       <View style={styles.header}>
         <Text style={styles.logo}>✂️</Text>
         <Text style={styles.title}>THE BARBER</Text>
@@ -58,17 +64,23 @@ export default function LoginScreen({ navigation }: any) {
         onChangeText={(v) => { setEmail(v); setErrores((p: any) => ({ ...p, email: null })); }}
         keyboardType="email-address"
         autoCapitalize="none"
+        returnKeyType="next"
+        onSubmitEditing={() => passwordRef.current?.focus()}
+        blurOnSubmit={false}
       />
       {errores.email && <Text style={styles.error}>{errores.email}</Text>}
 
       <Text style={styles.label}>Contraseña</Text>
       <TextInput
+        ref={passwordRef}
         style={[styles.input, errores.password && styles.inputError]}
         placeholder="••••••"
         placeholderTextColor={theme.colors.gray}
         value={password}
         onChangeText={(v) => { setPassword(v); setErrores((p: any) => ({ ...p, password: null })); }}
         secureTextEntry
+        returnKeyType="done"
+        onSubmitEditing={handleLogin}
       />
       {errores.password && <Text style={styles.error}>{errores.password}</Text>}
 
@@ -79,12 +91,12 @@ export default function LoginScreen({ navigation }: any) {
       <TouchableOpacity onPress={() => navigation.navigate('Register')}>
         <Text style={styles.link}>¿No tienes cuenta? <Text style={styles.linkBold}>Regístrate</Text></Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', padding: 24, backgroundColor: theme.colors.background },
+  container: { flexGrow: 1, justifyContent: 'center', padding: 24, backgroundColor: theme.colors.background },
   header: { alignItems: 'center', marginBottom: 40 },
   logo: { fontSize: 56 },
   title: { fontSize: 32, fontWeight: 'bold', color: theme.colors.gold, letterSpacing: 4, marginTop: 8 },

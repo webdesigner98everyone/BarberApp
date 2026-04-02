@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator, ScrollView, Image } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import * as ImagePicker from 'expo-image-picker';
@@ -17,6 +17,11 @@ export default function RegisterScreen({ navigation }: any) {
   const [errores, setErrores] = useState<any>({});
   const [loading, setLoading] = useState(false);
   const [exitoso, setExitoso] = useState(false);
+
+  const emailRef = useRef<TextInput>(null);
+  const telefonoRef = useRef<TextInput>(null);
+  const passwordRef = useRef<TextInput>(null);
+  const confirmarRef = useRef<TextInput>(null);
 
   const handleSeleccionarFoto = async () => {
     const permiso = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -63,7 +68,11 @@ export default function RegisterScreen({ navigation }: any) {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
+    <ScrollView
+      contentContainerStyle={styles.container}
+      keyboardShouldPersistTaps="always"
+      showsVerticalScrollIndicator={false}
+    >
       <View style={styles.header}>
         <Text style={styles.title}>CREAR CUENTA</Text>
         <Text style={styles.subtitle}>Únete a The Barber</Text>
@@ -101,11 +110,15 @@ export default function RegisterScreen({ navigation }: any) {
         placeholderTextColor={theme.colors.gray}
         value={nombre}
         onChangeText={setNombre}
+        returnKeyType="next"
+        onSubmitEditing={() => emailRef.current?.focus()}
+        blurOnSubmit={false}
       />
       {errores.nombre && <Text style={styles.error}>{errores.nombre}</Text>}
 
       <Text style={styles.label}>Email</Text>
       <TextInput
+        ref={emailRef}
         style={[styles.input, errores.email && styles.inputError]}
         placeholder="tucorreo@email.com"
         placeholderTextColor={theme.colors.gray}
@@ -113,17 +126,24 @@ export default function RegisterScreen({ navigation }: any) {
         onChangeText={setEmail}
         keyboardType="email-address"
         autoCapitalize="none"
+        returnKeyType="next"
+        onSubmitEditing={() => telefonoRef.current?.focus()}
+        blurOnSubmit={false}
       />
       {errores.email && <Text style={styles.error}>{errores.email}</Text>}
 
       <Text style={styles.label}>Teléfono</Text>
       <TextInput
+        ref={telefonoRef}
         style={[styles.input, errores.telefono && styles.inputError]}
         placeholder="Ej: 3001234567"
         placeholderTextColor={theme.colors.gray}
         value={telefono}
         onChangeText={setTelefono}
         keyboardType="phone-pad"
+        returnKeyType="next"
+        onSubmitEditing={() => setShowDatePicker(true)}
+        blurOnSubmit={false}
       />
       {errores.telefono && <Text style={styles.error}>{errores.telefono}</Text>}
 
@@ -149,23 +169,30 @@ export default function RegisterScreen({ navigation }: any) {
 
       <Text style={styles.label}>Contraseña</Text>
       <TextInput
+        ref={passwordRef}
         style={[styles.input, errores.password && styles.inputError]}
         placeholder="••••••"
         placeholderTextColor={theme.colors.gray}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
+        returnKeyType="next"
+        onSubmitEditing={() => confirmarRef.current?.focus()}
+        blurOnSubmit={false}
       />
       {errores.password && <Text style={styles.error}>{errores.password}</Text>}
 
       <Text style={styles.label}>Confirmar contraseña</Text>
       <TextInput
+        ref={confirmarRef}
         style={[styles.input, errores.confirmar && styles.inputError]}
         placeholder="Repite tu contraseña"
         placeholderTextColor={theme.colors.gray}
         value={confirmar}
         onChangeText={setConfirmar}
         secureTextEntry
+        returnKeyType="done"
+        onSubmitEditing={handleRegister}
       />
       {errores.confirmar && <Text style={styles.error}>{errores.confirmar}</Text>}
 
@@ -181,7 +208,7 @@ export default function RegisterScreen({ navigation }: any) {
 }
 
 const styles = StyleSheet.create({
-  container: { flexGrow: 1, justifyContent: 'center', padding: 24, backgroundColor: theme.colors.background },
+  container: { flexGrow: 1, padding: 24, backgroundColor: theme.colors.background },
   header: { alignItems: 'center', marginBottom: 32 },
   title: { fontSize: 26, fontWeight: 'bold', color: theme.colors.gold, letterSpacing: 4 },
   subtitle: { color: theme.colors.gray, fontSize: 14, marginTop: 4 },

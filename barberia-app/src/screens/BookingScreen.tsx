@@ -57,7 +57,7 @@ export default function BookingScreen({ route, navigation }: any) {
   };
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 32 }}>
+    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 32 }} keyboardShouldPersistTaps="handled">
       <View style={styles.barberoBanner}>
         <View style={styles.avatar}>
           <Text style={styles.avatarText}>{barbero.nombre.charAt(0)}</Text>

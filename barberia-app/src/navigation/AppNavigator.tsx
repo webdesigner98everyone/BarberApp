@@ -1,9 +1,10 @@
-import React from 'react';
-import { TouchableOpacity, Text, Alert } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { TouchableOpacity, Text, Alert, ActivityIndicator, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { theme } from '../theme';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import HomeScreen from '../screens/HomeScreen';
@@ -29,7 +30,12 @@ function MainTabs({ navigation }: any) {
   };
 
   return (
-    <Tab.Navigator screenOptions={{ tabBarActiveTintColor: '#1a1a1a' }}>
+    <Tab.Navigator screenOptions={{
+      tabBarActiveTintColor: theme.colors.gold,
+      tabBarInactiveTintColor: theme.colors.gray,
+      tabBarStyle: { backgroundColor: theme.colors.card, borderTopColor: theme.colors.lightGray },
+      headerShown: false
+    }}>
       <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Barberos' }} />
       <Tab.Screen name="MisCitas" component={MisCitasScreen} options={{ title: 'Mis Citas' }} />
       <Tab.Screen
@@ -39,8 +45,8 @@ function MainTabs({ navigation }: any) {
           title: 'Salir',
           tabBarButton: () => (
             <TouchableOpacity onPress={handleLogout} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingBottom: 4 }}>
-              <Text style={{ fontSize: 20, marginBottom: 2 }}>⬅️</Text>
-              <Text style={{ fontSize: 10, color: '#ef4444', fontWeight: 'bold' }}>Salir</Text>
+              <Text style={{ fontSize: 20, marginBottom: 2 }}>🚪</Text>
+              <Text style={{ fontSize: 10, color: theme.colors.error, fontWeight: 'bold' }}>Salir</Text>
             </TouchableOpacity>
           )
         }}
@@ -50,9 +56,28 @@ function MainTabs({ navigation }: any) {
 }
 
 export default function AppNavigator() {
+  const [loading, setLoading] = useState(true);
+  const [autenticado, setAutenticado] = useState(false);
+
+  useEffect(() => {
+    AsyncStorage.getItem('token').then((token) => {
+      setAutenticado(!!token);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' }}>
+        <Text style={{ fontSize: 48, marginBottom: 16 }}>✂️</Text>
+        <ActivityIndicator size="large" color="#1a1a1a" />
+      </View>
+    );
+  }
+
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={autenticado ? 'Main' : 'Login'}>
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Main" component={MainTabs} />

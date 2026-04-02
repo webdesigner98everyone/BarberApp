@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { theme } from '../theme';
 import api from '../services/api';
 
 export default function LoginScreen({ navigation }: any) {
@@ -36,16 +37,23 @@ export default function LoginScreen({ navigation }: any) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>✂️</Text>
-      <Text style={styles.title}>Barbería</Text>
-      <Text style={styles.subtitle}>Inicia sesión para reservar</Text>
+      <View style={styles.header}>
+        <Text style={styles.logo}>✂️</Text>
+        <Text style={styles.title}>THE BARBER</Text>
+        <Text style={styles.subtitle}>Tu estilo, tu identidad</Text>
+      </View>
 
-      {errores.general && <View style={styles.errorBox}><Text style={styles.errorBoxText}>{errores.general}</Text></View>}
+      {errores.general && (
+        <View style={styles.errorBox}>
+          <Text style={styles.errorBoxText}>{errores.general}</Text>
+        </View>
+      )}
 
       <Text style={styles.label}>Email</Text>
       <TextInput
         style={[styles.input, errores.email && styles.inputError]}
         placeholder="tucorreo@email.com"
+        placeholderTextColor={theme.colors.gray}
         value={email}
         onChangeText={(v) => { setEmail(v); setErrores((p: any) => ({ ...p, email: null })); }}
         keyboardType="email-address"
@@ -57,6 +65,7 @@ export default function LoginScreen({ navigation }: any) {
       <TextInput
         style={[styles.input, errores.password && styles.inputError]}
         placeholder="••••••"
+        placeholderTextColor={theme.colors.gray}
         value={password}
         onChangeText={(v) => { setPassword(v); setErrores((p: any) => ({ ...p, password: null })); }}
         secureTextEntry
@@ -64,7 +73,7 @@ export default function LoginScreen({ navigation }: any) {
       {errores.password && <Text style={styles.error}>{errores.password}</Text>}
 
       <TouchableOpacity style={[styles.btn, loading && styles.btnDisabled]} onPress={handleLogin} disabled={loading}>
-        {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.btnText}>Ingresar</Text>}
+        {loading ? <ActivityIndicator color={theme.colors.background} /> : <Text style={styles.btnText}>INGRESAR</Text>}
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate('Register')}>
@@ -75,19 +84,20 @@ export default function LoginScreen({ navigation }: any) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', padding: 24, backgroundColor: '#fff' },
-  logo: { fontSize: 48, textAlign: 'center' },
-  title: { fontSize: 32, fontWeight: 'bold', textAlign: 'center', marginBottom: 4 },
-  subtitle: { color: '#666', textAlign: 'center', marginBottom: 32 },
-  label: { fontSize: 14, fontWeight: '600', marginBottom: 4, color: '#333' },
-  input: { borderWidth: 1, borderColor: '#ddd', borderRadius: 8, padding: 12, marginBottom: 4, fontSize: 16 },
-  inputError: { borderColor: '#ef4444' },
-  error: { color: '#ef4444', fontSize: 12, marginBottom: 12 },
-  errorBox: { backgroundColor: '#fee2e2', padding: 12, borderRadius: 8, marginBottom: 16 },
-  errorBoxText: { color: '#ef4444', textAlign: 'center' },
-  btn: { backgroundColor: '#1a1a1a', padding: 16, borderRadius: 8, alignItems: 'center', marginTop: 16, marginBottom: 16 },
-  btnDisabled: { backgroundColor: '#666' },
-  btnText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
-  link: { textAlign: 'center', color: '#666' },
-  linkBold: { fontWeight: 'bold', color: '#1a1a1a' },
+  container: { flex: 1, justifyContent: 'center', padding: 24, backgroundColor: theme.colors.background },
+  header: { alignItems: 'center', marginBottom: 40 },
+  logo: { fontSize: 56 },
+  title: { fontSize: 32, fontWeight: 'bold', color: theme.colors.gold, letterSpacing: 4, marginTop: 8 },
+  subtitle: { color: theme.colors.gray, fontSize: 14, marginTop: 4, letterSpacing: 1 },
+  label: { fontSize: 12, fontWeight: '600', marginBottom: 6, color: theme.colors.gray, letterSpacing: 1 },
+  input: { borderWidth: 1, borderColor: theme.colors.lightGray, borderRadius: 8, padding: 14, marginBottom: 4, fontSize: 15, color: theme.colors.white, backgroundColor: theme.colors.card },
+  inputError: { borderColor: theme.colors.error },
+  error: { color: theme.colors.error, fontSize: 12, marginBottom: 12 },
+  errorBox: { backgroundColor: '#3a1a1a', padding: 12, borderRadius: 8, marginBottom: 16, borderWidth: 1, borderColor: theme.colors.error },
+  errorBoxText: { color: theme.colors.error, textAlign: 'center' },
+  btn: { backgroundColor: theme.colors.gold, padding: 16, borderRadius: 8, alignItems: 'center', marginTop: 16, marginBottom: 16 },
+  btnDisabled: { backgroundColor: theme.colors.lightGray },
+  btnText: { color: theme.colors.background, fontSize: 15, fontWeight: 'bold', letterSpacing: 2 },
+  link: { textAlign: 'center', color: theme.colors.gray },
+  linkBold: { fontWeight: 'bold', color: theme.colors.gold },
 });

@@ -39,7 +39,7 @@ function MainTabs({ navigation }: any) {
           title: 'Salir',
           tabBarButton: () => (
             <TouchableOpacity onPress={handleLogout} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingBottom: 4 }}>
-              <Text style={{ fontSize: 20, marginBottom: 2 }}></Text>
+              <Text style={{ fontSize: 20, marginBottom: 2 }}>⬅️</Text>
               <Text style={{ fontSize: 10, color: '#ef4444', fontWeight: 'bold' }}>Salir</Text>
             </TouchableOpacity>
           )

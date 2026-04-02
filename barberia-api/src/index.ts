@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth.routes';
 import barberiaRoutes from './routes/barberia.routes';
 import reservasRoutes from './routes/reservas.routes';
+import adminRoutes from './routes/admin.routes';
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.get('/', (_req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api', barberiaRoutes);
 app.use('/api/reservas', reservasRoutes);
+app.use('/api/admin', adminRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);

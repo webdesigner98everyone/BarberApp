@@ -27,7 +27,7 @@ export default function LoginScreen({ navigation }: any) {
       const { data } = await api.post('/auth/login', { email, password });
       await AsyncStorage.setItem('token', data.token);
       await AsyncStorage.setItem('usuario', JSON.stringify(data.usuario));
-      navigation.replace('Main');
+      navigation.replace('Main', { rol: data.usuario.rol });
     } catch {
       setErrores({ general: 'Email o contraseña incorrectos' });
     } finally {

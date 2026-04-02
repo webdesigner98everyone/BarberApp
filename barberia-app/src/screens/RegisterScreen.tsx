@@ -36,22 +36,8 @@ export default function RegisterScreen({ navigation }: any) {
     }
   };
 
-  const Campo = ({ label, value, onChange, error, props = {} }: any) => (
-    <>
-      <Text style={styles.label}>{label}</Text>
-      <TextInput
-        style={[styles.input, error && styles.inputError]}
-        value={value}
-        placeholderTextColor={theme.colors.gray}
-        onChangeText={(v) => { onChange(v); setErrores((p: any) => ({ ...p, [label.toLowerCase()]: null })); }}
-        {...props}
-      />
-      {error && <Text style={styles.error}>{error}</Text>}
-    </>
-  );
-
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
       <View style={styles.header}>
         <Text style={styles.title}>CREAR CUENTA</Text>
         <Text style={styles.subtitle}>Únete a The Barber</Text>
@@ -63,10 +49,49 @@ export default function RegisterScreen({ navigation }: any) {
         </View>
       )}
 
-      <Campo label="Nombre" value={nombre} onChange={setNombre} error={errores.nombre} props={{ placeholder: 'Tu nombre completo' }} />
-      <Campo label="Email" value={email} onChange={setEmail} error={errores.email} props={{ placeholder: 'tucorreo@email.com', keyboardType: 'email-address', autoCapitalize: 'none' }} />
-      <Campo label="Contraseña" value={password} onChange={setPassword} error={errores.password} props={{ placeholder: '••••••', secureTextEntry: true }} />
-      <Campo label="Confirmar contraseña" value={confirmar} onChange={setConfirmar} error={errores.confirmar} props={{ placeholder: 'Repite tu contraseña', secureTextEntry: true }} />
+      <Text style={styles.label}>Nombre</Text>
+      <TextInput
+        style={[styles.input, errores.nombre && styles.inputError]}
+        placeholder="Tu nombre completo"
+        placeholderTextColor={theme.colors.gray}
+        value={nombre}
+        onChangeText={setNombre}
+      />
+      {errores.nombre && <Text style={styles.error}>{errores.nombre}</Text>}
+
+      <Text style={styles.label}>Email</Text>
+      <TextInput
+        style={[styles.input, errores.email && styles.inputError]}
+        placeholder="tucorreo@email.com"
+        placeholderTextColor={theme.colors.gray}
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+        autoCapitalize="none"
+      />
+      {errores.email && <Text style={styles.error}>{errores.email}</Text>}
+
+      <Text style={styles.label}>Contraseña</Text>
+      <TextInput
+        style={[styles.input, errores.password && styles.inputError]}
+        placeholder="••••••"
+        placeholderTextColor={theme.colors.gray}
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+      />
+      {errores.password && <Text style={styles.error}>{errores.password}</Text>}
+
+      <Text style={styles.label}>Confirmar contraseña</Text>
+      <TextInput
+        style={[styles.input, errores.confirmar && styles.inputError]}
+        placeholder="Repite tu contraseña"
+        placeholderTextColor={theme.colors.gray}
+        value={confirmar}
+        onChangeText={setConfirmar}
+        secureTextEntry
+      />
+      {errores.confirmar && <Text style={styles.error}>{errores.confirmar}</Text>}
 
       <TouchableOpacity style={[styles.btn, loading && styles.btnDisabled]} onPress={handleRegister} disabled={loading}>
         {loading ? <ActivityIndicator color={theme.colors.background} /> : <Text style={styles.btnText}>REGISTRARSE</Text>}

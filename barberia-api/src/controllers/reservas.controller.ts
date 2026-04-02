@@ -11,7 +11,10 @@ export const getReservas = async (req: Request, res: Response) => {
 };
 
 export const createReserva = async (req: Request, res: Response) => {
-  const usuarioId = (req as any).usuario.id;
+  const usuario = (req as any).usuario;
+  if (usuario.rol === 'admin') return res.status(403).json({ error: 'Los administradores no pueden crear reservas' });
+
+  const usuarioId = usuario.id;
   const { barberoId, servicioId, fecha } = req.body;
   const reserva = await prisma.reserva.create({
     data: { usuarioId, barberoId, servicioId, fecha: new Date(fecha) },

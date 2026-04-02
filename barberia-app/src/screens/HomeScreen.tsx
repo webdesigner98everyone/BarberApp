@@ -1,14 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 import { theme } from '../theme';
 import api from '../services/api';
 
 export default function HomeScreen({ navigation }: any) {
   const [barberos, setBarberos] = useState([]);
+  const [rol, setRol] = useState<string | null>(null);
 
-  useEffect(() => {
+  useFocusEffect(useCallback(() => {
     api.get('/barberos').then(({ data }) => setBarberos(data));
-  }, []);
+    AsyncStorage.getItem('usuario').then((u) => {
+      if (u) setRol(JSON.parse(u).rol);
+    });
+  }, []));
+
+  const handlePress = (barbero: any) => {
+    if (rol === 'admin') return;
+    navigation.navigate('Booking', { barbero });
+  };
 
   return (
     <View style={styles.container}>
@@ -23,7 +34,7 @@ export default function HomeScreen({ navigation }: any) {
         keyExtractor={(item: any) => item.id.toString()}
         contentContainerStyle={{ paddingBottom: 20 }}
         renderItem={({ item }: any) => (
-          <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Booking', { barbero: item })}>
+          <TouchableOpacity style={[styles.card, rol === 'admin' && styles.cardDisabled]} onPress={() => handlePress(item)}>
             <View style={styles.avatar}>
               <Text style={styles.avatarText}>{item.nombre.charAt(0)}</Text>
             </View>
@@ -31,9 +42,11 @@ export default function HomeScreen({ navigation }: any) {
               <Text style={styles.nombre}>{item.nombre}</Text>
               <Text style={styles.especialidad}>{item.especialidad}</Text>
             </View>
-            <View style={styles.arrow}>
-              <Text style={styles.arrowText}>→</Text>
-            </View>
+            {rol !== 'admin' && (
+              <View style={styles.arrow}>
+                <Text style={styles.arrowText}>→</Text>
+              </View>
+            )}
           </TouchableOpacity>
         )}
       />
@@ -48,6 +61,7 @@ const styles = StyleSheet.create({
   title: { fontSize: 26, fontWeight: 'bold', color: theme.colors.white },
   subtitle: { color: theme.colors.gray, marginTop: 4 },
   card: { flexDirection: 'row', alignItems: 'center', backgroundColor: theme.colors.card, marginHorizontal: 16, marginBottom: 12, borderRadius: 12, padding: 16, borderLeftWidth: 3, borderLeftColor: theme.colors.gold },
+  cardDisabled: { opacity: 0.6, borderLeftColor: theme.colors.gray },
   avatar: { width: 48, height: 48, borderRadius: 24, backgroundColor: theme.colors.gold, justifyContent: 'center', alignItems: 'center', marginRight: 14 },
   avatarText: { fontSize: 20, fontWeight: 'bold', color: theme.colors.background },
   info: { flex: 1 },

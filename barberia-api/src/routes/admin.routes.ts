@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getReservasHoy, getTodasReservas, completarReserva, cancelarReservaAdmin } from '../controllers/admin.controller';
+import { getReservasHoy, getTodasReservas, completarReserva, cancelarReservaAdmin, getCumpleanosHoy } from '../controllers/admin.controller';
 import { authMiddleware } from '../middlewares/auth.middleware';
 import { adminMiddleware } from '../middlewares/admin.middleware';
 import { getBarberos, createBarbero } from '../controllers/barberos.controller';
@@ -13,6 +13,7 @@ router.get('/reservas/hoy', getReservasHoy);
 router.get('/reservas', getTodasReservas);
 router.patch('/reservas/:id/completar', completarReserva);
 router.patch('/reservas/:id/cancelar', cancelarReservaAdmin);
+router.get('/cumpleanos', getCumpleanosHoy);
 router.get('/barberos', getBarberos);
 router.post('/barberos', createBarbero);
 router.put('/barberos/:id', async (req, res) => {

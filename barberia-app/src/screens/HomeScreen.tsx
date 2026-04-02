@@ -8,12 +8,19 @@ import api from '../services/api';
 export default function HomeScreen({ navigation }: any) {
   const [barberos, setBarberos] = useState([]);
   const [rol, setRol] = useState<string | null>(null);
+  const [esCumpleanos, setEsCumpleanos] = useState(false);
+  const [nombreUsuario, setNombreUsuario] = useState('');
 
   useFocusEffect(useCallback(() => {
     api.get('/barberos').then(({ data }) => setBarberos(data));
     AsyncStorage.getItem('usuario').then((u) => {
-      if (u) setRol(JSON.parse(u).rol);
+      if (u) {
+        const usuario = JSON.parse(u);
+        setRol(usuario.rol);
+        setNombreUsuario(usuario.nombre);
+      }
     });
+    api.get('/perfil').then(({ data }) => setEsCumpleanos(data.esCumpleanos));
   }, []));
 
   const handlePress = (barbero: any) => {
@@ -28,6 +35,16 @@ export default function HomeScreen({ navigation }: any) {
         <Text style={styles.title}>Nuestros Barberos</Text>
         <Text style={styles.subtitle}>Selecciona tu especialista</Text>
       </View>
+
+      {esCumpleanos && (
+        <View style={styles.cumpleBanner}>
+          <Text style={styles.cumpleEmoji}>🎂🎉</Text>
+          <View style={styles.cumpleTextos}>
+            <Text style={styles.cumpleTitulo}>¡Feliz cumpleaños, {nombreUsuario.split(' ')[0]}!</Text>
+            <Text style={styles.cumpleSubtitulo}>Hoy es tu día especial. ¡Lúcete con un nuevo look!</Text>
+          </View>
+        </View>
+      )}
 
       <FlatList
         data={barberos}
@@ -62,6 +79,11 @@ const styles = StyleSheet.create({
   subtitle: { color: theme.colors.gray, marginTop: 4 },
   card: { flexDirection: 'row', alignItems: 'center', backgroundColor: theme.colors.card, marginHorizontal: 16, marginBottom: 12, borderRadius: 12, padding: 16, borderLeftWidth: 3, borderLeftColor: theme.colors.gold },
   cardDisabled: { opacity: 0.6, borderLeftColor: theme.colors.gray },
+  cumpleBanner: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#2a1a3a', marginHorizontal: 16, marginBottom: 16, borderRadius: 12, padding: 16, borderWidth: 1, borderColor: '#C9A84C', gap: 12 },
+  cumpleEmoji: { fontSize: 36 },
+  cumpleTextos: { flex: 1 },
+  cumpleTitulo: { fontSize: 16, fontWeight: 'bold', color: theme.colors.gold },
+  cumpleSubtitulo: { color: theme.colors.gray, fontSize: 12, marginTop: 4 },
   avatar: { width: 48, height: 48, borderRadius: 24, backgroundColor: theme.colors.gold, justifyContent: 'center', alignItems: 'center', marginRight: 14 },
   avatarText: { fontSize: 20, fontWeight: 'bold', color: theme.colors.background },
   info: { flex: 1 },

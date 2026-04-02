@@ -1,6 +1,28 @@
 import { Request, Response } from 'express';
 import prisma from '../lib/prisma';
 
+export const getCumpleanosHoy = async (_req: Request, res: Response) => {
+  const hoy = new Date();
+  const mes = hoy.getMonth() + 1;
+  const dia = hoy.getDate();
+
+  const usuarios = await prisma.usuario.findMany({
+    where: {
+      fecha_nacimiento: { not: null },
+      rol: 'cliente'
+    },
+    select: { id: true, nombre: true, email: true, telefono: true, fecha_nacimiento: true }
+  });
+
+  const cumpleaneros = usuarios.filter((u) => {
+    if (!u.fecha_nacimiento) return false;
+    const fn = new Date(u.fecha_nacimiento);
+    return fn.getMonth() + 1 === mes && fn.getDate() === dia;
+  });
+
+  res.json(cumpleaneros);
+};
+
 export const getReservasHoy = async (_req: Request, res: Response) => {
   const hoy = new Date();
   const inicio = new Date(hoy);

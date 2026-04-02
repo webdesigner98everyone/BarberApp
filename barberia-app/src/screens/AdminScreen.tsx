@@ -7,6 +7,7 @@ import api from '../services/api';
 export default function AdminScreen() {
   const [reservas, setReservas] = useState([]);
   const [filtro, setFiltro] = useState<'hoy' | 'todas'>('hoy');
+  const [cumpleaneros, setCumpleaneros] = useState<any[]>([]);
 
   const cargar = async () => {
     const url = filtro === 'hoy' ? '/admin/reservas/hoy' : '/admin/reservas';
@@ -14,7 +15,15 @@ export default function AdminScreen() {
     setReservas(data);
   };
 
-  useFocusEffect(useCallback(() => { cargar(); }, [filtro]));
+  const cargarCumpleanos = async () => {
+    const { data } = await api.get('/admin/cumpleanos');
+    setCumpleaneros(data);
+  };
+
+  useFocusEffect(useCallback(() => {
+    cargar();
+    cargarCumpleanos();
+  }, [filtro]));
 
   const cancelar = (id: number) => {
     Alert.alert('Cancelar cita', '¿Seguro que deseas cancelar esta cita?', [
@@ -69,6 +78,18 @@ export default function AdminScreen() {
           <Text style={[styles.filtroText, filtro === 'todas' && styles.filtroTextActive]}>Todas</Text>
         </TouchableOpacity>
       </View>
+
+      {cumpleaneros.length > 0 && (
+        <View style={styles.cumpleBanner}>
+          <Text style={styles.cumpleTitulo}>🎂 Cumpleaños hoy ({cumpleaneros.length})</Text>
+          {cumpleaneros.map((c) => (
+            <View key={c.id} style={styles.cumpleItem}>
+              <Text style={styles.cumpleNombre}>{c.nombre}</Text>
+              {c.telefono && <Text style={styles.cumpleTel}>📞 {c.telefono}</Text>}
+            </View>
+          ))}
+        </View>
+      )}
 
       <FlatList
         data={reservas}
@@ -161,4 +182,9 @@ const styles = StyleSheet.create({
   empty: { alignItems: 'center', marginTop: 80 },
   emptyIcon: { fontSize: 48, marginBottom: 16 },
   emptyText: { color: theme.colors.gray, fontSize: 16 },
+  cumpleBanner: { backgroundColor: '#2a1a3a', marginHorizontal: 16, marginBottom: 16, borderRadius: 12, padding: 16, borderWidth: 1, borderColor: theme.colors.gold },
+  cumpleTitulo: { color: theme.colors.gold, fontWeight: 'bold', fontSize: 15, marginBottom: 10 },
+  cumpleItem: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 6, borderBottomWidth: 1, borderBottomColor: theme.colors.lightGray },
+  cumpleNombre: { color: theme.colors.white, fontSize: 14, fontWeight: '600' },
+  cumpleTel: { color: theme.colors.gray, fontSize: 13 },
 });

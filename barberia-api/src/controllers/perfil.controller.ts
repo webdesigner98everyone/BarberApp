@@ -8,7 +8,13 @@ export const getPerfil = async (req: Request, res: Response) => {
     where: { id },
     select: { id: true, nombre: true, email: true, telefono: true, foto_url: true, fecha_nacimiento: true, rol: true, createdAt: true }
   });
-  res.json(usuario);
+
+  const esCumpleanos = usuario?.fecha_nacimiento
+    ? new Date(usuario.fecha_nacimiento).getMonth() === new Date().getMonth() &&
+      new Date(usuario.fecha_nacimiento).getDate() === new Date().getDate()
+    : false;
+
+  res.json({ ...usuario, esCumpleanos });
 };
 
 export const updatePerfil = async (req: Request, res: Response) => {

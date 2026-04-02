@@ -23,7 +23,7 @@ export const updatePerfil = async (req: Request, res: Response) => {
   const usuario = await prisma.usuario.update({
     where: { id },
     data: { nombre, telefono, foto_url, fecha_nacimiento: fecha_nacimiento ? new Date(fecha_nacimiento) : undefined },
-    select: { id: true, nombre: true, email: true, telefono: true, foto_url: true, fecha_nacimiento: true, rol: true }
+    select: { id: true, nombre: true, email: true, telefono: true, foto_url: true, fecha_nacimiento: true, rol: true, createdAt: true }
   });
   res.json(usuario);
 };

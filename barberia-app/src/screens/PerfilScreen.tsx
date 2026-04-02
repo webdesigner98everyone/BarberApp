@@ -168,7 +168,7 @@ export default function PerfilScreen() {
       />
 
       <Text style={styles.miembroDesde}>
-        Miembro desde {new Date(perfil.createdAt).toLocaleDateString('es-ES', { dateStyle: 'long' })}
+        Miembro desde {perfil.createdAt ? new Date(perfil.createdAt).toLocaleDateString('es-ES', { dateStyle: 'long' }) : 'N/A'}
       </Text>
 
       <TouchableOpacity style={[styles.btn, loadingPerfil && styles.btnDisabled]} onPress={handleGuardarPerfil} disabled={loadingPerfil}>

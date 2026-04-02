@@ -1,10 +1,12 @@
 import React, { useState, useCallback } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
-import { theme } from '../theme';
+import { theme, formatPrecio } from '../theme';
+import { useConfig, formatearPrecio } from '../context/ConfigContext';
 import api from '../services/api';
 
 export default function MisCitasScreen() {
+  const config = useConfig();
   const [reservas, setReservas] = useState([]);
 
   const cargarReservas = async () => {
@@ -64,7 +66,7 @@ export default function MisCitasScreen() {
                 <Text style={styles.barbero}>{item.barbero.nombre}</Text>
                 <Text style={styles.servicio}>{item.servicio.nombre}</Text>
               </View>
-              <Text style={styles.precio}>${item.servicio.precio}</Text>
+              <Text style={styles.precio}>{formatearPrecio(item.servicio.precio, config)}</Text>
             </View>
             <View style={styles.divider} />
             <View style={styles.cardFooter}>

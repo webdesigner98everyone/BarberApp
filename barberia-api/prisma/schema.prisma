@@ -61,3 +61,12 @@ model Horario {
 
   @@unique([barberoId, dia_semana])
 }
+
+model Configuracion {
+  id               Int    @id @default(autoincrement())
+  nombre_barberia  String @default("The Barber")
+  moneda           String @default("COP")
+  simbolo          String @default("$")
+  separador_miles  String @default(".")
+  separador_decimal String @default(",")
+}

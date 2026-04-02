@@ -166,6 +166,15 @@ exports.Prisma.HorarioScalarFieldEnum = {
   hora_fin: 'hora_fin'
 };
 
+exports.Prisma.ConfiguracionScalarFieldEnum = {
+  id: 'id',
+  nombre_barberia: 'nombre_barberia',
+  moneda: 'moneda',
+  simbolo: 'simbolo',
+  separador_miles: 'separador_miles',
+  separador_decimal: 'separador_decimal'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -182,7 +191,8 @@ exports.Prisma.ModelName = {
   Barbero: 'Barbero',
   Servicio: 'Servicio',
   Reserva: 'Reserva',
-  Horario: 'Horario'
+  Horario: 'Horario',
+  Configuracion: 'Configuracion'
 };
 
 /**

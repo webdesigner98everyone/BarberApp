@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert, ScrollView } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import { theme } from '../theme';
+import { theme, formatPrecio } from '../theme';
+import { useConfig, formatearPrecio } from '../context/ConfigContext';
 import api from '../services/api';
 
 export default function BookingScreen({ route, navigation }: any) {
   const { barbero } = route.params;
+  const config = useConfig();
   const [servicios, setServicios] = useState([]);
   const [servicioId, setServicioId] = useState<number | null>(null);
   const [fecha, setFecha] = useState<Date | null>(null);
@@ -79,7 +81,7 @@ export default function BookingScreen({ route, navigation }: any) {
             <Text style={styles.servicioNombre}>{item.nombre}</Text>
             <Text style={styles.servicioDuracion}>{item.duracion_minutos} min</Text>
           </View>
-          <Text style={styles.servicioPrecio}>${item.precio}</Text>
+          <Text style={styles.servicioPrecio}>{formatearPrecio(item.precio, config)}</Text>
           {servicioId === item.id && <Text style={styles.check}> ✓</Text>}
         </TouchableOpacity>
       ))}

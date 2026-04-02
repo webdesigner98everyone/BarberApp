@@ -3,6 +3,8 @@ import { getReservasHoy, getTodasReservas, completarReserva, cancelarReservaAdmi
 import { authMiddleware } from '../middlewares/auth.middleware';
 import { adminMiddleware } from '../middlewares/admin.middleware';
 import { getBarberos, createBarbero } from '../controllers/barberos.controller';
+import { getServicios, createServicio } from '../controllers/servicios.controller';
+import { getConfiguracion, updateConfiguracion } from '../controllers/configuracion.controller';
 
 const router = Router();
 
@@ -35,6 +37,30 @@ router.delete('/barberos/:id', async (req, res) => {
   await prisma.barbero.delete({ where: { id: Number(id) } });
   res.json({ message: 'Barbero eliminado' });
 });
+router.get('/configuracion', getConfiguracion);
+router.put('/configuracion', updateConfiguracion);
+router.get('/servicios', getServicios);
+router.post('/servicios', createServicio);
+router.put('/servicios/:id', async (req, res) => {
+  const { id } = req.params;
+  const { nombre, precio, duracion_minutos } = req.body;
+  const prisma = (await import('../lib/prisma')).default;
+  const servicio = await prisma.servicio.update({
+    where: { id: Number(id) },
+    data: { nombre, precio: Number(precio), duracion_minutos: Number(duracion_minutos) }
+  });
+  res.json(servicio);
+});
+router.delete('/servicios/:id', async (req, res) => {
+  const { id } = req.params;
+  const prisma = (await import('../lib/prisma')).default;
+  const pendientes = await prisma.reserva.count({ where: { servicioId: Number(id), estado: 'pendiente' } });
+  if (pendientes > 0) return res.status(400).json({ error: `Este servicio tiene ${pendientes} cita(s) pendiente(s). Cancélalas primero antes de eliminarlo.` });
+  await prisma.reserva.deleteMany({ where: { servicioId: Number(id) } });
+  await prisma.servicio.delete({ where: { id: Number(id) } });
+  res.json({ message: 'Servicio eliminado' });
+});
+
 router.get('/barberos/:id/horarios', async (req, res) => {
   const { id } = req.params;
   const prisma = (await import('../lib/prisma')).default;

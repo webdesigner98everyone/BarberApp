@@ -14,6 +14,8 @@ import AdminScreen from '../screens/AdminScreen';
 import BarberosAdminScreen from '../screens/BarberosAdminScreen';
 import BarberoPerfil from '../screens/BarberoPerfil';
 import PerfilScreen from '../screens/PerfilScreen';
+import ServiciosAdminScreen from '../screens/ServiciosAdminScreen';
+import ConfiguracionScreen from '../screens/ConfiguracionScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -80,6 +82,8 @@ function AdminTabs({ navigation }: any) {
     }}>
       <Tab.Screen name="Admin" component={AdminScreen} options={{ title: 'Citas' }} />
       <Tab.Screen name="Barberos" component={BarberosAdminScreen} options={{ title: 'Barberos' }} />
+      <Tab.Screen name="Servicios" component={ServiciosAdminScreen} options={{ title: 'Servicios' }} />
+      <Tab.Screen name="Configuracion" component={ConfiguracionScreen} options={{ title: 'Config' }} />
       <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Ver App' }} />
       <Tab.Screen name="Perfil" component={PerfilScreen} options={{ title: 'Perfil' }} />
       <Tab.Screen

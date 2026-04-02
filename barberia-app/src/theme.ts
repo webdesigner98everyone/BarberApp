@@ -19,3 +19,7 @@ export const theme = {
     xxl: 32,
   }
 };
+
+export const formatPrecio = (valor: number): string => {
+  return `$${valor.toLocaleString('es-CO')}`;
+};

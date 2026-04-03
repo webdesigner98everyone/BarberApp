@@ -5,77 +5,86 @@ import { adminMiddleware } from '../middlewares/admin.middleware';
 import { getBarberos, createBarbero } from '../controllers/barberos.controller';
 import { getServicios, createServicio } from '../controllers/servicios.controller';
 import { getConfiguracion, updateConfiguracion } from '../controllers/configuracion.controller';
+import { getEstadisticas } from '../controllers/estadisticas.controller';
 
 const router = Router();
-
 router.use(authMiddleware);
 router.use(adminMiddleware);
 
+// Reservas
 router.get('/reservas/hoy', getReservasHoy);
 router.get('/reservas', getTodasReservas);
 router.patch('/reservas/:id/completar', completarReserva);
 router.patch('/reservas/:id/cancelar', cancelarReservaAdmin);
 router.get('/cumpleanos', getCumpleanosHoy);
+
+// Estadísticas
+router.get('/estadisticas', getEstadisticas);
+
+// Configuración
+router.get('/configuracion', getConfiguracion);
+router.put('/configuracion', updateConfiguracion);
+
+// Admins
+router.get('/admins', async (req, res) => {
+  const barberiaId = (req as any).usuario.barberiaId;
+  const prisma = (await import('../lib/prisma')).default;
+  const admins = await prisma.usuario.findMany({
+    where: { rol: 'admin', barberiaId: Number(barberiaId) },
+    select: { id: true, nombre: true, email: true, createdAt: true }
+  });
+  res.json(admins);
+});
+router.post('/admins', async (req, res) => {
+  const { usuarioId } = req.body;
+  const prisma = (await import('../lib/prisma')).default;
+  const usuario = await prisma.usuario.update({
+    where: { id: Number(usuarioId) },
+    data: { rol: 'admin' },
+    select: { id: true, nombre: true, email: true }
+  });
+  res.json(usuario);
+});
+router.delete('/admins/:id', async (req, res) => {
+  const { id } = req.params;
+  const adminId = (req as any).usuario.id;
+  if (Number(id) === adminId) return res.status(400).json({ error: 'No puedes eliminarte a ti mismo como admin' });
+  const prisma = (await import('../lib/prisma')).default;
+  await prisma.usuario.update({ where: { id: Number(id) }, data: { rol: 'cliente' } });
+  res.json({ message: 'Admin removido' });
+});
+router.get('/usuarios/buscar', async (req, res) => {
+  const { q } = req.query;
+  const barberiaId = (req as any).usuario.barberiaId;
+  const prisma = (await import('../lib/prisma')).default;
+  const usuarios = await prisma.usuario.findMany({
+    where: { rol: 'cliente', barberiaId: Number(barberiaId), OR: [{ nombre: { contains: q as string } }, { email: { contains: q as string } }] },
+    select: { id: true, nombre: true, email: true },
+    take: 10
+  });
+  res.json(usuarios);
+});
+
+// Barberos
 router.get('/barberos', getBarberos);
 router.post('/barberos', createBarbero);
 router.put('/barberos/:id', async (req, res) => {
   const { id } = req.params;
   const { nombre, especialidad, foto, categorias } = req.body;
-  const barbero = await (await import('../lib/prisma')).default.barbero.update({
-    where: { id: Number(id) },
-    data: { nombre, especialidad, foto, categorias }
-  });
+  const prisma = (await import('../lib/prisma')).default;
+  const barbero = await prisma.barbero.update({ where: { id: Number(id) }, data: { nombre, especialidad, foto, categorias } });
   res.json(barbero);
 });
 router.delete('/barberos/:id', async (req, res) => {
   const { id } = req.params;
   const prisma = (await import('../lib/prisma')).default;
   const pendientes = await prisma.reserva.count({ where: { barberoId: Number(id), estado: 'pendiente' } });
-  if (pendientes > 0) return res.status(400).json({ error: `Este barbero tiene ${pendientes} cita(s) pendiente(s). Cancélalas primero antes de eliminarlo.` });
+  if (pendientes > 0) return res.status(400).json({ error: `Este especialista tiene ${pendientes} cita(s) pendiente(s). Cancélalas primero.` });
   await prisma.reserva.deleteMany({ where: { barberoId: Number(id) } });
   await prisma.horario.deleteMany({ where: { barberoId: Number(id) } });
   await prisma.barbero.delete({ where: { id: Number(id) } });
-  res.json({ message: 'Barbero eliminado' });
+  res.json({ message: 'Especialista eliminado' });
 });
-router.get('/configuracion', getConfiguracion);
-router.put('/configuracion', updateConfiguracion);
-router.get('/servicios', async (_req, res) => {
-  const prisma = (await import('../lib/prisma')).default;
-  const servicios = await prisma.servicio.findMany({ orderBy: [{ categoria: 'asc' }, { nombre: 'asc' }] });
-  res.json(servicios);
-});
-router.post('/servicios', createServicio);
-router.put('/servicios/:id', async (req, res) => {
-  const { id } = req.params;
-  const { nombre, precio, duracion_minutos, categoria } = req.body;
-  const prisma = (await import('../lib/prisma')).default;
-  const servicio = await prisma.servicio.update({
-    where: { id: Number(id) },
-    data: { nombre, precio: Number(precio), duracion_minutos: Number(duracion_minutos), categoria }
-  });
-  res.json(servicio);
-});
-router.patch('/servicios/:id/toggle', async (req, res) => {
-  const { id } = req.params;
-  const prisma = (await import('../lib/prisma')).default;
-  const servicio = await prisma.servicio.findUnique({ where: { id: Number(id) } });
-  if (!servicio) return res.status(404).json({ error: 'Servicio no encontrado' });
-  const updated = await prisma.servicio.update({
-    where: { id: Number(id) },
-    data: { activo: !servicio.activo }
-  });
-  res.json(updated);
-});
-router.delete('/servicios/:id', async (req, res) => {
-  const { id } = req.params;
-  const prisma = (await import('../lib/prisma')).default;
-  const pendientes = await prisma.reserva.count({ where: { servicioId: Number(id), estado: 'pendiente' } });
-  if (pendientes > 0) return res.status(400).json({ error: `Este servicio tiene ${pendientes} cita(s) pendiente(s). Cancélalas primero antes de eliminarlo.` });
-  await prisma.reserva.deleteMany({ where: { servicioId: Number(id) } });
-  await prisma.servicio.delete({ where: { id: Number(id) } });
-  res.json({ message: 'Servicio eliminado' });
-});
-
 router.get('/barberos/:id/horarios', async (req, res) => {
   const { id } = req.params;
   const prisma = (await import('../lib/prisma')).default;
@@ -85,21 +94,50 @@ router.get('/barberos/:id/horarios', async (req, res) => {
 router.post('/barberos/:id/horarios', async (req, res) => {
   const { id } = req.params;
   const { horarios } = req.body;
+  const barberiaId = (req as any).usuario.barberiaId;
   const prisma = (await import('../lib/prisma')).default;
   for (const h of horarios) {
     await prisma.horario.upsert({
       where: { barberoId_dia_semana: { barberoId: Number(id), dia_semana: h.dia_semana } },
       update: { hora_inicio: h.hora_inicio, hora_fin: h.hora_fin },
-      create: { barberoId: Number(id), dia_semana: h.dia_semana, hora_inicio: h.hora_inicio, hora_fin: h.hora_fin }
+      create: { barberoId: Number(id), dia_semana: h.dia_semana, hora_inicio: h.hora_inicio, hora_fin: h.hora_fin, barberiaId: Number(barberiaId) }
     });
   }
-  await prisma.horario.deleteMany({
-    where: {
-      barberoId: Number(id),
-      dia_semana: { notIn: horarios.map((h: any) => h.dia_semana) }
-    }
-  });
+  await prisma.horario.deleteMany({ where: { barberoId: Number(id), dia_semana: { notIn: horarios.map((h: any) => h.dia_semana) } } });
   res.json({ message: 'Horarios guardados ✅' });
+});
+
+// Servicios
+router.get('/servicios', async (req, res) => {
+  const barberiaId = (req as any).usuario.barberiaId;
+  const prisma = (await import('../lib/prisma')).default;
+  const servicios = await prisma.servicio.findMany({ where: { barberiaId: Number(barberiaId) }, orderBy: [{ categoria: 'asc' }, { nombre: 'asc' }] });
+  res.json(servicios);
+});
+router.post('/servicios', createServicio);
+router.put('/servicios/:id', async (req, res) => {
+  const { id } = req.params;
+  const { nombre, precio, duracion_minutos, categoria } = req.body;
+  const prisma = (await import('../lib/prisma')).default;
+  const servicio = await prisma.servicio.update({ where: { id: Number(id) }, data: { nombre, precio: Number(precio), duracion_minutos: Number(duracion_minutos), categoria } });
+  res.json(servicio);
+});
+router.patch('/servicios/:id/toggle', async (req, res) => {
+  const { id } = req.params;
+  const prisma = (await import('../lib/prisma')).default;
+  const servicio = await prisma.servicio.findUnique({ where: { id: Number(id) } });
+  if (!servicio) return res.status(404).json({ error: 'Servicio no encontrado' });
+  const updated = await prisma.servicio.update({ where: { id: Number(id) }, data: { activo: !servicio.activo } });
+  res.json(updated);
+});
+router.delete('/servicios/:id', async (req, res) => {
+  const { id } = req.params;
+  const prisma = (await import('../lib/prisma')).default;
+  const pendientes = await prisma.reserva.count({ where: { servicioId: Number(id), estado: 'pendiente' } });
+  if (pendientes > 0) return res.status(400).json({ error: `Este servicio tiene ${pendientes} cita(s) pendiente(s). Cancélalas primero.` });
+  await prisma.reserva.deleteMany({ where: { servicioId: Number(id) } });
+  await prisma.servicio.delete({ where: { id: Number(id) } });
+  res.json({ message: 'Servicio eliminado' });
 });
 
 export default router;

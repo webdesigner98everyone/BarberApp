@@ -6,7 +6,7 @@ export const getPerfil = async (req: Request, res: Response) => {
   const id = (req as any).usuario.id;
   const usuario = await prisma.usuario.findUnique({
     where: { id },
-    select: { id: true, nombre: true, email: true, telefono: true, foto_url: true, fecha_nacimiento: true, rol: true, createdAt: true }
+    select: { id: true, nombre: true, email: true, telefono: true, foto_url: true, fecha_nacimiento: true, rol: true, createdAt: true, barberiaId: true, barberia: { select: { nombre: true, codigo: true } } }
   });
 
   const esCumpleanos = usuario?.fecha_nacimiento
@@ -37,7 +37,6 @@ export const cambiarPassword = async (req: Request, res: Response) => {
 
   const valido = await bcrypt.compare(passwordActual, usuario.password);
   if (!valido) return res.status(400).json({ error: 'La contraseña actual es incorrecta' });
-
   if (passwordNueva.length < 6) return res.status(400).json({ error: 'Mínimo 6 caracteres' });
 
   const hash = await bcrypt.hash(passwordNueva, 10);

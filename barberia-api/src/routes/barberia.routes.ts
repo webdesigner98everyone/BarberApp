@@ -3,8 +3,11 @@ import { getBarberos, createBarbero } from '../controllers/barberos.controller';
 import { getServicios, createServicio } from '../controllers/servicios.controller';
 import { getHorariosDisponibles, seedHorarios } from '../controllers/horarios.controller';
 import { getConfiguracion } from '../controllers/configuracion.controller';
+import { authMiddleware } from '../middlewares/auth.middleware';
 
 const router = Router();
+
+router.use(authMiddleware);
 
 router.get('/barberos', getBarberos);
 router.post('/barberos', createBarbero);
@@ -15,7 +18,7 @@ router.get('/barberos/:id/servicios', async (req, res) => {
   if (!barbero) return res.status(404).json({ error: 'Especialista no encontrado' });
   const categorias = barbero.categorias.split(',').map((c: string) => c.trim());
   const servicios = await prisma.servicio.findMany({
-    where: { activo: true, categoria: { in: categorias } }
+    where: { activo: true, categoria: { in: categorias }, barberiaId: barbero.barberiaId }
   });
   res.json(servicios);
 });

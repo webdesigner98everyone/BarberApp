@@ -14,6 +14,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
+ * Model Barberia
+ * 
+ */
+export type Barberia = $Result.DefaultSelection<Prisma.$BarberiaPayload>
+/**
  * Model Usuario
  * 
  */
@@ -51,8 +56,8 @@ export type Configuracion = $Result.DefaultSelection<Prisma.$ConfiguracionPayloa
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Usuarios
- * const usuarios = await prisma.usuario.findMany()
+ * // Fetch zero or more Barberias
+ * const barberias = await prisma.barberia.findMany()
  * ```
  *
  * 
@@ -72,8 +77,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Usuarios
-   * const usuarios = await prisma.usuario.findMany()
+   * // Fetch zero or more Barberias
+   * const barberias = await prisma.barberia.findMany()
    * ```
    *
    * 
@@ -168,6 +173,16 @@ export class PrismaClient<
   $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb, ExtArgs>
 
       /**
+   * `prisma.barberia`: Exposes CRUD operations for the **Barberia** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Barberias
+    * const barberias = await prisma.barberia.findMany()
+    * ```
+    */
+  get barberia(): Prisma.BarberiaDelegate<ExtArgs>;
+
+  /**
    * `prisma.usuario`: Exposes CRUD operations for the **Usuario** model.
     * Example usage:
     * ```ts
@@ -667,6 +682,7 @@ export namespace Prisma {
 
 
   export const ModelName: {
+    Barberia: 'Barberia',
     Usuario: 'Usuario',
     Barbero: 'Barbero',
     Servicio: 'Servicio',
@@ -688,10 +704,76 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "usuario" | "barbero" | "servicio" | "reserva" | "horario" | "configuracion"
+      modelProps: "barberia" | "usuario" | "barbero" | "servicio" | "reserva" | "horario" | "configuracion"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
+      Barberia: {
+        payload: Prisma.$BarberiaPayload<ExtArgs>
+        fields: Prisma.BarberiaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BarberiaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BarberiaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BarberiaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BarberiaPayload>
+          }
+          findFirst: {
+            args: Prisma.BarberiaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BarberiaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BarberiaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BarberiaPayload>
+          }
+          findMany: {
+            args: Prisma.BarberiaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BarberiaPayload>[]
+          }
+          create: {
+            args: Prisma.BarberiaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BarberiaPayload>
+          }
+          createMany: {
+            args: Prisma.BarberiaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.BarberiaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BarberiaPayload>
+          }
+          update: {
+            args: Prisma.BarberiaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BarberiaPayload>
+          }
+          deleteMany: {
+            args: Prisma.BarberiaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BarberiaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.BarberiaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BarberiaPayload>
+          }
+          aggregate: {
+            args: Prisma.BarberiaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBarberia>
+          }
+          groupBy: {
+            args: Prisma.BarberiaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BarberiaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BarberiaCountArgs<ExtArgs>
+            result: $Utils.Optional<BarberiaCountAggregateOutputType> | number
+          }
+        }
+      }
       Usuario: {
         payload: Prisma.$UsuarioPayload<ExtArgs>
         fields: Prisma.UsuarioFieldRefs
@@ -1245,6 +1327,73 @@ export namespace Prisma {
 
 
   /**
+   * Count Type BarberiaCountOutputType
+   */
+
+  export type BarberiaCountOutputType = {
+    usuarios: number
+    barberos: number
+    servicios: number
+    reservas: number
+    horarios: number
+  }
+
+  export type BarberiaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    usuarios?: boolean | BarberiaCountOutputTypeCountUsuariosArgs
+    barberos?: boolean | BarberiaCountOutputTypeCountBarberosArgs
+    servicios?: boolean | BarberiaCountOutputTypeCountServiciosArgs
+    reservas?: boolean | BarberiaCountOutputTypeCountReservasArgs
+    horarios?: boolean | BarberiaCountOutputTypeCountHorariosArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BarberiaCountOutputType without action
+   */
+  export type BarberiaCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BarberiaCountOutputType
+     */
+    select?: BarberiaCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BarberiaCountOutputType without action
+   */
+  export type BarberiaCountOutputTypeCountUsuariosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UsuarioWhereInput
+  }
+
+  /**
+   * BarberiaCountOutputType without action
+   */
+  export type BarberiaCountOutputTypeCountBarberosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BarberoWhereInput
+  }
+
+  /**
+   * BarberiaCountOutputType without action
+   */
+  export type BarberiaCountOutputTypeCountServiciosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServicioWhereInput
+  }
+
+  /**
+   * BarberiaCountOutputType without action
+   */
+  export type BarberiaCountOutputTypeCountReservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReservaWhereInput
+  }
+
+  /**
+   * BarberiaCountOutputType without action
+   */
+  export type BarberiaCountOutputTypeCountHorariosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HorarioWhereInput
+  }
+
+
+  /**
    * Count Type UsuarioCountOutputType
    */
 
@@ -1351,6 +1500,1056 @@ export namespace Prisma {
    */
 
   /**
+   * Model Barberia
+   */
+
+  export type AggregateBarberia = {
+    _count: BarberiaCountAggregateOutputType | null
+    _avg: BarberiaAvgAggregateOutputType | null
+    _sum: BarberiaSumAggregateOutputType | null
+    _min: BarberiaMinAggregateOutputType | null
+    _max: BarberiaMaxAggregateOutputType | null
+  }
+
+  export type BarberiaAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type BarberiaSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type BarberiaMinAggregateOutputType = {
+    id: number | null
+    nombre: string | null
+    codigo: string | null
+    logo: string | null
+    createdAt: Date | null
+  }
+
+  export type BarberiaMaxAggregateOutputType = {
+    id: number | null
+    nombre: string | null
+    codigo: string | null
+    logo: string | null
+    createdAt: Date | null
+  }
+
+  export type BarberiaCountAggregateOutputType = {
+    id: number
+    nombre: number
+    codigo: number
+    logo: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type BarberiaAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type BarberiaSumAggregateInputType = {
+    id?: true
+  }
+
+  export type BarberiaMinAggregateInputType = {
+    id?: true
+    nombre?: true
+    codigo?: true
+    logo?: true
+    createdAt?: true
+  }
+
+  export type BarberiaMaxAggregateInputType = {
+    id?: true
+    nombre?: true
+    codigo?: true
+    logo?: true
+    createdAt?: true
+  }
+
+  export type BarberiaCountAggregateInputType = {
+    id?: true
+    nombre?: true
+    codigo?: true
+    logo?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type BarberiaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Barberia to aggregate.
+     */
+    where?: BarberiaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Barberias to fetch.
+     */
+    orderBy?: BarberiaOrderByWithRelationInput | BarberiaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BarberiaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Barberias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Barberias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Barberias
+    **/
+    _count?: true | BarberiaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BarberiaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BarberiaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BarberiaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BarberiaMaxAggregateInputType
+  }
+
+  export type GetBarberiaAggregateType<T extends BarberiaAggregateArgs> = {
+        [P in keyof T & keyof AggregateBarberia]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBarberia[P]>
+      : GetScalarType<T[P], AggregateBarberia[P]>
+  }
+
+
+
+
+  export type BarberiaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BarberiaWhereInput
+    orderBy?: BarberiaOrderByWithAggregationInput | BarberiaOrderByWithAggregationInput[]
+    by: BarberiaScalarFieldEnum[] | BarberiaScalarFieldEnum
+    having?: BarberiaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BarberiaCountAggregateInputType | true
+    _avg?: BarberiaAvgAggregateInputType
+    _sum?: BarberiaSumAggregateInputType
+    _min?: BarberiaMinAggregateInputType
+    _max?: BarberiaMaxAggregateInputType
+  }
+
+  export type BarberiaGroupByOutputType = {
+    id: number
+    nombre: string
+    codigo: string
+    logo: string | null
+    createdAt: Date
+    _count: BarberiaCountAggregateOutputType | null
+    _avg: BarberiaAvgAggregateOutputType | null
+    _sum: BarberiaSumAggregateOutputType | null
+    _min: BarberiaMinAggregateOutputType | null
+    _max: BarberiaMaxAggregateOutputType | null
+  }
+
+  type GetBarberiaGroupByPayload<T extends BarberiaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BarberiaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BarberiaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BarberiaGroupByOutputType[P]>
+            : GetScalarType<T[P], BarberiaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BarberiaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nombre?: boolean
+    codigo?: boolean
+    logo?: boolean
+    createdAt?: boolean
+    usuarios?: boolean | Barberia$usuariosArgs<ExtArgs>
+    barberos?: boolean | Barberia$barberosArgs<ExtArgs>
+    servicios?: boolean | Barberia$serviciosArgs<ExtArgs>
+    reservas?: boolean | Barberia$reservasArgs<ExtArgs>
+    horarios?: boolean | Barberia$horariosArgs<ExtArgs>
+    configuracion?: boolean | Barberia$configuracionArgs<ExtArgs>
+    _count?: boolean | BarberiaCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["barberia"]>
+
+
+  export type BarberiaSelectScalar = {
+    id?: boolean
+    nombre?: boolean
+    codigo?: boolean
+    logo?: boolean
+    createdAt?: boolean
+  }
+
+  export type BarberiaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    usuarios?: boolean | Barberia$usuariosArgs<ExtArgs>
+    barberos?: boolean | Barberia$barberosArgs<ExtArgs>
+    servicios?: boolean | Barberia$serviciosArgs<ExtArgs>
+    reservas?: boolean | Barberia$reservasArgs<ExtArgs>
+    horarios?: boolean | Barberia$horariosArgs<ExtArgs>
+    configuracion?: boolean | Barberia$configuracionArgs<ExtArgs>
+    _count?: boolean | BarberiaCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $BarberiaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Barberia"
+    objects: {
+      usuarios: Prisma.$UsuarioPayload<ExtArgs>[]
+      barberos: Prisma.$BarberoPayload<ExtArgs>[]
+      servicios: Prisma.$ServicioPayload<ExtArgs>[]
+      reservas: Prisma.$ReservaPayload<ExtArgs>[]
+      horarios: Prisma.$HorarioPayload<ExtArgs>[]
+      configuracion: Prisma.$ConfiguracionPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      nombre: string
+      codigo: string
+      logo: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["barberia"]>
+    composites: {}
+  }
+
+  type BarberiaGetPayload<S extends boolean | null | undefined | BarberiaDefaultArgs> = $Result.GetResult<Prisma.$BarberiaPayload, S>
+
+  type BarberiaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<BarberiaFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: BarberiaCountAggregateInputType | true
+    }
+
+  export interface BarberiaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Barberia'], meta: { name: 'Barberia' } }
+    /**
+     * Find zero or one Barberia that matches the filter.
+     * @param {BarberiaFindUniqueArgs} args - Arguments to find a Barberia
+     * @example
+     * // Get one Barberia
+     * const barberia = await prisma.barberia.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BarberiaFindUniqueArgs>(args: SelectSubset<T, BarberiaFindUniqueArgs<ExtArgs>>): Prisma__BarberiaClient<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Barberia that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {BarberiaFindUniqueOrThrowArgs} args - Arguments to find a Barberia
+     * @example
+     * // Get one Barberia
+     * const barberia = await prisma.barberia.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BarberiaFindUniqueOrThrowArgs>(args: SelectSubset<T, BarberiaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BarberiaClient<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Barberia that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BarberiaFindFirstArgs} args - Arguments to find a Barberia
+     * @example
+     * // Get one Barberia
+     * const barberia = await prisma.barberia.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BarberiaFindFirstArgs>(args?: SelectSubset<T, BarberiaFindFirstArgs<ExtArgs>>): Prisma__BarberiaClient<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Barberia that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BarberiaFindFirstOrThrowArgs} args - Arguments to find a Barberia
+     * @example
+     * // Get one Barberia
+     * const barberia = await prisma.barberia.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BarberiaFindFirstOrThrowArgs>(args?: SelectSubset<T, BarberiaFindFirstOrThrowArgs<ExtArgs>>): Prisma__BarberiaClient<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Barberias that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BarberiaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Barberias
+     * const barberias = await prisma.barberia.findMany()
+     * 
+     * // Get first 10 Barberias
+     * const barberias = await prisma.barberia.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const barberiaWithIdOnly = await prisma.barberia.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BarberiaFindManyArgs>(args?: SelectSubset<T, BarberiaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Barberia.
+     * @param {BarberiaCreateArgs} args - Arguments to create a Barberia.
+     * @example
+     * // Create one Barberia
+     * const Barberia = await prisma.barberia.create({
+     *   data: {
+     *     // ... data to create a Barberia
+     *   }
+     * })
+     * 
+     */
+    create<T extends BarberiaCreateArgs>(args: SelectSubset<T, BarberiaCreateArgs<ExtArgs>>): Prisma__BarberiaClient<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Barberias.
+     * @param {BarberiaCreateManyArgs} args - Arguments to create many Barberias.
+     * @example
+     * // Create many Barberias
+     * const barberia = await prisma.barberia.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BarberiaCreateManyArgs>(args?: SelectSubset<T, BarberiaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Barberia.
+     * @param {BarberiaDeleteArgs} args - Arguments to delete one Barberia.
+     * @example
+     * // Delete one Barberia
+     * const Barberia = await prisma.barberia.delete({
+     *   where: {
+     *     // ... filter to delete one Barberia
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BarberiaDeleteArgs>(args: SelectSubset<T, BarberiaDeleteArgs<ExtArgs>>): Prisma__BarberiaClient<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Barberia.
+     * @param {BarberiaUpdateArgs} args - Arguments to update one Barberia.
+     * @example
+     * // Update one Barberia
+     * const barberia = await prisma.barberia.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BarberiaUpdateArgs>(args: SelectSubset<T, BarberiaUpdateArgs<ExtArgs>>): Prisma__BarberiaClient<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Barberias.
+     * @param {BarberiaDeleteManyArgs} args - Arguments to filter Barberias to delete.
+     * @example
+     * // Delete a few Barberias
+     * const { count } = await prisma.barberia.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BarberiaDeleteManyArgs>(args?: SelectSubset<T, BarberiaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Barberias.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BarberiaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Barberias
+     * const barberia = await prisma.barberia.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BarberiaUpdateManyArgs>(args: SelectSubset<T, BarberiaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Barberia.
+     * @param {BarberiaUpsertArgs} args - Arguments to update or create a Barberia.
+     * @example
+     * // Update or create a Barberia
+     * const barberia = await prisma.barberia.upsert({
+     *   create: {
+     *     // ... data to create a Barberia
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Barberia we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BarberiaUpsertArgs>(args: SelectSubset<T, BarberiaUpsertArgs<ExtArgs>>): Prisma__BarberiaClient<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Barberias.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BarberiaCountArgs} args - Arguments to filter Barberias to count.
+     * @example
+     * // Count the number of Barberias
+     * const count = await prisma.barberia.count({
+     *   where: {
+     *     // ... the filter for the Barberias we want to count
+     *   }
+     * })
+    **/
+    count<T extends BarberiaCountArgs>(
+      args?: Subset<T, BarberiaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BarberiaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Barberia.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BarberiaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BarberiaAggregateArgs>(args: Subset<T, BarberiaAggregateArgs>): Prisma.PrismaPromise<GetBarberiaAggregateType<T>>
+
+    /**
+     * Group by Barberia.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BarberiaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BarberiaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BarberiaGroupByArgs['orderBy'] }
+        : { orderBy?: BarberiaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BarberiaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBarberiaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Barberia model
+   */
+  readonly fields: BarberiaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Barberia.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BarberiaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    usuarios<T extends Barberia$usuariosArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$usuariosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findMany"> | Null>
+    barberos<T extends Barberia$barberosArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$barberosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BarberoPayload<ExtArgs>, T, "findMany"> | Null>
+    servicios<T extends Barberia$serviciosArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$serviciosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicioPayload<ExtArgs>, T, "findMany"> | Null>
+    reservas<T extends Barberia$reservasArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$reservasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservaPayload<ExtArgs>, T, "findMany"> | Null>
+    horarios<T extends Barberia$horariosArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$horariosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HorarioPayload<ExtArgs>, T, "findMany"> | Null>
+    configuracion<T extends Barberia$configuracionArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$configuracionArgs<ExtArgs>>): Prisma__ConfiguracionClient<$Result.GetResult<Prisma.$ConfiguracionPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Barberia model
+   */ 
+  interface BarberiaFieldRefs {
+    readonly id: FieldRef<"Barberia", 'Int'>
+    readonly nombre: FieldRef<"Barberia", 'String'>
+    readonly codigo: FieldRef<"Barberia", 'String'>
+    readonly logo: FieldRef<"Barberia", 'String'>
+    readonly createdAt: FieldRef<"Barberia", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Barberia findUnique
+   */
+  export type BarberiaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Barberia
+     */
+    select?: BarberiaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BarberiaInclude<ExtArgs> | null
+    /**
+     * Filter, which Barberia to fetch.
+     */
+    where: BarberiaWhereUniqueInput
+  }
+
+  /**
+   * Barberia findUniqueOrThrow
+   */
+  export type BarberiaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Barberia
+     */
+    select?: BarberiaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BarberiaInclude<ExtArgs> | null
+    /**
+     * Filter, which Barberia to fetch.
+     */
+    where: BarberiaWhereUniqueInput
+  }
+
+  /**
+   * Barberia findFirst
+   */
+  export type BarberiaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Barberia
+     */
+    select?: BarberiaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BarberiaInclude<ExtArgs> | null
+    /**
+     * Filter, which Barberia to fetch.
+     */
+    where?: BarberiaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Barberias to fetch.
+     */
+    orderBy?: BarberiaOrderByWithRelationInput | BarberiaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Barberias.
+     */
+    cursor?: BarberiaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Barberias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Barberias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Barberias.
+     */
+    distinct?: BarberiaScalarFieldEnum | BarberiaScalarFieldEnum[]
+  }
+
+  /**
+   * Barberia findFirstOrThrow
+   */
+  export type BarberiaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Barberia
+     */
+    select?: BarberiaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BarberiaInclude<ExtArgs> | null
+    /**
+     * Filter, which Barberia to fetch.
+     */
+    where?: BarberiaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Barberias to fetch.
+     */
+    orderBy?: BarberiaOrderByWithRelationInput | BarberiaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Barberias.
+     */
+    cursor?: BarberiaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Barberias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Barberias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Barberias.
+     */
+    distinct?: BarberiaScalarFieldEnum | BarberiaScalarFieldEnum[]
+  }
+
+  /**
+   * Barberia findMany
+   */
+  export type BarberiaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Barberia
+     */
+    select?: BarberiaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BarberiaInclude<ExtArgs> | null
+    /**
+     * Filter, which Barberias to fetch.
+     */
+    where?: BarberiaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Barberias to fetch.
+     */
+    orderBy?: BarberiaOrderByWithRelationInput | BarberiaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Barberias.
+     */
+    cursor?: BarberiaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Barberias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Barberias.
+     */
+    skip?: number
+    distinct?: BarberiaScalarFieldEnum | BarberiaScalarFieldEnum[]
+  }
+
+  /**
+   * Barberia create
+   */
+  export type BarberiaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Barberia
+     */
+    select?: BarberiaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BarberiaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Barberia.
+     */
+    data: XOR<BarberiaCreateInput, BarberiaUncheckedCreateInput>
+  }
+
+  /**
+   * Barberia createMany
+   */
+  export type BarberiaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Barberias.
+     */
+    data: BarberiaCreateManyInput | BarberiaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Barberia update
+   */
+  export type BarberiaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Barberia
+     */
+    select?: BarberiaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BarberiaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Barberia.
+     */
+    data: XOR<BarberiaUpdateInput, BarberiaUncheckedUpdateInput>
+    /**
+     * Choose, which Barberia to update.
+     */
+    where: BarberiaWhereUniqueInput
+  }
+
+  /**
+   * Barberia updateMany
+   */
+  export type BarberiaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Barberias.
+     */
+    data: XOR<BarberiaUpdateManyMutationInput, BarberiaUncheckedUpdateManyInput>
+    /**
+     * Filter which Barberias to update
+     */
+    where?: BarberiaWhereInput
+  }
+
+  /**
+   * Barberia upsert
+   */
+  export type BarberiaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Barberia
+     */
+    select?: BarberiaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BarberiaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Barberia to update in case it exists.
+     */
+    where: BarberiaWhereUniqueInput
+    /**
+     * In case the Barberia found by the `where` argument doesn't exist, create a new Barberia with this data.
+     */
+    create: XOR<BarberiaCreateInput, BarberiaUncheckedCreateInput>
+    /**
+     * In case the Barberia was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BarberiaUpdateInput, BarberiaUncheckedUpdateInput>
+  }
+
+  /**
+   * Barberia delete
+   */
+  export type BarberiaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Barberia
+     */
+    select?: BarberiaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BarberiaInclude<ExtArgs> | null
+    /**
+     * Filter which Barberia to delete.
+     */
+    where: BarberiaWhereUniqueInput
+  }
+
+  /**
+   * Barberia deleteMany
+   */
+  export type BarberiaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Barberias to delete
+     */
+    where?: BarberiaWhereInput
+  }
+
+  /**
+   * Barberia.usuarios
+   */
+  export type Barberia$usuariosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuario
+     */
+    select?: UsuarioSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuarioInclude<ExtArgs> | null
+    where?: UsuarioWhereInput
+    orderBy?: UsuarioOrderByWithRelationInput | UsuarioOrderByWithRelationInput[]
+    cursor?: UsuarioWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UsuarioScalarFieldEnum | UsuarioScalarFieldEnum[]
+  }
+
+  /**
+   * Barberia.barberos
+   */
+  export type Barberia$barberosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Barbero
+     */
+    select?: BarberoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BarberoInclude<ExtArgs> | null
+    where?: BarberoWhereInput
+    orderBy?: BarberoOrderByWithRelationInput | BarberoOrderByWithRelationInput[]
+    cursor?: BarberoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BarberoScalarFieldEnum | BarberoScalarFieldEnum[]
+  }
+
+  /**
+   * Barberia.servicios
+   */
+  export type Barberia$serviciosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Servicio
+     */
+    select?: ServicioSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioInclude<ExtArgs> | null
+    where?: ServicioWhereInput
+    orderBy?: ServicioOrderByWithRelationInput | ServicioOrderByWithRelationInput[]
+    cursor?: ServicioWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ServicioScalarFieldEnum | ServicioScalarFieldEnum[]
+  }
+
+  /**
+   * Barberia.reservas
+   */
+  export type Barberia$reservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reserva
+     */
+    select?: ReservaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReservaInclude<ExtArgs> | null
+    where?: ReservaWhereInput
+    orderBy?: ReservaOrderByWithRelationInput | ReservaOrderByWithRelationInput[]
+    cursor?: ReservaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReservaScalarFieldEnum | ReservaScalarFieldEnum[]
+  }
+
+  /**
+   * Barberia.horarios
+   */
+  export type Barberia$horariosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Horario
+     */
+    select?: HorarioSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HorarioInclude<ExtArgs> | null
+    where?: HorarioWhereInput
+    orderBy?: HorarioOrderByWithRelationInput | HorarioOrderByWithRelationInput[]
+    cursor?: HorarioWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HorarioScalarFieldEnum | HorarioScalarFieldEnum[]
+  }
+
+  /**
+   * Barberia.configuracion
+   */
+  export type Barberia$configuracionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Configuracion
+     */
+    select?: ConfiguracionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConfiguracionInclude<ExtArgs> | null
+    where?: ConfiguracionWhereInput
+  }
+
+  /**
+   * Barberia without action
+   */
+  export type BarberiaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Barberia
+     */
+    select?: BarberiaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BarberiaInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Usuario
    */
 
@@ -1364,10 +2563,12 @@ export namespace Prisma {
 
   export type UsuarioAvgAggregateOutputType = {
     id: number | null
+    barberiaId: number | null
   }
 
   export type UsuarioSumAggregateOutputType = {
     id: number | null
+    barberiaId: number | null
   }
 
   export type UsuarioMinAggregateOutputType = {
@@ -1379,6 +2580,7 @@ export namespace Prisma {
     telefono: string | null
     foto_url: string | null
     fecha_nacimiento: Date | null
+    barberiaId: number | null
     createdAt: Date | null
   }
 
@@ -1391,6 +2593,7 @@ export namespace Prisma {
     telefono: string | null
     foto_url: string | null
     fecha_nacimiento: Date | null
+    barberiaId: number | null
     createdAt: Date | null
   }
 
@@ -1403,6 +2606,7 @@ export namespace Prisma {
     telefono: number
     foto_url: number
     fecha_nacimiento: number
+    barberiaId: number
     createdAt: number
     _all: number
   }
@@ -1410,10 +2614,12 @@ export namespace Prisma {
 
   export type UsuarioAvgAggregateInputType = {
     id?: true
+    barberiaId?: true
   }
 
   export type UsuarioSumAggregateInputType = {
     id?: true
+    barberiaId?: true
   }
 
   export type UsuarioMinAggregateInputType = {
@@ -1425,6 +2631,7 @@ export namespace Prisma {
     telefono?: true
     foto_url?: true
     fecha_nacimiento?: true
+    barberiaId?: true
     createdAt?: true
   }
 
@@ -1437,6 +2644,7 @@ export namespace Prisma {
     telefono?: true
     foto_url?: true
     fecha_nacimiento?: true
+    barberiaId?: true
     createdAt?: true
   }
 
@@ -1449,6 +2657,7 @@ export namespace Prisma {
     telefono?: true
     foto_url?: true
     fecha_nacimiento?: true
+    barberiaId?: true
     createdAt?: true
     _all?: true
   }
@@ -1548,6 +2757,7 @@ export namespace Prisma {
     telefono: string | null
     foto_url: string | null
     fecha_nacimiento: Date | null
+    barberiaId: number | null
     createdAt: Date
     _count: UsuarioCountAggregateOutputType | null
     _avg: UsuarioAvgAggregateOutputType | null
@@ -1579,7 +2789,9 @@ export namespace Prisma {
     telefono?: boolean
     foto_url?: boolean
     fecha_nacimiento?: boolean
+    barberiaId?: boolean
     createdAt?: boolean
+    barberia?: boolean | Usuario$barberiaArgs<ExtArgs>
     reservas?: boolean | Usuario$reservasArgs<ExtArgs>
     _count?: boolean | UsuarioCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["usuario"]>
@@ -1594,10 +2806,12 @@ export namespace Prisma {
     telefono?: boolean
     foto_url?: boolean
     fecha_nacimiento?: boolean
+    barberiaId?: boolean
     createdAt?: boolean
   }
 
   export type UsuarioInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    barberia?: boolean | Usuario$barberiaArgs<ExtArgs>
     reservas?: boolean | Usuario$reservasArgs<ExtArgs>
     _count?: boolean | UsuarioCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -1605,6 +2819,7 @@ export namespace Prisma {
   export type $UsuarioPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Usuario"
     objects: {
+      barberia: Prisma.$BarberiaPayload<ExtArgs> | null
       reservas: Prisma.$ReservaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -1616,6 +2831,7 @@ export namespace Prisma {
       telefono: string | null
       foto_url: string | null
       fecha_nacimiento: Date | null
+      barberiaId: number | null
       createdAt: Date
     }, ExtArgs["result"]["usuario"]>
     composites: {}
@@ -1957,6 +3173,7 @@ export namespace Prisma {
    */
   export interface Prisma__UsuarioClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    barberia<T extends Usuario$barberiaArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$barberiaArgs<ExtArgs>>): Prisma__BarberiaClient<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     reservas<T extends Usuario$reservasArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$reservasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservaPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1995,6 +3212,7 @@ export namespace Prisma {
     readonly telefono: FieldRef<"Usuario", 'String'>
     readonly foto_url: FieldRef<"Usuario", 'String'>
     readonly fecha_nacimiento: FieldRef<"Usuario", 'DateTime'>
+    readonly barberiaId: FieldRef<"Usuario", 'Int'>
     readonly createdAt: FieldRef<"Usuario", 'DateTime'>
   }
     
@@ -2295,6 +3513,21 @@ export namespace Prisma {
   }
 
   /**
+   * Usuario.barberia
+   */
+  export type Usuario$barberiaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Barberia
+     */
+    select?: BarberiaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BarberiaInclude<ExtArgs> | null
+    where?: BarberiaWhereInput
+  }
+
+  /**
    * Usuario.reservas
    */
   export type Usuario$reservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2343,10 +3576,12 @@ export namespace Prisma {
 
   export type BarberoAvgAggregateOutputType = {
     id: number | null
+    barberiaId: number | null
   }
 
   export type BarberoSumAggregateOutputType = {
     id: number | null
+    barberiaId: number | null
   }
 
   export type BarberoMinAggregateOutputType = {
@@ -2355,6 +3590,7 @@ export namespace Prisma {
     especialidad: string | null
     foto: string | null
     categorias: string | null
+    barberiaId: number | null
   }
 
   export type BarberoMaxAggregateOutputType = {
@@ -2363,6 +3599,7 @@ export namespace Prisma {
     especialidad: string | null
     foto: string | null
     categorias: string | null
+    barberiaId: number | null
   }
 
   export type BarberoCountAggregateOutputType = {
@@ -2371,16 +3608,19 @@ export namespace Prisma {
     especialidad: number
     foto: number
     categorias: number
+    barberiaId: number
     _all: number
   }
 
 
   export type BarberoAvgAggregateInputType = {
     id?: true
+    barberiaId?: true
   }
 
   export type BarberoSumAggregateInputType = {
     id?: true
+    barberiaId?: true
   }
 
   export type BarberoMinAggregateInputType = {
@@ -2389,6 +3629,7 @@ export namespace Prisma {
     especialidad?: true
     foto?: true
     categorias?: true
+    barberiaId?: true
   }
 
   export type BarberoMaxAggregateInputType = {
@@ -2397,6 +3638,7 @@ export namespace Prisma {
     especialidad?: true
     foto?: true
     categorias?: true
+    barberiaId?: true
   }
 
   export type BarberoCountAggregateInputType = {
@@ -2405,6 +3647,7 @@ export namespace Prisma {
     especialidad?: true
     foto?: true
     categorias?: true
+    barberiaId?: true
     _all?: true
   }
 
@@ -2500,6 +3743,7 @@ export namespace Prisma {
     especialidad: string
     foto: string | null
     categorias: string
+    barberiaId: number
     _count: BarberoCountAggregateOutputType | null
     _avg: BarberoAvgAggregateOutputType | null
     _sum: BarberoSumAggregateOutputType | null
@@ -2527,6 +3771,8 @@ export namespace Prisma {
     especialidad?: boolean
     foto?: boolean
     categorias?: boolean
+    barberiaId?: boolean
+    barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
     reservas?: boolean | Barbero$reservasArgs<ExtArgs>
     horarios?: boolean | Barbero$horariosArgs<ExtArgs>
     _count?: boolean | BarberoCountOutputTypeDefaultArgs<ExtArgs>
@@ -2539,9 +3785,11 @@ export namespace Prisma {
     especialidad?: boolean
     foto?: boolean
     categorias?: boolean
+    barberiaId?: boolean
   }
 
   export type BarberoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
     reservas?: boolean | Barbero$reservasArgs<ExtArgs>
     horarios?: boolean | Barbero$horariosArgs<ExtArgs>
     _count?: boolean | BarberoCountOutputTypeDefaultArgs<ExtArgs>
@@ -2550,6 +3798,7 @@ export namespace Prisma {
   export type $BarberoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Barbero"
     objects: {
+      barberia: Prisma.$BarberiaPayload<ExtArgs>
       reservas: Prisma.$ReservaPayload<ExtArgs>[]
       horarios: Prisma.$HorarioPayload<ExtArgs>[]
     }
@@ -2559,6 +3808,7 @@ export namespace Prisma {
       especialidad: string
       foto: string | null
       categorias: string
+      barberiaId: number
     }, ExtArgs["result"]["barbero"]>
     composites: {}
   }
@@ -2899,6 +4149,7 @@ export namespace Prisma {
    */
   export interface Prisma__BarberoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    barberia<T extends BarberiaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BarberiaDefaultArgs<ExtArgs>>): Prisma__BarberiaClient<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     reservas<T extends Barbero$reservasArgs<ExtArgs> = {}>(args?: Subset<T, Barbero$reservasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservaPayload<ExtArgs>, T, "findMany"> | Null>
     horarios<T extends Barbero$horariosArgs<ExtArgs> = {}>(args?: Subset<T, Barbero$horariosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HorarioPayload<ExtArgs>, T, "findMany"> | Null>
     /**
@@ -2935,6 +4186,7 @@ export namespace Prisma {
     readonly especialidad: FieldRef<"Barbero", 'String'>
     readonly foto: FieldRef<"Barbero", 'String'>
     readonly categorias: FieldRef<"Barbero", 'String'>
+    readonly barberiaId: FieldRef<"Barbero", 'Int'>
   }
     
 
@@ -3304,12 +4556,14 @@ export namespace Prisma {
     id: number | null
     precio: number | null
     duracion_minutos: number | null
+    barberiaId: number | null
   }
 
   export type ServicioSumAggregateOutputType = {
     id: number | null
     precio: number | null
     duracion_minutos: number | null
+    barberiaId: number | null
   }
 
   export type ServicioMinAggregateOutputType = {
@@ -3320,6 +4574,7 @@ export namespace Prisma {
     categoria: string | null
     activo: boolean | null
     predefinido: boolean | null
+    barberiaId: number | null
   }
 
   export type ServicioMaxAggregateOutputType = {
@@ -3330,6 +4585,7 @@ export namespace Prisma {
     categoria: string | null
     activo: boolean | null
     predefinido: boolean | null
+    barberiaId: number | null
   }
 
   export type ServicioCountAggregateOutputType = {
@@ -3340,6 +4596,7 @@ export namespace Prisma {
     categoria: number
     activo: number
     predefinido: number
+    barberiaId: number
     _all: number
   }
 
@@ -3348,12 +4605,14 @@ export namespace Prisma {
     id?: true
     precio?: true
     duracion_minutos?: true
+    barberiaId?: true
   }
 
   export type ServicioSumAggregateInputType = {
     id?: true
     precio?: true
     duracion_minutos?: true
+    barberiaId?: true
   }
 
   export type ServicioMinAggregateInputType = {
@@ -3364,6 +4623,7 @@ export namespace Prisma {
     categoria?: true
     activo?: true
     predefinido?: true
+    barberiaId?: true
   }
 
   export type ServicioMaxAggregateInputType = {
@@ -3374,6 +4634,7 @@ export namespace Prisma {
     categoria?: true
     activo?: true
     predefinido?: true
+    barberiaId?: true
   }
 
   export type ServicioCountAggregateInputType = {
@@ -3384,6 +4645,7 @@ export namespace Prisma {
     categoria?: true
     activo?: true
     predefinido?: true
+    barberiaId?: true
     _all?: true
   }
 
@@ -3481,6 +4743,7 @@ export namespace Prisma {
     categoria: string
     activo: boolean
     predefinido: boolean
+    barberiaId: number
     _count: ServicioCountAggregateOutputType | null
     _avg: ServicioAvgAggregateOutputType | null
     _sum: ServicioSumAggregateOutputType | null
@@ -3510,6 +4773,8 @@ export namespace Prisma {
     categoria?: boolean
     activo?: boolean
     predefinido?: boolean
+    barberiaId?: boolean
+    barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
     reservas?: boolean | Servicio$reservasArgs<ExtArgs>
     _count?: boolean | ServicioCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["servicio"]>
@@ -3523,9 +4788,11 @@ export namespace Prisma {
     categoria?: boolean
     activo?: boolean
     predefinido?: boolean
+    barberiaId?: boolean
   }
 
   export type ServicioInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
     reservas?: boolean | Servicio$reservasArgs<ExtArgs>
     _count?: boolean | ServicioCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -3533,6 +4800,7 @@ export namespace Prisma {
   export type $ServicioPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Servicio"
     objects: {
+      barberia: Prisma.$BarberiaPayload<ExtArgs>
       reservas: Prisma.$ReservaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -3543,6 +4811,7 @@ export namespace Prisma {
       categoria: string
       activo: boolean
       predefinido: boolean
+      barberiaId: number
     }, ExtArgs["result"]["servicio"]>
     composites: {}
   }
@@ -3883,6 +5152,7 @@ export namespace Prisma {
    */
   export interface Prisma__ServicioClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    barberia<T extends BarberiaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BarberiaDefaultArgs<ExtArgs>>): Prisma__BarberiaClient<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     reservas<T extends Servicio$reservasArgs<ExtArgs> = {}>(args?: Subset<T, Servicio$reservasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservaPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3920,6 +5190,7 @@ export namespace Prisma {
     readonly categoria: FieldRef<"Servicio", 'String'>
     readonly activo: FieldRef<"Servicio", 'Boolean'>
     readonly predefinido: FieldRef<"Servicio", 'Boolean'>
+    readonly barberiaId: FieldRef<"Servicio", 'Int'>
   }
     
 
@@ -4270,6 +5541,7 @@ export namespace Prisma {
     usuarioId: number | null
     barberoId: number | null
     servicioId: number | null
+    barberiaId: number | null
   }
 
   export type ReservaSumAggregateOutputType = {
@@ -4277,6 +5549,7 @@ export namespace Prisma {
     usuarioId: number | null
     barberoId: number | null
     servicioId: number | null
+    barberiaId: number | null
   }
 
   export type ReservaMinAggregateOutputType = {
@@ -4284,6 +5557,7 @@ export namespace Prisma {
     usuarioId: number | null
     barberoId: number | null
     servicioId: number | null
+    barberiaId: number | null
     fecha: Date | null
     estado: string | null
     createdAt: Date | null
@@ -4294,6 +5568,7 @@ export namespace Prisma {
     usuarioId: number | null
     barberoId: number | null
     servicioId: number | null
+    barberiaId: number | null
     fecha: Date | null
     estado: string | null
     createdAt: Date | null
@@ -4304,6 +5579,7 @@ export namespace Prisma {
     usuarioId: number
     barberoId: number
     servicioId: number
+    barberiaId: number
     fecha: number
     estado: number
     createdAt: number
@@ -4316,6 +5592,7 @@ export namespace Prisma {
     usuarioId?: true
     barberoId?: true
     servicioId?: true
+    barberiaId?: true
   }
 
   export type ReservaSumAggregateInputType = {
@@ -4323,6 +5600,7 @@ export namespace Prisma {
     usuarioId?: true
     barberoId?: true
     servicioId?: true
+    barberiaId?: true
   }
 
   export type ReservaMinAggregateInputType = {
@@ -4330,6 +5608,7 @@ export namespace Prisma {
     usuarioId?: true
     barberoId?: true
     servicioId?: true
+    barberiaId?: true
     fecha?: true
     estado?: true
     createdAt?: true
@@ -4340,6 +5619,7 @@ export namespace Prisma {
     usuarioId?: true
     barberoId?: true
     servicioId?: true
+    barberiaId?: true
     fecha?: true
     estado?: true
     createdAt?: true
@@ -4350,6 +5630,7 @@ export namespace Prisma {
     usuarioId?: true
     barberoId?: true
     servicioId?: true
+    barberiaId?: true
     fecha?: true
     estado?: true
     createdAt?: true
@@ -4447,6 +5728,7 @@ export namespace Prisma {
     usuarioId: number
     barberoId: number
     servicioId: number
+    barberiaId: number
     fecha: Date
     estado: string
     createdAt: Date
@@ -4476,12 +5758,14 @@ export namespace Prisma {
     usuarioId?: boolean
     barberoId?: boolean
     servicioId?: boolean
+    barberiaId?: boolean
     fecha?: boolean
     estado?: boolean
     createdAt?: boolean
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
     barbero?: boolean | BarberoDefaultArgs<ExtArgs>
     servicio?: boolean | ServicioDefaultArgs<ExtArgs>
+    barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["reserva"]>
 
 
@@ -4490,6 +5774,7 @@ export namespace Prisma {
     usuarioId?: boolean
     barberoId?: boolean
     servicioId?: boolean
+    barberiaId?: boolean
     fecha?: boolean
     estado?: boolean
     createdAt?: boolean
@@ -4499,6 +5784,7 @@ export namespace Prisma {
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
     barbero?: boolean | BarberoDefaultArgs<ExtArgs>
     servicio?: boolean | ServicioDefaultArgs<ExtArgs>
+    barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
   }
 
   export type $ReservaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4507,12 +5793,14 @@ export namespace Prisma {
       usuario: Prisma.$UsuarioPayload<ExtArgs>
       barbero: Prisma.$BarberoPayload<ExtArgs>
       servicio: Prisma.$ServicioPayload<ExtArgs>
+      barberia: Prisma.$BarberiaPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       usuarioId: number
       barberoId: number
       servicioId: number
+      barberiaId: number
       fecha: Date
       estado: string
       createdAt: Date
@@ -4859,6 +6147,7 @@ export namespace Prisma {
     usuario<T extends UsuarioDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsuarioDefaultArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     barbero<T extends BarberoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BarberoDefaultArgs<ExtArgs>>): Prisma__BarberoClient<$Result.GetResult<Prisma.$BarberoPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     servicio<T extends ServicioDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ServicioDefaultArgs<ExtArgs>>): Prisma__ServicioClient<$Result.GetResult<Prisma.$ServicioPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    barberia<T extends BarberiaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BarberiaDefaultArgs<ExtArgs>>): Prisma__BarberiaClient<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4892,6 +6181,7 @@ export namespace Prisma {
     readonly usuarioId: FieldRef<"Reserva", 'Int'>
     readonly barberoId: FieldRef<"Reserva", 'Int'>
     readonly servicioId: FieldRef<"Reserva", 'Int'>
+    readonly barberiaId: FieldRef<"Reserva", 'Int'>
     readonly fecha: FieldRef<"Reserva", 'DateTime'>
     readonly estado: FieldRef<"Reserva", 'String'>
     readonly createdAt: FieldRef<"Reserva", 'DateTime'>
@@ -5223,18 +6513,21 @@ export namespace Prisma {
   export type HorarioAvgAggregateOutputType = {
     id: number | null
     barberoId: number | null
+    barberiaId: number | null
     dia_semana: number | null
   }
 
   export type HorarioSumAggregateOutputType = {
     id: number | null
     barberoId: number | null
+    barberiaId: number | null
     dia_semana: number | null
   }
 
   export type HorarioMinAggregateOutputType = {
     id: number | null
     barberoId: number | null
+    barberiaId: number | null
     dia_semana: number | null
     hora_inicio: string | null
     hora_fin: string | null
@@ -5243,6 +6536,7 @@ export namespace Prisma {
   export type HorarioMaxAggregateOutputType = {
     id: number | null
     barberoId: number | null
+    barberiaId: number | null
     dia_semana: number | null
     hora_inicio: string | null
     hora_fin: string | null
@@ -5251,6 +6545,7 @@ export namespace Prisma {
   export type HorarioCountAggregateOutputType = {
     id: number
     barberoId: number
+    barberiaId: number
     dia_semana: number
     hora_inicio: number
     hora_fin: number
@@ -5261,18 +6556,21 @@ export namespace Prisma {
   export type HorarioAvgAggregateInputType = {
     id?: true
     barberoId?: true
+    barberiaId?: true
     dia_semana?: true
   }
 
   export type HorarioSumAggregateInputType = {
     id?: true
     barberoId?: true
+    barberiaId?: true
     dia_semana?: true
   }
 
   export type HorarioMinAggregateInputType = {
     id?: true
     barberoId?: true
+    barberiaId?: true
     dia_semana?: true
     hora_inicio?: true
     hora_fin?: true
@@ -5281,6 +6579,7 @@ export namespace Prisma {
   export type HorarioMaxAggregateInputType = {
     id?: true
     barberoId?: true
+    barberiaId?: true
     dia_semana?: true
     hora_inicio?: true
     hora_fin?: true
@@ -5289,6 +6588,7 @@ export namespace Prisma {
   export type HorarioCountAggregateInputType = {
     id?: true
     barberoId?: true
+    barberiaId?: true
     dia_semana?: true
     hora_inicio?: true
     hora_fin?: true
@@ -5384,6 +6684,7 @@ export namespace Prisma {
   export type HorarioGroupByOutputType = {
     id: number
     barberoId: number
+    barberiaId: number
     dia_semana: number
     hora_inicio: string
     hora_fin: string
@@ -5411,16 +6712,19 @@ export namespace Prisma {
   export type HorarioSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     barberoId?: boolean
+    barberiaId?: boolean
     dia_semana?: boolean
     hora_inicio?: boolean
     hora_fin?: boolean
     barbero?: boolean | BarberoDefaultArgs<ExtArgs>
+    barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["horario"]>
 
 
   export type HorarioSelectScalar = {
     id?: boolean
     barberoId?: boolean
+    barberiaId?: boolean
     dia_semana?: boolean
     hora_inicio?: boolean
     hora_fin?: boolean
@@ -5428,16 +6732,19 @@ export namespace Prisma {
 
   export type HorarioInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     barbero?: boolean | BarberoDefaultArgs<ExtArgs>
+    barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
   }
 
   export type $HorarioPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Horario"
     objects: {
       barbero: Prisma.$BarberoPayload<ExtArgs>
+      barberia: Prisma.$BarberiaPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       barberoId: number
+      barberiaId: number
       dia_semana: number
       hora_inicio: string
       hora_fin: string
@@ -5782,6 +7089,7 @@ export namespace Prisma {
   export interface Prisma__HorarioClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     barbero<T extends BarberoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BarberoDefaultArgs<ExtArgs>>): Prisma__BarberoClient<$Result.GetResult<Prisma.$BarberoPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    barberia<T extends BarberiaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BarberiaDefaultArgs<ExtArgs>>): Prisma__BarberiaClient<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5813,6 +7121,7 @@ export namespace Prisma {
   interface HorarioFieldRefs {
     readonly id: FieldRef<"Horario", 'Int'>
     readonly barberoId: FieldRef<"Horario", 'Int'>
+    readonly barberiaId: FieldRef<"Horario", 'Int'>
     readonly dia_semana: FieldRef<"Horario", 'Int'>
     readonly hora_inicio: FieldRef<"Horario", 'String'>
     readonly hora_fin: FieldRef<"Horario", 'String'>
@@ -6143,10 +7452,12 @@ export namespace Prisma {
 
   export type ConfiguracionAvgAggregateOutputType = {
     id: number | null
+    barberiaId: number | null
   }
 
   export type ConfiguracionSumAggregateOutputType = {
     id: number | null
+    barberiaId: number | null
   }
 
   export type ConfiguracionMinAggregateOutputType = {
@@ -6156,6 +7467,7 @@ export namespace Prisma {
     simbolo: string | null
     separador_miles: string | null
     separador_decimal: string | null
+    barberiaId: number | null
   }
 
   export type ConfiguracionMaxAggregateOutputType = {
@@ -6165,6 +7477,7 @@ export namespace Prisma {
     simbolo: string | null
     separador_miles: string | null
     separador_decimal: string | null
+    barberiaId: number | null
   }
 
   export type ConfiguracionCountAggregateOutputType = {
@@ -6174,16 +7487,19 @@ export namespace Prisma {
     simbolo: number
     separador_miles: number
     separador_decimal: number
+    barberiaId: number
     _all: number
   }
 
 
   export type ConfiguracionAvgAggregateInputType = {
     id?: true
+    barberiaId?: true
   }
 
   export type ConfiguracionSumAggregateInputType = {
     id?: true
+    barberiaId?: true
   }
 
   export type ConfiguracionMinAggregateInputType = {
@@ -6193,6 +7509,7 @@ export namespace Prisma {
     simbolo?: true
     separador_miles?: true
     separador_decimal?: true
+    barberiaId?: true
   }
 
   export type ConfiguracionMaxAggregateInputType = {
@@ -6202,6 +7519,7 @@ export namespace Prisma {
     simbolo?: true
     separador_miles?: true
     separador_decimal?: true
+    barberiaId?: true
   }
 
   export type ConfiguracionCountAggregateInputType = {
@@ -6211,6 +7529,7 @@ export namespace Prisma {
     simbolo?: true
     separador_miles?: true
     separador_decimal?: true
+    barberiaId?: true
     _all?: true
   }
 
@@ -6307,6 +7626,7 @@ export namespace Prisma {
     simbolo: string
     separador_miles: string
     separador_decimal: string
+    barberiaId: number
     _count: ConfiguracionCountAggregateOutputType | null
     _avg: ConfiguracionAvgAggregateOutputType | null
     _sum: ConfiguracionSumAggregateOutputType | null
@@ -6335,6 +7655,8 @@ export namespace Prisma {
     simbolo?: boolean
     separador_miles?: boolean
     separador_decimal?: boolean
+    barberiaId?: boolean
+    barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["configuracion"]>
 
 
@@ -6345,12 +7667,18 @@ export namespace Prisma {
     simbolo?: boolean
     separador_miles?: boolean
     separador_decimal?: boolean
+    barberiaId?: boolean
   }
 
+  export type ConfiguracionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
+  }
 
   export type $ConfiguracionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Configuracion"
-    objects: {}
+    objects: {
+      barberia: Prisma.$BarberiaPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       nombre_barberia: string
@@ -6358,6 +7686,7 @@ export namespace Prisma {
       simbolo: string
       separador_miles: string
       separador_decimal: string
+      barberiaId: number
     }, ExtArgs["result"]["configuracion"]>
     composites: {}
   }
@@ -6698,6 +8027,7 @@ export namespace Prisma {
    */
   export interface Prisma__ConfiguracionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    barberia<T extends BarberiaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BarberiaDefaultArgs<ExtArgs>>): Prisma__BarberiaClient<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6733,6 +8063,7 @@ export namespace Prisma {
     readonly simbolo: FieldRef<"Configuracion", 'String'>
     readonly separador_miles: FieldRef<"Configuracion", 'String'>
     readonly separador_decimal: FieldRef<"Configuracion", 'String'>
+    readonly barberiaId: FieldRef<"Configuracion", 'Int'>
   }
     
 
@@ -6745,6 +8076,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Configuracion
      */
     select?: ConfiguracionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConfiguracionInclude<ExtArgs> | null
     /**
      * Filter, which Configuracion to fetch.
      */
@@ -6760,6 +8095,10 @@ export namespace Prisma {
      */
     select?: ConfiguracionSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConfiguracionInclude<ExtArgs> | null
+    /**
      * Filter, which Configuracion to fetch.
      */
     where: ConfiguracionWhereUniqueInput
@@ -6773,6 +8112,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Configuracion
      */
     select?: ConfiguracionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConfiguracionInclude<ExtArgs> | null
     /**
      * Filter, which Configuracion to fetch.
      */
@@ -6818,6 +8161,10 @@ export namespace Prisma {
      */
     select?: ConfiguracionSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConfiguracionInclude<ExtArgs> | null
+    /**
      * Filter, which Configuracion to fetch.
      */
     where?: ConfiguracionWhereInput
@@ -6862,6 +8209,10 @@ export namespace Prisma {
      */
     select?: ConfiguracionSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConfiguracionInclude<ExtArgs> | null
+    /**
      * Filter, which Configuracions to fetch.
      */
     where?: ConfiguracionWhereInput
@@ -6901,9 +8252,13 @@ export namespace Prisma {
      */
     select?: ConfiguracionSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConfiguracionInclude<ExtArgs> | null
+    /**
      * The data needed to create a Configuracion.
      */
-    data?: XOR<ConfiguracionCreateInput, ConfiguracionUncheckedCreateInput>
+    data: XOR<ConfiguracionCreateInput, ConfiguracionUncheckedCreateInput>
   }
 
   /**
@@ -6925,6 +8280,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Configuracion
      */
     select?: ConfiguracionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConfiguracionInclude<ExtArgs> | null
     /**
      * The data needed to update a Configuracion.
      */
@@ -6958,6 +8317,10 @@ export namespace Prisma {
      */
     select?: ConfiguracionSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConfiguracionInclude<ExtArgs> | null
+    /**
      * The filter to search for the Configuracion to update in case it exists.
      */
     where: ConfiguracionWhereUniqueInput
@@ -6979,6 +8342,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Configuracion
      */
     select?: ConfiguracionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConfiguracionInclude<ExtArgs> | null
     /**
      * Filter which Configuracion to delete.
      */
@@ -7003,6 +8370,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Configuracion
      */
     select?: ConfiguracionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConfiguracionInclude<ExtArgs> | null
   }
 
 
@@ -7020,6 +8391,17 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+  export const BarberiaScalarFieldEnum: {
+    id: 'id',
+    nombre: 'nombre',
+    codigo: 'codigo',
+    logo: 'logo',
+    createdAt: 'createdAt'
+  };
+
+  export type BarberiaScalarFieldEnum = (typeof BarberiaScalarFieldEnum)[keyof typeof BarberiaScalarFieldEnum]
+
+
   export const UsuarioScalarFieldEnum: {
     id: 'id',
     nombre: 'nombre',
@@ -7029,6 +8411,7 @@ export namespace Prisma {
     telefono: 'telefono',
     foto_url: 'foto_url',
     fecha_nacimiento: 'fecha_nacimiento',
+    barberiaId: 'barberiaId',
     createdAt: 'createdAt'
   };
 
@@ -7040,7 +8423,8 @@ export namespace Prisma {
     nombre: 'nombre',
     especialidad: 'especialidad',
     foto: 'foto',
-    categorias: 'categorias'
+    categorias: 'categorias',
+    barberiaId: 'barberiaId'
   };
 
   export type BarberoScalarFieldEnum = (typeof BarberoScalarFieldEnum)[keyof typeof BarberoScalarFieldEnum]
@@ -7053,7 +8437,8 @@ export namespace Prisma {
     duracion_minutos: 'duracion_minutos',
     categoria: 'categoria',
     activo: 'activo',
-    predefinido: 'predefinido'
+    predefinido: 'predefinido',
+    barberiaId: 'barberiaId'
   };
 
   export type ServicioScalarFieldEnum = (typeof ServicioScalarFieldEnum)[keyof typeof ServicioScalarFieldEnum]
@@ -7064,6 +8449,7 @@ export namespace Prisma {
     usuarioId: 'usuarioId',
     barberoId: 'barberoId',
     servicioId: 'servicioId',
+    barberiaId: 'barberiaId',
     fecha: 'fecha',
     estado: 'estado',
     createdAt: 'createdAt'
@@ -7075,6 +8461,7 @@ export namespace Prisma {
   export const HorarioScalarFieldEnum: {
     id: 'id',
     barberoId: 'barberoId',
+    barberiaId: 'barberiaId',
     dia_semana: 'dia_semana',
     hora_inicio: 'hora_inicio',
     hora_fin: 'hora_fin'
@@ -7089,7 +8476,8 @@ export namespace Prisma {
     moneda: 'moneda',
     simbolo: 'simbolo',
     separador_miles: 'separador_miles',
-    separador_decimal: 'separador_decimal'
+    separador_decimal: 'separador_decimal',
+    barberiaId: 'barberiaId'
   };
 
   export type ConfiguracionScalarFieldEnum = (typeof ConfiguracionScalarFieldEnum)[keyof typeof ConfiguracionScalarFieldEnum]
@@ -7154,6 +8542,78 @@ export namespace Prisma {
    */
 
 
+  export type BarberiaWhereInput = {
+    AND?: BarberiaWhereInput | BarberiaWhereInput[]
+    OR?: BarberiaWhereInput[]
+    NOT?: BarberiaWhereInput | BarberiaWhereInput[]
+    id?: IntFilter<"Barberia"> | number
+    nombre?: StringFilter<"Barberia"> | string
+    codigo?: StringFilter<"Barberia"> | string
+    logo?: StringNullableFilter<"Barberia"> | string | null
+    createdAt?: DateTimeFilter<"Barberia"> | Date | string
+    usuarios?: UsuarioListRelationFilter
+    barberos?: BarberoListRelationFilter
+    servicios?: ServicioListRelationFilter
+    reservas?: ReservaListRelationFilter
+    horarios?: HorarioListRelationFilter
+    configuracion?: XOR<ConfiguracionNullableRelationFilter, ConfiguracionWhereInput> | null
+  }
+
+  export type BarberiaOrderByWithRelationInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    codigo?: SortOrder
+    logo?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    usuarios?: UsuarioOrderByRelationAggregateInput
+    barberos?: BarberoOrderByRelationAggregateInput
+    servicios?: ServicioOrderByRelationAggregateInput
+    reservas?: ReservaOrderByRelationAggregateInput
+    horarios?: HorarioOrderByRelationAggregateInput
+    configuracion?: ConfiguracionOrderByWithRelationInput
+  }
+
+  export type BarberiaWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    codigo?: string
+    AND?: BarberiaWhereInput | BarberiaWhereInput[]
+    OR?: BarberiaWhereInput[]
+    NOT?: BarberiaWhereInput | BarberiaWhereInput[]
+    nombre?: StringFilter<"Barberia"> | string
+    logo?: StringNullableFilter<"Barberia"> | string | null
+    createdAt?: DateTimeFilter<"Barberia"> | Date | string
+    usuarios?: UsuarioListRelationFilter
+    barberos?: BarberoListRelationFilter
+    servicios?: ServicioListRelationFilter
+    reservas?: ReservaListRelationFilter
+    horarios?: HorarioListRelationFilter
+    configuracion?: XOR<ConfiguracionNullableRelationFilter, ConfiguracionWhereInput> | null
+  }, "id" | "codigo">
+
+  export type BarberiaOrderByWithAggregationInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    codigo?: SortOrder
+    logo?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: BarberiaCountOrderByAggregateInput
+    _avg?: BarberiaAvgOrderByAggregateInput
+    _max?: BarberiaMaxOrderByAggregateInput
+    _min?: BarberiaMinOrderByAggregateInput
+    _sum?: BarberiaSumOrderByAggregateInput
+  }
+
+  export type BarberiaScalarWhereWithAggregatesInput = {
+    AND?: BarberiaScalarWhereWithAggregatesInput | BarberiaScalarWhereWithAggregatesInput[]
+    OR?: BarberiaScalarWhereWithAggregatesInput[]
+    NOT?: BarberiaScalarWhereWithAggregatesInput | BarberiaScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Barberia"> | number
+    nombre?: StringWithAggregatesFilter<"Barberia"> | string
+    codigo?: StringWithAggregatesFilter<"Barberia"> | string
+    logo?: StringNullableWithAggregatesFilter<"Barberia"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Barberia"> | Date | string
+  }
+
   export type UsuarioWhereInput = {
     AND?: UsuarioWhereInput | UsuarioWhereInput[]
     OR?: UsuarioWhereInput[]
@@ -7166,7 +8626,9 @@ export namespace Prisma {
     telefono?: StringNullableFilter<"Usuario"> | string | null
     foto_url?: StringNullableFilter<"Usuario"> | string | null
     fecha_nacimiento?: DateTimeNullableFilter<"Usuario"> | Date | string | null
+    barberiaId?: IntNullableFilter<"Usuario"> | number | null
     createdAt?: DateTimeFilter<"Usuario"> | Date | string
+    barberia?: XOR<BarberiaNullableRelationFilter, BarberiaWhereInput> | null
     reservas?: ReservaListRelationFilter
   }
 
@@ -7179,7 +8641,9 @@ export namespace Prisma {
     telefono?: SortOrderInput | SortOrder
     foto_url?: SortOrderInput | SortOrder
     fecha_nacimiento?: SortOrderInput | SortOrder
+    barberiaId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    barberia?: BarberiaOrderByWithRelationInput
     reservas?: ReservaOrderByRelationAggregateInput
   }
 
@@ -7195,7 +8659,9 @@ export namespace Prisma {
     telefono?: StringNullableFilter<"Usuario"> | string | null
     foto_url?: StringNullableFilter<"Usuario"> | string | null
     fecha_nacimiento?: DateTimeNullableFilter<"Usuario"> | Date | string | null
+    barberiaId?: IntNullableFilter<"Usuario"> | number | null
     createdAt?: DateTimeFilter<"Usuario"> | Date | string
+    barberia?: XOR<BarberiaNullableRelationFilter, BarberiaWhereInput> | null
     reservas?: ReservaListRelationFilter
   }, "id" | "email">
 
@@ -7208,6 +8674,7 @@ export namespace Prisma {
     telefono?: SortOrderInput | SortOrder
     foto_url?: SortOrderInput | SortOrder
     fecha_nacimiento?: SortOrderInput | SortOrder
+    barberiaId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: UsuarioCountOrderByAggregateInput
     _avg?: UsuarioAvgOrderByAggregateInput
@@ -7228,6 +8695,7 @@ export namespace Prisma {
     telefono?: StringNullableWithAggregatesFilter<"Usuario"> | string | null
     foto_url?: StringNullableWithAggregatesFilter<"Usuario"> | string | null
     fecha_nacimiento?: DateTimeNullableWithAggregatesFilter<"Usuario"> | Date | string | null
+    barberiaId?: IntNullableWithAggregatesFilter<"Usuario"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"Usuario"> | Date | string
   }
 
@@ -7240,6 +8708,8 @@ export namespace Prisma {
     especialidad?: StringFilter<"Barbero"> | string
     foto?: StringNullableFilter<"Barbero"> | string | null
     categorias?: StringFilter<"Barbero"> | string
+    barberiaId?: IntFilter<"Barbero"> | number
+    barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
     reservas?: ReservaListRelationFilter
     horarios?: HorarioListRelationFilter
   }
@@ -7250,6 +8720,8 @@ export namespace Prisma {
     especialidad?: SortOrder
     foto?: SortOrderInput | SortOrder
     categorias?: SortOrder
+    barberiaId?: SortOrder
+    barberia?: BarberiaOrderByWithRelationInput
     reservas?: ReservaOrderByRelationAggregateInput
     horarios?: HorarioOrderByRelationAggregateInput
   }
@@ -7263,6 +8735,8 @@ export namespace Prisma {
     especialidad?: StringFilter<"Barbero"> | string
     foto?: StringNullableFilter<"Barbero"> | string | null
     categorias?: StringFilter<"Barbero"> | string
+    barberiaId?: IntFilter<"Barbero"> | number
+    barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
     reservas?: ReservaListRelationFilter
     horarios?: HorarioListRelationFilter
   }, "id">
@@ -7273,6 +8747,7 @@ export namespace Prisma {
     especialidad?: SortOrder
     foto?: SortOrderInput | SortOrder
     categorias?: SortOrder
+    barberiaId?: SortOrder
     _count?: BarberoCountOrderByAggregateInput
     _avg?: BarberoAvgOrderByAggregateInput
     _max?: BarberoMaxOrderByAggregateInput
@@ -7289,6 +8764,7 @@ export namespace Prisma {
     especialidad?: StringWithAggregatesFilter<"Barbero"> | string
     foto?: StringNullableWithAggregatesFilter<"Barbero"> | string | null
     categorias?: StringWithAggregatesFilter<"Barbero"> | string
+    barberiaId?: IntWithAggregatesFilter<"Barbero"> | number
   }
 
   export type ServicioWhereInput = {
@@ -7302,6 +8778,8 @@ export namespace Prisma {
     categoria?: StringFilter<"Servicio"> | string
     activo?: BoolFilter<"Servicio"> | boolean
     predefinido?: BoolFilter<"Servicio"> | boolean
+    barberiaId?: IntFilter<"Servicio"> | number
+    barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
     reservas?: ReservaListRelationFilter
   }
 
@@ -7313,6 +8791,8 @@ export namespace Prisma {
     categoria?: SortOrder
     activo?: SortOrder
     predefinido?: SortOrder
+    barberiaId?: SortOrder
+    barberia?: BarberiaOrderByWithRelationInput
     reservas?: ReservaOrderByRelationAggregateInput
   }
 
@@ -7327,6 +8807,8 @@ export namespace Prisma {
     categoria?: StringFilter<"Servicio"> | string
     activo?: BoolFilter<"Servicio"> | boolean
     predefinido?: BoolFilter<"Servicio"> | boolean
+    barberiaId?: IntFilter<"Servicio"> | number
+    barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
     reservas?: ReservaListRelationFilter
   }, "id">
 
@@ -7338,6 +8820,7 @@ export namespace Prisma {
     categoria?: SortOrder
     activo?: SortOrder
     predefinido?: SortOrder
+    barberiaId?: SortOrder
     _count?: ServicioCountOrderByAggregateInput
     _avg?: ServicioAvgOrderByAggregateInput
     _max?: ServicioMaxOrderByAggregateInput
@@ -7356,6 +8839,7 @@ export namespace Prisma {
     categoria?: StringWithAggregatesFilter<"Servicio"> | string
     activo?: BoolWithAggregatesFilter<"Servicio"> | boolean
     predefinido?: BoolWithAggregatesFilter<"Servicio"> | boolean
+    barberiaId?: IntWithAggregatesFilter<"Servicio"> | number
   }
 
   export type ReservaWhereInput = {
@@ -7366,12 +8850,14 @@ export namespace Prisma {
     usuarioId?: IntFilter<"Reserva"> | number
     barberoId?: IntFilter<"Reserva"> | number
     servicioId?: IntFilter<"Reserva"> | number
+    barberiaId?: IntFilter<"Reserva"> | number
     fecha?: DateTimeFilter<"Reserva"> | Date | string
     estado?: StringFilter<"Reserva"> | string
     createdAt?: DateTimeFilter<"Reserva"> | Date | string
     usuario?: XOR<UsuarioRelationFilter, UsuarioWhereInput>
     barbero?: XOR<BarberoRelationFilter, BarberoWhereInput>
     servicio?: XOR<ServicioRelationFilter, ServicioWhereInput>
+    barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
   }
 
   export type ReservaOrderByWithRelationInput = {
@@ -7379,12 +8865,14 @@ export namespace Prisma {
     usuarioId?: SortOrder
     barberoId?: SortOrder
     servicioId?: SortOrder
+    barberiaId?: SortOrder
     fecha?: SortOrder
     estado?: SortOrder
     createdAt?: SortOrder
     usuario?: UsuarioOrderByWithRelationInput
     barbero?: BarberoOrderByWithRelationInput
     servicio?: ServicioOrderByWithRelationInput
+    barberia?: BarberiaOrderByWithRelationInput
   }
 
   export type ReservaWhereUniqueInput = Prisma.AtLeast<{
@@ -7395,12 +8883,14 @@ export namespace Prisma {
     usuarioId?: IntFilter<"Reserva"> | number
     barberoId?: IntFilter<"Reserva"> | number
     servicioId?: IntFilter<"Reserva"> | number
+    barberiaId?: IntFilter<"Reserva"> | number
     fecha?: DateTimeFilter<"Reserva"> | Date | string
     estado?: StringFilter<"Reserva"> | string
     createdAt?: DateTimeFilter<"Reserva"> | Date | string
     usuario?: XOR<UsuarioRelationFilter, UsuarioWhereInput>
     barbero?: XOR<BarberoRelationFilter, BarberoWhereInput>
     servicio?: XOR<ServicioRelationFilter, ServicioWhereInput>
+    barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
   }, "id">
 
   export type ReservaOrderByWithAggregationInput = {
@@ -7408,6 +8898,7 @@ export namespace Prisma {
     usuarioId?: SortOrder
     barberoId?: SortOrder
     servicioId?: SortOrder
+    barberiaId?: SortOrder
     fecha?: SortOrder
     estado?: SortOrder
     createdAt?: SortOrder
@@ -7426,6 +8917,7 @@ export namespace Prisma {
     usuarioId?: IntWithAggregatesFilter<"Reserva"> | number
     barberoId?: IntWithAggregatesFilter<"Reserva"> | number
     servicioId?: IntWithAggregatesFilter<"Reserva"> | number
+    barberiaId?: IntWithAggregatesFilter<"Reserva"> | number
     fecha?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
     estado?: StringWithAggregatesFilter<"Reserva"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
@@ -7437,19 +8929,23 @@ export namespace Prisma {
     NOT?: HorarioWhereInput | HorarioWhereInput[]
     id?: IntFilter<"Horario"> | number
     barberoId?: IntFilter<"Horario"> | number
+    barberiaId?: IntFilter<"Horario"> | number
     dia_semana?: IntFilter<"Horario"> | number
     hora_inicio?: StringFilter<"Horario"> | string
     hora_fin?: StringFilter<"Horario"> | string
     barbero?: XOR<BarberoRelationFilter, BarberoWhereInput>
+    barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
   }
 
   export type HorarioOrderByWithRelationInput = {
     id?: SortOrder
     barberoId?: SortOrder
+    barberiaId?: SortOrder
     dia_semana?: SortOrder
     hora_inicio?: SortOrder
     hora_fin?: SortOrder
     barbero?: BarberoOrderByWithRelationInput
+    barberia?: BarberiaOrderByWithRelationInput
   }
 
   export type HorarioWhereUniqueInput = Prisma.AtLeast<{
@@ -7459,15 +8955,18 @@ export namespace Prisma {
     OR?: HorarioWhereInput[]
     NOT?: HorarioWhereInput | HorarioWhereInput[]
     barberoId?: IntFilter<"Horario"> | number
+    barberiaId?: IntFilter<"Horario"> | number
     dia_semana?: IntFilter<"Horario"> | number
     hora_inicio?: StringFilter<"Horario"> | string
     hora_fin?: StringFilter<"Horario"> | string
     barbero?: XOR<BarberoRelationFilter, BarberoWhereInput>
+    barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
   }, "id" | "barberoId_dia_semana">
 
   export type HorarioOrderByWithAggregationInput = {
     id?: SortOrder
     barberoId?: SortOrder
+    barberiaId?: SortOrder
     dia_semana?: SortOrder
     hora_inicio?: SortOrder
     hora_fin?: SortOrder
@@ -7484,6 +8983,7 @@ export namespace Prisma {
     NOT?: HorarioScalarWhereWithAggregatesInput | HorarioScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Horario"> | number
     barberoId?: IntWithAggregatesFilter<"Horario"> | number
+    barberiaId?: IntWithAggregatesFilter<"Horario"> | number
     dia_semana?: IntWithAggregatesFilter<"Horario"> | number
     hora_inicio?: StringWithAggregatesFilter<"Horario"> | string
     hora_fin?: StringWithAggregatesFilter<"Horario"> | string
@@ -7499,6 +8999,8 @@ export namespace Prisma {
     simbolo?: StringFilter<"Configuracion"> | string
     separador_miles?: StringFilter<"Configuracion"> | string
     separador_decimal?: StringFilter<"Configuracion"> | string
+    barberiaId?: IntFilter<"Configuracion"> | number
+    barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
   }
 
   export type ConfiguracionOrderByWithRelationInput = {
@@ -7508,10 +9010,13 @@ export namespace Prisma {
     simbolo?: SortOrder
     separador_miles?: SortOrder
     separador_decimal?: SortOrder
+    barberiaId?: SortOrder
+    barberia?: BarberiaOrderByWithRelationInput
   }
 
   export type ConfiguracionWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    barberiaId?: number
     AND?: ConfiguracionWhereInput | ConfiguracionWhereInput[]
     OR?: ConfiguracionWhereInput[]
     NOT?: ConfiguracionWhereInput | ConfiguracionWhereInput[]
@@ -7520,7 +9025,8 @@ export namespace Prisma {
     simbolo?: StringFilter<"Configuracion"> | string
     separador_miles?: StringFilter<"Configuracion"> | string
     separador_decimal?: StringFilter<"Configuracion"> | string
-  }, "id">
+    barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
+  }, "id" | "barberiaId">
 
   export type ConfiguracionOrderByWithAggregationInput = {
     id?: SortOrder
@@ -7529,6 +9035,7 @@ export namespace Prisma {
     simbolo?: SortOrder
     separador_miles?: SortOrder
     separador_decimal?: SortOrder
+    barberiaId?: SortOrder
     _count?: ConfiguracionCountOrderByAggregateInput
     _avg?: ConfiguracionAvgOrderByAggregateInput
     _max?: ConfiguracionMaxOrderByAggregateInput
@@ -7546,6 +9053,84 @@ export namespace Prisma {
     simbolo?: StringWithAggregatesFilter<"Configuracion"> | string
     separador_miles?: StringWithAggregatesFilter<"Configuracion"> | string
     separador_decimal?: StringWithAggregatesFilter<"Configuracion"> | string
+    barberiaId?: IntWithAggregatesFilter<"Configuracion"> | number
+  }
+
+  export type BarberiaCreateInput = {
+    nombre: string
+    codigo: string
+    logo?: string | null
+    createdAt?: Date | string
+    usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
+    barberos?: BarberoCreateNestedManyWithoutBarberiaInput
+    servicios?: ServicioCreateNestedManyWithoutBarberiaInput
+    reservas?: ReservaCreateNestedManyWithoutBarberiaInput
+    horarios?: HorarioCreateNestedManyWithoutBarberiaInput
+    configuracion?: ConfiguracionCreateNestedOneWithoutBarberiaInput
+  }
+
+  export type BarberiaUncheckedCreateInput = {
+    id?: number
+    nombre: string
+    codigo: string
+    logo?: string | null
+    createdAt?: Date | string
+    usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
+    barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
+    servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
+    reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
+    horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
+    configuracion?: ConfiguracionUncheckedCreateNestedOneWithoutBarberiaInput
+  }
+
+  export type BarberiaUpdateInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
+    barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
+    servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
+    reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
+    horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
+    configuracion?: ConfiguracionUpdateOneWithoutBarberiaNestedInput
+  }
+
+  export type BarberiaUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
+    barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
+    servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
+    reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
+    horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
+    configuracion?: ConfiguracionUncheckedUpdateOneWithoutBarberiaNestedInput
+  }
+
+  export type BarberiaCreateManyInput = {
+    id?: number
+    nombre: string
+    codigo: string
+    logo?: string | null
+    createdAt?: Date | string
+  }
+
+  export type BarberiaUpdateManyMutationInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BarberiaUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UsuarioCreateInput = {
@@ -7557,6 +9142,7 @@ export namespace Prisma {
     foto_url?: string | null
     fecha_nacimiento?: Date | string | null
     createdAt?: Date | string
+    barberia?: BarberiaCreateNestedOneWithoutUsuariosInput
     reservas?: ReservaCreateNestedManyWithoutUsuarioInput
   }
 
@@ -7569,6 +9155,7 @@ export namespace Prisma {
     telefono?: string | null
     foto_url?: string | null
     fecha_nacimiento?: Date | string | null
+    barberiaId?: number | null
     createdAt?: Date | string
     reservas?: ReservaUncheckedCreateNestedManyWithoutUsuarioInput
   }
@@ -7582,6 +9169,7 @@ export namespace Prisma {
     foto_url?: NullableStringFieldUpdateOperationsInput | string | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    barberia?: BarberiaUpdateOneWithoutUsuariosNestedInput
     reservas?: ReservaUpdateManyWithoutUsuarioNestedInput
   }
 
@@ -7594,6 +9182,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     foto_url?: NullableStringFieldUpdateOperationsInput | string | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    barberiaId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reservas?: ReservaUncheckedUpdateManyWithoutUsuarioNestedInput
   }
@@ -7607,6 +9196,7 @@ export namespace Prisma {
     telefono?: string | null
     foto_url?: string | null
     fecha_nacimiento?: Date | string | null
+    barberiaId?: number | null
     createdAt?: Date | string
   }
 
@@ -7630,6 +9220,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     foto_url?: NullableStringFieldUpdateOperationsInput | string | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    barberiaId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -7638,6 +9229,7 @@ export namespace Prisma {
     especialidad: string
     foto?: string | null
     categorias?: string
+    barberia: BarberiaCreateNestedOneWithoutBarberosInput
     reservas?: ReservaCreateNestedManyWithoutBarberoInput
     horarios?: HorarioCreateNestedManyWithoutBarberoInput
   }
@@ -7648,6 +9240,7 @@ export namespace Prisma {
     especialidad: string
     foto?: string | null
     categorias?: string
+    barberiaId: number
     reservas?: ReservaUncheckedCreateNestedManyWithoutBarberoInput
     horarios?: HorarioUncheckedCreateNestedManyWithoutBarberoInput
   }
@@ -7657,6 +9250,7 @@ export namespace Prisma {
     especialidad?: StringFieldUpdateOperationsInput | string
     foto?: NullableStringFieldUpdateOperationsInput | string | null
     categorias?: StringFieldUpdateOperationsInput | string
+    barberia?: BarberiaUpdateOneRequiredWithoutBarberosNestedInput
     reservas?: ReservaUpdateManyWithoutBarberoNestedInput
     horarios?: HorarioUpdateManyWithoutBarberoNestedInput
   }
@@ -7667,6 +9261,7 @@ export namespace Prisma {
     especialidad?: StringFieldUpdateOperationsInput | string
     foto?: NullableStringFieldUpdateOperationsInput | string | null
     categorias?: StringFieldUpdateOperationsInput | string
+    barberiaId?: IntFieldUpdateOperationsInput | number
     reservas?: ReservaUncheckedUpdateManyWithoutBarberoNestedInput
     horarios?: HorarioUncheckedUpdateManyWithoutBarberoNestedInput
   }
@@ -7677,6 +9272,7 @@ export namespace Prisma {
     especialidad: string
     foto?: string | null
     categorias?: string
+    barberiaId: number
   }
 
   export type BarberoUpdateManyMutationInput = {
@@ -7692,6 +9288,7 @@ export namespace Prisma {
     especialidad?: StringFieldUpdateOperationsInput | string
     foto?: NullableStringFieldUpdateOperationsInput | string | null
     categorias?: StringFieldUpdateOperationsInput | string
+    barberiaId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ServicioCreateInput = {
@@ -7701,6 +9298,7 @@ export namespace Prisma {
     categoria?: string
     activo?: boolean
     predefinido?: boolean
+    barberia: BarberiaCreateNestedOneWithoutServiciosInput
     reservas?: ReservaCreateNestedManyWithoutServicioInput
   }
 
@@ -7712,6 +9310,7 @@ export namespace Prisma {
     categoria?: string
     activo?: boolean
     predefinido?: boolean
+    barberiaId: number
     reservas?: ReservaUncheckedCreateNestedManyWithoutServicioInput
   }
 
@@ -7722,6 +9321,7 @@ export namespace Prisma {
     categoria?: StringFieldUpdateOperationsInput | string
     activo?: BoolFieldUpdateOperationsInput | boolean
     predefinido?: BoolFieldUpdateOperationsInput | boolean
+    barberia?: BarberiaUpdateOneRequiredWithoutServiciosNestedInput
     reservas?: ReservaUpdateManyWithoutServicioNestedInput
   }
 
@@ -7733,6 +9333,7 @@ export namespace Prisma {
     categoria?: StringFieldUpdateOperationsInput | string
     activo?: BoolFieldUpdateOperationsInput | boolean
     predefinido?: BoolFieldUpdateOperationsInput | boolean
+    barberiaId?: IntFieldUpdateOperationsInput | number
     reservas?: ReservaUncheckedUpdateManyWithoutServicioNestedInput
   }
 
@@ -7744,6 +9345,7 @@ export namespace Prisma {
     categoria?: string
     activo?: boolean
     predefinido?: boolean
+    barberiaId: number
   }
 
   export type ServicioUpdateManyMutationInput = {
@@ -7763,6 +9365,7 @@ export namespace Prisma {
     categoria?: StringFieldUpdateOperationsInput | string
     activo?: BoolFieldUpdateOperationsInput | boolean
     predefinido?: BoolFieldUpdateOperationsInput | boolean
+    barberiaId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ReservaCreateInput = {
@@ -7772,6 +9375,7 @@ export namespace Prisma {
     usuario: UsuarioCreateNestedOneWithoutReservasInput
     barbero: BarberoCreateNestedOneWithoutReservasInput
     servicio: ServicioCreateNestedOneWithoutReservasInput
+    barberia: BarberiaCreateNestedOneWithoutReservasInput
   }
 
   export type ReservaUncheckedCreateInput = {
@@ -7779,6 +9383,7 @@ export namespace Prisma {
     usuarioId: number
     barberoId: number
     servicioId: number
+    barberiaId: number
     fecha: Date | string
     estado?: string
     createdAt?: Date | string
@@ -7791,6 +9396,7 @@ export namespace Prisma {
     usuario?: UsuarioUpdateOneRequiredWithoutReservasNestedInput
     barbero?: BarberoUpdateOneRequiredWithoutReservasNestedInput
     servicio?: ServicioUpdateOneRequiredWithoutReservasNestedInput
+    barberia?: BarberiaUpdateOneRequiredWithoutReservasNestedInput
   }
 
   export type ReservaUncheckedUpdateInput = {
@@ -7798,6 +9404,7 @@ export namespace Prisma {
     usuarioId?: IntFieldUpdateOperationsInput | number
     barberoId?: IntFieldUpdateOperationsInput | number
     servicioId?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7808,6 +9415,7 @@ export namespace Prisma {
     usuarioId: number
     barberoId: number
     servicioId: number
+    barberiaId: number
     fecha: Date | string
     estado?: string
     createdAt?: Date | string
@@ -7824,6 +9432,7 @@ export namespace Prisma {
     usuarioId?: IntFieldUpdateOperationsInput | number
     barberoId?: IntFieldUpdateOperationsInput | number
     servicioId?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7834,11 +9443,13 @@ export namespace Prisma {
     hora_inicio: string
     hora_fin: string
     barbero: BarberoCreateNestedOneWithoutHorariosInput
+    barberia: BarberiaCreateNestedOneWithoutHorariosInput
   }
 
   export type HorarioUncheckedCreateInput = {
     id?: number
     barberoId: number
+    barberiaId: number
     dia_semana: number
     hora_inicio: string
     hora_fin: string
@@ -7849,11 +9460,13 @@ export namespace Prisma {
     hora_inicio?: StringFieldUpdateOperationsInput | string
     hora_fin?: StringFieldUpdateOperationsInput | string
     barbero?: BarberoUpdateOneRequiredWithoutHorariosNestedInput
+    barberia?: BarberiaUpdateOneRequiredWithoutHorariosNestedInput
   }
 
   export type HorarioUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     barberoId?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
     dia_semana?: IntFieldUpdateOperationsInput | number
     hora_inicio?: StringFieldUpdateOperationsInput | string
     hora_fin?: StringFieldUpdateOperationsInput | string
@@ -7862,6 +9475,7 @@ export namespace Prisma {
   export type HorarioCreateManyInput = {
     id?: number
     barberoId: number
+    barberiaId: number
     dia_semana: number
     hora_inicio: string
     hora_fin: string
@@ -7876,6 +9490,7 @@ export namespace Prisma {
   export type HorarioUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     barberoId?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
     dia_semana?: IntFieldUpdateOperationsInput | number
     hora_inicio?: StringFieldUpdateOperationsInput | string
     hora_fin?: StringFieldUpdateOperationsInput | string
@@ -7887,6 +9502,7 @@ export namespace Prisma {
     simbolo?: string
     separador_miles?: string
     separador_decimal?: string
+    barberia: BarberiaCreateNestedOneWithoutConfiguracionInput
   }
 
   export type ConfiguracionUncheckedCreateInput = {
@@ -7896,6 +9512,7 @@ export namespace Prisma {
     simbolo?: string
     separador_miles?: string
     separador_decimal?: string
+    barberiaId: number
   }
 
   export type ConfiguracionUpdateInput = {
@@ -7904,6 +9521,7 @@ export namespace Prisma {
     simbolo?: StringFieldUpdateOperationsInput | string
     separador_miles?: StringFieldUpdateOperationsInput | string
     separador_decimal?: StringFieldUpdateOperationsInput | string
+    barberia?: BarberiaUpdateOneRequiredWithoutConfiguracionNestedInput
   }
 
   export type ConfiguracionUncheckedUpdateInput = {
@@ -7913,6 +9531,7 @@ export namespace Prisma {
     simbolo?: StringFieldUpdateOperationsInput | string
     separador_miles?: StringFieldUpdateOperationsInput | string
     separador_decimal?: StringFieldUpdateOperationsInput | string
+    barberiaId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ConfiguracionCreateManyInput = {
@@ -7922,6 +9541,7 @@ export namespace Prisma {
     simbolo?: string
     separador_miles?: string
     separador_decimal?: string
+    barberiaId: number
   }
 
   export type ConfiguracionUpdateManyMutationInput = {
@@ -7939,6 +9559,7 @@ export namespace Prisma {
     simbolo?: StringFieldUpdateOperationsInput | string
     separador_miles?: StringFieldUpdateOperationsInput | string
     separador_decimal?: StringFieldUpdateOperationsInput | string
+    barberiaId?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -7980,17 +9601,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -8002,10 +9612,39 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type UsuarioListRelationFilter = {
+    every?: UsuarioWhereInput
+    some?: UsuarioWhereInput
+    none?: UsuarioWhereInput
+  }
+
+  export type BarberoListRelationFilter = {
+    every?: BarberoWhereInput
+    some?: BarberoWhereInput
+    none?: BarberoWhereInput
+  }
+
+  export type ServicioListRelationFilter = {
+    every?: ServicioWhereInput
+    some?: ServicioWhereInput
+    none?: ServicioWhereInput
+  }
+
   export type ReservaListRelationFilter = {
     every?: ReservaWhereInput
     some?: ReservaWhereInput
     none?: ReservaWhereInput
+  }
+
+  export type HorarioListRelationFilter = {
+    every?: HorarioWhereInput
+    some?: HorarioWhereInput
+    none?: HorarioWhereInput
+  }
+
+  export type ConfiguracionNullableRelationFilter = {
+    is?: ConfiguracionWhereInput | null
+    isNot?: ConfiguracionWhereInput | null
   }
 
   export type SortOrderInput = {
@@ -8013,51 +9652,55 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
+  export type UsuarioOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BarberoOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ServicioOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type ReservaOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type UsuarioCountOrderByAggregateInput = {
+  export type HorarioOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BarberiaCountOrderByAggregateInput = {
     id?: SortOrder
     nombre?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
-    rol?: SortOrder
-    telefono?: SortOrder
-    foto_url?: SortOrder
-    fecha_nacimiento?: SortOrder
+    codigo?: SortOrder
+    logo?: SortOrder
     createdAt?: SortOrder
   }
 
-  export type UsuarioAvgOrderByAggregateInput = {
+  export type BarberiaAvgOrderByAggregateInput = {
     id?: SortOrder
   }
 
-  export type UsuarioMaxOrderByAggregateInput = {
+  export type BarberiaMaxOrderByAggregateInput = {
     id?: SortOrder
     nombre?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
-    rol?: SortOrder
-    telefono?: SortOrder
-    foto_url?: SortOrder
-    fecha_nacimiento?: SortOrder
+    codigo?: SortOrder
+    logo?: SortOrder
     createdAt?: SortOrder
   }
 
-  export type UsuarioMinOrderByAggregateInput = {
+  export type BarberiaMinOrderByAggregateInput = {
     id?: SortOrder
     nombre?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
-    rol?: SortOrder
-    telefono?: SortOrder
-    foto_url?: SortOrder
-    fecha_nacimiento?: SortOrder
+    codigo?: SortOrder
+    logo?: SortOrder
     createdAt?: SortOrder
   }
 
-  export type UsuarioSumOrderByAggregateInput = {
+  export type BarberiaSumOrderByAggregateInput = {
     id?: SortOrder
   }
 
@@ -8111,20 +9754,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -8139,14 +9768,115 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type HorarioListRelationFilter = {
-    every?: HorarioWhereInput
-    some?: HorarioWhereInput
-    none?: HorarioWhereInput
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type HorarioOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type BarberiaNullableRelationFilter = {
+    is?: BarberiaWhereInput | null
+    isNot?: BarberiaWhereInput | null
+  }
+
+  export type UsuarioCountOrderByAggregateInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    rol?: SortOrder
+    telefono?: SortOrder
+    foto_url?: SortOrder
+    fecha_nacimiento?: SortOrder
+    barberiaId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type UsuarioAvgOrderByAggregateInput = {
+    id?: SortOrder
+    barberiaId?: SortOrder
+  }
+
+  export type UsuarioMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    rol?: SortOrder
+    telefono?: SortOrder
+    foto_url?: SortOrder
+    fecha_nacimiento?: SortOrder
+    barberiaId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type UsuarioMinOrderByAggregateInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    rol?: SortOrder
+    telefono?: SortOrder
+    foto_url?: SortOrder
+    fecha_nacimiento?: SortOrder
+    barberiaId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type UsuarioSumOrderByAggregateInput = {
+    id?: SortOrder
+    barberiaId?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type BarberiaRelationFilter = {
+    is?: BarberiaWhereInput
+    isNot?: BarberiaWhereInput
   }
 
   export type BarberoCountOrderByAggregateInput = {
@@ -8155,10 +9885,12 @@ export namespace Prisma {
     especialidad?: SortOrder
     foto?: SortOrder
     categorias?: SortOrder
+    barberiaId?: SortOrder
   }
 
   export type BarberoAvgOrderByAggregateInput = {
     id?: SortOrder
+    barberiaId?: SortOrder
   }
 
   export type BarberoMaxOrderByAggregateInput = {
@@ -8167,6 +9899,7 @@ export namespace Prisma {
     especialidad?: SortOrder
     foto?: SortOrder
     categorias?: SortOrder
+    barberiaId?: SortOrder
   }
 
   export type BarberoMinOrderByAggregateInput = {
@@ -8175,10 +9908,12 @@ export namespace Prisma {
     especialidad?: SortOrder
     foto?: SortOrder
     categorias?: SortOrder
+    barberiaId?: SortOrder
   }
 
   export type BarberoSumOrderByAggregateInput = {
     id?: SortOrder
+    barberiaId?: SortOrder
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -8205,12 +9940,14 @@ export namespace Prisma {
     categoria?: SortOrder
     activo?: SortOrder
     predefinido?: SortOrder
+    barberiaId?: SortOrder
   }
 
   export type ServicioAvgOrderByAggregateInput = {
     id?: SortOrder
     precio?: SortOrder
     duracion_minutos?: SortOrder
+    barberiaId?: SortOrder
   }
 
   export type ServicioMaxOrderByAggregateInput = {
@@ -8221,6 +9958,7 @@ export namespace Prisma {
     categoria?: SortOrder
     activo?: SortOrder
     predefinido?: SortOrder
+    barberiaId?: SortOrder
   }
 
   export type ServicioMinOrderByAggregateInput = {
@@ -8231,12 +9969,14 @@ export namespace Prisma {
     categoria?: SortOrder
     activo?: SortOrder
     predefinido?: SortOrder
+    barberiaId?: SortOrder
   }
 
   export type ServicioSumOrderByAggregateInput = {
     id?: SortOrder
     precio?: SortOrder
     duracion_minutos?: SortOrder
+    barberiaId?: SortOrder
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -8283,6 +10023,7 @@ export namespace Prisma {
     usuarioId?: SortOrder
     barberoId?: SortOrder
     servicioId?: SortOrder
+    barberiaId?: SortOrder
     fecha?: SortOrder
     estado?: SortOrder
     createdAt?: SortOrder
@@ -8293,6 +10034,7 @@ export namespace Prisma {
     usuarioId?: SortOrder
     barberoId?: SortOrder
     servicioId?: SortOrder
+    barberiaId?: SortOrder
   }
 
   export type ReservaMaxOrderByAggregateInput = {
@@ -8300,6 +10042,7 @@ export namespace Prisma {
     usuarioId?: SortOrder
     barberoId?: SortOrder
     servicioId?: SortOrder
+    barberiaId?: SortOrder
     fecha?: SortOrder
     estado?: SortOrder
     createdAt?: SortOrder
@@ -8310,6 +10053,7 @@ export namespace Prisma {
     usuarioId?: SortOrder
     barberoId?: SortOrder
     servicioId?: SortOrder
+    barberiaId?: SortOrder
     fecha?: SortOrder
     estado?: SortOrder
     createdAt?: SortOrder
@@ -8320,6 +10064,7 @@ export namespace Prisma {
     usuarioId?: SortOrder
     barberoId?: SortOrder
     servicioId?: SortOrder
+    barberiaId?: SortOrder
   }
 
   export type HorarioBarberoIdDia_semanaCompoundUniqueInput = {
@@ -8330,6 +10075,7 @@ export namespace Prisma {
   export type HorarioCountOrderByAggregateInput = {
     id?: SortOrder
     barberoId?: SortOrder
+    barberiaId?: SortOrder
     dia_semana?: SortOrder
     hora_inicio?: SortOrder
     hora_fin?: SortOrder
@@ -8338,12 +10084,14 @@ export namespace Prisma {
   export type HorarioAvgOrderByAggregateInput = {
     id?: SortOrder
     barberoId?: SortOrder
+    barberiaId?: SortOrder
     dia_semana?: SortOrder
   }
 
   export type HorarioMaxOrderByAggregateInput = {
     id?: SortOrder
     barberoId?: SortOrder
+    barberiaId?: SortOrder
     dia_semana?: SortOrder
     hora_inicio?: SortOrder
     hora_fin?: SortOrder
@@ -8352,6 +10100,7 @@ export namespace Prisma {
   export type HorarioMinOrderByAggregateInput = {
     id?: SortOrder
     barberoId?: SortOrder
+    barberiaId?: SortOrder
     dia_semana?: SortOrder
     hora_inicio?: SortOrder
     hora_fin?: SortOrder
@@ -8360,6 +10109,7 @@ export namespace Prisma {
   export type HorarioSumOrderByAggregateInput = {
     id?: SortOrder
     barberoId?: SortOrder
+    barberiaId?: SortOrder
     dia_semana?: SortOrder
   }
 
@@ -8370,10 +10120,12 @@ export namespace Prisma {
     simbolo?: SortOrder
     separador_miles?: SortOrder
     separador_decimal?: SortOrder
+    barberiaId?: SortOrder
   }
 
   export type ConfiguracionAvgOrderByAggregateInput = {
     id?: SortOrder
+    barberiaId?: SortOrder
   }
 
   export type ConfiguracionMaxOrderByAggregateInput = {
@@ -8383,6 +10135,7 @@ export namespace Prisma {
     simbolo?: SortOrder
     separador_miles?: SortOrder
     separador_decimal?: SortOrder
+    barberiaId?: SortOrder
   }
 
   export type ConfiguracionMinOrderByAggregateInput = {
@@ -8392,10 +10145,280 @@ export namespace Prisma {
     simbolo?: SortOrder
     separador_miles?: SortOrder
     separador_decimal?: SortOrder
+    barberiaId?: SortOrder
   }
 
   export type ConfiguracionSumOrderByAggregateInput = {
     id?: SortOrder
+    barberiaId?: SortOrder
+  }
+
+  export type UsuarioCreateNestedManyWithoutBarberiaInput = {
+    create?: XOR<UsuarioCreateWithoutBarberiaInput, UsuarioUncheckedCreateWithoutBarberiaInput> | UsuarioCreateWithoutBarberiaInput[] | UsuarioUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: UsuarioCreateOrConnectWithoutBarberiaInput | UsuarioCreateOrConnectWithoutBarberiaInput[]
+    createMany?: UsuarioCreateManyBarberiaInputEnvelope
+    connect?: UsuarioWhereUniqueInput | UsuarioWhereUniqueInput[]
+  }
+
+  export type BarberoCreateNestedManyWithoutBarberiaInput = {
+    create?: XOR<BarberoCreateWithoutBarberiaInput, BarberoUncheckedCreateWithoutBarberiaInput> | BarberoCreateWithoutBarberiaInput[] | BarberoUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: BarberoCreateOrConnectWithoutBarberiaInput | BarberoCreateOrConnectWithoutBarberiaInput[]
+    createMany?: BarberoCreateManyBarberiaInputEnvelope
+    connect?: BarberoWhereUniqueInput | BarberoWhereUniqueInput[]
+  }
+
+  export type ServicioCreateNestedManyWithoutBarberiaInput = {
+    create?: XOR<ServicioCreateWithoutBarberiaInput, ServicioUncheckedCreateWithoutBarberiaInput> | ServicioCreateWithoutBarberiaInput[] | ServicioUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: ServicioCreateOrConnectWithoutBarberiaInput | ServicioCreateOrConnectWithoutBarberiaInput[]
+    createMany?: ServicioCreateManyBarberiaInputEnvelope
+    connect?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
+  }
+
+  export type ReservaCreateNestedManyWithoutBarberiaInput = {
+    create?: XOR<ReservaCreateWithoutBarberiaInput, ReservaUncheckedCreateWithoutBarberiaInput> | ReservaCreateWithoutBarberiaInput[] | ReservaUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: ReservaCreateOrConnectWithoutBarberiaInput | ReservaCreateOrConnectWithoutBarberiaInput[]
+    createMany?: ReservaCreateManyBarberiaInputEnvelope
+    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+  }
+
+  export type HorarioCreateNestedManyWithoutBarberiaInput = {
+    create?: XOR<HorarioCreateWithoutBarberiaInput, HorarioUncheckedCreateWithoutBarberiaInput> | HorarioCreateWithoutBarberiaInput[] | HorarioUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: HorarioCreateOrConnectWithoutBarberiaInput | HorarioCreateOrConnectWithoutBarberiaInput[]
+    createMany?: HorarioCreateManyBarberiaInputEnvelope
+    connect?: HorarioWhereUniqueInput | HorarioWhereUniqueInput[]
+  }
+
+  export type ConfiguracionCreateNestedOneWithoutBarberiaInput = {
+    create?: XOR<ConfiguracionCreateWithoutBarberiaInput, ConfiguracionUncheckedCreateWithoutBarberiaInput>
+    connectOrCreate?: ConfiguracionCreateOrConnectWithoutBarberiaInput
+    connect?: ConfiguracionWhereUniqueInput
+  }
+
+  export type UsuarioUncheckedCreateNestedManyWithoutBarberiaInput = {
+    create?: XOR<UsuarioCreateWithoutBarberiaInput, UsuarioUncheckedCreateWithoutBarberiaInput> | UsuarioCreateWithoutBarberiaInput[] | UsuarioUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: UsuarioCreateOrConnectWithoutBarberiaInput | UsuarioCreateOrConnectWithoutBarberiaInput[]
+    createMany?: UsuarioCreateManyBarberiaInputEnvelope
+    connect?: UsuarioWhereUniqueInput | UsuarioWhereUniqueInput[]
+  }
+
+  export type BarberoUncheckedCreateNestedManyWithoutBarberiaInput = {
+    create?: XOR<BarberoCreateWithoutBarberiaInput, BarberoUncheckedCreateWithoutBarberiaInput> | BarberoCreateWithoutBarberiaInput[] | BarberoUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: BarberoCreateOrConnectWithoutBarberiaInput | BarberoCreateOrConnectWithoutBarberiaInput[]
+    createMany?: BarberoCreateManyBarberiaInputEnvelope
+    connect?: BarberoWhereUniqueInput | BarberoWhereUniqueInput[]
+  }
+
+  export type ServicioUncheckedCreateNestedManyWithoutBarberiaInput = {
+    create?: XOR<ServicioCreateWithoutBarberiaInput, ServicioUncheckedCreateWithoutBarberiaInput> | ServicioCreateWithoutBarberiaInput[] | ServicioUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: ServicioCreateOrConnectWithoutBarberiaInput | ServicioCreateOrConnectWithoutBarberiaInput[]
+    createMany?: ServicioCreateManyBarberiaInputEnvelope
+    connect?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
+  }
+
+  export type ReservaUncheckedCreateNestedManyWithoutBarberiaInput = {
+    create?: XOR<ReservaCreateWithoutBarberiaInput, ReservaUncheckedCreateWithoutBarberiaInput> | ReservaCreateWithoutBarberiaInput[] | ReservaUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: ReservaCreateOrConnectWithoutBarberiaInput | ReservaCreateOrConnectWithoutBarberiaInput[]
+    createMany?: ReservaCreateManyBarberiaInputEnvelope
+    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+  }
+
+  export type HorarioUncheckedCreateNestedManyWithoutBarberiaInput = {
+    create?: XOR<HorarioCreateWithoutBarberiaInput, HorarioUncheckedCreateWithoutBarberiaInput> | HorarioCreateWithoutBarberiaInput[] | HorarioUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: HorarioCreateOrConnectWithoutBarberiaInput | HorarioCreateOrConnectWithoutBarberiaInput[]
+    createMany?: HorarioCreateManyBarberiaInputEnvelope
+    connect?: HorarioWhereUniqueInput | HorarioWhereUniqueInput[]
+  }
+
+  export type ConfiguracionUncheckedCreateNestedOneWithoutBarberiaInput = {
+    create?: XOR<ConfiguracionCreateWithoutBarberiaInput, ConfiguracionUncheckedCreateWithoutBarberiaInput>
+    connectOrCreate?: ConfiguracionCreateOrConnectWithoutBarberiaInput
+    connect?: ConfiguracionWhereUniqueInput
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type UsuarioUpdateManyWithoutBarberiaNestedInput = {
+    create?: XOR<UsuarioCreateWithoutBarberiaInput, UsuarioUncheckedCreateWithoutBarberiaInput> | UsuarioCreateWithoutBarberiaInput[] | UsuarioUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: UsuarioCreateOrConnectWithoutBarberiaInput | UsuarioCreateOrConnectWithoutBarberiaInput[]
+    upsert?: UsuarioUpsertWithWhereUniqueWithoutBarberiaInput | UsuarioUpsertWithWhereUniqueWithoutBarberiaInput[]
+    createMany?: UsuarioCreateManyBarberiaInputEnvelope
+    set?: UsuarioWhereUniqueInput | UsuarioWhereUniqueInput[]
+    disconnect?: UsuarioWhereUniqueInput | UsuarioWhereUniqueInput[]
+    delete?: UsuarioWhereUniqueInput | UsuarioWhereUniqueInput[]
+    connect?: UsuarioWhereUniqueInput | UsuarioWhereUniqueInput[]
+    update?: UsuarioUpdateWithWhereUniqueWithoutBarberiaInput | UsuarioUpdateWithWhereUniqueWithoutBarberiaInput[]
+    updateMany?: UsuarioUpdateManyWithWhereWithoutBarberiaInput | UsuarioUpdateManyWithWhereWithoutBarberiaInput[]
+    deleteMany?: UsuarioScalarWhereInput | UsuarioScalarWhereInput[]
+  }
+
+  export type BarberoUpdateManyWithoutBarberiaNestedInput = {
+    create?: XOR<BarberoCreateWithoutBarberiaInput, BarberoUncheckedCreateWithoutBarberiaInput> | BarberoCreateWithoutBarberiaInput[] | BarberoUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: BarberoCreateOrConnectWithoutBarberiaInput | BarberoCreateOrConnectWithoutBarberiaInput[]
+    upsert?: BarberoUpsertWithWhereUniqueWithoutBarberiaInput | BarberoUpsertWithWhereUniqueWithoutBarberiaInput[]
+    createMany?: BarberoCreateManyBarberiaInputEnvelope
+    set?: BarberoWhereUniqueInput | BarberoWhereUniqueInput[]
+    disconnect?: BarberoWhereUniqueInput | BarberoWhereUniqueInput[]
+    delete?: BarberoWhereUniqueInput | BarberoWhereUniqueInput[]
+    connect?: BarberoWhereUniqueInput | BarberoWhereUniqueInput[]
+    update?: BarberoUpdateWithWhereUniqueWithoutBarberiaInput | BarberoUpdateWithWhereUniqueWithoutBarberiaInput[]
+    updateMany?: BarberoUpdateManyWithWhereWithoutBarberiaInput | BarberoUpdateManyWithWhereWithoutBarberiaInput[]
+    deleteMany?: BarberoScalarWhereInput | BarberoScalarWhereInput[]
+  }
+
+  export type ServicioUpdateManyWithoutBarberiaNestedInput = {
+    create?: XOR<ServicioCreateWithoutBarberiaInput, ServicioUncheckedCreateWithoutBarberiaInput> | ServicioCreateWithoutBarberiaInput[] | ServicioUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: ServicioCreateOrConnectWithoutBarberiaInput | ServicioCreateOrConnectWithoutBarberiaInput[]
+    upsert?: ServicioUpsertWithWhereUniqueWithoutBarberiaInput | ServicioUpsertWithWhereUniqueWithoutBarberiaInput[]
+    createMany?: ServicioCreateManyBarberiaInputEnvelope
+    set?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
+    disconnect?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
+    delete?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
+    connect?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
+    update?: ServicioUpdateWithWhereUniqueWithoutBarberiaInput | ServicioUpdateWithWhereUniqueWithoutBarberiaInput[]
+    updateMany?: ServicioUpdateManyWithWhereWithoutBarberiaInput | ServicioUpdateManyWithWhereWithoutBarberiaInput[]
+    deleteMany?: ServicioScalarWhereInput | ServicioScalarWhereInput[]
+  }
+
+  export type ReservaUpdateManyWithoutBarberiaNestedInput = {
+    create?: XOR<ReservaCreateWithoutBarberiaInput, ReservaUncheckedCreateWithoutBarberiaInput> | ReservaCreateWithoutBarberiaInput[] | ReservaUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: ReservaCreateOrConnectWithoutBarberiaInput | ReservaCreateOrConnectWithoutBarberiaInput[]
+    upsert?: ReservaUpsertWithWhereUniqueWithoutBarberiaInput | ReservaUpsertWithWhereUniqueWithoutBarberiaInput[]
+    createMany?: ReservaCreateManyBarberiaInputEnvelope
+    set?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    disconnect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    delete?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    update?: ReservaUpdateWithWhereUniqueWithoutBarberiaInput | ReservaUpdateWithWhereUniqueWithoutBarberiaInput[]
+    updateMany?: ReservaUpdateManyWithWhereWithoutBarberiaInput | ReservaUpdateManyWithWhereWithoutBarberiaInput[]
+    deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
+  }
+
+  export type HorarioUpdateManyWithoutBarberiaNestedInput = {
+    create?: XOR<HorarioCreateWithoutBarberiaInput, HorarioUncheckedCreateWithoutBarberiaInput> | HorarioCreateWithoutBarberiaInput[] | HorarioUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: HorarioCreateOrConnectWithoutBarberiaInput | HorarioCreateOrConnectWithoutBarberiaInput[]
+    upsert?: HorarioUpsertWithWhereUniqueWithoutBarberiaInput | HorarioUpsertWithWhereUniqueWithoutBarberiaInput[]
+    createMany?: HorarioCreateManyBarberiaInputEnvelope
+    set?: HorarioWhereUniqueInput | HorarioWhereUniqueInput[]
+    disconnect?: HorarioWhereUniqueInput | HorarioWhereUniqueInput[]
+    delete?: HorarioWhereUniqueInput | HorarioWhereUniqueInput[]
+    connect?: HorarioWhereUniqueInput | HorarioWhereUniqueInput[]
+    update?: HorarioUpdateWithWhereUniqueWithoutBarberiaInput | HorarioUpdateWithWhereUniqueWithoutBarberiaInput[]
+    updateMany?: HorarioUpdateManyWithWhereWithoutBarberiaInput | HorarioUpdateManyWithWhereWithoutBarberiaInput[]
+    deleteMany?: HorarioScalarWhereInput | HorarioScalarWhereInput[]
+  }
+
+  export type ConfiguracionUpdateOneWithoutBarberiaNestedInput = {
+    create?: XOR<ConfiguracionCreateWithoutBarberiaInput, ConfiguracionUncheckedCreateWithoutBarberiaInput>
+    connectOrCreate?: ConfiguracionCreateOrConnectWithoutBarberiaInput
+    upsert?: ConfiguracionUpsertWithoutBarberiaInput
+    disconnect?: ConfiguracionWhereInput | boolean
+    delete?: ConfiguracionWhereInput | boolean
+    connect?: ConfiguracionWhereUniqueInput
+    update?: XOR<XOR<ConfiguracionUpdateToOneWithWhereWithoutBarberiaInput, ConfiguracionUpdateWithoutBarberiaInput>, ConfiguracionUncheckedUpdateWithoutBarberiaInput>
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput = {
+    create?: XOR<UsuarioCreateWithoutBarberiaInput, UsuarioUncheckedCreateWithoutBarberiaInput> | UsuarioCreateWithoutBarberiaInput[] | UsuarioUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: UsuarioCreateOrConnectWithoutBarberiaInput | UsuarioCreateOrConnectWithoutBarberiaInput[]
+    upsert?: UsuarioUpsertWithWhereUniqueWithoutBarberiaInput | UsuarioUpsertWithWhereUniqueWithoutBarberiaInput[]
+    createMany?: UsuarioCreateManyBarberiaInputEnvelope
+    set?: UsuarioWhereUniqueInput | UsuarioWhereUniqueInput[]
+    disconnect?: UsuarioWhereUniqueInput | UsuarioWhereUniqueInput[]
+    delete?: UsuarioWhereUniqueInput | UsuarioWhereUniqueInput[]
+    connect?: UsuarioWhereUniqueInput | UsuarioWhereUniqueInput[]
+    update?: UsuarioUpdateWithWhereUniqueWithoutBarberiaInput | UsuarioUpdateWithWhereUniqueWithoutBarberiaInput[]
+    updateMany?: UsuarioUpdateManyWithWhereWithoutBarberiaInput | UsuarioUpdateManyWithWhereWithoutBarberiaInput[]
+    deleteMany?: UsuarioScalarWhereInput | UsuarioScalarWhereInput[]
+  }
+
+  export type BarberoUncheckedUpdateManyWithoutBarberiaNestedInput = {
+    create?: XOR<BarberoCreateWithoutBarberiaInput, BarberoUncheckedCreateWithoutBarberiaInput> | BarberoCreateWithoutBarberiaInput[] | BarberoUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: BarberoCreateOrConnectWithoutBarberiaInput | BarberoCreateOrConnectWithoutBarberiaInput[]
+    upsert?: BarberoUpsertWithWhereUniqueWithoutBarberiaInput | BarberoUpsertWithWhereUniqueWithoutBarberiaInput[]
+    createMany?: BarberoCreateManyBarberiaInputEnvelope
+    set?: BarberoWhereUniqueInput | BarberoWhereUniqueInput[]
+    disconnect?: BarberoWhereUniqueInput | BarberoWhereUniqueInput[]
+    delete?: BarberoWhereUniqueInput | BarberoWhereUniqueInput[]
+    connect?: BarberoWhereUniqueInput | BarberoWhereUniqueInput[]
+    update?: BarberoUpdateWithWhereUniqueWithoutBarberiaInput | BarberoUpdateWithWhereUniqueWithoutBarberiaInput[]
+    updateMany?: BarberoUpdateManyWithWhereWithoutBarberiaInput | BarberoUpdateManyWithWhereWithoutBarberiaInput[]
+    deleteMany?: BarberoScalarWhereInput | BarberoScalarWhereInput[]
+  }
+
+  export type ServicioUncheckedUpdateManyWithoutBarberiaNestedInput = {
+    create?: XOR<ServicioCreateWithoutBarberiaInput, ServicioUncheckedCreateWithoutBarberiaInput> | ServicioCreateWithoutBarberiaInput[] | ServicioUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: ServicioCreateOrConnectWithoutBarberiaInput | ServicioCreateOrConnectWithoutBarberiaInput[]
+    upsert?: ServicioUpsertWithWhereUniqueWithoutBarberiaInput | ServicioUpsertWithWhereUniqueWithoutBarberiaInput[]
+    createMany?: ServicioCreateManyBarberiaInputEnvelope
+    set?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
+    disconnect?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
+    delete?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
+    connect?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
+    update?: ServicioUpdateWithWhereUniqueWithoutBarberiaInput | ServicioUpdateWithWhereUniqueWithoutBarberiaInput[]
+    updateMany?: ServicioUpdateManyWithWhereWithoutBarberiaInput | ServicioUpdateManyWithWhereWithoutBarberiaInput[]
+    deleteMany?: ServicioScalarWhereInput | ServicioScalarWhereInput[]
+  }
+
+  export type ReservaUncheckedUpdateManyWithoutBarberiaNestedInput = {
+    create?: XOR<ReservaCreateWithoutBarberiaInput, ReservaUncheckedCreateWithoutBarberiaInput> | ReservaCreateWithoutBarberiaInput[] | ReservaUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: ReservaCreateOrConnectWithoutBarberiaInput | ReservaCreateOrConnectWithoutBarberiaInput[]
+    upsert?: ReservaUpsertWithWhereUniqueWithoutBarberiaInput | ReservaUpsertWithWhereUniqueWithoutBarberiaInput[]
+    createMany?: ReservaCreateManyBarberiaInputEnvelope
+    set?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    disconnect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    delete?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    update?: ReservaUpdateWithWhereUniqueWithoutBarberiaInput | ReservaUpdateWithWhereUniqueWithoutBarberiaInput[]
+    updateMany?: ReservaUpdateManyWithWhereWithoutBarberiaInput | ReservaUpdateManyWithWhereWithoutBarberiaInput[]
+    deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
+  }
+
+  export type HorarioUncheckedUpdateManyWithoutBarberiaNestedInput = {
+    create?: XOR<HorarioCreateWithoutBarberiaInput, HorarioUncheckedCreateWithoutBarberiaInput> | HorarioCreateWithoutBarberiaInput[] | HorarioUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: HorarioCreateOrConnectWithoutBarberiaInput | HorarioCreateOrConnectWithoutBarberiaInput[]
+    upsert?: HorarioUpsertWithWhereUniqueWithoutBarberiaInput | HorarioUpsertWithWhereUniqueWithoutBarberiaInput[]
+    createMany?: HorarioCreateManyBarberiaInputEnvelope
+    set?: HorarioWhereUniqueInput | HorarioWhereUniqueInput[]
+    disconnect?: HorarioWhereUniqueInput | HorarioWhereUniqueInput[]
+    delete?: HorarioWhereUniqueInput | HorarioWhereUniqueInput[]
+    connect?: HorarioWhereUniqueInput | HorarioWhereUniqueInput[]
+    update?: HorarioUpdateWithWhereUniqueWithoutBarberiaInput | HorarioUpdateWithWhereUniqueWithoutBarberiaInput[]
+    updateMany?: HorarioUpdateManyWithWhereWithoutBarberiaInput | HorarioUpdateManyWithWhereWithoutBarberiaInput[]
+    deleteMany?: HorarioScalarWhereInput | HorarioScalarWhereInput[]
+  }
+
+  export type ConfiguracionUncheckedUpdateOneWithoutBarberiaNestedInput = {
+    create?: XOR<ConfiguracionCreateWithoutBarberiaInput, ConfiguracionUncheckedCreateWithoutBarberiaInput>
+    connectOrCreate?: ConfiguracionCreateOrConnectWithoutBarberiaInput
+    upsert?: ConfiguracionUpsertWithoutBarberiaInput
+    disconnect?: ConfiguracionWhereInput | boolean
+    delete?: ConfiguracionWhereInput | boolean
+    connect?: ConfiguracionWhereUniqueInput
+    update?: XOR<XOR<ConfiguracionUpdateToOneWithWhereWithoutBarberiaInput, ConfiguracionUpdateWithoutBarberiaInput>, ConfiguracionUncheckedUpdateWithoutBarberiaInput>
+  }
+
+  export type BarberiaCreateNestedOneWithoutUsuariosInput = {
+    create?: XOR<BarberiaCreateWithoutUsuariosInput, BarberiaUncheckedCreateWithoutUsuariosInput>
+    connectOrCreate?: BarberiaCreateOrConnectWithoutUsuariosInput
+    connect?: BarberiaWhereUniqueInput
   }
 
   export type ReservaCreateNestedManyWithoutUsuarioInput = {
@@ -8412,20 +10435,18 @@ export namespace Prisma {
     connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
   }
 
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
+  export type BarberiaUpdateOneWithoutUsuariosNestedInput = {
+    create?: XOR<BarberiaCreateWithoutUsuariosInput, BarberiaUncheckedCreateWithoutUsuariosInput>
+    connectOrCreate?: BarberiaCreateOrConnectWithoutUsuariosInput
+    upsert?: BarberiaUpsertWithoutUsuariosInput
+    disconnect?: BarberiaWhereInput | boolean
+    delete?: BarberiaWhereInput | boolean
+    connect?: BarberiaWhereUniqueInput
+    update?: XOR<XOR<BarberiaUpdateToOneWithWhereWithoutUsuariosInput, BarberiaUpdateWithoutUsuariosInput>, BarberiaUncheckedUpdateWithoutUsuariosInput>
   }
 
   export type ReservaUpdateManyWithoutUsuarioNestedInput = {
@@ -8442,8 +10463,8 @@ export namespace Prisma {
     deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
@@ -8462,6 +10483,12 @@ export namespace Prisma {
     update?: ReservaUpdateWithWhereUniqueWithoutUsuarioInput | ReservaUpdateWithWhereUniqueWithoutUsuarioInput[]
     updateMany?: ReservaUpdateManyWithWhereWithoutUsuarioInput | ReservaUpdateManyWithWhereWithoutUsuarioInput[]
     deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
+  }
+
+  export type BarberiaCreateNestedOneWithoutBarberosInput = {
+    create?: XOR<BarberiaCreateWithoutBarberosInput, BarberiaUncheckedCreateWithoutBarberosInput>
+    connectOrCreate?: BarberiaCreateOrConnectWithoutBarberosInput
+    connect?: BarberiaWhereUniqueInput
   }
 
   export type ReservaCreateNestedManyWithoutBarberoInput = {
@@ -8490,6 +10517,14 @@ export namespace Prisma {
     connectOrCreate?: HorarioCreateOrConnectWithoutBarberoInput | HorarioCreateOrConnectWithoutBarberoInput[]
     createMany?: HorarioCreateManyBarberoInputEnvelope
     connect?: HorarioWhereUniqueInput | HorarioWhereUniqueInput[]
+  }
+
+  export type BarberiaUpdateOneRequiredWithoutBarberosNestedInput = {
+    create?: XOR<BarberiaCreateWithoutBarberosInput, BarberiaUncheckedCreateWithoutBarberosInput>
+    connectOrCreate?: BarberiaCreateOrConnectWithoutBarberosInput
+    upsert?: BarberiaUpsertWithoutBarberosInput
+    connect?: BarberiaWhereUniqueInput
+    update?: XOR<XOR<BarberiaUpdateToOneWithWhereWithoutBarberosInput, BarberiaUpdateWithoutBarberosInput>, BarberiaUncheckedUpdateWithoutBarberosInput>
   }
 
   export type ReservaUpdateManyWithoutBarberoNestedInput = {
@@ -8548,6 +10583,12 @@ export namespace Prisma {
     deleteMany?: HorarioScalarWhereInput | HorarioScalarWhereInput[]
   }
 
+  export type BarberiaCreateNestedOneWithoutServiciosInput = {
+    create?: XOR<BarberiaCreateWithoutServiciosInput, BarberiaUncheckedCreateWithoutServiciosInput>
+    connectOrCreate?: BarberiaCreateOrConnectWithoutServiciosInput
+    connect?: BarberiaWhereUniqueInput
+  }
+
   export type ReservaCreateNestedManyWithoutServicioInput = {
     create?: XOR<ReservaCreateWithoutServicioInput, ReservaUncheckedCreateWithoutServicioInput> | ReservaCreateWithoutServicioInput[] | ReservaUncheckedCreateWithoutServicioInput[]
     connectOrCreate?: ReservaCreateOrConnectWithoutServicioInput | ReservaCreateOrConnectWithoutServicioInput[]
@@ -8572,6 +10613,14 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type BarberiaUpdateOneRequiredWithoutServiciosNestedInput = {
+    create?: XOR<BarberiaCreateWithoutServiciosInput, BarberiaUncheckedCreateWithoutServiciosInput>
+    connectOrCreate?: BarberiaCreateOrConnectWithoutServiciosInput
+    upsert?: BarberiaUpsertWithoutServiciosInput
+    connect?: BarberiaWhereUniqueInput
+    update?: XOR<XOR<BarberiaUpdateToOneWithWhereWithoutServiciosInput, BarberiaUpdateWithoutServiciosInput>, BarberiaUncheckedUpdateWithoutServiciosInput>
   }
 
   export type ReservaUpdateManyWithoutServicioNestedInput = {
@@ -8620,6 +10669,12 @@ export namespace Prisma {
     connect?: ServicioWhereUniqueInput
   }
 
+  export type BarberiaCreateNestedOneWithoutReservasInput = {
+    create?: XOR<BarberiaCreateWithoutReservasInput, BarberiaUncheckedCreateWithoutReservasInput>
+    connectOrCreate?: BarberiaCreateOrConnectWithoutReservasInput
+    connect?: BarberiaWhereUniqueInput
+  }
+
   export type UsuarioUpdateOneRequiredWithoutReservasNestedInput = {
     create?: XOR<UsuarioCreateWithoutReservasInput, UsuarioUncheckedCreateWithoutReservasInput>
     connectOrCreate?: UsuarioCreateOrConnectWithoutReservasInput
@@ -8644,10 +10699,24 @@ export namespace Prisma {
     update?: XOR<XOR<ServicioUpdateToOneWithWhereWithoutReservasInput, ServicioUpdateWithoutReservasInput>, ServicioUncheckedUpdateWithoutReservasInput>
   }
 
+  export type BarberiaUpdateOneRequiredWithoutReservasNestedInput = {
+    create?: XOR<BarberiaCreateWithoutReservasInput, BarberiaUncheckedCreateWithoutReservasInput>
+    connectOrCreate?: BarberiaCreateOrConnectWithoutReservasInput
+    upsert?: BarberiaUpsertWithoutReservasInput
+    connect?: BarberiaWhereUniqueInput
+    update?: XOR<XOR<BarberiaUpdateToOneWithWhereWithoutReservasInput, BarberiaUpdateWithoutReservasInput>, BarberiaUncheckedUpdateWithoutReservasInput>
+  }
+
   export type BarberoCreateNestedOneWithoutHorariosInput = {
     create?: XOR<BarberoCreateWithoutHorariosInput, BarberoUncheckedCreateWithoutHorariosInput>
     connectOrCreate?: BarberoCreateOrConnectWithoutHorariosInput
     connect?: BarberoWhereUniqueInput
+  }
+
+  export type BarberiaCreateNestedOneWithoutHorariosInput = {
+    create?: XOR<BarberiaCreateWithoutHorariosInput, BarberiaUncheckedCreateWithoutHorariosInput>
+    connectOrCreate?: BarberiaCreateOrConnectWithoutHorariosInput
+    connect?: BarberiaWhereUniqueInput
   }
 
   export type BarberoUpdateOneRequiredWithoutHorariosNestedInput = {
@@ -8656,6 +10725,28 @@ export namespace Prisma {
     upsert?: BarberoUpsertWithoutHorariosInput
     connect?: BarberoWhereUniqueInput
     update?: XOR<XOR<BarberoUpdateToOneWithWhereWithoutHorariosInput, BarberoUpdateWithoutHorariosInput>, BarberoUncheckedUpdateWithoutHorariosInput>
+  }
+
+  export type BarberiaUpdateOneRequiredWithoutHorariosNestedInput = {
+    create?: XOR<BarberiaCreateWithoutHorariosInput, BarberiaUncheckedCreateWithoutHorariosInput>
+    connectOrCreate?: BarberiaCreateOrConnectWithoutHorariosInput
+    upsert?: BarberiaUpsertWithoutHorariosInput
+    connect?: BarberiaWhereUniqueInput
+    update?: XOR<XOR<BarberiaUpdateToOneWithWhereWithoutHorariosInput, BarberiaUpdateWithoutHorariosInput>, BarberiaUncheckedUpdateWithoutHorariosInput>
+  }
+
+  export type BarberiaCreateNestedOneWithoutConfiguracionInput = {
+    create?: XOR<BarberiaCreateWithoutConfiguracionInput, BarberiaUncheckedCreateWithoutConfiguracionInput>
+    connectOrCreate?: BarberiaCreateOrConnectWithoutConfiguracionInput
+    connect?: BarberiaWhereUniqueInput
+  }
+
+  export type BarberiaUpdateOneRequiredWithoutConfiguracionNestedInput = {
+    create?: XOR<BarberiaCreateWithoutConfiguracionInput, BarberiaUncheckedCreateWithoutConfiguracionInput>
+    connectOrCreate?: BarberiaCreateOrConnectWithoutConfiguracionInput
+    upsert?: BarberiaUpsertWithoutConfiguracionInput
+    connect?: BarberiaWhereUniqueInput
+    update?: XOR<XOR<BarberiaUpdateToOneWithWhereWithoutConfiguracionInput, BarberiaUpdateWithoutConfiguracionInput>, BarberiaUncheckedUpdateWithoutConfiguracionInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -8695,17 +10786,6 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -8791,6 +10871,31 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | null
@@ -8805,18 +10910,31 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -8848,18 +10966,397 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type UsuarioCreateWithoutBarberiaInput = {
+    nombre: string
+    email: string
+    password: string
+    rol?: string
+    telefono?: string | null
+    foto_url?: string | null
+    fecha_nacimiento?: Date | string | null
+    createdAt?: Date | string
+    reservas?: ReservaCreateNestedManyWithoutUsuarioInput
+  }
+
+  export type UsuarioUncheckedCreateWithoutBarberiaInput = {
+    id?: number
+    nombre: string
+    email: string
+    password: string
+    rol?: string
+    telefono?: string | null
+    foto_url?: string | null
+    fecha_nacimiento?: Date | string | null
+    createdAt?: Date | string
+    reservas?: ReservaUncheckedCreateNestedManyWithoutUsuarioInput
+  }
+
+  export type UsuarioCreateOrConnectWithoutBarberiaInput = {
+    where: UsuarioWhereUniqueInput
+    create: XOR<UsuarioCreateWithoutBarberiaInput, UsuarioUncheckedCreateWithoutBarberiaInput>
+  }
+
+  export type UsuarioCreateManyBarberiaInputEnvelope = {
+    data: UsuarioCreateManyBarberiaInput | UsuarioCreateManyBarberiaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BarberoCreateWithoutBarberiaInput = {
+    nombre: string
+    especialidad: string
+    foto?: string | null
+    categorias?: string
+    reservas?: ReservaCreateNestedManyWithoutBarberoInput
+    horarios?: HorarioCreateNestedManyWithoutBarberoInput
+  }
+
+  export type BarberoUncheckedCreateWithoutBarberiaInput = {
+    id?: number
+    nombre: string
+    especialidad: string
+    foto?: string | null
+    categorias?: string
+    reservas?: ReservaUncheckedCreateNestedManyWithoutBarberoInput
+    horarios?: HorarioUncheckedCreateNestedManyWithoutBarberoInput
+  }
+
+  export type BarberoCreateOrConnectWithoutBarberiaInput = {
+    where: BarberoWhereUniqueInput
+    create: XOR<BarberoCreateWithoutBarberiaInput, BarberoUncheckedCreateWithoutBarberiaInput>
+  }
+
+  export type BarberoCreateManyBarberiaInputEnvelope = {
+    data: BarberoCreateManyBarberiaInput | BarberoCreateManyBarberiaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ServicioCreateWithoutBarberiaInput = {
+    nombre: string
+    precio: number
+    duracion_minutos: number
+    categoria?: string
+    activo?: boolean
+    predefinido?: boolean
+    reservas?: ReservaCreateNestedManyWithoutServicioInput
+  }
+
+  export type ServicioUncheckedCreateWithoutBarberiaInput = {
+    id?: number
+    nombre: string
+    precio: number
+    duracion_minutos: number
+    categoria?: string
+    activo?: boolean
+    predefinido?: boolean
+    reservas?: ReservaUncheckedCreateNestedManyWithoutServicioInput
+  }
+
+  export type ServicioCreateOrConnectWithoutBarberiaInput = {
+    where: ServicioWhereUniqueInput
+    create: XOR<ServicioCreateWithoutBarberiaInput, ServicioUncheckedCreateWithoutBarberiaInput>
+  }
+
+  export type ServicioCreateManyBarberiaInputEnvelope = {
+    data: ServicioCreateManyBarberiaInput | ServicioCreateManyBarberiaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ReservaCreateWithoutBarberiaInput = {
+    fecha: Date | string
+    estado?: string
+    createdAt?: Date | string
+    usuario: UsuarioCreateNestedOneWithoutReservasInput
+    barbero: BarberoCreateNestedOneWithoutReservasInput
+    servicio: ServicioCreateNestedOneWithoutReservasInput
+  }
+
+  export type ReservaUncheckedCreateWithoutBarberiaInput = {
+    id?: number
+    usuarioId: number
+    barberoId: number
+    servicioId: number
+    fecha: Date | string
+    estado?: string
+    createdAt?: Date | string
+  }
+
+  export type ReservaCreateOrConnectWithoutBarberiaInput = {
+    where: ReservaWhereUniqueInput
+    create: XOR<ReservaCreateWithoutBarberiaInput, ReservaUncheckedCreateWithoutBarberiaInput>
+  }
+
+  export type ReservaCreateManyBarberiaInputEnvelope = {
+    data: ReservaCreateManyBarberiaInput | ReservaCreateManyBarberiaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type HorarioCreateWithoutBarberiaInput = {
+    dia_semana: number
+    hora_inicio: string
+    hora_fin: string
+    barbero: BarberoCreateNestedOneWithoutHorariosInput
+  }
+
+  export type HorarioUncheckedCreateWithoutBarberiaInput = {
+    id?: number
+    barberoId: number
+    dia_semana: number
+    hora_inicio: string
+    hora_fin: string
+  }
+
+  export type HorarioCreateOrConnectWithoutBarberiaInput = {
+    where: HorarioWhereUniqueInput
+    create: XOR<HorarioCreateWithoutBarberiaInput, HorarioUncheckedCreateWithoutBarberiaInput>
+  }
+
+  export type HorarioCreateManyBarberiaInputEnvelope = {
+    data: HorarioCreateManyBarberiaInput | HorarioCreateManyBarberiaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ConfiguracionCreateWithoutBarberiaInput = {
+    nombre_barberia?: string
+    moneda?: string
+    simbolo?: string
+    separador_miles?: string
+    separador_decimal?: string
+  }
+
+  export type ConfiguracionUncheckedCreateWithoutBarberiaInput = {
+    id?: number
+    nombre_barberia?: string
+    moneda?: string
+    simbolo?: string
+    separador_miles?: string
+    separador_decimal?: string
+  }
+
+  export type ConfiguracionCreateOrConnectWithoutBarberiaInput = {
+    where: ConfiguracionWhereUniqueInput
+    create: XOR<ConfiguracionCreateWithoutBarberiaInput, ConfiguracionUncheckedCreateWithoutBarberiaInput>
+  }
+
+  export type UsuarioUpsertWithWhereUniqueWithoutBarberiaInput = {
+    where: UsuarioWhereUniqueInput
+    update: XOR<UsuarioUpdateWithoutBarberiaInput, UsuarioUncheckedUpdateWithoutBarberiaInput>
+    create: XOR<UsuarioCreateWithoutBarberiaInput, UsuarioUncheckedCreateWithoutBarberiaInput>
+  }
+
+  export type UsuarioUpdateWithWhereUniqueWithoutBarberiaInput = {
+    where: UsuarioWhereUniqueInput
+    data: XOR<UsuarioUpdateWithoutBarberiaInput, UsuarioUncheckedUpdateWithoutBarberiaInput>
+  }
+
+  export type UsuarioUpdateManyWithWhereWithoutBarberiaInput = {
+    where: UsuarioScalarWhereInput
+    data: XOR<UsuarioUpdateManyMutationInput, UsuarioUncheckedUpdateManyWithoutBarberiaInput>
+  }
+
+  export type UsuarioScalarWhereInput = {
+    AND?: UsuarioScalarWhereInput | UsuarioScalarWhereInput[]
+    OR?: UsuarioScalarWhereInput[]
+    NOT?: UsuarioScalarWhereInput | UsuarioScalarWhereInput[]
+    id?: IntFilter<"Usuario"> | number
+    nombre?: StringFilter<"Usuario"> | string
+    email?: StringFilter<"Usuario"> | string
+    password?: StringFilter<"Usuario"> | string
+    rol?: StringFilter<"Usuario"> | string
+    telefono?: StringNullableFilter<"Usuario"> | string | null
+    foto_url?: StringNullableFilter<"Usuario"> | string | null
+    fecha_nacimiento?: DateTimeNullableFilter<"Usuario"> | Date | string | null
+    barberiaId?: IntNullableFilter<"Usuario"> | number | null
+    createdAt?: DateTimeFilter<"Usuario"> | Date | string
+  }
+
+  export type BarberoUpsertWithWhereUniqueWithoutBarberiaInput = {
+    where: BarberoWhereUniqueInput
+    update: XOR<BarberoUpdateWithoutBarberiaInput, BarberoUncheckedUpdateWithoutBarberiaInput>
+    create: XOR<BarberoCreateWithoutBarberiaInput, BarberoUncheckedCreateWithoutBarberiaInput>
+  }
+
+  export type BarberoUpdateWithWhereUniqueWithoutBarberiaInput = {
+    where: BarberoWhereUniqueInput
+    data: XOR<BarberoUpdateWithoutBarberiaInput, BarberoUncheckedUpdateWithoutBarberiaInput>
+  }
+
+  export type BarberoUpdateManyWithWhereWithoutBarberiaInput = {
+    where: BarberoScalarWhereInput
+    data: XOR<BarberoUpdateManyMutationInput, BarberoUncheckedUpdateManyWithoutBarberiaInput>
+  }
+
+  export type BarberoScalarWhereInput = {
+    AND?: BarberoScalarWhereInput | BarberoScalarWhereInput[]
+    OR?: BarberoScalarWhereInput[]
+    NOT?: BarberoScalarWhereInput | BarberoScalarWhereInput[]
+    id?: IntFilter<"Barbero"> | number
+    nombre?: StringFilter<"Barbero"> | string
+    especialidad?: StringFilter<"Barbero"> | string
+    foto?: StringNullableFilter<"Barbero"> | string | null
+    categorias?: StringFilter<"Barbero"> | string
+    barberiaId?: IntFilter<"Barbero"> | number
+  }
+
+  export type ServicioUpsertWithWhereUniqueWithoutBarberiaInput = {
+    where: ServicioWhereUniqueInput
+    update: XOR<ServicioUpdateWithoutBarberiaInput, ServicioUncheckedUpdateWithoutBarberiaInput>
+    create: XOR<ServicioCreateWithoutBarberiaInput, ServicioUncheckedCreateWithoutBarberiaInput>
+  }
+
+  export type ServicioUpdateWithWhereUniqueWithoutBarberiaInput = {
+    where: ServicioWhereUniqueInput
+    data: XOR<ServicioUpdateWithoutBarberiaInput, ServicioUncheckedUpdateWithoutBarberiaInput>
+  }
+
+  export type ServicioUpdateManyWithWhereWithoutBarberiaInput = {
+    where: ServicioScalarWhereInput
+    data: XOR<ServicioUpdateManyMutationInput, ServicioUncheckedUpdateManyWithoutBarberiaInput>
+  }
+
+  export type ServicioScalarWhereInput = {
+    AND?: ServicioScalarWhereInput | ServicioScalarWhereInput[]
+    OR?: ServicioScalarWhereInput[]
+    NOT?: ServicioScalarWhereInput | ServicioScalarWhereInput[]
+    id?: IntFilter<"Servicio"> | number
+    nombre?: StringFilter<"Servicio"> | string
+    precio?: FloatFilter<"Servicio"> | number
+    duracion_minutos?: IntFilter<"Servicio"> | number
+    categoria?: StringFilter<"Servicio"> | string
+    activo?: BoolFilter<"Servicio"> | boolean
+    predefinido?: BoolFilter<"Servicio"> | boolean
+    barberiaId?: IntFilter<"Servicio"> | number
+  }
+
+  export type ReservaUpsertWithWhereUniqueWithoutBarberiaInput = {
+    where: ReservaWhereUniqueInput
+    update: XOR<ReservaUpdateWithoutBarberiaInput, ReservaUncheckedUpdateWithoutBarberiaInput>
+    create: XOR<ReservaCreateWithoutBarberiaInput, ReservaUncheckedCreateWithoutBarberiaInput>
+  }
+
+  export type ReservaUpdateWithWhereUniqueWithoutBarberiaInput = {
+    where: ReservaWhereUniqueInput
+    data: XOR<ReservaUpdateWithoutBarberiaInput, ReservaUncheckedUpdateWithoutBarberiaInput>
+  }
+
+  export type ReservaUpdateManyWithWhereWithoutBarberiaInput = {
+    where: ReservaScalarWhereInput
+    data: XOR<ReservaUpdateManyMutationInput, ReservaUncheckedUpdateManyWithoutBarberiaInput>
+  }
+
+  export type ReservaScalarWhereInput = {
+    AND?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
+    OR?: ReservaScalarWhereInput[]
+    NOT?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
+    id?: IntFilter<"Reserva"> | number
+    usuarioId?: IntFilter<"Reserva"> | number
+    barberoId?: IntFilter<"Reserva"> | number
+    servicioId?: IntFilter<"Reserva"> | number
+    barberiaId?: IntFilter<"Reserva"> | number
+    fecha?: DateTimeFilter<"Reserva"> | Date | string
+    estado?: StringFilter<"Reserva"> | string
+    createdAt?: DateTimeFilter<"Reserva"> | Date | string
+  }
+
+  export type HorarioUpsertWithWhereUniqueWithoutBarberiaInput = {
+    where: HorarioWhereUniqueInput
+    update: XOR<HorarioUpdateWithoutBarberiaInput, HorarioUncheckedUpdateWithoutBarberiaInput>
+    create: XOR<HorarioCreateWithoutBarberiaInput, HorarioUncheckedCreateWithoutBarberiaInput>
+  }
+
+  export type HorarioUpdateWithWhereUniqueWithoutBarberiaInput = {
+    where: HorarioWhereUniqueInput
+    data: XOR<HorarioUpdateWithoutBarberiaInput, HorarioUncheckedUpdateWithoutBarberiaInput>
+  }
+
+  export type HorarioUpdateManyWithWhereWithoutBarberiaInput = {
+    where: HorarioScalarWhereInput
+    data: XOR<HorarioUpdateManyMutationInput, HorarioUncheckedUpdateManyWithoutBarberiaInput>
+  }
+
+  export type HorarioScalarWhereInput = {
+    AND?: HorarioScalarWhereInput | HorarioScalarWhereInput[]
+    OR?: HorarioScalarWhereInput[]
+    NOT?: HorarioScalarWhereInput | HorarioScalarWhereInput[]
+    id?: IntFilter<"Horario"> | number
+    barberoId?: IntFilter<"Horario"> | number
+    barberiaId?: IntFilter<"Horario"> | number
+    dia_semana?: IntFilter<"Horario"> | number
+    hora_inicio?: StringFilter<"Horario"> | string
+    hora_fin?: StringFilter<"Horario"> | string
+  }
+
+  export type ConfiguracionUpsertWithoutBarberiaInput = {
+    update: XOR<ConfiguracionUpdateWithoutBarberiaInput, ConfiguracionUncheckedUpdateWithoutBarberiaInput>
+    create: XOR<ConfiguracionCreateWithoutBarberiaInput, ConfiguracionUncheckedCreateWithoutBarberiaInput>
+    where?: ConfiguracionWhereInput
+  }
+
+  export type ConfiguracionUpdateToOneWithWhereWithoutBarberiaInput = {
+    where?: ConfiguracionWhereInput
+    data: XOR<ConfiguracionUpdateWithoutBarberiaInput, ConfiguracionUncheckedUpdateWithoutBarberiaInput>
+  }
+
+  export type ConfiguracionUpdateWithoutBarberiaInput = {
+    nombre_barberia?: StringFieldUpdateOperationsInput | string
+    moneda?: StringFieldUpdateOperationsInput | string
+    simbolo?: StringFieldUpdateOperationsInput | string
+    separador_miles?: StringFieldUpdateOperationsInput | string
+    separador_decimal?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ConfiguracionUncheckedUpdateWithoutBarberiaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre_barberia?: StringFieldUpdateOperationsInput | string
+    moneda?: StringFieldUpdateOperationsInput | string
+    simbolo?: StringFieldUpdateOperationsInput | string
+    separador_miles?: StringFieldUpdateOperationsInput | string
+    separador_decimal?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BarberiaCreateWithoutUsuariosInput = {
+    nombre: string
+    codigo: string
+    logo?: string | null
+    createdAt?: Date | string
+    barberos?: BarberoCreateNestedManyWithoutBarberiaInput
+    servicios?: ServicioCreateNestedManyWithoutBarberiaInput
+    reservas?: ReservaCreateNestedManyWithoutBarberiaInput
+    horarios?: HorarioCreateNestedManyWithoutBarberiaInput
+    configuracion?: ConfiguracionCreateNestedOneWithoutBarberiaInput
+  }
+
+  export type BarberiaUncheckedCreateWithoutUsuariosInput = {
+    id?: number
+    nombre: string
+    codigo: string
+    logo?: string | null
+    createdAt?: Date | string
+    barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
+    servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
+    reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
+    horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
+    configuracion?: ConfiguracionUncheckedCreateNestedOneWithoutBarberiaInput
+  }
+
+  export type BarberiaCreateOrConnectWithoutUsuariosInput = {
+    where: BarberiaWhereUniqueInput
+    create: XOR<BarberiaCreateWithoutUsuariosInput, BarberiaUncheckedCreateWithoutUsuariosInput>
+  }
+
   export type ReservaCreateWithoutUsuarioInput = {
     fecha: Date | string
     estado?: string
     createdAt?: Date | string
     barbero: BarberoCreateNestedOneWithoutReservasInput
     servicio: ServicioCreateNestedOneWithoutReservasInput
+    barberia: BarberiaCreateNestedOneWithoutReservasInput
   }
 
   export type ReservaUncheckedCreateWithoutUsuarioInput = {
     id?: number
     barberoId: number
     servicioId: number
+    barberiaId: number
     fecha: Date | string
     estado?: string
     createdAt?: Date | string
@@ -8873,6 +11370,42 @@ export namespace Prisma {
   export type ReservaCreateManyUsuarioInputEnvelope = {
     data: ReservaCreateManyUsuarioInput | ReservaCreateManyUsuarioInput[]
     skipDuplicates?: boolean
+  }
+
+  export type BarberiaUpsertWithoutUsuariosInput = {
+    update: XOR<BarberiaUpdateWithoutUsuariosInput, BarberiaUncheckedUpdateWithoutUsuariosInput>
+    create: XOR<BarberiaCreateWithoutUsuariosInput, BarberiaUncheckedCreateWithoutUsuariosInput>
+    where?: BarberiaWhereInput
+  }
+
+  export type BarberiaUpdateToOneWithWhereWithoutUsuariosInput = {
+    where?: BarberiaWhereInput
+    data: XOR<BarberiaUpdateWithoutUsuariosInput, BarberiaUncheckedUpdateWithoutUsuariosInput>
+  }
+
+  export type BarberiaUpdateWithoutUsuariosInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
+    servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
+    reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
+    horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
+    configuracion?: ConfiguracionUpdateOneWithoutBarberiaNestedInput
+  }
+
+  export type BarberiaUncheckedUpdateWithoutUsuariosInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
+    servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
+    reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
+    horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
+    configuracion?: ConfiguracionUncheckedUpdateOneWithoutBarberiaNestedInput
   }
 
   export type ReservaUpsertWithWhereUniqueWithoutUsuarioInput = {
@@ -8891,17 +11424,34 @@ export namespace Prisma {
     data: XOR<ReservaUpdateManyMutationInput, ReservaUncheckedUpdateManyWithoutUsuarioInput>
   }
 
-  export type ReservaScalarWhereInput = {
-    AND?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
-    OR?: ReservaScalarWhereInput[]
-    NOT?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
-    id?: IntFilter<"Reserva"> | number
-    usuarioId?: IntFilter<"Reserva"> | number
-    barberoId?: IntFilter<"Reserva"> | number
-    servicioId?: IntFilter<"Reserva"> | number
-    fecha?: DateTimeFilter<"Reserva"> | Date | string
-    estado?: StringFilter<"Reserva"> | string
-    createdAt?: DateTimeFilter<"Reserva"> | Date | string
+  export type BarberiaCreateWithoutBarberosInput = {
+    nombre: string
+    codigo: string
+    logo?: string | null
+    createdAt?: Date | string
+    usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
+    servicios?: ServicioCreateNestedManyWithoutBarberiaInput
+    reservas?: ReservaCreateNestedManyWithoutBarberiaInput
+    horarios?: HorarioCreateNestedManyWithoutBarberiaInput
+    configuracion?: ConfiguracionCreateNestedOneWithoutBarberiaInput
+  }
+
+  export type BarberiaUncheckedCreateWithoutBarberosInput = {
+    id?: number
+    nombre: string
+    codigo: string
+    logo?: string | null
+    createdAt?: Date | string
+    usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
+    servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
+    reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
+    horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
+    configuracion?: ConfiguracionUncheckedCreateNestedOneWithoutBarberiaInput
+  }
+
+  export type BarberiaCreateOrConnectWithoutBarberosInput = {
+    where: BarberiaWhereUniqueInput
+    create: XOR<BarberiaCreateWithoutBarberosInput, BarberiaUncheckedCreateWithoutBarberosInput>
   }
 
   export type ReservaCreateWithoutBarberoInput = {
@@ -8910,12 +11460,14 @@ export namespace Prisma {
     createdAt?: Date | string
     usuario: UsuarioCreateNestedOneWithoutReservasInput
     servicio: ServicioCreateNestedOneWithoutReservasInput
+    barberia: BarberiaCreateNestedOneWithoutReservasInput
   }
 
   export type ReservaUncheckedCreateWithoutBarberoInput = {
     id?: number
     usuarioId: number
     servicioId: number
+    barberiaId: number
     fecha: Date | string
     estado?: string
     createdAt?: Date | string
@@ -8935,10 +11487,12 @@ export namespace Prisma {
     dia_semana: number
     hora_inicio: string
     hora_fin: string
+    barberia: BarberiaCreateNestedOneWithoutHorariosInput
   }
 
   export type HorarioUncheckedCreateWithoutBarberoInput = {
     id?: number
+    barberiaId: number
     dia_semana: number
     hora_inicio: string
     hora_fin: string
@@ -8952,6 +11506,42 @@ export namespace Prisma {
   export type HorarioCreateManyBarberoInputEnvelope = {
     data: HorarioCreateManyBarberoInput | HorarioCreateManyBarberoInput[]
     skipDuplicates?: boolean
+  }
+
+  export type BarberiaUpsertWithoutBarberosInput = {
+    update: XOR<BarberiaUpdateWithoutBarberosInput, BarberiaUncheckedUpdateWithoutBarberosInput>
+    create: XOR<BarberiaCreateWithoutBarberosInput, BarberiaUncheckedCreateWithoutBarberosInput>
+    where?: BarberiaWhereInput
+  }
+
+  export type BarberiaUpdateToOneWithWhereWithoutBarberosInput = {
+    where?: BarberiaWhereInput
+    data: XOR<BarberiaUpdateWithoutBarberosInput, BarberiaUncheckedUpdateWithoutBarberosInput>
+  }
+
+  export type BarberiaUpdateWithoutBarberosInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
+    servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
+    reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
+    horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
+    configuracion?: ConfiguracionUpdateOneWithoutBarberiaNestedInput
+  }
+
+  export type BarberiaUncheckedUpdateWithoutBarberosInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
+    servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
+    reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
+    horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
+    configuracion?: ConfiguracionUncheckedUpdateOneWithoutBarberiaNestedInput
   }
 
   export type ReservaUpsertWithWhereUniqueWithoutBarberoInput = {
@@ -8986,15 +11576,34 @@ export namespace Prisma {
     data: XOR<HorarioUpdateManyMutationInput, HorarioUncheckedUpdateManyWithoutBarberoInput>
   }
 
-  export type HorarioScalarWhereInput = {
-    AND?: HorarioScalarWhereInput | HorarioScalarWhereInput[]
-    OR?: HorarioScalarWhereInput[]
-    NOT?: HorarioScalarWhereInput | HorarioScalarWhereInput[]
-    id?: IntFilter<"Horario"> | number
-    barberoId?: IntFilter<"Horario"> | number
-    dia_semana?: IntFilter<"Horario"> | number
-    hora_inicio?: StringFilter<"Horario"> | string
-    hora_fin?: StringFilter<"Horario"> | string
+  export type BarberiaCreateWithoutServiciosInput = {
+    nombre: string
+    codigo: string
+    logo?: string | null
+    createdAt?: Date | string
+    usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
+    barberos?: BarberoCreateNestedManyWithoutBarberiaInput
+    reservas?: ReservaCreateNestedManyWithoutBarberiaInput
+    horarios?: HorarioCreateNestedManyWithoutBarberiaInput
+    configuracion?: ConfiguracionCreateNestedOneWithoutBarberiaInput
+  }
+
+  export type BarberiaUncheckedCreateWithoutServiciosInput = {
+    id?: number
+    nombre: string
+    codigo: string
+    logo?: string | null
+    createdAt?: Date | string
+    usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
+    barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
+    reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
+    horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
+    configuracion?: ConfiguracionUncheckedCreateNestedOneWithoutBarberiaInput
+  }
+
+  export type BarberiaCreateOrConnectWithoutServiciosInput = {
+    where: BarberiaWhereUniqueInput
+    create: XOR<BarberiaCreateWithoutServiciosInput, BarberiaUncheckedCreateWithoutServiciosInput>
   }
 
   export type ReservaCreateWithoutServicioInput = {
@@ -9003,12 +11612,14 @@ export namespace Prisma {
     createdAt?: Date | string
     usuario: UsuarioCreateNestedOneWithoutReservasInput
     barbero: BarberoCreateNestedOneWithoutReservasInput
+    barberia: BarberiaCreateNestedOneWithoutReservasInput
   }
 
   export type ReservaUncheckedCreateWithoutServicioInput = {
     id?: number
     usuarioId: number
     barberoId: number
+    barberiaId: number
     fecha: Date | string
     estado?: string
     createdAt?: Date | string
@@ -9022,6 +11633,42 @@ export namespace Prisma {
   export type ReservaCreateManyServicioInputEnvelope = {
     data: ReservaCreateManyServicioInput | ReservaCreateManyServicioInput[]
     skipDuplicates?: boolean
+  }
+
+  export type BarberiaUpsertWithoutServiciosInput = {
+    update: XOR<BarberiaUpdateWithoutServiciosInput, BarberiaUncheckedUpdateWithoutServiciosInput>
+    create: XOR<BarberiaCreateWithoutServiciosInput, BarberiaUncheckedCreateWithoutServiciosInput>
+    where?: BarberiaWhereInput
+  }
+
+  export type BarberiaUpdateToOneWithWhereWithoutServiciosInput = {
+    where?: BarberiaWhereInput
+    data: XOR<BarberiaUpdateWithoutServiciosInput, BarberiaUncheckedUpdateWithoutServiciosInput>
+  }
+
+  export type BarberiaUpdateWithoutServiciosInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
+    barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
+    reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
+    horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
+    configuracion?: ConfiguracionUpdateOneWithoutBarberiaNestedInput
+  }
+
+  export type BarberiaUncheckedUpdateWithoutServiciosInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
+    barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
+    reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
+    horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
+    configuracion?: ConfiguracionUncheckedUpdateOneWithoutBarberiaNestedInput
   }
 
   export type ReservaUpsertWithWhereUniqueWithoutServicioInput = {
@@ -9049,6 +11696,7 @@ export namespace Prisma {
     foto_url?: string | null
     fecha_nacimiento?: Date | string | null
     createdAt?: Date | string
+    barberia?: BarberiaCreateNestedOneWithoutUsuariosInput
   }
 
   export type UsuarioUncheckedCreateWithoutReservasInput = {
@@ -9060,6 +11708,7 @@ export namespace Prisma {
     telefono?: string | null
     foto_url?: string | null
     fecha_nacimiento?: Date | string | null
+    barberiaId?: number | null
     createdAt?: Date | string
   }
 
@@ -9073,6 +11722,7 @@ export namespace Prisma {
     especialidad: string
     foto?: string | null
     categorias?: string
+    barberia: BarberiaCreateNestedOneWithoutBarberosInput
     horarios?: HorarioCreateNestedManyWithoutBarberoInput
   }
 
@@ -9082,6 +11732,7 @@ export namespace Prisma {
     especialidad: string
     foto?: string | null
     categorias?: string
+    barberiaId: number
     horarios?: HorarioUncheckedCreateNestedManyWithoutBarberoInput
   }
 
@@ -9097,6 +11748,7 @@ export namespace Prisma {
     categoria?: string
     activo?: boolean
     predefinido?: boolean
+    barberia: BarberiaCreateNestedOneWithoutServiciosInput
   }
 
   export type ServicioUncheckedCreateWithoutReservasInput = {
@@ -9107,11 +11759,42 @@ export namespace Prisma {
     categoria?: string
     activo?: boolean
     predefinido?: boolean
+    barberiaId: number
   }
 
   export type ServicioCreateOrConnectWithoutReservasInput = {
     where: ServicioWhereUniqueInput
     create: XOR<ServicioCreateWithoutReservasInput, ServicioUncheckedCreateWithoutReservasInput>
+  }
+
+  export type BarberiaCreateWithoutReservasInput = {
+    nombre: string
+    codigo: string
+    logo?: string | null
+    createdAt?: Date | string
+    usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
+    barberos?: BarberoCreateNestedManyWithoutBarberiaInput
+    servicios?: ServicioCreateNestedManyWithoutBarberiaInput
+    horarios?: HorarioCreateNestedManyWithoutBarberiaInput
+    configuracion?: ConfiguracionCreateNestedOneWithoutBarberiaInput
+  }
+
+  export type BarberiaUncheckedCreateWithoutReservasInput = {
+    id?: number
+    nombre: string
+    codigo: string
+    logo?: string | null
+    createdAt?: Date | string
+    usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
+    barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
+    servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
+    horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
+    configuracion?: ConfiguracionUncheckedCreateNestedOneWithoutBarberiaInput
+  }
+
+  export type BarberiaCreateOrConnectWithoutReservasInput = {
+    where: BarberiaWhereUniqueInput
+    create: XOR<BarberiaCreateWithoutReservasInput, BarberiaUncheckedCreateWithoutReservasInput>
   }
 
   export type UsuarioUpsertWithoutReservasInput = {
@@ -9134,6 +11817,7 @@ export namespace Prisma {
     foto_url?: NullableStringFieldUpdateOperationsInput | string | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    barberia?: BarberiaUpdateOneWithoutUsuariosNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutReservasInput = {
@@ -9145,6 +11829,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     foto_url?: NullableStringFieldUpdateOperationsInput | string | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    barberiaId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -9164,6 +11849,7 @@ export namespace Prisma {
     especialidad?: StringFieldUpdateOperationsInput | string
     foto?: NullableStringFieldUpdateOperationsInput | string | null
     categorias?: StringFieldUpdateOperationsInput | string
+    barberia?: BarberiaUpdateOneRequiredWithoutBarberosNestedInput
     horarios?: HorarioUpdateManyWithoutBarberoNestedInput
   }
 
@@ -9173,6 +11859,7 @@ export namespace Prisma {
     especialidad?: StringFieldUpdateOperationsInput | string
     foto?: NullableStringFieldUpdateOperationsInput | string | null
     categorias?: StringFieldUpdateOperationsInput | string
+    barberiaId?: IntFieldUpdateOperationsInput | number
     horarios?: HorarioUncheckedUpdateManyWithoutBarberoNestedInput
   }
 
@@ -9194,6 +11881,7 @@ export namespace Prisma {
     categoria?: StringFieldUpdateOperationsInput | string
     activo?: BoolFieldUpdateOperationsInput | boolean
     predefinido?: BoolFieldUpdateOperationsInput | boolean
+    barberia?: BarberiaUpdateOneRequiredWithoutServiciosNestedInput
   }
 
   export type ServicioUncheckedUpdateWithoutReservasInput = {
@@ -9204,6 +11892,43 @@ export namespace Prisma {
     categoria?: StringFieldUpdateOperationsInput | string
     activo?: BoolFieldUpdateOperationsInput | boolean
     predefinido?: BoolFieldUpdateOperationsInput | boolean
+    barberiaId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type BarberiaUpsertWithoutReservasInput = {
+    update: XOR<BarberiaUpdateWithoutReservasInput, BarberiaUncheckedUpdateWithoutReservasInput>
+    create: XOR<BarberiaCreateWithoutReservasInput, BarberiaUncheckedCreateWithoutReservasInput>
+    where?: BarberiaWhereInput
+  }
+
+  export type BarberiaUpdateToOneWithWhereWithoutReservasInput = {
+    where?: BarberiaWhereInput
+    data: XOR<BarberiaUpdateWithoutReservasInput, BarberiaUncheckedUpdateWithoutReservasInput>
+  }
+
+  export type BarberiaUpdateWithoutReservasInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
+    barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
+    servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
+    horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
+    configuracion?: ConfiguracionUpdateOneWithoutBarberiaNestedInput
+  }
+
+  export type BarberiaUncheckedUpdateWithoutReservasInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
+    barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
+    servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
+    horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
+    configuracion?: ConfiguracionUncheckedUpdateOneWithoutBarberiaNestedInput
   }
 
   export type BarberoCreateWithoutHorariosInput = {
@@ -9211,6 +11936,7 @@ export namespace Prisma {
     especialidad: string
     foto?: string | null
     categorias?: string
+    barberia: BarberiaCreateNestedOneWithoutBarberosInput
     reservas?: ReservaCreateNestedManyWithoutBarberoInput
   }
 
@@ -9220,12 +11946,43 @@ export namespace Prisma {
     especialidad: string
     foto?: string | null
     categorias?: string
+    barberiaId: number
     reservas?: ReservaUncheckedCreateNestedManyWithoutBarberoInput
   }
 
   export type BarberoCreateOrConnectWithoutHorariosInput = {
     where: BarberoWhereUniqueInput
     create: XOR<BarberoCreateWithoutHorariosInput, BarberoUncheckedCreateWithoutHorariosInput>
+  }
+
+  export type BarberiaCreateWithoutHorariosInput = {
+    nombre: string
+    codigo: string
+    logo?: string | null
+    createdAt?: Date | string
+    usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
+    barberos?: BarberoCreateNestedManyWithoutBarberiaInput
+    servicios?: ServicioCreateNestedManyWithoutBarberiaInput
+    reservas?: ReservaCreateNestedManyWithoutBarberiaInput
+    configuracion?: ConfiguracionCreateNestedOneWithoutBarberiaInput
+  }
+
+  export type BarberiaUncheckedCreateWithoutHorariosInput = {
+    id?: number
+    nombre: string
+    codigo: string
+    logo?: string | null
+    createdAt?: Date | string
+    usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
+    barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
+    servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
+    reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
+    configuracion?: ConfiguracionUncheckedCreateNestedOneWithoutBarberiaInput
+  }
+
+  export type BarberiaCreateOrConnectWithoutHorariosInput = {
+    where: BarberiaWhereUniqueInput
+    create: XOR<BarberiaCreateWithoutHorariosInput, BarberiaUncheckedCreateWithoutHorariosInput>
   }
 
   export type BarberoUpsertWithoutHorariosInput = {
@@ -9244,6 +12001,7 @@ export namespace Prisma {
     especialidad?: StringFieldUpdateOperationsInput | string
     foto?: NullableStringFieldUpdateOperationsInput | string | null
     categorias?: StringFieldUpdateOperationsInput | string
+    barberia?: BarberiaUpdateOneRequiredWithoutBarberosNestedInput
     reservas?: ReservaUpdateManyWithoutBarberoNestedInput
   }
 
@@ -9253,13 +12011,312 @@ export namespace Prisma {
     especialidad?: StringFieldUpdateOperationsInput | string
     foto?: NullableStringFieldUpdateOperationsInput | string | null
     categorias?: StringFieldUpdateOperationsInput | string
+    barberiaId?: IntFieldUpdateOperationsInput | number
     reservas?: ReservaUncheckedUpdateManyWithoutBarberoNestedInput
+  }
+
+  export type BarberiaUpsertWithoutHorariosInput = {
+    update: XOR<BarberiaUpdateWithoutHorariosInput, BarberiaUncheckedUpdateWithoutHorariosInput>
+    create: XOR<BarberiaCreateWithoutHorariosInput, BarberiaUncheckedCreateWithoutHorariosInput>
+    where?: BarberiaWhereInput
+  }
+
+  export type BarberiaUpdateToOneWithWhereWithoutHorariosInput = {
+    where?: BarberiaWhereInput
+    data: XOR<BarberiaUpdateWithoutHorariosInput, BarberiaUncheckedUpdateWithoutHorariosInput>
+  }
+
+  export type BarberiaUpdateWithoutHorariosInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
+    barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
+    servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
+    reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
+    configuracion?: ConfiguracionUpdateOneWithoutBarberiaNestedInput
+  }
+
+  export type BarberiaUncheckedUpdateWithoutHorariosInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
+    barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
+    servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
+    reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
+    configuracion?: ConfiguracionUncheckedUpdateOneWithoutBarberiaNestedInput
+  }
+
+  export type BarberiaCreateWithoutConfiguracionInput = {
+    nombre: string
+    codigo: string
+    logo?: string | null
+    createdAt?: Date | string
+    usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
+    barberos?: BarberoCreateNestedManyWithoutBarberiaInput
+    servicios?: ServicioCreateNestedManyWithoutBarberiaInput
+    reservas?: ReservaCreateNestedManyWithoutBarberiaInput
+    horarios?: HorarioCreateNestedManyWithoutBarberiaInput
+  }
+
+  export type BarberiaUncheckedCreateWithoutConfiguracionInput = {
+    id?: number
+    nombre: string
+    codigo: string
+    logo?: string | null
+    createdAt?: Date | string
+    usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
+    barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
+    servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
+    reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
+    horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
+  }
+
+  export type BarberiaCreateOrConnectWithoutConfiguracionInput = {
+    where: BarberiaWhereUniqueInput
+    create: XOR<BarberiaCreateWithoutConfiguracionInput, BarberiaUncheckedCreateWithoutConfiguracionInput>
+  }
+
+  export type BarberiaUpsertWithoutConfiguracionInput = {
+    update: XOR<BarberiaUpdateWithoutConfiguracionInput, BarberiaUncheckedUpdateWithoutConfiguracionInput>
+    create: XOR<BarberiaCreateWithoutConfiguracionInput, BarberiaUncheckedCreateWithoutConfiguracionInput>
+    where?: BarberiaWhereInput
+  }
+
+  export type BarberiaUpdateToOneWithWhereWithoutConfiguracionInput = {
+    where?: BarberiaWhereInput
+    data: XOR<BarberiaUpdateWithoutConfiguracionInput, BarberiaUncheckedUpdateWithoutConfiguracionInput>
+  }
+
+  export type BarberiaUpdateWithoutConfiguracionInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
+    barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
+    servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
+    reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
+    horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
+  }
+
+  export type BarberiaUncheckedUpdateWithoutConfiguracionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
+    barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
+    servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
+    reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
+    horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
+  }
+
+  export type UsuarioCreateManyBarberiaInput = {
+    id?: number
+    nombre: string
+    email: string
+    password: string
+    rol?: string
+    telefono?: string | null
+    foto_url?: string | null
+    fecha_nacimiento?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type BarberoCreateManyBarberiaInput = {
+    id?: number
+    nombre: string
+    especialidad: string
+    foto?: string | null
+    categorias?: string
+  }
+
+  export type ServicioCreateManyBarberiaInput = {
+    id?: number
+    nombre: string
+    precio: number
+    duracion_minutos: number
+    categoria?: string
+    activo?: boolean
+    predefinido?: boolean
+  }
+
+  export type ReservaCreateManyBarberiaInput = {
+    id?: number
+    usuarioId: number
+    barberoId: number
+    servicioId: number
+    fecha: Date | string
+    estado?: string
+    createdAt?: Date | string
+  }
+
+  export type HorarioCreateManyBarberiaInput = {
+    id?: number
+    barberoId: number
+    dia_semana: number
+    hora_inicio: string
+    hora_fin: string
+  }
+
+  export type UsuarioUpdateWithoutBarberiaInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    rol?: StringFieldUpdateOperationsInput | string
+    telefono?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reservas?: ReservaUpdateManyWithoutUsuarioNestedInput
+  }
+
+  export type UsuarioUncheckedUpdateWithoutBarberiaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    rol?: StringFieldUpdateOperationsInput | string
+    telefono?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reservas?: ReservaUncheckedUpdateManyWithoutUsuarioNestedInput
+  }
+
+  export type UsuarioUncheckedUpdateManyWithoutBarberiaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    rol?: StringFieldUpdateOperationsInput | string
+    telefono?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BarberoUpdateWithoutBarberiaInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    especialidad?: StringFieldUpdateOperationsInput | string
+    foto?: NullableStringFieldUpdateOperationsInput | string | null
+    categorias?: StringFieldUpdateOperationsInput | string
+    reservas?: ReservaUpdateManyWithoutBarberoNestedInput
+    horarios?: HorarioUpdateManyWithoutBarberoNestedInput
+  }
+
+  export type BarberoUncheckedUpdateWithoutBarberiaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    especialidad?: StringFieldUpdateOperationsInput | string
+    foto?: NullableStringFieldUpdateOperationsInput | string | null
+    categorias?: StringFieldUpdateOperationsInput | string
+    reservas?: ReservaUncheckedUpdateManyWithoutBarberoNestedInput
+    horarios?: HorarioUncheckedUpdateManyWithoutBarberoNestedInput
+  }
+
+  export type BarberoUncheckedUpdateManyWithoutBarberiaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    especialidad?: StringFieldUpdateOperationsInput | string
+    foto?: NullableStringFieldUpdateOperationsInput | string | null
+    categorias?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServicioUpdateWithoutBarberiaInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    predefinido?: BoolFieldUpdateOperationsInput | boolean
+    reservas?: ReservaUpdateManyWithoutServicioNestedInput
+  }
+
+  export type ServicioUncheckedUpdateWithoutBarberiaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    predefinido?: BoolFieldUpdateOperationsInput | boolean
+    reservas?: ReservaUncheckedUpdateManyWithoutServicioNestedInput
+  }
+
+  export type ServicioUncheckedUpdateManyWithoutBarberiaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    predefinido?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ReservaUpdateWithoutBarberiaInput = {
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    estado?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuario?: UsuarioUpdateOneRequiredWithoutReservasNestedInput
+    barbero?: BarberoUpdateOneRequiredWithoutReservasNestedInput
+    servicio?: ServicioUpdateOneRequiredWithoutReservasNestedInput
+  }
+
+  export type ReservaUncheckedUpdateWithoutBarberiaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    usuarioId?: IntFieldUpdateOperationsInput | number
+    barberoId?: IntFieldUpdateOperationsInput | number
+    servicioId?: IntFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    estado?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReservaUncheckedUpdateManyWithoutBarberiaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    usuarioId?: IntFieldUpdateOperationsInput | number
+    barberoId?: IntFieldUpdateOperationsInput | number
+    servicioId?: IntFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    estado?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HorarioUpdateWithoutBarberiaInput = {
+    dia_semana?: IntFieldUpdateOperationsInput | number
+    hora_inicio?: StringFieldUpdateOperationsInput | string
+    hora_fin?: StringFieldUpdateOperationsInput | string
+    barbero?: BarberoUpdateOneRequiredWithoutHorariosNestedInput
+  }
+
+  export type HorarioUncheckedUpdateWithoutBarberiaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    barberoId?: IntFieldUpdateOperationsInput | number
+    dia_semana?: IntFieldUpdateOperationsInput | number
+    hora_inicio?: StringFieldUpdateOperationsInput | string
+    hora_fin?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type HorarioUncheckedUpdateManyWithoutBarberiaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    barberoId?: IntFieldUpdateOperationsInput | number
+    dia_semana?: IntFieldUpdateOperationsInput | number
+    hora_inicio?: StringFieldUpdateOperationsInput | string
+    hora_fin?: StringFieldUpdateOperationsInput | string
   }
 
   export type ReservaCreateManyUsuarioInput = {
     id?: number
     barberoId: number
     servicioId: number
+    barberiaId: number
     fecha: Date | string
     estado?: string
     createdAt?: Date | string
@@ -9271,12 +12328,14 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     barbero?: BarberoUpdateOneRequiredWithoutReservasNestedInput
     servicio?: ServicioUpdateOneRequiredWithoutReservasNestedInput
+    barberia?: BarberiaUpdateOneRequiredWithoutReservasNestedInput
   }
 
   export type ReservaUncheckedUpdateWithoutUsuarioInput = {
     id?: IntFieldUpdateOperationsInput | number
     barberoId?: IntFieldUpdateOperationsInput | number
     servicioId?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9286,6 +12345,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     barberoId?: IntFieldUpdateOperationsInput | number
     servicioId?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9295,6 +12355,7 @@ export namespace Prisma {
     id?: number
     usuarioId: number
     servicioId: number
+    barberiaId: number
     fecha: Date | string
     estado?: string
     createdAt?: Date | string
@@ -9302,6 +12363,7 @@ export namespace Prisma {
 
   export type HorarioCreateManyBarberoInput = {
     id?: number
+    barberiaId: number
     dia_semana: number
     hora_inicio: string
     hora_fin: string
@@ -9313,12 +12375,14 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuario?: UsuarioUpdateOneRequiredWithoutReservasNestedInput
     servicio?: ServicioUpdateOneRequiredWithoutReservasNestedInput
+    barberia?: BarberiaUpdateOneRequiredWithoutReservasNestedInput
   }
 
   export type ReservaUncheckedUpdateWithoutBarberoInput = {
     id?: IntFieldUpdateOperationsInput | number
     usuarioId?: IntFieldUpdateOperationsInput | number
     servicioId?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9328,6 +12392,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     usuarioId?: IntFieldUpdateOperationsInput | number
     servicioId?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9337,10 +12402,12 @@ export namespace Prisma {
     dia_semana?: IntFieldUpdateOperationsInput | number
     hora_inicio?: StringFieldUpdateOperationsInput | string
     hora_fin?: StringFieldUpdateOperationsInput | string
+    barberia?: BarberiaUpdateOneRequiredWithoutHorariosNestedInput
   }
 
   export type HorarioUncheckedUpdateWithoutBarberoInput = {
     id?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
     dia_semana?: IntFieldUpdateOperationsInput | number
     hora_inicio?: StringFieldUpdateOperationsInput | string
     hora_fin?: StringFieldUpdateOperationsInput | string
@@ -9348,6 +12415,7 @@ export namespace Prisma {
 
   export type HorarioUncheckedUpdateManyWithoutBarberoInput = {
     id?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
     dia_semana?: IntFieldUpdateOperationsInput | number
     hora_inicio?: StringFieldUpdateOperationsInput | string
     hora_fin?: StringFieldUpdateOperationsInput | string
@@ -9357,6 +12425,7 @@ export namespace Prisma {
     id?: number
     usuarioId: number
     barberoId: number
+    barberiaId: number
     fecha: Date | string
     estado?: string
     createdAt?: Date | string
@@ -9368,12 +12437,14 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuario?: UsuarioUpdateOneRequiredWithoutReservasNestedInput
     barbero?: BarberoUpdateOneRequiredWithoutReservasNestedInput
+    barberia?: BarberiaUpdateOneRequiredWithoutReservasNestedInput
   }
 
   export type ReservaUncheckedUpdateWithoutServicioInput = {
     id?: IntFieldUpdateOperationsInput | number
     usuarioId?: IntFieldUpdateOperationsInput | number
     barberoId?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9383,6 +12454,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     usuarioId?: IntFieldUpdateOperationsInput | number
     barberoId?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9393,6 +12465,10 @@ export namespace Prisma {
   /**
    * Aliases for legacy arg types
    */
+    /**
+     * @deprecated Use BarberiaCountOutputTypeDefaultArgs instead
+     */
+    export type BarberiaCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BarberiaCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UsuarioCountOutputTypeDefaultArgs instead
      */
@@ -9405,6 +12481,10 @@ export namespace Prisma {
      * @deprecated Use ServicioCountOutputTypeDefaultArgs instead
      */
     export type ServicioCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ServicioCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use BarberiaDefaultArgs instead
+     */
+    export type BarberiaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BarberiaDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UsuarioDefaultArgs instead
      */

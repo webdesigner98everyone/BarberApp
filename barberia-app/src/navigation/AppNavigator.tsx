@@ -17,6 +17,8 @@ import BarberoPerfil from '../screens/BarberoPerfil';
 import PerfilScreen from '../screens/PerfilScreen';
 import ServiciosAdminScreen from '../screens/ServiciosAdminScreen';
 import ConfiguracionScreen from '../screens/ConfiguracionScreen';
+import EstadisticasScreen from '../screens/EstadisticasScreen';
+import GestionAdminsScreen from '../screens/GestionAdminsScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -82,6 +84,7 @@ function AdminTabs({ navigation }: any) {
       headerShown: false
     }}>
       <Tab.Screen name="Admin" component={AdminScreen} options={{ title: 'Citas', tabBarIcon: ({ color, size }) => <Ionicons name="calendar" color={color} size={size} /> }} />
+      <Tab.Screen name="Estadisticas" component={EstadisticasScreen} options={{ title: 'Stats', tabBarIcon: ({ color, size }) => <Ionicons name="bar-chart" color={color} size={size} /> }} />
       <Tab.Screen name="Barberos" component={BarberosAdminScreen} options={{ title: 'Especialistas', tabBarIcon: ({ color, size }) => <Ionicons name="cut" color={color} size={size} /> }} />
       <Tab.Screen name="Servicios" component={ServiciosAdminScreen} options={{ title: 'Servicios', tabBarIcon: ({ color, size }) => <Ionicons name="pricetag" color={color} size={size} /> }} />
       <Tab.Screen name="Configuracion" component={ConfiguracionScreen} options={{ title: 'Config', tabBarIcon: ({ color, size }) => <Ionicons name="settings" color={color} size={size} /> }} />
@@ -142,7 +145,8 @@ export default function AppNavigator() {
           }}
         </Stack.Screen>
         <Stack.Screen name="Booking" component={BookingScreen} options={{ headerShown: true, title: 'Nueva Reserva', headerStyle: { backgroundColor: theme.colors.card }, headerTintColor: theme.colors.gold }} />
-        <Stack.Screen name="BarberoPerfil" component={BarberoPerfil} options={{ headerShown: true, title: 'Perfil Barbero', headerStyle: { backgroundColor: theme.colors.card }, headerTintColor: theme.colors.gold }} />
+        <Stack.Screen name="BarberoPerfil" component={BarberoPerfil} options={{ headerShown: true, title: 'Perfil Especialista', headerStyle: { backgroundColor: theme.colors.card }, headerTintColor: theme.colors.gold }} />
+        <Stack.Screen name="GestionAdmins" component={GestionAdminsScreen} options={{ headerShown: true, title: 'Gestión de Admins', headerStyle: { backgroundColor: theme.colors.card }, headerTintColor: theme.colors.gold }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

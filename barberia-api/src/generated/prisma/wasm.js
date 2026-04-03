@@ -122,6 +122,14 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.BarberiaScalarFieldEnum = {
+  id: 'id',
+  nombre: 'nombre',
+  codigo: 'codigo',
+  logo: 'logo',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.UsuarioScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
@@ -131,6 +139,7 @@ exports.Prisma.UsuarioScalarFieldEnum = {
   telefono: 'telefono',
   foto_url: 'foto_url',
   fecha_nacimiento: 'fecha_nacimiento',
+  barberiaId: 'barberiaId',
   createdAt: 'createdAt'
 };
 
@@ -139,7 +148,8 @@ exports.Prisma.BarberoScalarFieldEnum = {
   nombre: 'nombre',
   especialidad: 'especialidad',
   foto: 'foto',
-  categorias: 'categorias'
+  categorias: 'categorias',
+  barberiaId: 'barberiaId'
 };
 
 exports.Prisma.ServicioScalarFieldEnum = {
@@ -149,7 +159,8 @@ exports.Prisma.ServicioScalarFieldEnum = {
   duracion_minutos: 'duracion_minutos',
   categoria: 'categoria',
   activo: 'activo',
-  predefinido: 'predefinido'
+  predefinido: 'predefinido',
+  barberiaId: 'barberiaId'
 };
 
 exports.Prisma.ReservaScalarFieldEnum = {
@@ -157,6 +168,7 @@ exports.Prisma.ReservaScalarFieldEnum = {
   usuarioId: 'usuarioId',
   barberoId: 'barberoId',
   servicioId: 'servicioId',
+  barberiaId: 'barberiaId',
   fecha: 'fecha',
   estado: 'estado',
   createdAt: 'createdAt'
@@ -165,6 +177,7 @@ exports.Prisma.ReservaScalarFieldEnum = {
 exports.Prisma.HorarioScalarFieldEnum = {
   id: 'id',
   barberoId: 'barberoId',
+  barberiaId: 'barberiaId',
   dia_semana: 'dia_semana',
   hora_inicio: 'hora_inicio',
   hora_fin: 'hora_fin'
@@ -176,7 +189,8 @@ exports.Prisma.ConfiguracionScalarFieldEnum = {
   moneda: 'moneda',
   simbolo: 'simbolo',
   separador_miles: 'separador_miles',
-  separador_decimal: 'separador_decimal'
+  separador_decimal: 'separador_decimal',
+  barberiaId: 'barberiaId'
 };
 
 exports.Prisma.SortOrder = {
@@ -191,6 +205,7 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
+  Barberia: 'Barberia',
   Usuario: 'Usuario',
   Barbero: 'Barbero',
   Servicio: 'Servicio',

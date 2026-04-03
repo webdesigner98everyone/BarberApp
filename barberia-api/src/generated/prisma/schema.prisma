@@ -8,6 +8,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Barberia {
+  id            Int            @id @default(autoincrement())
+  nombre        String
+  codigo        String         @unique
+  logo          String?
+  createdAt     DateTime       @default(now())
+  usuarios      Usuario[]
+  barberos      Barbero[]
+  servicios     Servicio[]
+  reservas      Reserva[]
+  horarios      Horario[]
+  configuracion Configuracion?
+}
+
 model Usuario {
   id               Int       @id @default(autoincrement())
   nombre           String
@@ -17,6 +31,8 @@ model Usuario {
   telefono         String?
   foto_url         String?   @db.LongText
   fecha_nacimiento DateTime?
+  barberiaId       Int?
+  barberia         Barberia? @relation(fields: [barberiaId], references: [id])
   reservas         Reserva[]
   createdAt        DateTime  @default(now())
 }
@@ -27,6 +43,8 @@ model Barbero {
   especialidad String
   foto         String?
   categorias   String    @default("Cabello")
+  barberiaId   Int
+  barberia     Barberia  @relation(fields: [barberiaId], references: [id])
   reservas     Reserva[]
   horarios     Horario[]
 }
@@ -39,6 +57,8 @@ model Servicio {
   categoria        String    @default("General")
   activo           Boolean   @default(true)
   predefinido      Boolean   @default(false)
+  barberiaId       Int
+  barberia         Barberia  @relation(fields: [barberiaId], references: [id])
   reservas         Reserva[]
 }
 
@@ -50,15 +70,19 @@ model Reserva {
   barberoId  Int
   servicio   Servicio @relation(fields: [servicioId], references: [id])
   servicioId Int
+  barberiaId Int
+  barberia   Barberia @relation(fields: [barberiaId], references: [id])
   fecha      DateTime
   estado     String   @default("pendiente")
   createdAt  DateTime @default(now())
 }
 
 model Horario {
-  id          Int     @id @default(autoincrement())
-  barbero     Barbero @relation(fields: [barberoId], references: [id])
+  id          Int      @id @default(autoincrement())
+  barbero     Barbero  @relation(fields: [barberoId], references: [id])
   barberoId   Int
+  barberiaId  Int
+  barberia    Barberia @relation(fields: [barberiaId], references: [id])
   dia_semana  Int
   hora_inicio String
   hora_fin    String
@@ -67,10 +91,12 @@ model Horario {
 }
 
 model Configuracion {
-  id                Int    @id @default(autoincrement())
-  nombre_barberia   String @default("The Barber")
-  moneda            String @default("COP")
-  simbolo           String @default("$")
-  separador_miles   String @default(".")
-  separador_decimal String @default(",")
+  id                Int      @id @default(autoincrement())
+  nombre_barberia   String   @default("The Barber")
+  moneda            String   @default("COP")
+  simbolo           String   @default("$")
+  separador_miles   String   @default(".")
+  separador_decimal String   @default(",")
+  barberiaId        Int      @unique
+  barberia          Barberia @relation(fields: [barberiaId], references: [id])
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert, ActivityIndicator } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../theme';
 import api from '../services/api';
 
@@ -11,7 +12,7 @@ const MONEDAS = [
   { moneda: 'GBP', simbolo: '£', separador_miles: ',', separador_decimal: '.', label: '🇬🇧 Libra esterlina (GBP)' },
 ];
 
-export default function ConfiguracionScreen() {
+export default function ConfiguracionScreen({ navigation }: any) {
   const [nombreBarberia, setNombreBarberia] = useState('');
   const [monedaSeleccionada, setMonedaSeleccionada] = useState('COP');
   const [loading, setLoading] = useState(false);
@@ -79,6 +80,12 @@ export default function ConfiguracionScreen() {
       <TouchableOpacity style={[styles.btn, loading && styles.btnDisabled]} onPress={handleGuardar} disabled={loading}>
         {loading ? <ActivityIndicator color={theme.colors.background} /> : <Text style={styles.btnText}>GUARDAR CONFIGURACIÓN</Text>}
       </TouchableOpacity>
+
+      <TouchableOpacity style={styles.adminBtn} onPress={() => navigation.navigate('GestionAdmins')}>
+        <Ionicons name="people" size={20} color={theme.colors.gold} />
+        <Text style={styles.adminBtnText}>Gestión de Administradores</Text>
+        <Ionicons name="chevron-forward" size={18} color={theme.colors.gray} />
+      </TouchableOpacity>
     </ScrollView>
   );
 }
@@ -100,4 +107,6 @@ const styles = StyleSheet.create({
   btn: { backgroundColor: theme.colors.gold, padding: 16, borderRadius: 8, alignItems: 'center', marginTop: 24 },
   btnDisabled: { backgroundColor: theme.colors.lightGray },
   btnText: { color: theme.colors.background, fontSize: 14, fontWeight: 'bold', letterSpacing: 2 },
+  adminBtn: { flexDirection: 'row', alignItems: 'center', backgroundColor: theme.colors.card, padding: 16, borderRadius: 12, marginTop: 16, borderWidth: 1, borderColor: theme.colors.lightGray, gap: 12 },
+  adminBtnText: { flex: 1, color: theme.colors.white, fontSize: 15, fontWeight: '600' },
 });

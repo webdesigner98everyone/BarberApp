@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../theme';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
+import RecuperarPasswordScreen from '../screens/RecuperarPasswordScreen';
 import HomeScreen from '../screens/HomeScreen';
 import BookingScreen from '../screens/BookingScreen';
 import MisCitasScreen from '../screens/MisCitasScreen';
@@ -136,6 +137,7 @@ export default function AppNavigator() {
       <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={autenticado ? 'Main' : 'Login'}>
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="RecuperarPassword" component={RecuperarPasswordScreen} options={{ headerShown: true, title: 'Recuperar Contraseña', headerStyle: { backgroundColor: theme.colors.card }, headerTintColor: theme.colors.gold }} />
         <Stack.Screen name="Main">
           {({ navigation, route }: any) => {
             const rolFinal = route.params?.rol ?? rol;

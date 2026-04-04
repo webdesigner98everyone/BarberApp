@@ -11,4 +11,8 @@ api.interceptors.request.use(async (config) => {
   return config;
 });
 
+export const apiPublica = axios.create({
+  baseURL: process.env.EXPO_PUBLIC_API_URL,
+});
+
 export default api;

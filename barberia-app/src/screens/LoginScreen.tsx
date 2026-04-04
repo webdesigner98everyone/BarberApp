@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator, ScrollView, Keyboard } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { theme } from '../theme';
-import api from '../services/api';
+import { apiPublica } from '../services/api';
 
 export default function LoginScreen({ navigation }: any) {
   const [email, setEmail] = useState('');
@@ -26,7 +26,7 @@ export default function LoginScreen({ navigation }: any) {
     if (!validar()) return;
     try {
       setLoading(true);
-      const { data } = await api.post('/auth/login', { email, password });
+      const { data } = await apiPublica.post('/auth/login', { email, password });
       await AsyncStorage.setItem('token', data.token);
       await AsyncStorage.setItem('usuario', JSON.stringify(data.usuario));
       navigation.replace('Main', { rol: data.usuario.rol });
@@ -90,6 +90,10 @@ export default function LoginScreen({ navigation }: any) {
 
       <TouchableOpacity onPress={() => navigation.navigate('Register')}>
         <Text style={styles.link}>¿No tienes cuenta? <Text style={styles.linkBold}>Regístrate</Text></Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => navigation.navigate('RecuperarPassword')}>
+        <Text style={styles.link}>¿Olvidaste tu contraseña? <Text style={styles.linkBold}>Recupérala aquí</Text></Text>
       </TouchableOpacity>
     </ScrollView>
   );

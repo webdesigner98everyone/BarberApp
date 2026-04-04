@@ -4,7 +4,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import * as ImagePicker from 'expo-image-picker';
 import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../theme';
-import api from '../services/api';
+import { apiPublica } from '../services/api';
 
 export default function RegisterScreen({ navigation }: any) {
   const [esPropietario, setEsPropietario] = useState<boolean | null>(null);
@@ -64,7 +64,7 @@ export default function RegisterScreen({ navigation }: any) {
     if (!validar()) return;
     try {
       setLoading(true);
-      const { data } = await api.post('/auth/register', {
+      const { data } = await apiPublica.post('/auth/register', {
         nombre, email, telefono,
         fecha_nacimiento: fechaNacimiento,
         password, foto_url: foto,

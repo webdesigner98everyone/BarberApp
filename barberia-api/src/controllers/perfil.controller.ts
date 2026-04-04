@@ -43,3 +43,19 @@ export const cambiarPassword = async (req: Request, res: Response) => {
   await prisma.usuario.update({ where: { id }, data: { password: hash } });
   res.json({ message: 'Contraseña actualizada ✅' });
 };
+
+export const recuperarPassword = async (req: Request, res: Response) => {
+  const { email, passwordNueva, confirmar } = req.body;
+
+  if (!email?.trim()) return res.status(400).json({ error: 'El email es requerido' });
+  if (!passwordNueva?.trim()) return res.status(400).json({ error: 'La nueva contraseña es requerida' });
+  if (passwordNueva.length < 6) return res.status(400).json({ error: 'Mínimo 6 caracteres' });
+  if (passwordNueva !== confirmar) return res.status(400).json({ error: 'Las contraseñas no coinciden' });
+
+  const usuario = await prisma.usuario.findUnique({ where: { email } });
+  if (!usuario) return res.status(404).json({ error: 'No existe una cuenta con este email' });
+
+  const hash = await bcrypt.hash(passwordNueva, 10);
+  await prisma.usuario.update({ where: { id: usuario.id }, data: { password: hash } });
+  res.json({ message: 'Contraseña actualizada correctamente' });
+};

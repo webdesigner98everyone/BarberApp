@@ -21,10 +21,10 @@ app.get('/', (_req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/perfil', perfilRoutes);
 app.use('/api', barberiaRoutes);
 app.use('/api/reservas', reservasRoutes);
 app.use('/api/admin', adminRoutes);
-app.use('/api/perfil', perfilRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);

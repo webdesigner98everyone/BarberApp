@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../theme';
+import { registrarPushToken } from '../services/notificaciones';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import RecuperarPasswordScreen from '../screens/RecuperarPasswordScreen';
@@ -120,6 +121,7 @@ export default function AppNavigator() {
       setAutenticado(!!token);
       setRol(usuario?.rol ?? 'cliente');
       setLoading(false);
+      if (token) registrarPushToken();
     });
   }, []);
 

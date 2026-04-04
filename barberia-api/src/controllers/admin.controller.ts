@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import prisma from '../lib/prisma';
+import { enviarNotificacion } from '../lib/notificaciones';
 
 export const getReservasHoy = async (req: Request, res: Response) => {
   const barberiaId = (req as any).usuario.barberiaId;
@@ -28,13 +29,35 @@ export const getTodasReservas = async (req: Request, res: Response) => {
 
 export const completarReserva = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const reserva = await prisma.reserva.update({ where: { id: Number(id) }, data: { estado: 'completada' } });
+  const reserva = await prisma.reserva.update({
+    where: { id: Number(id) },
+    data: { estado: 'completada' },
+    include: { usuario: true, barbero: true, servicio: true }
+  });
+  if (reserva.usuario.pushToken) {
+    await enviarNotificacion(
+      reserva.usuario.pushToken,
+      '✅ Cita completada',
+      `Tu cita con ${reserva.barbero.nombre} - ${reserva.servicio.nombre} fue completada. ¡Gracias por visitarnos!`
+    );
+  }
   res.json(reserva);
 };
 
 export const cancelarReservaAdmin = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const reserva = await prisma.reserva.update({ where: { id: Number(id) }, data: { estado: 'cancelada' } });
+  const reserva = await prisma.reserva.update({
+    where: { id: Number(id) },
+    data: { estado: 'cancelada' },
+    include: { usuario: true, barbero: true, servicio: true }
+  });
+  if (reserva.usuario.pushToken) {
+    await enviarNotificacion(
+      reserva.usuario.pushToken,
+      '❌ Cita cancelada',
+      `Tu cita con ${reserva.barbero.nombre} - ${reserva.servicio.nombre} fue cancelada por el administrador`
+    );
+  }
   res.json(reserva);
 };
 

@@ -16,5 +16,12 @@ router.use(authMiddleware);
 router.get('/', getPerfil);
 router.put('/', updatePerfil);
 router.patch('/password', cambiarPassword);
+router.post('/push-token', async (req, res) => {
+  const id = (req as any).usuario.id;
+  const { pushToken } = req.body;
+  const prisma = (await import('../lib/prisma')).default;
+  await prisma.usuario.update({ where: { id }, data: { pushToken } });
+  res.json({ message: 'Token guardado' });
+});
 
 export default router;

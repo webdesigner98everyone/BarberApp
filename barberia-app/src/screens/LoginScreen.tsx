@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator,
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { theme } from '../theme';
 import { apiPublica } from '../services/api';
+import { registrarPushToken } from '../services/notificaciones';
 
 export default function LoginScreen({ navigation }: any) {
   const [email, setEmail] = useState('');
@@ -30,6 +31,7 @@ export default function LoginScreen({ navigation }: any) {
       await AsyncStorage.setItem('token', data.token);
       await AsyncStorage.setItem('usuario', JSON.stringify(data.usuario));
       navigation.replace('Main', { rol: data.usuario.rol });
+      setTimeout(() => registrarPushToken(), 2000);
     } catch {
       setErrores({ general: 'Email o contraseña incorrectos' });
     } finally {

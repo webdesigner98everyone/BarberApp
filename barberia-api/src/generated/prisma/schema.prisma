@@ -31,6 +31,7 @@ model Usuario {
   telefono         String?
   foto_url         String?   @db.LongText
   fecha_nacimiento DateTime?
+  pushToken        String?
   barberiaId       Int?
   barberia         Barberia? @relation(fields: [barberiaId], references: [id])
   reservas         Reserva[]

@@ -2580,6 +2580,7 @@ export namespace Prisma {
     telefono: string | null
     foto_url: string | null
     fecha_nacimiento: Date | null
+    pushToken: string | null
     barberiaId: number | null
     createdAt: Date | null
   }
@@ -2593,6 +2594,7 @@ export namespace Prisma {
     telefono: string | null
     foto_url: string | null
     fecha_nacimiento: Date | null
+    pushToken: string | null
     barberiaId: number | null
     createdAt: Date | null
   }
@@ -2606,6 +2608,7 @@ export namespace Prisma {
     telefono: number
     foto_url: number
     fecha_nacimiento: number
+    pushToken: number
     barberiaId: number
     createdAt: number
     _all: number
@@ -2631,6 +2634,7 @@ export namespace Prisma {
     telefono?: true
     foto_url?: true
     fecha_nacimiento?: true
+    pushToken?: true
     barberiaId?: true
     createdAt?: true
   }
@@ -2644,6 +2648,7 @@ export namespace Prisma {
     telefono?: true
     foto_url?: true
     fecha_nacimiento?: true
+    pushToken?: true
     barberiaId?: true
     createdAt?: true
   }
@@ -2657,6 +2662,7 @@ export namespace Prisma {
     telefono?: true
     foto_url?: true
     fecha_nacimiento?: true
+    pushToken?: true
     barberiaId?: true
     createdAt?: true
     _all?: true
@@ -2757,6 +2763,7 @@ export namespace Prisma {
     telefono: string | null
     foto_url: string | null
     fecha_nacimiento: Date | null
+    pushToken: string | null
     barberiaId: number | null
     createdAt: Date
     _count: UsuarioCountAggregateOutputType | null
@@ -2789,6 +2796,7 @@ export namespace Prisma {
     telefono?: boolean
     foto_url?: boolean
     fecha_nacimiento?: boolean
+    pushToken?: boolean
     barberiaId?: boolean
     createdAt?: boolean
     barberia?: boolean | Usuario$barberiaArgs<ExtArgs>
@@ -2806,6 +2814,7 @@ export namespace Prisma {
     telefono?: boolean
     foto_url?: boolean
     fecha_nacimiento?: boolean
+    pushToken?: boolean
     barberiaId?: boolean
     createdAt?: boolean
   }
@@ -2831,6 +2840,7 @@ export namespace Prisma {
       telefono: string | null
       foto_url: string | null
       fecha_nacimiento: Date | null
+      pushToken: string | null
       barberiaId: number | null
       createdAt: Date
     }, ExtArgs["result"]["usuario"]>
@@ -3212,6 +3222,7 @@ export namespace Prisma {
     readonly telefono: FieldRef<"Usuario", 'String'>
     readonly foto_url: FieldRef<"Usuario", 'String'>
     readonly fecha_nacimiento: FieldRef<"Usuario", 'DateTime'>
+    readonly pushToken: FieldRef<"Usuario", 'String'>
     readonly barberiaId: FieldRef<"Usuario", 'Int'>
     readonly createdAt: FieldRef<"Usuario", 'DateTime'>
   }
@@ -8411,6 +8422,7 @@ export namespace Prisma {
     telefono: 'telefono',
     foto_url: 'foto_url',
     fecha_nacimiento: 'fecha_nacimiento',
+    pushToken: 'pushToken',
     barberiaId: 'barberiaId',
     createdAt: 'createdAt'
   };
@@ -8626,6 +8638,7 @@ export namespace Prisma {
     telefono?: StringNullableFilter<"Usuario"> | string | null
     foto_url?: StringNullableFilter<"Usuario"> | string | null
     fecha_nacimiento?: DateTimeNullableFilter<"Usuario"> | Date | string | null
+    pushToken?: StringNullableFilter<"Usuario"> | string | null
     barberiaId?: IntNullableFilter<"Usuario"> | number | null
     createdAt?: DateTimeFilter<"Usuario"> | Date | string
     barberia?: XOR<BarberiaNullableRelationFilter, BarberiaWhereInput> | null
@@ -8641,6 +8654,7 @@ export namespace Prisma {
     telefono?: SortOrderInput | SortOrder
     foto_url?: SortOrderInput | SortOrder
     fecha_nacimiento?: SortOrderInput | SortOrder
+    pushToken?: SortOrderInput | SortOrder
     barberiaId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     barberia?: BarberiaOrderByWithRelationInput
@@ -8659,6 +8673,7 @@ export namespace Prisma {
     telefono?: StringNullableFilter<"Usuario"> | string | null
     foto_url?: StringNullableFilter<"Usuario"> | string | null
     fecha_nacimiento?: DateTimeNullableFilter<"Usuario"> | Date | string | null
+    pushToken?: StringNullableFilter<"Usuario"> | string | null
     barberiaId?: IntNullableFilter<"Usuario"> | number | null
     createdAt?: DateTimeFilter<"Usuario"> | Date | string
     barberia?: XOR<BarberiaNullableRelationFilter, BarberiaWhereInput> | null
@@ -8674,6 +8689,7 @@ export namespace Prisma {
     telefono?: SortOrderInput | SortOrder
     foto_url?: SortOrderInput | SortOrder
     fecha_nacimiento?: SortOrderInput | SortOrder
+    pushToken?: SortOrderInput | SortOrder
     barberiaId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: UsuarioCountOrderByAggregateInput
@@ -8695,6 +8711,7 @@ export namespace Prisma {
     telefono?: StringNullableWithAggregatesFilter<"Usuario"> | string | null
     foto_url?: StringNullableWithAggregatesFilter<"Usuario"> | string | null
     fecha_nacimiento?: DateTimeNullableWithAggregatesFilter<"Usuario"> | Date | string | null
+    pushToken?: StringNullableWithAggregatesFilter<"Usuario"> | string | null
     barberiaId?: IntNullableWithAggregatesFilter<"Usuario"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"Usuario"> | Date | string
   }
@@ -9141,6 +9158,7 @@ export namespace Prisma {
     telefono?: string | null
     foto_url?: string | null
     fecha_nacimiento?: Date | string | null
+    pushToken?: string | null
     createdAt?: Date | string
     barberia?: BarberiaCreateNestedOneWithoutUsuariosInput
     reservas?: ReservaCreateNestedManyWithoutUsuarioInput
@@ -9155,6 +9173,7 @@ export namespace Prisma {
     telefono?: string | null
     foto_url?: string | null
     fecha_nacimiento?: Date | string | null
+    pushToken?: string | null
     barberiaId?: number | null
     createdAt?: Date | string
     reservas?: ReservaUncheckedCreateNestedManyWithoutUsuarioInput
@@ -9168,6 +9187,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     foto_url?: NullableStringFieldUpdateOperationsInput | string | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    pushToken?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     barberia?: BarberiaUpdateOneWithoutUsuariosNestedInput
     reservas?: ReservaUpdateManyWithoutUsuarioNestedInput
@@ -9182,6 +9202,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     foto_url?: NullableStringFieldUpdateOperationsInput | string | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    pushToken?: NullableStringFieldUpdateOperationsInput | string | null
     barberiaId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reservas?: ReservaUncheckedUpdateManyWithoutUsuarioNestedInput
@@ -9196,6 +9217,7 @@ export namespace Prisma {
     telefono?: string | null
     foto_url?: string | null
     fecha_nacimiento?: Date | string | null
+    pushToken?: string | null
     barberiaId?: number | null
     createdAt?: Date | string
   }
@@ -9208,6 +9230,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     foto_url?: NullableStringFieldUpdateOperationsInput | string | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    pushToken?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -9220,6 +9243,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     foto_url?: NullableStringFieldUpdateOperationsInput | string | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    pushToken?: NullableStringFieldUpdateOperationsInput | string | null
     barberiaId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9804,6 +9828,7 @@ export namespace Prisma {
     telefono?: SortOrder
     foto_url?: SortOrder
     fecha_nacimiento?: SortOrder
+    pushToken?: SortOrder
     barberiaId?: SortOrder
     createdAt?: SortOrder
   }
@@ -9822,6 +9847,7 @@ export namespace Prisma {
     telefono?: SortOrder
     foto_url?: SortOrder
     fecha_nacimiento?: SortOrder
+    pushToken?: SortOrder
     barberiaId?: SortOrder
     createdAt?: SortOrder
   }
@@ -9835,6 +9861,7 @@ export namespace Prisma {
     telefono?: SortOrder
     foto_url?: SortOrder
     fecha_nacimiento?: SortOrder
+    pushToken?: SortOrder
     barberiaId?: SortOrder
     createdAt?: SortOrder
   }
@@ -10974,6 +11001,7 @@ export namespace Prisma {
     telefono?: string | null
     foto_url?: string | null
     fecha_nacimiento?: Date | string | null
+    pushToken?: string | null
     createdAt?: Date | string
     reservas?: ReservaCreateNestedManyWithoutUsuarioInput
   }
@@ -10987,6 +11015,7 @@ export namespace Prisma {
     telefono?: string | null
     foto_url?: string | null
     fecha_nacimiento?: Date | string | null
+    pushToken?: string | null
     createdAt?: Date | string
     reservas?: ReservaUncheckedCreateNestedManyWithoutUsuarioInput
   }
@@ -11165,6 +11194,7 @@ export namespace Prisma {
     telefono?: StringNullableFilter<"Usuario"> | string | null
     foto_url?: StringNullableFilter<"Usuario"> | string | null
     fecha_nacimiento?: DateTimeNullableFilter<"Usuario"> | Date | string | null
+    pushToken?: StringNullableFilter<"Usuario"> | string | null
     barberiaId?: IntNullableFilter<"Usuario"> | number | null
     createdAt?: DateTimeFilter<"Usuario"> | Date | string
   }
@@ -11695,6 +11725,7 @@ export namespace Prisma {
     telefono?: string | null
     foto_url?: string | null
     fecha_nacimiento?: Date | string | null
+    pushToken?: string | null
     createdAt?: Date | string
     barberia?: BarberiaCreateNestedOneWithoutUsuariosInput
   }
@@ -11708,6 +11739,7 @@ export namespace Prisma {
     telefono?: string | null
     foto_url?: string | null
     fecha_nacimiento?: Date | string | null
+    pushToken?: string | null
     barberiaId?: number | null
     createdAt?: Date | string
   }
@@ -11816,6 +11848,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     foto_url?: NullableStringFieldUpdateOperationsInput | string | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    pushToken?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     barberia?: BarberiaUpdateOneWithoutUsuariosNestedInput
   }
@@ -11829,6 +11862,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     foto_url?: NullableStringFieldUpdateOperationsInput | string | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    pushToken?: NullableStringFieldUpdateOperationsInput | string | null
     barberiaId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12126,6 +12160,7 @@ export namespace Prisma {
     telefono?: string | null
     foto_url?: string | null
     fecha_nacimiento?: Date | string | null
+    pushToken?: string | null
     createdAt?: Date | string
   }
 
@@ -12173,6 +12208,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     foto_url?: NullableStringFieldUpdateOperationsInput | string | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    pushToken?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reservas?: ReservaUpdateManyWithoutUsuarioNestedInput
   }
@@ -12186,6 +12222,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     foto_url?: NullableStringFieldUpdateOperationsInput | string | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    pushToken?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reservas?: ReservaUncheckedUpdateManyWithoutUsuarioNestedInput
   }
@@ -12199,6 +12236,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     foto_url?: NullableStringFieldUpdateOperationsInput | string | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    pushToken?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

@@ -139,6 +139,7 @@ exports.Prisma.UsuarioScalarFieldEnum = {
   telefono: 'telefono',
   foto_url: 'foto_url',
   fecha_nacimiento: 'fecha_nacimiento',
+  pushToken: 'pushToken',
   barberiaId: 'barberiaId',
   createdAt: 'createdAt'
 };

@@ -25,12 +25,15 @@ export const createReserva = async (req: Request, res: Response) => {
   const admins = await prisma.usuario.findMany({
     where: { barberiaId: Number(usuario.barberiaId), rol: 'admin', pushToken: { not: null } }
   });
+  console.log('Admins encontrados:', admins.length);
+  console.log('Tokens:', admins.map((a) => a.pushToken));
   const tokens = admins.map((a) => a.pushToken!).filter(Boolean);
   await enviarNotificacionesMultiples(
     tokens,
     '📅 Nueva reserva',
     `${reserva.usuario.nombre} reservó con ${reserva.barbero.nombre} - ${reserva.servicio.nombre}`
   );
+  console.log('Notificación enviada a', tokens.length, 'admins');
 
   res.json(reserva);
 };

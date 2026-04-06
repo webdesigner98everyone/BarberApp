@@ -12,17 +12,25 @@ Notifications.setNotificationHandler({
 });
 
 export const registrarPushToken = async () => {
-  if (!Device.isDevice) return;
+  if (!Device.isDevice) {
+    console.log('No es un dispositivo físico');
+    return;
+  }
 
   const { status: existingStatus } = await Notifications.getPermissionsAsync();
   let finalStatus = existingStatus;
+  console.log('Permiso actual:', existingStatus);
 
   if (existingStatus !== 'granted') {
     const { status } = await Notifications.requestPermissionsAsync();
     finalStatus = status;
+    console.log('Nuevo permiso:', status);
   }
 
-  if (finalStatus !== 'granted') return;
+  if (finalStatus !== 'granted') {
+    console.log('Permiso denegado');
+    return;
+  }
 
   if (Platform.OS === 'android') {
     await Notifications.setNotificationChannelAsync('default', {
@@ -32,11 +40,13 @@ export const registrarPushToken = async () => {
     });
   }
 
-  const token = (await Notifications.getExpoPushTokenAsync()).data;
-
   try {
-    await api.post('/perfil/push-token', { pushToken: token });
-  } catch {
-    console.log('No se pudo guardar el push token');
+    const tokenData = await Notifications.getExpoPushTokenAsync();
+    const token = tokenData.data;
+    console.log('Push token obtenido:', token);
+    const response = await api.post('/perfil/push-token', { pushToken: token });
+    console.log('Token guardado:', response.data);
+  } catch (error) {
+    console.log('Error guardando push token:', error);
   }
 };

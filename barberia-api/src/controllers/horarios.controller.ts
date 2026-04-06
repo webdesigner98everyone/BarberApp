@@ -35,7 +35,7 @@ export const getHorariosDisponibles = async (req: Request, res: Response) => {
   finDia.setHours(23, 59, 59, 999);
 
   const reservas = await prisma.reserva.findMany({
-    where: { barberoId: Number(barberoId), fecha: { gte: inicioDia, lte: finDia }, estado: { not: 'cancelada' } }
+    where: { barberoId: Number(barberoId), fecha: { gte: inicioDia, lte: finDia }, estado: 'pendiente' }
   });
 
   const ocupados = reservas.map((r) => {

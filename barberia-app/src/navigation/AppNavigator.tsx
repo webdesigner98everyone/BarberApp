@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { TouchableOpacity, Text, Alert, ActivityIndicator, View } from 'react-native';
+import { TouchableOpacity, Text, Alert, ActivityIndicator, View, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -48,7 +48,7 @@ function ClienteTabs({ navigation }: any) {
       headerShown: false
     }}>
       <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Especialistas', tabBarIcon: ({ color, size }) => <Ionicons name="cut" color={color} size={size} /> }} />
-      <Tab.Screen name="MisCitas" component={MisCitasScreen} options={{ title: 'Mis Citas', tabBarIcon: ({ color, size }) => <Ionicons name="calendar" color={color} size={size} /> }} />
+      <Tab.Screen name="MisCitas" component={MisCitasScreen} options={{ title: 'Mis Reservas', tabBarIcon: ({ color, size }) => <Ionicons name="calendar" color={color} size={size} /> }} />
       <Tab.Screen name="Perfil" component={PerfilScreen} options={{ title: 'Perfil', tabBarIcon: ({ color, size }) => <Ionicons name="person" color={color} size={size} /> }} />
       <Tab.Screen
         name="Salir"
@@ -128,7 +128,7 @@ export default function AppNavigator() {
   if (loading) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: theme.colors.background }}>
-        <Text style={{ fontSize: 48, marginBottom: 16 }}>✂️</Text>
+        <Image source={require('../../assets/icon.png')} style={{ width: 130, height: 130, borderRadius: 28, marginBottom: 16 }} />
         <ActivityIndicator size="large" color={theme.colors.gold} />
       </View>
     );

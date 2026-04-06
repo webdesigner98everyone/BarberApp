@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert, TextInput, Modal } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert, TextInput, Modal, Image } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { theme } from '../theme';
 import api from '../services/api';
@@ -125,14 +125,17 @@ export default function BarberosAdminScreen({ navigation }: any) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.brand}>✂️ THE BARBER</Text>
-        <Text style={styles.title}>Barberos</Text>
+        <View style={styles.brandRow}>
+          <Image source={require('../../assets/icon.png')} style={styles.brandLogo} />
+          <Text style={styles.brand}>THE BARBER</Text>
+        </View>
+        <Text style={styles.title}>Colaboradores</Text>
       </View>
 
       <View style={styles.searchRow}>
         <TextInput
           style={styles.searchInput}
-          placeholder="Buscar barbero..."
+          placeholder="Buscar colaborador..."
           placeholderTextColor={theme.colors.gray}
           value={filtro}
           onChangeText={setFiltro}
@@ -148,7 +151,7 @@ export default function BarberosAdminScreen({ navigation }: any) {
         contentContainerStyle={{ paddingBottom: 20 }}
         ListEmptyComponent={
           <View style={styles.empty}>
-            <Text style={styles.emptyText}>No se encontraron barberos</Text>
+            <Text style={styles.emptyText}>No se encontraron colaboradores</Text>
           </View>
         }
         renderItem={({ item }) => (
@@ -189,7 +192,9 @@ export default function BarberosAdminScreen({ navigation }: any) {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: theme.colors.background },
   header: { padding: 24, paddingTop: 48, borderBottomWidth: 1, borderBottomColor: theme.colors.lightGray, marginBottom: 16 },
-  brand: { fontSize: 13, color: theme.colors.gold, letterSpacing: 3, fontWeight: 'bold', marginBottom: 8 },
+  brandRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 8 },
+  brandLogo: { width: 28, height: 28, borderRadius: 6, marginRight: 8 },
+  brand: { fontSize: 13, color: theme.colors.gold, letterSpacing: 3, fontWeight: 'bold' },
   title: { fontSize: 26, fontWeight: 'bold', color: theme.colors.white },
   searchRow: { flexDirection: 'row', marginHorizontal: 16, marginBottom: 16, gap: 8 },
   searchInput: { flex: 1, backgroundColor: theme.colors.card, borderRadius: 8, padding: 12, color: theme.colors.white, borderWidth: 1, borderColor: theme.colors.lightGray },

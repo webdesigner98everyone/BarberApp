@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert, ActivityIndicator, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../theme';
 import api from '../services/api';
@@ -47,7 +47,10 @@ export default function ConfiguracionScreen({ navigation }: any) {
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 40 }} keyboardShouldPersistTaps="always">
       <View style={styles.header}>
-        <Text style={styles.brand}>✂️ THE BARBER</Text>
+        <View style={styles.brandRow}>
+          <Image source={require('../../assets/icon.png')} style={styles.brandLogo} />
+          <Text style={styles.brand}>THE BARBER</Text>
+        </View>
         <Text style={styles.title}>Configuración</Text>
       </View>
 
@@ -93,7 +96,9 @@ export default function ConfiguracionScreen({ navigation }: any) {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: theme.colors.background, padding: 16 },
   header: { paddingTop: 32, borderBottomWidth: 1, borderBottomColor: theme.colors.lightGray, marginBottom: 24, paddingBottom: 16 },
-  brand: { fontSize: 13, color: theme.colors.gold, letterSpacing: 3, fontWeight: 'bold', marginBottom: 8 },
+  brandRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 8 },
+  brandLogo: { width: 28, height: 28, borderRadius: 6, marginRight: 8 },
+  brand: { fontSize: 13, color: theme.colors.gold, letterSpacing: 3, fontWeight: 'bold' },
   title: { fontSize: 26, fontWeight: 'bold', color: theme.colors.white },
   sectionTitle: { fontSize: 11, fontWeight: 'bold', color: theme.colors.gold, letterSpacing: 2, marginBottom: 12, marginTop: 8 },
   sublabel: { color: theme.colors.gray, fontSize: 13, marginBottom: 12 },

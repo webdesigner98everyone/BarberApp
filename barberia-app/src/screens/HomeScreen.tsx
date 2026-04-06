@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 import { theme } from '../theme';
@@ -31,7 +31,10 @@ export default function HomeScreen({ navigation }: any) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.brand}>✂️ THE BARBER</Text>
+        <View style={styles.brandRow}>
+          <Image source={require('../../assets/icon.png')} style={styles.brandLogo} />
+          <Text style={styles.brand}>THE BARBER</Text>
+        </View>
         <Text style={styles.title}>Nuestros Especialistas</Text>
         <Text style={styles.subtitle}>Selecciona tu especialista</Text>
       </View>
@@ -74,7 +77,9 @@ export default function HomeScreen({ navigation }: any) {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: theme.colors.background },
   header: { padding: 24, paddingTop: 48, borderBottomWidth: 1, borderBottomColor: theme.colors.lightGray, marginBottom: 16 },
-  brand: { fontSize: 13, color: theme.colors.gold, letterSpacing: 3, fontWeight: 'bold', marginBottom: 8 },
+  brandRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 8 },
+  brandLogo: { width: 28, height: 28, borderRadius: 6, marginRight: 8 },
+  brand: { fontSize: 13, color: theme.colors.gold, letterSpacing: 3, fontWeight: 'bold' },
   title: { fontSize: 26, fontWeight: 'bold', color: theme.colors.white },
   subtitle: { color: theme.colors.gray, marginTop: 4 },
   card: { flexDirection: 'row', alignItems: 'center', backgroundColor: theme.colors.card, marginHorizontal: 16, marginBottom: 12, borderRadius: 12, padding: 16, borderLeftWidth: 3, borderLeftColor: theme.colors.gold },

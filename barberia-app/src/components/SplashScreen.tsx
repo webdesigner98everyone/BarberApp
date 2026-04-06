@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, Animated } from 'react-native';
+import { View, Text, StyleSheet, Animated, Image } from 'react-native';
 import { theme } from '../theme';
 
 interface Props {
@@ -27,9 +27,10 @@ export default function SplashScreen({ onFinish }: Props) {
 
   return (
     <Animated.View style={[styles.container, { opacity: screenOpacity }]}>
-      <Animated.Text style={[styles.logo, { opacity: logoOpacity, transform: [{ scale: logoScale }] }]}>
-        ✂️
-      </Animated.Text>
+      <Animated.Image
+        source={require('../../assets/icon.png')}
+        style={[styles.logo, { opacity: logoOpacity, transform: [{ scale: logoScale }] }]}
+      />
 
       <Animated.Text style={[styles.title, { opacity: titleOpacity }]}>
         THE BARBER
@@ -48,7 +49,7 @@ export default function SplashScreen({ onFinish }: Props) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: theme.colors.background },
-  logo: { fontSize: 80, marginBottom: 16 },
+  logo: { width: 140, height: 140, borderRadius: 32, marginBottom: 16 },
   title: { fontSize: 36, fontWeight: 'bold', color: theme.colors.gold, letterSpacing: 6 },
   subtitle: { color: theme.colors.gray, fontSize: 14, letterSpacing: 2, marginTop: 8, marginBottom: 40 },
   barContainer: { width: 200, height: 3, backgroundColor: theme.colors.lightGray, borderRadius: 2, overflow: 'hidden' },

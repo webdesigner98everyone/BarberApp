@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, ActivityIndicator, Image } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../theme';
@@ -31,7 +31,10 @@ export default function EstadisticasScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 40 }}>
       <View style={styles.header}>
-        <Text style={styles.brand}>✂️ THE BARBER</Text>
+        <View style={styles.brandRow}>
+          <Image source={require('../../assets/icon.png')} style={styles.brandLogo} />
+          <Text style={styles.brand}>THE BARBER</Text>
+        </View>
         <Text style={styles.title}>Estadísticas</Text>
         <Text style={styles.subtitle}>Resumen del mes actual</Text>
       </View>
@@ -91,7 +94,7 @@ export default function EstadisticasScreen() {
       )}
 
       {/* Top servicios */}
-      <Text style={styles.sectionTitle}>✂️ TOP SERVICIOS</Text>
+      <Text style={styles.sectionTitle}>💈 TOP SERVICIOS</Text>
       {data.topServicios.length === 0 ? (
         <Text style={styles.sinDatos}>Sin datos este mes</Text>
       ) : (
@@ -130,7 +133,9 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: theme.colors.background },
   loading: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: theme.colors.background },
   header: { padding: 24, paddingTop: 48, borderBottomWidth: 1, borderBottomColor: theme.colors.lightGray, marginBottom: 16 },
-  brand: { fontSize: 13, color: theme.colors.gold, letterSpacing: 3, fontWeight: 'bold', marginBottom: 8 },
+  brandRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 8 },
+  brandLogo: { width: 28, height: 28, borderRadius: 6, marginRight: 8 },
+  brand: { fontSize: 13, color: theme.colors.gold, letterSpacing: 3, fontWeight: 'bold' },
   title: { fontSize: 26, fontWeight: 'bold', color: theme.colors.white },
   subtitle: { color: theme.colors.gray, marginTop: 4 },
   sectionTitle: { fontSize: 11, fontWeight: 'bold', color: theme.colors.gold, letterSpacing: 2, marginHorizontal: 16, marginTop: 20, marginBottom: 12 },

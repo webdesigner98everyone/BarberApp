@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator, ScrollView, Keyboard } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator, ScrollView, Keyboard, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { theme } from '../theme';
 import { apiPublica } from '../services/api';
@@ -46,7 +46,7 @@ export default function LoginScreen({ navigation }: any) {
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.header}>
-        <Text style={styles.logo}>✂️</Text>
+        <Image source={require('../../assets/icon.png')} style={styles.logo} />
         <Text style={styles.title}>THE BARBER</Text>
         <Text style={styles.subtitle}>Tu estilo, tu identidad</Text>
       </View>
@@ -102,9 +102,9 @@ export default function LoginScreen({ navigation }: any) {
 }
 
 const styles = StyleSheet.create({
-  container: { flexGrow: 1, justifyContent: 'center', padding: 24, backgroundColor: theme.colors.background },
-  header: { alignItems: 'center', marginBottom: 40 },
-  logo: { fontSize: 56 },
+  container: { flexGrow: 1, justifyContent: 'center', padding: 24, backgroundColor: theme.colors.background, paddingBottom: 60 },
+  header: { alignItems: 'center', marginBottom: 32, marginTop: -70 },
+  logo: { width: 190, height: 190, borderRadius: 40, marginBottom: 8 },
   title: { fontSize: 32, fontWeight: 'bold', color: theme.colors.gold, letterSpacing: 4, marginTop: 8 },
   subtitle: { color: theme.colors.gray, fontSize: 14, marginTop: 4, letterSpacing: 1 },
   label: { fontSize: 12, fontWeight: '600', marginBottom: 6, color: theme.colors.gray, letterSpacing: 1 },

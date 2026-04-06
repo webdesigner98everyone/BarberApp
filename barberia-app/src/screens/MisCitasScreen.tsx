@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { theme, formatPrecio } from '../theme';
 import { useConfig, formatearPrecio } from '../context/ConfigContext';
@@ -41,8 +41,11 @@ export default function MisCitasScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.brand}>✂️ THE BARBER</Text>
-        <Text style={styles.title}>Mis Citas</Text>
+        <View style={styles.brandRow}>
+          <Image source={require('../../assets/icon.png')} style={styles.brandLogo} />
+          <Text style={styles.brand}>THE BARBER</Text>
+        </View>
+        <Text style={styles.title}>Mis Reservas</Text>
       </View>
 
       <FlatList
@@ -52,7 +55,7 @@ export default function MisCitasScreen() {
         ListEmptyComponent={
           <View style={styles.empty}>
             <Text style={styles.emptyIcon}>📅</Text>
-            <Text style={styles.emptyText}>No tienes citas aún</Text>
+            <Text style={styles.emptyText}>No tienes reservas aún</Text>
             <Text style={styles.emptySubtext}>Reserva con uno de nuestros barberos</Text>
           </View>
         }
@@ -90,7 +93,9 @@ export default function MisCitasScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: theme.colors.background },
   header: { padding: 24, paddingTop: 48, borderBottomWidth: 1, borderBottomColor: theme.colors.lightGray, marginBottom: 16 },
-  brand: { fontSize: 13, color: theme.colors.gold, letterSpacing: 3, fontWeight: 'bold', marginBottom: 8 },
+  brandRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 8 },
+  brandLogo: { width: 28, height: 28, borderRadius: 6, marginRight: 8 },
+  brand: { fontSize: 13, color: theme.colors.gold, letterSpacing: 3, fontWeight: 'bold' },
   title: { fontSize: 26, fontWeight: 'bold', color: theme.colors.white },
   card: { backgroundColor: theme.colors.card, marginHorizontal: 16, marginBottom: 12, borderRadius: 12, padding: 16, borderLeftWidth: 3, borderLeftColor: theme.colors.gold },
   cardHeader: { flexDirection: 'row', alignItems: 'center' },

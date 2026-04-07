@@ -6,7 +6,8 @@ export const getReservas = async (req: Request, res: Response) => {
   const usuarioId = (req as any).usuario.id;
   const reservas = await prisma.reserva.findMany({
     where: { usuarioId },
-    include: { barbero: true, servicio: true }
+    include: { barbero: true, servicio: true },
+    orderBy: { fecha: 'desc' }
   });
   res.json(reservas);
 };
@@ -46,13 +47,15 @@ export const cancelarReserva = async (req: Request, res: Response) => {
     include: { usuario: true, barbero: true, servicio: true }
   });
 
-  if (reserva.usuario.pushToken) {
-    await enviarNotificacion(
-      reserva.usuario.pushToken,
-      '❌ Cita cancelada',
-      `Tu cita con ${reserva.barbero.nombre} - ${reserva.servicio.nombre} fue cancelada`
-    );
-  }
+  const admins = await prisma.usuario.findMany({
+    where: { barberiaId: reserva.barberiaId, rol: 'admin', pushToken: { not: null } }
+  });
+  const tokens = admins.map((a) => a.pushToken!).filter(Boolean);
+  await enviarNotificacionesMultiples(
+    tokens,
+    '❌ Reserva cancelada',
+    `${reserva.usuario.nombre} canceló su cita con ${reserva.barbero.nombre} - ${reserva.servicio.nombre}`
+  );
 
   res.json(reserva);
 };

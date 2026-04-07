@@ -39,6 +39,30 @@ export const createReserva = async (req: Request, res: Response) => {
   res.json(reserva);
 };
 
+export const reprogramarReserva = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { fecha } = req.body;
+  if (!fecha) return res.status(400).json({ error: 'La nueva fecha es requerida' });
+
+  const reserva = await prisma.reserva.update({
+    where: { id: Number(id) },
+    data: { fecha: new Date(fecha) },
+    include: { usuario: true, barbero: true, servicio: true }
+  });
+
+  const admins = await prisma.usuario.findMany({
+    where: { barberiaId: reserva.barberiaId, rol: 'admin', pushToken: { not: null } }
+  });
+  const tokens = admins.map((a) => a.pushToken!).filter(Boolean);
+  await enviarNotificacionesMultiples(
+    tokens,
+    '📅 Reserva reprogramada',
+    `${reserva.usuario.nombre} reprogramó su cita con ${reserva.barbero.nombre} - ${reserva.servicio.nombre}`
+  );
+
+  res.json(reserva);
+};
+
 export const cancelarReserva = async (req: Request, res: Response) => {
   const { id } = req.params;
   const reserva = await prisma.reserva.update({

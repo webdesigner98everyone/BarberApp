@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { TouchableOpacity, Text, Alert, ActivityIndicator, View, Image } from 'react-native';
+import React, { useEffect, useState, useRef } from 'react';
+import { TouchableOpacity, Text, Alert, ActivityIndicator, View, Image, AppState } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../theme';
 import { registrarPushToken } from '../services/notificaciones';
+import { navigationRef } from '../services/api';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import RecuperarPasswordScreen from '../screens/RecuperarPasswordScreen';
@@ -109,20 +110,59 @@ function AdminTabs({ navigation }: any) {
   );
 }
 
+const INACTIVIDAD_MS = 5 * 60 * 1000; // 5 minutos
+
 export default function AppNavigator() {
   const [loading, setLoading] = useState(true);
   const [autenticado, setAutenticado] = useState(false);
   const [rol, setRol] = useState<string | null>(null);
+  const appState = useRef(AppState.currentState);
 
   useEffect(() => {
-    AsyncStorage.multiGet(['token', 'usuario']).then(([tokenEntry, usuarioEntry]) => {
+    const iniciar = async () => {
+      const [tokenEntry, usuarioEntry, tsEntry] = await AsyncStorage.multiGet(['token', 'usuario', 'ultimaActividad']);
       const token = tokenEntry[1];
       const usuario = usuarioEntry[1] ? JSON.parse(usuarioEntry[1]) : null;
+      const ts = tsEntry[1];
+
+      // Si hay timestamp guardado significa que la app fue cerrada forzadamente
+      if (token && ts) {
+        await AsyncStorage.clear();
+        setAutenticado(false);
+        setRol(null);
+        setLoading(false);
+        return;
+      }
+
       setAutenticado(!!token);
       setRol(usuario?.rol ?? 'cliente');
-      setLoading(false);
       if (token) registrarPushToken();
+      setLoading(false);
+    };
+    iniciar();
+  }, []);
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', async (nextState) => {
+      if (appState.current === 'active' && nextState === 'background') {
+        await AsyncStorage.setItem('ultimaActividad', Date.now().toString());
+      }
+      if (appState.current === 'background' && nextState === 'active') {
+        const token = await AsyncStorage.getItem('token');
+        const ts = await AsyncStorage.getItem('ultimaActividad');
+        if (token && ts) {
+          if (Date.now() - Number(ts) >= INACTIVIDAD_MS) {
+            await AsyncStorage.clear();
+            if (navigationRef.isReady()) navigationRef.reset({ index: 0, routes: [{ name: 'Login' as never }] });
+            return;
+          }
+          // Volvió dentro del tiempo permitido, limpiar timestamp
+          await AsyncStorage.removeItem('ultimaActividad');
+        }
+      }
+      appState.current = nextState;
     });
+    return () => subscription.remove();
   }, []);
 
   if (loading) {
@@ -135,7 +175,7 @@ export default function AppNavigator() {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={autenticado ? 'Main' : 'Login'}>
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />

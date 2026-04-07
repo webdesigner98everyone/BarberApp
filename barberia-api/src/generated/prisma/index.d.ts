@@ -5571,6 +5571,8 @@ export namespace Prisma {
     barberiaId: number | null
     fecha: Date | null
     estado: string | null
+    notif15: boolean | null
+    notif5: boolean | null
     createdAt: Date | null
   }
 
@@ -5582,6 +5584,8 @@ export namespace Prisma {
     barberiaId: number | null
     fecha: Date | null
     estado: string | null
+    notif15: boolean | null
+    notif5: boolean | null
     createdAt: Date | null
   }
 
@@ -5593,6 +5597,8 @@ export namespace Prisma {
     barberiaId: number
     fecha: number
     estado: number
+    notif15: number
+    notif5: number
     createdAt: number
     _all: number
   }
@@ -5622,6 +5628,8 @@ export namespace Prisma {
     barberiaId?: true
     fecha?: true
     estado?: true
+    notif15?: true
+    notif5?: true
     createdAt?: true
   }
 
@@ -5633,6 +5641,8 @@ export namespace Prisma {
     barberiaId?: true
     fecha?: true
     estado?: true
+    notif15?: true
+    notif5?: true
     createdAt?: true
   }
 
@@ -5644,6 +5654,8 @@ export namespace Prisma {
     barberiaId?: true
     fecha?: true
     estado?: true
+    notif15?: true
+    notif5?: true
     createdAt?: true
     _all?: true
   }
@@ -5742,6 +5754,8 @@ export namespace Prisma {
     barberiaId: number
     fecha: Date
     estado: string
+    notif15: boolean
+    notif5: boolean
     createdAt: Date
     _count: ReservaCountAggregateOutputType | null
     _avg: ReservaAvgAggregateOutputType | null
@@ -5772,6 +5786,8 @@ export namespace Prisma {
     barberiaId?: boolean
     fecha?: boolean
     estado?: boolean
+    notif15?: boolean
+    notif5?: boolean
     createdAt?: boolean
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
     barbero?: boolean | BarberoDefaultArgs<ExtArgs>
@@ -5788,6 +5804,8 @@ export namespace Prisma {
     barberiaId?: boolean
     fecha?: boolean
     estado?: boolean
+    notif15?: boolean
+    notif5?: boolean
     createdAt?: boolean
   }
 
@@ -5814,6 +5832,8 @@ export namespace Prisma {
       barberiaId: number
       fecha: Date
       estado: string
+      notif15: boolean
+      notif5: boolean
       createdAt: Date
     }, ExtArgs["result"]["reserva"]>
     composites: {}
@@ -6195,6 +6215,8 @@ export namespace Prisma {
     readonly barberiaId: FieldRef<"Reserva", 'Int'>
     readonly fecha: FieldRef<"Reserva", 'DateTime'>
     readonly estado: FieldRef<"Reserva", 'String'>
+    readonly notif15: FieldRef<"Reserva", 'Boolean'>
+    readonly notif5: FieldRef<"Reserva", 'Boolean'>
     readonly createdAt: FieldRef<"Reserva", 'DateTime'>
   }
     
@@ -8464,6 +8486,8 @@ export namespace Prisma {
     barberiaId: 'barberiaId',
     fecha: 'fecha',
     estado: 'estado',
+    notif15: 'notif15',
+    notif5: 'notif5',
     createdAt: 'createdAt'
   };
 
@@ -8870,6 +8894,8 @@ export namespace Prisma {
     barberiaId?: IntFilter<"Reserva"> | number
     fecha?: DateTimeFilter<"Reserva"> | Date | string
     estado?: StringFilter<"Reserva"> | string
+    notif15?: BoolFilter<"Reserva"> | boolean
+    notif5?: BoolFilter<"Reserva"> | boolean
     createdAt?: DateTimeFilter<"Reserva"> | Date | string
     usuario?: XOR<UsuarioRelationFilter, UsuarioWhereInput>
     barbero?: XOR<BarberoRelationFilter, BarberoWhereInput>
@@ -8885,6 +8911,8 @@ export namespace Prisma {
     barberiaId?: SortOrder
     fecha?: SortOrder
     estado?: SortOrder
+    notif15?: SortOrder
+    notif5?: SortOrder
     createdAt?: SortOrder
     usuario?: UsuarioOrderByWithRelationInput
     barbero?: BarberoOrderByWithRelationInput
@@ -8903,6 +8931,8 @@ export namespace Prisma {
     barberiaId?: IntFilter<"Reserva"> | number
     fecha?: DateTimeFilter<"Reserva"> | Date | string
     estado?: StringFilter<"Reserva"> | string
+    notif15?: BoolFilter<"Reserva"> | boolean
+    notif5?: BoolFilter<"Reserva"> | boolean
     createdAt?: DateTimeFilter<"Reserva"> | Date | string
     usuario?: XOR<UsuarioRelationFilter, UsuarioWhereInput>
     barbero?: XOR<BarberoRelationFilter, BarberoWhereInput>
@@ -8918,6 +8948,8 @@ export namespace Prisma {
     barberiaId?: SortOrder
     fecha?: SortOrder
     estado?: SortOrder
+    notif15?: SortOrder
+    notif5?: SortOrder
     createdAt?: SortOrder
     _count?: ReservaCountOrderByAggregateInput
     _avg?: ReservaAvgOrderByAggregateInput
@@ -8937,6 +8969,8 @@ export namespace Prisma {
     barberiaId?: IntWithAggregatesFilter<"Reserva"> | number
     fecha?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
     estado?: StringWithAggregatesFilter<"Reserva"> | string
+    notif15?: BoolWithAggregatesFilter<"Reserva"> | boolean
+    notif5?: BoolWithAggregatesFilter<"Reserva"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
   }
 
@@ -9395,6 +9429,8 @@ export namespace Prisma {
   export type ReservaCreateInput = {
     fecha: Date | string
     estado?: string
+    notif15?: boolean
+    notif5?: boolean
     createdAt?: Date | string
     usuario: UsuarioCreateNestedOneWithoutReservasInput
     barbero: BarberoCreateNestedOneWithoutReservasInput
@@ -9410,12 +9446,16 @@ export namespace Prisma {
     barberiaId: number
     fecha: Date | string
     estado?: string
+    notif15?: boolean
+    notif5?: boolean
     createdAt?: Date | string
   }
 
   export type ReservaUpdateInput = {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
+    notif15?: BoolFieldUpdateOperationsInput | boolean
+    notif5?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuario?: UsuarioUpdateOneRequiredWithoutReservasNestedInput
     barbero?: BarberoUpdateOneRequiredWithoutReservasNestedInput
@@ -9431,6 +9471,8 @@ export namespace Prisma {
     barberiaId?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
+    notif15?: BoolFieldUpdateOperationsInput | boolean
+    notif5?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -9442,12 +9484,16 @@ export namespace Prisma {
     barberiaId: number
     fecha: Date | string
     estado?: string
+    notif15?: boolean
+    notif5?: boolean
     createdAt?: Date | string
   }
 
   export type ReservaUpdateManyMutationInput = {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
+    notif15?: BoolFieldUpdateOperationsInput | boolean
+    notif5?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -9459,6 +9505,8 @@ export namespace Prisma {
     barberiaId?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
+    notif15?: BoolFieldUpdateOperationsInput | boolean
+    notif5?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10053,6 +10101,8 @@ export namespace Prisma {
     barberiaId?: SortOrder
     fecha?: SortOrder
     estado?: SortOrder
+    notif15?: SortOrder
+    notif5?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -10072,6 +10122,8 @@ export namespace Prisma {
     barberiaId?: SortOrder
     fecha?: SortOrder
     estado?: SortOrder
+    notif15?: SortOrder
+    notif5?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -10083,6 +10135,8 @@ export namespace Prisma {
     barberiaId?: SortOrder
     fecha?: SortOrder
     estado?: SortOrder
+    notif15?: SortOrder
+    notif5?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -11093,6 +11147,8 @@ export namespace Prisma {
   export type ReservaCreateWithoutBarberiaInput = {
     fecha: Date | string
     estado?: string
+    notif15?: boolean
+    notif5?: boolean
     createdAt?: Date | string
     usuario: UsuarioCreateNestedOneWithoutReservasInput
     barbero: BarberoCreateNestedOneWithoutReservasInput
@@ -11106,6 +11162,8 @@ export namespace Prisma {
     servicioId: number
     fecha: Date | string
     estado?: string
+    notif15?: boolean
+    notif5?: boolean
     createdAt?: Date | string
   }
 
@@ -11284,6 +11342,8 @@ export namespace Prisma {
     barberiaId?: IntFilter<"Reserva"> | number
     fecha?: DateTimeFilter<"Reserva"> | Date | string
     estado?: StringFilter<"Reserva"> | string
+    notif15?: BoolFilter<"Reserva"> | boolean
+    notif5?: BoolFilter<"Reserva"> | boolean
     createdAt?: DateTimeFilter<"Reserva"> | Date | string
   }
 
@@ -11376,6 +11436,8 @@ export namespace Prisma {
   export type ReservaCreateWithoutUsuarioInput = {
     fecha: Date | string
     estado?: string
+    notif15?: boolean
+    notif5?: boolean
     createdAt?: Date | string
     barbero: BarberoCreateNestedOneWithoutReservasInput
     servicio: ServicioCreateNestedOneWithoutReservasInput
@@ -11389,6 +11451,8 @@ export namespace Prisma {
     barberiaId: number
     fecha: Date | string
     estado?: string
+    notif15?: boolean
+    notif5?: boolean
     createdAt?: Date | string
   }
 
@@ -11487,6 +11551,8 @@ export namespace Prisma {
   export type ReservaCreateWithoutBarberoInput = {
     fecha: Date | string
     estado?: string
+    notif15?: boolean
+    notif5?: boolean
     createdAt?: Date | string
     usuario: UsuarioCreateNestedOneWithoutReservasInput
     servicio: ServicioCreateNestedOneWithoutReservasInput
@@ -11500,6 +11566,8 @@ export namespace Prisma {
     barberiaId: number
     fecha: Date | string
     estado?: string
+    notif15?: boolean
+    notif5?: boolean
     createdAt?: Date | string
   }
 
@@ -11639,6 +11707,8 @@ export namespace Prisma {
   export type ReservaCreateWithoutServicioInput = {
     fecha: Date | string
     estado?: string
+    notif15?: boolean
+    notif5?: boolean
     createdAt?: Date | string
     usuario: UsuarioCreateNestedOneWithoutReservasInput
     barbero: BarberoCreateNestedOneWithoutReservasInput
@@ -11652,6 +11722,8 @@ export namespace Prisma {
     barberiaId: number
     fecha: Date | string
     estado?: string
+    notif15?: boolean
+    notif5?: boolean
     createdAt?: Date | string
   }
 
@@ -12189,6 +12261,8 @@ export namespace Prisma {
     servicioId: number
     fecha: Date | string
     estado?: string
+    notif15?: boolean
+    notif5?: boolean
     createdAt?: Date | string
   }
 
@@ -12301,6 +12375,8 @@ export namespace Prisma {
   export type ReservaUpdateWithoutBarberiaInput = {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
+    notif15?: BoolFieldUpdateOperationsInput | boolean
+    notif5?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuario?: UsuarioUpdateOneRequiredWithoutReservasNestedInput
     barbero?: BarberoUpdateOneRequiredWithoutReservasNestedInput
@@ -12314,6 +12390,8 @@ export namespace Prisma {
     servicioId?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
+    notif15?: BoolFieldUpdateOperationsInput | boolean
+    notif5?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12324,6 +12402,8 @@ export namespace Prisma {
     servicioId?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
+    notif15?: BoolFieldUpdateOperationsInput | boolean
+    notif5?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12357,12 +12437,16 @@ export namespace Prisma {
     barberiaId: number
     fecha: Date | string
     estado?: string
+    notif15?: boolean
+    notif5?: boolean
     createdAt?: Date | string
   }
 
   export type ReservaUpdateWithoutUsuarioInput = {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
+    notif15?: BoolFieldUpdateOperationsInput | boolean
+    notif5?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     barbero?: BarberoUpdateOneRequiredWithoutReservasNestedInput
     servicio?: ServicioUpdateOneRequiredWithoutReservasNestedInput
@@ -12376,6 +12460,8 @@ export namespace Prisma {
     barberiaId?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
+    notif15?: BoolFieldUpdateOperationsInput | boolean
+    notif5?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12386,6 +12472,8 @@ export namespace Prisma {
     barberiaId?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
+    notif15?: BoolFieldUpdateOperationsInput | boolean
+    notif5?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12396,6 +12484,8 @@ export namespace Prisma {
     barberiaId: number
     fecha: Date | string
     estado?: string
+    notif15?: boolean
+    notif5?: boolean
     createdAt?: Date | string
   }
 
@@ -12410,6 +12500,8 @@ export namespace Prisma {
   export type ReservaUpdateWithoutBarberoInput = {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
+    notif15?: BoolFieldUpdateOperationsInput | boolean
+    notif5?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuario?: UsuarioUpdateOneRequiredWithoutReservasNestedInput
     servicio?: ServicioUpdateOneRequiredWithoutReservasNestedInput
@@ -12423,6 +12515,8 @@ export namespace Prisma {
     barberiaId?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
+    notif15?: BoolFieldUpdateOperationsInput | boolean
+    notif5?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12433,6 +12527,8 @@ export namespace Prisma {
     barberiaId?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
+    notif15?: BoolFieldUpdateOperationsInput | boolean
+    notif5?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12466,12 +12562,16 @@ export namespace Prisma {
     barberiaId: number
     fecha: Date | string
     estado?: string
+    notif15?: boolean
+    notif5?: boolean
     createdAt?: Date | string
   }
 
   export type ReservaUpdateWithoutServicioInput = {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
+    notif15?: BoolFieldUpdateOperationsInput | boolean
+    notif5?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuario?: UsuarioUpdateOneRequiredWithoutReservasNestedInput
     barbero?: BarberoUpdateOneRequiredWithoutReservasNestedInput
@@ -12485,6 +12585,8 @@ export namespace Prisma {
     barberiaId?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
+    notif15?: BoolFieldUpdateOperationsInput | boolean
+    notif5?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12495,6 +12597,8 @@ export namespace Prisma {
     barberiaId?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: StringFieldUpdateOperationsInput | string
+    notif15?: BoolFieldUpdateOperationsInput | boolean
+    notif5?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

@@ -46,7 +46,7 @@ export const reprogramarReserva = async (req: Request, res: Response) => {
 
   const reserva = await prisma.reserva.update({
     where: { id: Number(id) },
-    data: { fecha: new Date(fecha) },
+    data: { fecha: new Date(fecha), notif15: false, notif5: false },
     include: { usuario: true, barbero: true, servicio: true }
   });
 

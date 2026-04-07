@@ -75,6 +75,8 @@ model Reserva {
   barberia   Barberia @relation(fields: [barberiaId], references: [id])
   fecha      DateTime
   estado     String   @default("pendiente")
+  notif15    Boolean  @default(false)
+  notif5     Boolean  @default(false)
   createdAt  DateTime @default(now())
 }
 

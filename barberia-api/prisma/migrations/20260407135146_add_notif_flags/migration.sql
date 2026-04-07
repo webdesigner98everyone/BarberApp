@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `reserva` ADD COLUMN `notif15` BOOLEAN NOT NULL DEFAULT false,
+    ADD COLUMN `notif5` BOOLEAN NOT NULL DEFAULT false;

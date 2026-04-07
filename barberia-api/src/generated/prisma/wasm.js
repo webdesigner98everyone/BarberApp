@@ -172,6 +172,8 @@ exports.Prisma.ReservaScalarFieldEnum = {
   barberiaId: 'barberiaId',
   fecha: 'fecha',
   estado: 'estado',
+  notif15: 'notif15',
+  notif5: 'notif5',
   createdAt: 'createdAt'
 };
 

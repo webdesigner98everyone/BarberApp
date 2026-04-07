@@ -6,6 +6,7 @@ import barberiaRoutes from './routes/barberia.routes';
 import reservasRoutes from './routes/reservas.routes';
 import adminRoutes from './routes/admin.routes';
 import perfilRoutes from './routes/perfil.routes';
+import { iniciarRecordatorios } from './lib/recordatorios';
 
 dotenv.config();
 
@@ -28,4 +29,5 @@ app.use('/api/admin', adminRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  iniciarRecordatorios();
 });

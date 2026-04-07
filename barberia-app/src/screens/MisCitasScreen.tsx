@@ -74,12 +74,14 @@ export default function MisCitasScreen() {
 
   const estadoColor: any = {
     pendiente: theme.colors.warning,
+    en_proceso: '#4A90D9',
     cancelada: theme.colors.error,
     completada: theme.colors.success
   };
 
   const estadoLabel: any = {
     pendiente: '⏳ Pendiente',
+    en_proceso: '🔄 En proceso',
     cancelada: '❌ Cancelada',
     completada: '✅ Completada'
   };

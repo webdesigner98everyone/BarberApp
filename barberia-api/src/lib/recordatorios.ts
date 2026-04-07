@@ -7,7 +7,13 @@ export const iniciarRecordatorios = () => {
     const ahora = new Date();
     const en15 = new Date(ahora.getTime() + 15 * 60 * 1000);
     const en5 = new Date(ahora.getTime() + 5 * 60 * 1000);
-    const margen = 60 * 1000; // 1 minuto de margen
+    const margen = 60 * 1000;
+
+    // Cambiar a 'en_proceso' las reservas cuya hora ya llegó
+    await prisma.reserva.updateMany({
+      where: { estado: 'pendiente', fecha: { lte: ahora } },
+      data: { estado: 'en_proceso' }
+    });
 
     const reservas = await prisma.reserva.findMany({
       where: {

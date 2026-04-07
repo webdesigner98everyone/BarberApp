@@ -49,12 +49,14 @@ export default function AdminScreen() {
 
   const estadoColor: any = {
     pendiente: theme.colors.warning,
+    en_proceso: '#4A90D9',
     cancelada: theme.colors.error,
     completada: theme.colors.success
   };
 
   const estadoLabel: any = {
     pendiente: '⏳ Pendiente',
+    en_proceso: '🔄 En proceso',
     cancelada: '❌ Cancelada',
     completada: '✅ Completada'
   };
@@ -132,22 +134,20 @@ export default function AdminScreen() {
               <Text style={styles.fecha}>
                 {new Date(item.fecha).toLocaleString('es-ES', { dateStyle: 'medium', timeStyle: 'short' })}
               </Text>
-              <View style={styles.actions}>
-                <Text style={[styles.estado, { color: estadoColor[item.estado] }]}>
-                  {estadoLabel[item.estado]}
-                </Text>
-                {item.estado === 'pendiente' && (
-                  <>
-                    <TouchableOpacity style={styles.completarBtn} onPress={() => completar(item.id)}>
-                      <Text style={styles.completarText}>Completar</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.cancelarBtn} onPress={() => cancelar(item.id)}>
-                      <Text style={styles.cancelarText}>Cancelar</Text>
-                    </TouchableOpacity>
-                  </>
-                )}
-              </View>
+              <Text style={[styles.estado, { color: estadoColor[item.estado] }]}>
+                {estadoLabel[item.estado]}
+              </Text>
             </View>
+            {(item.estado === 'pendiente' || item.estado === 'en_proceso') && (
+              <View style={styles.actions}>
+                <TouchableOpacity style={styles.completarBtn} onPress={() => completar(item.id)}>
+                  <Text style={styles.completarText}>Completar</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.cancelarBtn} onPress={() => cancelar(item.id)}>
+                  <Text style={styles.cancelarText}>Cancelar</Text>
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
         )}
       />
@@ -178,13 +178,13 @@ const styles = StyleSheet.create({
   barbero: { color: theme.colors.gray, fontSize: 13, flex: 1 },
   servicio: { color: theme.colors.gray, fontSize: 13, flex: 1 },
   divider: { height: 1, backgroundColor: theme.colors.lightGray, marginVertical: 12 },
-  cardFooter: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  cardFooter: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 },
   fecha: { color: theme.colors.gray, fontSize: 12 },
-  actions: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  actions: { flexDirection: 'row', gap: 8, marginTop: 10 },
   estado: { fontSize: 12, fontWeight: 'bold' },
-  completarBtn: { backgroundColor: '#1a3a2a', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 6, borderWidth: 1, borderColor: theme.colors.success },
+  completarBtn: { flex: 1, backgroundColor: '#1a3a2a', paddingHorizontal: 10, paddingVertical: 6, borderRadius: 6, borderWidth: 1, borderColor: theme.colors.success, alignItems: 'center' },
   completarText: { color: theme.colors.success, fontSize: 12, fontWeight: 'bold' },
-  cancelarBtn: { backgroundColor: '#3a1a1a', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 6, borderWidth: 1, borderColor: theme.colors.error },
+  cancelarBtn: { flex: 1, backgroundColor: '#3a1a1a', paddingHorizontal: 10, paddingVertical: 6, borderRadius: 6, borderWidth: 1, borderColor: theme.colors.error, alignItems: 'center' },
   cancelarText: { color: theme.colors.error, fontSize: 12, fontWeight: 'bold' },
   empty: { alignItems: 'center', marginTop: 80 },
   emptyIcon: { fontSize: 48, marginBottom: 16 },

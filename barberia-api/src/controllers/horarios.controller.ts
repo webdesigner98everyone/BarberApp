@@ -15,7 +15,7 @@ export const getHorariosDisponibles = async (req: Request, res: Response) => {
   // Usar duración del servicio si se provee, sino la config global
   let duracion = config?.duracion_turno ?? 30;
   if (servicioId) {
-    const servicio = await prisma.servicio.findUnique({ where: { id: Number(servicioId) } });
+    const servicio = await prisma.servicioActivo.findUnique({ where: { id: Number(servicioId) } });
     if (servicio) duracion = servicio.duracion_minutos;
   }
 

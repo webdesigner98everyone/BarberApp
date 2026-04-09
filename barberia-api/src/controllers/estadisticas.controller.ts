@@ -45,7 +45,7 @@ export const getEstadisticas = async (req: Request, res: Response) => {
 
   const serviciosConNombre = await Promise.all(
     topServicios.map(async (s) => {
-      const servicio = await prisma.servicio.findUnique({ where: { id: s.servicioId } });
+      const servicio = await prisma.servicioActivo.findUnique({ where: { id: s.servicioId } });
       return { nombre: servicio?.nombre ?? 'Desconocido', total: s._count.id };
     })
   );

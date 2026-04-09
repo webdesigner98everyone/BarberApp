@@ -29,11 +29,6 @@ export type Usuario = $Result.DefaultSelection<Prisma.$UsuarioPayload>
  */
 export type Barbero = $Result.DefaultSelection<Prisma.$BarberoPayload>
 /**
- * Model Servicio
- * 
- */
-export type Servicio = $Result.DefaultSelection<Prisma.$ServicioPayload>
-/**
  * Model ServicioCatalogo
  * 
  */
@@ -211,16 +206,6 @@ export class PrismaClient<
     * ```
     */
   get barbero(): Prisma.BarberoDelegate<ExtArgs>;
-
-  /**
-   * `prisma.servicio`: Exposes CRUD operations for the **Servicio** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Servicios
-    * const servicios = await prisma.servicio.findMany()
-    * ```
-    */
-  get servicio(): Prisma.ServicioDelegate<ExtArgs>;
 
   /**
    * `prisma.servicioCatalogo`: Exposes CRUD operations for the **ServicioCatalogo** model.
@@ -715,7 +700,6 @@ export namespace Prisma {
     Barberia: 'Barberia',
     Usuario: 'Usuario',
     Barbero: 'Barbero',
-    Servicio: 'Servicio',
     ServicioCatalogo: 'ServicioCatalogo',
     ServicioActivo: 'ServicioActivo',
     Reserva: 'Reserva',
@@ -736,7 +720,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "barberia" | "usuario" | "barbero" | "servicio" | "servicioCatalogo" | "servicioActivo" | "reserva" | "horario" | "configuracion"
+      modelProps: "barberia" | "usuario" | "barbero" | "servicioCatalogo" | "servicioActivo" | "reserva" | "horario" | "configuracion"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -935,72 +919,6 @@ export namespace Prisma {
           count: {
             args: Prisma.BarberoCountArgs<ExtArgs>
             result: $Utils.Optional<BarberoCountAggregateOutputType> | number
-          }
-        }
-      }
-      Servicio: {
-        payload: Prisma.$ServicioPayload<ExtArgs>
-        fields: Prisma.ServicioFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.ServicioFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServicioPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.ServicioFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServicioPayload>
-          }
-          findFirst: {
-            args: Prisma.ServicioFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServicioPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.ServicioFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServicioPayload>
-          }
-          findMany: {
-            args: Prisma.ServicioFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServicioPayload>[]
-          }
-          create: {
-            args: Prisma.ServicioCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServicioPayload>
-          }
-          createMany: {
-            args: Prisma.ServicioCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.ServicioDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServicioPayload>
-          }
-          update: {
-            args: Prisma.ServicioUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServicioPayload>
-          }
-          deleteMany: {
-            args: Prisma.ServicioDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.ServicioUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.ServicioUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServicioPayload>
-          }
-          aggregate: {
-            args: Prisma.ServicioAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateServicio>
-          }
-          groupBy: {
-            args: Prisma.ServicioGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ServicioGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.ServicioCountArgs<ExtArgs>
-            result: $Utils.Optional<ServicioCountAggregateOutputType> | number
           }
         }
       }
@@ -1497,7 +1415,6 @@ export namespace Prisma {
   export type BarberiaCountOutputType = {
     usuarios: number
     barberos: number
-    servicios: number
     serviciosActivos: number
     reservas: number
     horarios: number
@@ -1506,7 +1423,6 @@ export namespace Prisma {
   export type BarberiaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     usuarios?: boolean | BarberiaCountOutputTypeCountUsuariosArgs
     barberos?: boolean | BarberiaCountOutputTypeCountBarberosArgs
-    servicios?: boolean | BarberiaCountOutputTypeCountServiciosArgs
     serviciosActivos?: boolean | BarberiaCountOutputTypeCountServiciosActivosArgs
     reservas?: boolean | BarberiaCountOutputTypeCountReservasArgs
     horarios?: boolean | BarberiaCountOutputTypeCountHorariosArgs
@@ -1535,13 +1451,6 @@ export namespace Prisma {
    */
   export type BarberiaCountOutputTypeCountBarberosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BarberoWhereInput
-  }
-
-  /**
-   * BarberiaCountOutputType without action
-   */
-  export type BarberiaCountOutputTypeCountServiciosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ServicioWhereInput
   }
 
   /**
@@ -1638,37 +1547,6 @@ export namespace Prisma {
 
 
   /**
-   * Count Type ServicioCountOutputType
-   */
-
-  export type ServicioCountOutputType = {
-    reservas: number
-  }
-
-  export type ServicioCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    reservas?: boolean | ServicioCountOutputTypeCountReservasArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * ServicioCountOutputType without action
-   */
-  export type ServicioCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServicioCountOutputType
-     */
-    select?: ServicioCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * ServicioCountOutputType without action
-   */
-  export type ServicioCountOutputTypeCountReservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ReservaWhereInput
-  }
-
-
-  /**
    * Count Type ServicioCatalogoCountOutputType
    */
 
@@ -1696,6 +1574,37 @@ export namespace Prisma {
    */
   export type ServicioCatalogoCountOutputTypeCountServiciosActivosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ServicioActivoWhereInput
+  }
+
+
+  /**
+   * Count Type ServicioActivoCountOutputType
+   */
+
+  export type ServicioActivoCountOutputType = {
+    reservas: number
+  }
+
+  export type ServicioActivoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    reservas?: boolean | ServicioActivoCountOutputTypeCountReservasArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ServicioActivoCountOutputType without action
+   */
+  export type ServicioActivoCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioActivoCountOutputType
+     */
+    select?: ServicioActivoCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ServicioActivoCountOutputType without action
+   */
+  export type ServicioActivoCountOutputTypeCountReservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReservaWhereInput
   }
 
 
@@ -1903,7 +1812,6 @@ export namespace Prisma {
     createdAt?: boolean
     usuarios?: boolean | Barberia$usuariosArgs<ExtArgs>
     barberos?: boolean | Barberia$barberosArgs<ExtArgs>
-    servicios?: boolean | Barberia$serviciosArgs<ExtArgs>
     serviciosActivos?: boolean | Barberia$serviciosActivosArgs<ExtArgs>
     reservas?: boolean | Barberia$reservasArgs<ExtArgs>
     horarios?: boolean | Barberia$horariosArgs<ExtArgs>
@@ -1923,7 +1831,6 @@ export namespace Prisma {
   export type BarberiaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     usuarios?: boolean | Barberia$usuariosArgs<ExtArgs>
     barberos?: boolean | Barberia$barberosArgs<ExtArgs>
-    servicios?: boolean | Barberia$serviciosArgs<ExtArgs>
     serviciosActivos?: boolean | Barberia$serviciosActivosArgs<ExtArgs>
     reservas?: boolean | Barberia$reservasArgs<ExtArgs>
     horarios?: boolean | Barberia$horariosArgs<ExtArgs>
@@ -1936,7 +1843,6 @@ export namespace Prisma {
     objects: {
       usuarios: Prisma.$UsuarioPayload<ExtArgs>[]
       barberos: Prisma.$BarberoPayload<ExtArgs>[]
-      servicios: Prisma.$ServicioPayload<ExtArgs>[]
       serviciosActivos: Prisma.$ServicioActivoPayload<ExtArgs>[]
       reservas: Prisma.$ReservaPayload<ExtArgs>[]
       horarios: Prisma.$HorarioPayload<ExtArgs>[]
@@ -2290,7 +2196,6 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     usuarios<T extends Barberia$usuariosArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$usuariosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findMany"> | Null>
     barberos<T extends Barberia$barberosArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$barberosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BarberoPayload<ExtArgs>, T, "findMany"> | Null>
-    servicios<T extends Barberia$serviciosArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$serviciosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicioPayload<ExtArgs>, T, "findMany"> | Null>
     serviciosActivos<T extends Barberia$serviciosActivosArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$serviciosActivosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicioActivoPayload<ExtArgs>, T, "findMany"> | Null>
     reservas<T extends Barberia$reservasArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$reservasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservaPayload<ExtArgs>, T, "findMany"> | Null>
     horarios<T extends Barberia$horariosArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$horariosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HorarioPayload<ExtArgs>, T, "findMany"> | Null>
@@ -2665,26 +2570,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: BarberoScalarFieldEnum | BarberoScalarFieldEnum[]
-  }
-
-  /**
-   * Barberia.servicios
-   */
-  export type Barberia$serviciosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Servicio
-     */
-    select?: ServicioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServicioInclude<ExtArgs> | null
-    where?: ServicioWhereInput
-    orderBy?: ServicioOrderByWithRelationInput | ServicioOrderByWithRelationInput[]
-    cursor?: ServicioWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ServicioScalarFieldEnum | ServicioScalarFieldEnum[]
   }
 
   /**
@@ -4780,990 +4665,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Servicio
-   */
-
-  export type AggregateServicio = {
-    _count: ServicioCountAggregateOutputType | null
-    _avg: ServicioAvgAggregateOutputType | null
-    _sum: ServicioSumAggregateOutputType | null
-    _min: ServicioMinAggregateOutputType | null
-    _max: ServicioMaxAggregateOutputType | null
-  }
-
-  export type ServicioAvgAggregateOutputType = {
-    id: number | null
-    precio: number | null
-    duracion_minutos: number | null
-    barberiaId: number | null
-  }
-
-  export type ServicioSumAggregateOutputType = {
-    id: number | null
-    precio: number | null
-    duracion_minutos: number | null
-    barberiaId: number | null
-  }
-
-  export type ServicioMinAggregateOutputType = {
-    id: number | null
-    nombre: string | null
-    precio: number | null
-    duracion_minutos: number | null
-    categoria: string | null
-    activo: boolean | null
-    predefinido: boolean | null
-    barberiaId: number | null
-  }
-
-  export type ServicioMaxAggregateOutputType = {
-    id: number | null
-    nombre: string | null
-    precio: number | null
-    duracion_minutos: number | null
-    categoria: string | null
-    activo: boolean | null
-    predefinido: boolean | null
-    barberiaId: number | null
-  }
-
-  export type ServicioCountAggregateOutputType = {
-    id: number
-    nombre: number
-    precio: number
-    duracion_minutos: number
-    categoria: number
-    activo: number
-    predefinido: number
-    barberiaId: number
-    _all: number
-  }
-
-
-  export type ServicioAvgAggregateInputType = {
-    id?: true
-    precio?: true
-    duracion_minutos?: true
-    barberiaId?: true
-  }
-
-  export type ServicioSumAggregateInputType = {
-    id?: true
-    precio?: true
-    duracion_minutos?: true
-    barberiaId?: true
-  }
-
-  export type ServicioMinAggregateInputType = {
-    id?: true
-    nombre?: true
-    precio?: true
-    duracion_minutos?: true
-    categoria?: true
-    activo?: true
-    predefinido?: true
-    barberiaId?: true
-  }
-
-  export type ServicioMaxAggregateInputType = {
-    id?: true
-    nombre?: true
-    precio?: true
-    duracion_minutos?: true
-    categoria?: true
-    activo?: true
-    predefinido?: true
-    barberiaId?: true
-  }
-
-  export type ServicioCountAggregateInputType = {
-    id?: true
-    nombre?: true
-    precio?: true
-    duracion_minutos?: true
-    categoria?: true
-    activo?: true
-    predefinido?: true
-    barberiaId?: true
-    _all?: true
-  }
-
-  export type ServicioAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Servicio to aggregate.
-     */
-    where?: ServicioWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Servicios to fetch.
-     */
-    orderBy?: ServicioOrderByWithRelationInput | ServicioOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ServicioWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Servicios from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Servicios.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Servicios
-    **/
-    _count?: true | ServicioCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: ServicioAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ServicioSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ServicioMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ServicioMaxAggregateInputType
-  }
-
-  export type GetServicioAggregateType<T extends ServicioAggregateArgs> = {
-        [P in keyof T & keyof AggregateServicio]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateServicio[P]>
-      : GetScalarType<T[P], AggregateServicio[P]>
-  }
-
-
-
-
-  export type ServicioGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ServicioWhereInput
-    orderBy?: ServicioOrderByWithAggregationInput | ServicioOrderByWithAggregationInput[]
-    by: ServicioScalarFieldEnum[] | ServicioScalarFieldEnum
-    having?: ServicioScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ServicioCountAggregateInputType | true
-    _avg?: ServicioAvgAggregateInputType
-    _sum?: ServicioSumAggregateInputType
-    _min?: ServicioMinAggregateInputType
-    _max?: ServicioMaxAggregateInputType
-  }
-
-  export type ServicioGroupByOutputType = {
-    id: number
-    nombre: string
-    precio: number
-    duracion_minutos: number
-    categoria: string
-    activo: boolean
-    predefinido: boolean
-    barberiaId: number
-    _count: ServicioCountAggregateOutputType | null
-    _avg: ServicioAvgAggregateOutputType | null
-    _sum: ServicioSumAggregateOutputType | null
-    _min: ServicioMinAggregateOutputType | null
-    _max: ServicioMaxAggregateOutputType | null
-  }
-
-  type GetServicioGroupByPayload<T extends ServicioGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<ServicioGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ServicioGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ServicioGroupByOutputType[P]>
-            : GetScalarType<T[P], ServicioGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ServicioSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    nombre?: boolean
-    precio?: boolean
-    duracion_minutos?: boolean
-    categoria?: boolean
-    activo?: boolean
-    predefinido?: boolean
-    barberiaId?: boolean
-    barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
-    reservas?: boolean | Servicio$reservasArgs<ExtArgs>
-    _count?: boolean | ServicioCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["servicio"]>
-
-
-  export type ServicioSelectScalar = {
-    id?: boolean
-    nombre?: boolean
-    precio?: boolean
-    duracion_minutos?: boolean
-    categoria?: boolean
-    activo?: boolean
-    predefinido?: boolean
-    barberiaId?: boolean
-  }
-
-  export type ServicioInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
-    reservas?: boolean | Servicio$reservasArgs<ExtArgs>
-    _count?: boolean | ServicioCountOutputTypeDefaultArgs<ExtArgs>
-  }
-
-  export type $ServicioPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Servicio"
-    objects: {
-      barberia: Prisma.$BarberiaPayload<ExtArgs>
-      reservas: Prisma.$ReservaPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      nombre: string
-      precio: number
-      duracion_minutos: number
-      categoria: string
-      activo: boolean
-      predefinido: boolean
-      barberiaId: number
-    }, ExtArgs["result"]["servicio"]>
-    composites: {}
-  }
-
-  type ServicioGetPayload<S extends boolean | null | undefined | ServicioDefaultArgs> = $Result.GetResult<Prisma.$ServicioPayload, S>
-
-  type ServicioCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<ServicioFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: ServicioCountAggregateInputType | true
-    }
-
-  export interface ServicioDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Servicio'], meta: { name: 'Servicio' } }
-    /**
-     * Find zero or one Servicio that matches the filter.
-     * @param {ServicioFindUniqueArgs} args - Arguments to find a Servicio
-     * @example
-     * // Get one Servicio
-     * const servicio = await prisma.servicio.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends ServicioFindUniqueArgs>(args: SelectSubset<T, ServicioFindUniqueArgs<ExtArgs>>): Prisma__ServicioClient<$Result.GetResult<Prisma.$ServicioPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
-
-    /**
-     * Find one Servicio that matches the filter or throw an error with `error.code='P2025'` 
-     * if no matches were found.
-     * @param {ServicioFindUniqueOrThrowArgs} args - Arguments to find a Servicio
-     * @example
-     * // Get one Servicio
-     * const servicio = await prisma.servicio.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends ServicioFindUniqueOrThrowArgs>(args: SelectSubset<T, ServicioFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ServicioClient<$Result.GetResult<Prisma.$ServicioPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
-
-    /**
-     * Find the first Servicio that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServicioFindFirstArgs} args - Arguments to find a Servicio
-     * @example
-     * // Get one Servicio
-     * const servicio = await prisma.servicio.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends ServicioFindFirstArgs>(args?: SelectSubset<T, ServicioFindFirstArgs<ExtArgs>>): Prisma__ServicioClient<$Result.GetResult<Prisma.$ServicioPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
-
-    /**
-     * Find the first Servicio that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServicioFindFirstOrThrowArgs} args - Arguments to find a Servicio
-     * @example
-     * // Get one Servicio
-     * const servicio = await prisma.servicio.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends ServicioFindFirstOrThrowArgs>(args?: SelectSubset<T, ServicioFindFirstOrThrowArgs<ExtArgs>>): Prisma__ServicioClient<$Result.GetResult<Prisma.$ServicioPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
-
-    /**
-     * Find zero or more Servicios that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServicioFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Servicios
-     * const servicios = await prisma.servicio.findMany()
-     * 
-     * // Get first 10 Servicios
-     * const servicios = await prisma.servicio.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const servicioWithIdOnly = await prisma.servicio.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends ServicioFindManyArgs>(args?: SelectSubset<T, ServicioFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicioPayload<ExtArgs>, T, "findMany">>
-
-    /**
-     * Create a Servicio.
-     * @param {ServicioCreateArgs} args - Arguments to create a Servicio.
-     * @example
-     * // Create one Servicio
-     * const Servicio = await prisma.servicio.create({
-     *   data: {
-     *     // ... data to create a Servicio
-     *   }
-     * })
-     * 
-     */
-    create<T extends ServicioCreateArgs>(args: SelectSubset<T, ServicioCreateArgs<ExtArgs>>): Prisma__ServicioClient<$Result.GetResult<Prisma.$ServicioPayload<ExtArgs>, T, "create">, never, ExtArgs>
-
-    /**
-     * Create many Servicios.
-     * @param {ServicioCreateManyArgs} args - Arguments to create many Servicios.
-     * @example
-     * // Create many Servicios
-     * const servicio = await prisma.servicio.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends ServicioCreateManyArgs>(args?: SelectSubset<T, ServicioCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Servicio.
-     * @param {ServicioDeleteArgs} args - Arguments to delete one Servicio.
-     * @example
-     * // Delete one Servicio
-     * const Servicio = await prisma.servicio.delete({
-     *   where: {
-     *     // ... filter to delete one Servicio
-     *   }
-     * })
-     * 
-     */
-    delete<T extends ServicioDeleteArgs>(args: SelectSubset<T, ServicioDeleteArgs<ExtArgs>>): Prisma__ServicioClient<$Result.GetResult<Prisma.$ServicioPayload<ExtArgs>, T, "delete">, never, ExtArgs>
-
-    /**
-     * Update one Servicio.
-     * @param {ServicioUpdateArgs} args - Arguments to update one Servicio.
-     * @example
-     * // Update one Servicio
-     * const servicio = await prisma.servicio.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends ServicioUpdateArgs>(args: SelectSubset<T, ServicioUpdateArgs<ExtArgs>>): Prisma__ServicioClient<$Result.GetResult<Prisma.$ServicioPayload<ExtArgs>, T, "update">, never, ExtArgs>
-
-    /**
-     * Delete zero or more Servicios.
-     * @param {ServicioDeleteManyArgs} args - Arguments to filter Servicios to delete.
-     * @example
-     * // Delete a few Servicios
-     * const { count } = await prisma.servicio.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends ServicioDeleteManyArgs>(args?: SelectSubset<T, ServicioDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Servicios.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServicioUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Servicios
-     * const servicio = await prisma.servicio.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends ServicioUpdateManyArgs>(args: SelectSubset<T, ServicioUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Servicio.
-     * @param {ServicioUpsertArgs} args - Arguments to update or create a Servicio.
-     * @example
-     * // Update or create a Servicio
-     * const servicio = await prisma.servicio.upsert({
-     *   create: {
-     *     // ... data to create a Servicio
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Servicio we want to update
-     *   }
-     * })
-     */
-    upsert<T extends ServicioUpsertArgs>(args: SelectSubset<T, ServicioUpsertArgs<ExtArgs>>): Prisma__ServicioClient<$Result.GetResult<Prisma.$ServicioPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
-
-    /**
-     * Count the number of Servicios.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServicioCountArgs} args - Arguments to filter Servicios to count.
-     * @example
-     * // Count the number of Servicios
-     * const count = await prisma.servicio.count({
-     *   where: {
-     *     // ... the filter for the Servicios we want to count
-     *   }
-     * })
-    **/
-    count<T extends ServicioCountArgs>(
-      args?: Subset<T, ServicioCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ServicioCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Servicio.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServicioAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ServicioAggregateArgs>(args: Subset<T, ServicioAggregateArgs>): Prisma.PrismaPromise<GetServicioAggregateType<T>>
-
-    /**
-     * Group by Servicio.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServicioGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ServicioGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ServicioGroupByArgs['orderBy'] }
-        : { orderBy?: ServicioGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ServicioGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServicioGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Servicio model
-   */
-  readonly fields: ServicioFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Servicio.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__ServicioClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    barberia<T extends BarberiaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BarberiaDefaultArgs<ExtArgs>>): Prisma__BarberiaClient<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    reservas<T extends Servicio$reservasArgs<ExtArgs> = {}>(args?: Subset<T, Servicio$reservasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservaPayload<ExtArgs>, T, "findMany"> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Servicio model
-   */ 
-  interface ServicioFieldRefs {
-    readonly id: FieldRef<"Servicio", 'Int'>
-    readonly nombre: FieldRef<"Servicio", 'String'>
-    readonly precio: FieldRef<"Servicio", 'Float'>
-    readonly duracion_minutos: FieldRef<"Servicio", 'Int'>
-    readonly categoria: FieldRef<"Servicio", 'String'>
-    readonly activo: FieldRef<"Servicio", 'Boolean'>
-    readonly predefinido: FieldRef<"Servicio", 'Boolean'>
-    readonly barberiaId: FieldRef<"Servicio", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Servicio findUnique
-   */
-  export type ServicioFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Servicio
-     */
-    select?: ServicioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServicioInclude<ExtArgs> | null
-    /**
-     * Filter, which Servicio to fetch.
-     */
-    where: ServicioWhereUniqueInput
-  }
-
-  /**
-   * Servicio findUniqueOrThrow
-   */
-  export type ServicioFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Servicio
-     */
-    select?: ServicioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServicioInclude<ExtArgs> | null
-    /**
-     * Filter, which Servicio to fetch.
-     */
-    where: ServicioWhereUniqueInput
-  }
-
-  /**
-   * Servicio findFirst
-   */
-  export type ServicioFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Servicio
-     */
-    select?: ServicioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServicioInclude<ExtArgs> | null
-    /**
-     * Filter, which Servicio to fetch.
-     */
-    where?: ServicioWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Servicios to fetch.
-     */
-    orderBy?: ServicioOrderByWithRelationInput | ServicioOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Servicios.
-     */
-    cursor?: ServicioWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Servicios from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Servicios.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Servicios.
-     */
-    distinct?: ServicioScalarFieldEnum | ServicioScalarFieldEnum[]
-  }
-
-  /**
-   * Servicio findFirstOrThrow
-   */
-  export type ServicioFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Servicio
-     */
-    select?: ServicioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServicioInclude<ExtArgs> | null
-    /**
-     * Filter, which Servicio to fetch.
-     */
-    where?: ServicioWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Servicios to fetch.
-     */
-    orderBy?: ServicioOrderByWithRelationInput | ServicioOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Servicios.
-     */
-    cursor?: ServicioWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Servicios from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Servicios.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Servicios.
-     */
-    distinct?: ServicioScalarFieldEnum | ServicioScalarFieldEnum[]
-  }
-
-  /**
-   * Servicio findMany
-   */
-  export type ServicioFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Servicio
-     */
-    select?: ServicioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServicioInclude<ExtArgs> | null
-    /**
-     * Filter, which Servicios to fetch.
-     */
-    where?: ServicioWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Servicios to fetch.
-     */
-    orderBy?: ServicioOrderByWithRelationInput | ServicioOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Servicios.
-     */
-    cursor?: ServicioWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Servicios from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Servicios.
-     */
-    skip?: number
-    distinct?: ServicioScalarFieldEnum | ServicioScalarFieldEnum[]
-  }
-
-  /**
-   * Servicio create
-   */
-  export type ServicioCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Servicio
-     */
-    select?: ServicioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServicioInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Servicio.
-     */
-    data: XOR<ServicioCreateInput, ServicioUncheckedCreateInput>
-  }
-
-  /**
-   * Servicio createMany
-   */
-  export type ServicioCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Servicios.
-     */
-    data: ServicioCreateManyInput | ServicioCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Servicio update
-   */
-  export type ServicioUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Servicio
-     */
-    select?: ServicioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServicioInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Servicio.
-     */
-    data: XOR<ServicioUpdateInput, ServicioUncheckedUpdateInput>
-    /**
-     * Choose, which Servicio to update.
-     */
-    where: ServicioWhereUniqueInput
-  }
-
-  /**
-   * Servicio updateMany
-   */
-  export type ServicioUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Servicios.
-     */
-    data: XOR<ServicioUpdateManyMutationInput, ServicioUncheckedUpdateManyInput>
-    /**
-     * Filter which Servicios to update
-     */
-    where?: ServicioWhereInput
-  }
-
-  /**
-   * Servicio upsert
-   */
-  export type ServicioUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Servicio
-     */
-    select?: ServicioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServicioInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Servicio to update in case it exists.
-     */
-    where: ServicioWhereUniqueInput
-    /**
-     * In case the Servicio found by the `where` argument doesn't exist, create a new Servicio with this data.
-     */
-    create: XOR<ServicioCreateInput, ServicioUncheckedCreateInput>
-    /**
-     * In case the Servicio was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ServicioUpdateInput, ServicioUncheckedUpdateInput>
-  }
-
-  /**
-   * Servicio delete
-   */
-  export type ServicioDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Servicio
-     */
-    select?: ServicioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServicioInclude<ExtArgs> | null
-    /**
-     * Filter which Servicio to delete.
-     */
-    where: ServicioWhereUniqueInput
-  }
-
-  /**
-   * Servicio deleteMany
-   */
-  export type ServicioDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Servicios to delete
-     */
-    where?: ServicioWhereInput
-  }
-
-  /**
-   * Servicio.reservas
-   */
-  export type Servicio$reservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Reserva
-     */
-    select?: ReservaSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReservaInclude<ExtArgs> | null
-    where?: ReservaWhereInput
-    orderBy?: ReservaOrderByWithRelationInput | ReservaOrderByWithRelationInput[]
-    cursor?: ReservaWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ReservaScalarFieldEnum | ReservaScalarFieldEnum[]
-  }
-
-  /**
-   * Servicio without action
-   */
-  export type ServicioDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Servicio
-     */
-    select?: ServicioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServicioInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model ServicioCatalogo
    */
 
@@ -6939,6 +5840,8 @@ export namespace Prisma {
     createdAt?: boolean
     barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
     catalogo?: boolean | ServicioActivo$catalogoArgs<ExtArgs>
+    reservas?: boolean | ServicioActivo$reservasArgs<ExtArgs>
+    _count?: boolean | ServicioActivoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["servicioActivo"]>
 
 
@@ -6957,6 +5860,8 @@ export namespace Prisma {
   export type ServicioActivoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
     catalogo?: boolean | ServicioActivo$catalogoArgs<ExtArgs>
+    reservas?: boolean | ServicioActivo$reservasArgs<ExtArgs>
+    _count?: boolean | ServicioActivoCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $ServicioActivoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6964,6 +5869,7 @@ export namespace Prisma {
     objects: {
       barberia: Prisma.$BarberiaPayload<ExtArgs>
       catalogo: Prisma.$ServicioCatalogoPayload<ExtArgs> | null
+      reservas: Prisma.$ReservaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -7317,6 +6223,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     barberia<T extends BarberiaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BarberiaDefaultArgs<ExtArgs>>): Prisma__BarberiaClient<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     catalogo<T extends ServicioActivo$catalogoArgs<ExtArgs> = {}>(args?: Subset<T, ServicioActivo$catalogoArgs<ExtArgs>>): Prisma__ServicioCatalogoClient<$Result.GetResult<Prisma.$ServicioCatalogoPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    reservas<T extends ServicioActivo$reservasArgs<ExtArgs> = {}>(args?: Subset<T, ServicioActivo$reservasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservaPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7669,6 +6576,26 @@ export namespace Prisma {
   }
 
   /**
+   * ServicioActivo.reservas
+   */
+  export type ServicioActivo$reservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reserva
+     */
+    select?: ReservaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReservaInclude<ExtArgs> | null
+    where?: ReservaWhereInput
+    orderBy?: ReservaOrderByWithRelationInput | ReservaOrderByWithRelationInput[]
+    cursor?: ReservaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReservaScalarFieldEnum | ReservaScalarFieldEnum[]
+  }
+
+  /**
    * ServicioActivo without action
    */
   export type ServicioActivoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7939,7 +6866,7 @@ export namespace Prisma {
     createdAt?: boolean
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
     barbero?: boolean | BarberoDefaultArgs<ExtArgs>
-    servicio?: boolean | ServicioDefaultArgs<ExtArgs>
+    servicio?: boolean | ServicioActivoDefaultArgs<ExtArgs>
     barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["reserva"]>
 
@@ -7960,7 +6887,7 @@ export namespace Prisma {
   export type ReservaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
     barbero?: boolean | BarberoDefaultArgs<ExtArgs>
-    servicio?: boolean | ServicioDefaultArgs<ExtArgs>
+    servicio?: boolean | ServicioActivoDefaultArgs<ExtArgs>
     barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
   }
 
@@ -7969,7 +6896,7 @@ export namespace Prisma {
     objects: {
       usuario: Prisma.$UsuarioPayload<ExtArgs>
       barbero: Prisma.$BarberoPayload<ExtArgs>
-      servicio: Prisma.$ServicioPayload<ExtArgs>
+      servicio: Prisma.$ServicioActivoPayload<ExtArgs>
       barberia: Prisma.$BarberiaPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -8325,7 +7252,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     usuario<T extends UsuarioDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsuarioDefaultArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     barbero<T extends BarberoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BarberoDefaultArgs<ExtArgs>>): Prisma__BarberoClient<$Result.GetResult<Prisma.$BarberoPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    servicio<T extends ServicioDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ServicioDefaultArgs<ExtArgs>>): Prisma__ServicioClient<$Result.GetResult<Prisma.$ServicioPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    servicio<T extends ServicioActivoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ServicioActivoDefaultArgs<ExtArgs>>): Prisma__ServicioActivoClient<$Result.GetResult<Prisma.$ServicioActivoPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     barberia<T extends BarberiaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BarberiaDefaultArgs<ExtArgs>>): Prisma__BarberiaClient<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -10649,20 +9576,6 @@ export namespace Prisma {
   export type BarberoScalarFieldEnum = (typeof BarberoScalarFieldEnum)[keyof typeof BarberoScalarFieldEnum]
 
 
-  export const ServicioScalarFieldEnum: {
-    id: 'id',
-    nombre: 'nombre',
-    precio: 'precio',
-    duracion_minutos: 'duracion_minutos',
-    categoria: 'categoria',
-    activo: 'activo',
-    predefinido: 'predefinido',
-    barberiaId: 'barberiaId'
-  };
-
-  export type ServicioScalarFieldEnum = (typeof ServicioScalarFieldEnum)[keyof typeof ServicioScalarFieldEnum]
-
-
   export const ServicioCatalogoScalarFieldEnum: {
     id: 'id',
     nombre: 'nombre',
@@ -10802,7 +9715,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Barberia"> | Date | string
     usuarios?: UsuarioListRelationFilter
     barberos?: BarberoListRelationFilter
-    servicios?: ServicioListRelationFilter
     serviciosActivos?: ServicioActivoListRelationFilter
     reservas?: ReservaListRelationFilter
     horarios?: HorarioListRelationFilter
@@ -10817,7 +9729,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     usuarios?: UsuarioOrderByRelationAggregateInput
     barberos?: BarberoOrderByRelationAggregateInput
-    servicios?: ServicioOrderByRelationAggregateInput
     serviciosActivos?: ServicioActivoOrderByRelationAggregateInput
     reservas?: ReservaOrderByRelationAggregateInput
     horarios?: HorarioOrderByRelationAggregateInput
@@ -10835,7 +9746,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Barberia"> | Date | string
     usuarios?: UsuarioListRelationFilter
     barberos?: BarberoListRelationFilter
-    servicios?: ServicioListRelationFilter
     serviciosActivos?: ServicioActivoListRelationFilter
     reservas?: ReservaListRelationFilter
     horarios?: HorarioListRelationFilter
@@ -11024,81 +9934,6 @@ export namespace Prisma {
     barberiaId?: IntWithAggregatesFilter<"Barbero"> | number
   }
 
-  export type ServicioWhereInput = {
-    AND?: ServicioWhereInput | ServicioWhereInput[]
-    OR?: ServicioWhereInput[]
-    NOT?: ServicioWhereInput | ServicioWhereInput[]
-    id?: IntFilter<"Servicio"> | number
-    nombre?: StringFilter<"Servicio"> | string
-    precio?: FloatFilter<"Servicio"> | number
-    duracion_minutos?: IntFilter<"Servicio"> | number
-    categoria?: StringFilter<"Servicio"> | string
-    activo?: BoolFilter<"Servicio"> | boolean
-    predefinido?: BoolFilter<"Servicio"> | boolean
-    barberiaId?: IntFilter<"Servicio"> | number
-    barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
-    reservas?: ReservaListRelationFilter
-  }
-
-  export type ServicioOrderByWithRelationInput = {
-    id?: SortOrder
-    nombre?: SortOrder
-    precio?: SortOrder
-    duracion_minutos?: SortOrder
-    categoria?: SortOrder
-    activo?: SortOrder
-    predefinido?: SortOrder
-    barberiaId?: SortOrder
-    barberia?: BarberiaOrderByWithRelationInput
-    reservas?: ReservaOrderByRelationAggregateInput
-  }
-
-  export type ServicioWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: ServicioWhereInput | ServicioWhereInput[]
-    OR?: ServicioWhereInput[]
-    NOT?: ServicioWhereInput | ServicioWhereInput[]
-    nombre?: StringFilter<"Servicio"> | string
-    precio?: FloatFilter<"Servicio"> | number
-    duracion_minutos?: IntFilter<"Servicio"> | number
-    categoria?: StringFilter<"Servicio"> | string
-    activo?: BoolFilter<"Servicio"> | boolean
-    predefinido?: BoolFilter<"Servicio"> | boolean
-    barberiaId?: IntFilter<"Servicio"> | number
-    barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
-    reservas?: ReservaListRelationFilter
-  }, "id">
-
-  export type ServicioOrderByWithAggregationInput = {
-    id?: SortOrder
-    nombre?: SortOrder
-    precio?: SortOrder
-    duracion_minutos?: SortOrder
-    categoria?: SortOrder
-    activo?: SortOrder
-    predefinido?: SortOrder
-    barberiaId?: SortOrder
-    _count?: ServicioCountOrderByAggregateInput
-    _avg?: ServicioAvgOrderByAggregateInput
-    _max?: ServicioMaxOrderByAggregateInput
-    _min?: ServicioMinOrderByAggregateInput
-    _sum?: ServicioSumOrderByAggregateInput
-  }
-
-  export type ServicioScalarWhereWithAggregatesInput = {
-    AND?: ServicioScalarWhereWithAggregatesInput | ServicioScalarWhereWithAggregatesInput[]
-    OR?: ServicioScalarWhereWithAggregatesInput[]
-    NOT?: ServicioScalarWhereWithAggregatesInput | ServicioScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Servicio"> | number
-    nombre?: StringWithAggregatesFilter<"Servicio"> | string
-    precio?: FloatWithAggregatesFilter<"Servicio"> | number
-    duracion_minutos?: IntWithAggregatesFilter<"Servicio"> | number
-    categoria?: StringWithAggregatesFilter<"Servicio"> | string
-    activo?: BoolWithAggregatesFilter<"Servicio"> | boolean
-    predefinido?: BoolWithAggregatesFilter<"Servicio"> | boolean
-    barberiaId?: IntWithAggregatesFilter<"Servicio"> | number
-  }
-
   export type ServicioCatalogoWhereInput = {
     AND?: ServicioCatalogoWhereInput | ServicioCatalogoWhereInput[]
     OR?: ServicioCatalogoWhereInput[]
@@ -11166,6 +10001,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"ServicioActivo"> | Date | string
     barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
     catalogo?: XOR<ServicioCatalogoNullableRelationFilter, ServicioCatalogoWhereInput> | null
+    reservas?: ReservaListRelationFilter
   }
 
   export type ServicioActivoOrderByWithRelationInput = {
@@ -11180,6 +10016,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     barberia?: BarberiaOrderByWithRelationInput
     catalogo?: ServicioCatalogoOrderByWithRelationInput
+    reservas?: ReservaOrderByRelationAggregateInput
   }
 
   export type ServicioActivoWhereUniqueInput = Prisma.AtLeast<{
@@ -11197,6 +10034,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"ServicioActivo"> | Date | string
     barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
     catalogo?: XOR<ServicioCatalogoNullableRelationFilter, ServicioCatalogoWhereInput> | null
+    reservas?: ReservaListRelationFilter
   }, "id">
 
   export type ServicioActivoOrderByWithAggregationInput = {
@@ -11247,7 +10085,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Reserva"> | Date | string
     usuario?: XOR<UsuarioRelationFilter, UsuarioWhereInput>
     barbero?: XOR<BarberoRelationFilter, BarberoWhereInput>
-    servicio?: XOR<ServicioRelationFilter, ServicioWhereInput>
+    servicio?: XOR<ServicioActivoRelationFilter, ServicioActivoWhereInput>
     barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
   }
 
@@ -11264,7 +10102,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     usuario?: UsuarioOrderByWithRelationInput
     barbero?: BarberoOrderByWithRelationInput
-    servicio?: ServicioOrderByWithRelationInput
+    servicio?: ServicioActivoOrderByWithRelationInput
     barberia?: BarberiaOrderByWithRelationInput
   }
 
@@ -11284,7 +10122,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Reserva"> | Date | string
     usuario?: XOR<UsuarioRelationFilter, UsuarioWhereInput>
     barbero?: XOR<BarberoRelationFilter, BarberoWhereInput>
-    servicio?: XOR<ServicioRelationFilter, ServicioWhereInput>
+    servicio?: XOR<ServicioActivoRelationFilter, ServicioActivoWhereInput>
     barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
   }, "id">
 
@@ -11477,7 +10315,6 @@ export namespace Prisma {
     createdAt?: Date | string
     usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoCreateNestedManyWithoutBarberiaInput
-    servicios?: ServicioCreateNestedManyWithoutBarberiaInput
     serviciosActivos?: ServicioActivoCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioCreateNestedManyWithoutBarberiaInput
@@ -11492,7 +10329,6 @@ export namespace Prisma {
     createdAt?: Date | string
     usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
-    servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
     serviciosActivos?: ServicioActivoUncheckedCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
@@ -11506,7 +10342,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
-    servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
     serviciosActivos?: ServicioActivoUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
@@ -11521,7 +10356,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
-    servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
     serviciosActivos?: ServicioActivoUncheckedUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
@@ -11716,83 +10550,6 @@ export namespace Prisma {
     barberiaId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type ServicioCreateInput = {
-    nombre: string
-    precio: number
-    duracion_minutos: number
-    categoria?: string
-    activo?: boolean
-    predefinido?: boolean
-    barberia: BarberiaCreateNestedOneWithoutServiciosInput
-    reservas?: ReservaCreateNestedManyWithoutServicioInput
-  }
-
-  export type ServicioUncheckedCreateInput = {
-    id?: number
-    nombre: string
-    precio: number
-    duracion_minutos: number
-    categoria?: string
-    activo?: boolean
-    predefinido?: boolean
-    barberiaId: number
-    reservas?: ReservaUncheckedCreateNestedManyWithoutServicioInput
-  }
-
-  export type ServicioUpdateInput = {
-    nombre?: StringFieldUpdateOperationsInput | string
-    precio?: FloatFieldUpdateOperationsInput | number
-    duracion_minutos?: IntFieldUpdateOperationsInput | number
-    categoria?: StringFieldUpdateOperationsInput | string
-    activo?: BoolFieldUpdateOperationsInput | boolean
-    predefinido?: BoolFieldUpdateOperationsInput | boolean
-    barberia?: BarberiaUpdateOneRequiredWithoutServiciosNestedInput
-    reservas?: ReservaUpdateManyWithoutServicioNestedInput
-  }
-
-  export type ServicioUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    nombre?: StringFieldUpdateOperationsInput | string
-    precio?: FloatFieldUpdateOperationsInput | number
-    duracion_minutos?: IntFieldUpdateOperationsInput | number
-    categoria?: StringFieldUpdateOperationsInput | string
-    activo?: BoolFieldUpdateOperationsInput | boolean
-    predefinido?: BoolFieldUpdateOperationsInput | boolean
-    barberiaId?: IntFieldUpdateOperationsInput | number
-    reservas?: ReservaUncheckedUpdateManyWithoutServicioNestedInput
-  }
-
-  export type ServicioCreateManyInput = {
-    id?: number
-    nombre: string
-    precio: number
-    duracion_minutos: number
-    categoria?: string
-    activo?: boolean
-    predefinido?: boolean
-    barberiaId: number
-  }
-
-  export type ServicioUpdateManyMutationInput = {
-    nombre?: StringFieldUpdateOperationsInput | string
-    precio?: FloatFieldUpdateOperationsInput | number
-    duracion_minutos?: IntFieldUpdateOperationsInput | number
-    categoria?: StringFieldUpdateOperationsInput | string
-    activo?: BoolFieldUpdateOperationsInput | boolean
-    predefinido?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type ServicioUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    nombre?: StringFieldUpdateOperationsInput | string
-    precio?: FloatFieldUpdateOperationsInput | number
-    duracion_minutos?: IntFieldUpdateOperationsInput | number
-    categoria?: StringFieldUpdateOperationsInput | string
-    activo?: BoolFieldUpdateOperationsInput | boolean
-    predefinido?: BoolFieldUpdateOperationsInput | boolean
-    barberiaId?: IntFieldUpdateOperationsInput | number
-  }
-
   export type ServicioCatalogoCreateInput = {
     nombre: string
     duracion_minutos: number
@@ -11852,6 +10609,7 @@ export namespace Prisma {
     createdAt?: Date | string
     barberia: BarberiaCreateNestedOneWithoutServiciosActivosInput
     catalogo?: ServicioCatalogoCreateNestedOneWithoutServiciosActivosInput
+    reservas?: ReservaCreateNestedManyWithoutServicioInput
   }
 
   export type ServicioActivoUncheckedCreateInput = {
@@ -11864,6 +10622,7 @@ export namespace Prisma {
     categoria?: string
     activo?: boolean
     createdAt?: Date | string
+    reservas?: ReservaUncheckedCreateNestedManyWithoutServicioInput
   }
 
   export type ServicioActivoUpdateInput = {
@@ -11875,6 +10634,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     barberia?: BarberiaUpdateOneRequiredWithoutServiciosActivosNestedInput
     catalogo?: ServicioCatalogoUpdateOneWithoutServiciosActivosNestedInput
+    reservas?: ReservaUpdateManyWithoutServicioNestedInput
   }
 
   export type ServicioActivoUncheckedUpdateInput = {
@@ -11887,6 +10647,7 @@ export namespace Prisma {
     categoria?: StringFieldUpdateOperationsInput | string
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reservas?: ReservaUncheckedUpdateManyWithoutServicioNestedInput
   }
 
   export type ServicioActivoCreateManyInput = {
@@ -11930,7 +10691,7 @@ export namespace Prisma {
     createdAt?: Date | string
     usuario: UsuarioCreateNestedOneWithoutReservasInput
     barbero: BarberoCreateNestedOneWithoutReservasInput
-    servicio: ServicioCreateNestedOneWithoutReservasInput
+    servicio: ServicioActivoCreateNestedOneWithoutReservasInput
     barberia: BarberiaCreateNestedOneWithoutReservasInput
   }
 
@@ -11955,7 +10716,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuario?: UsuarioUpdateOneRequiredWithoutReservasNestedInput
     barbero?: BarberoUpdateOneRequiredWithoutReservasNestedInput
-    servicio?: ServicioUpdateOneRequiredWithoutReservasNestedInput
+    servicio?: ServicioActivoUpdateOneRequiredWithoutReservasNestedInput
     barberia?: BarberiaUpdateOneRequiredWithoutReservasNestedInput
   }
 
@@ -12213,12 +10974,6 @@ export namespace Prisma {
     none?: BarberoWhereInput
   }
 
-  export type ServicioListRelationFilter = {
-    every?: ServicioWhereInput
-    some?: ServicioWhereInput
-    none?: ServicioWhereInput
-  }
-
   export type ServicioActivoListRelationFilter = {
     every?: ServicioActivoWhereInput
     some?: ServicioActivoWhereInput
@@ -12252,10 +11007,6 @@ export namespace Prisma {
   }
 
   export type BarberoOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type ServicioOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -12518,93 +11269,6 @@ export namespace Prisma {
     barberiaId?: SortOrder
   }
 
-  export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type ServicioCountOrderByAggregateInput = {
-    id?: SortOrder
-    nombre?: SortOrder
-    precio?: SortOrder
-    duracion_minutos?: SortOrder
-    categoria?: SortOrder
-    activo?: SortOrder
-    predefinido?: SortOrder
-    barberiaId?: SortOrder
-  }
-
-  export type ServicioAvgOrderByAggregateInput = {
-    id?: SortOrder
-    precio?: SortOrder
-    duracion_minutos?: SortOrder
-    barberiaId?: SortOrder
-  }
-
-  export type ServicioMaxOrderByAggregateInput = {
-    id?: SortOrder
-    nombre?: SortOrder
-    precio?: SortOrder
-    duracion_minutos?: SortOrder
-    categoria?: SortOrder
-    activo?: SortOrder
-    predefinido?: SortOrder
-    barberiaId?: SortOrder
-  }
-
-  export type ServicioMinOrderByAggregateInput = {
-    id?: SortOrder
-    nombre?: SortOrder
-    precio?: SortOrder
-    duracion_minutos?: SortOrder
-    categoria?: SortOrder
-    activo?: SortOrder
-    predefinido?: SortOrder
-    barberiaId?: SortOrder
-  }
-
-  export type ServicioSumOrderByAggregateInput = {
-    id?: SortOrder
-    precio?: SortOrder
-    duracion_minutos?: SortOrder
-    barberiaId?: SortOrder
-  }
-
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type ServicioCatalogoCountOrderByAggregateInput = {
     id?: SortOrder
     nombre?: SortOrder
@@ -12634,6 +11298,22 @@ export namespace Prisma {
   export type ServicioCatalogoSumOrderByAggregateInput = {
     id?: SortOrder
     duracion_minutos?: SortOrder
+  }
+
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type ServicioCatalogoNullableRelationFilter = {
@@ -12693,6 +11373,30 @@ export namespace Prisma {
     duracion_minutos?: SortOrder
   }
 
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type UsuarioRelationFilter = {
     is?: UsuarioWhereInput
     isNot?: UsuarioWhereInput
@@ -12703,9 +11407,9 @@ export namespace Prisma {
     isNot?: BarberoWhereInput
   }
 
-  export type ServicioRelationFilter = {
-    is?: ServicioWhereInput
-    isNot?: ServicioWhereInput
+  export type ServicioActivoRelationFilter = {
+    is?: ServicioActivoWhereInput
+    isNot?: ServicioActivoWhereInput
   }
 
   export type ReservaCountOrderByAggregateInput = {
@@ -12874,13 +11578,6 @@ export namespace Prisma {
     connect?: BarberoWhereUniqueInput | BarberoWhereUniqueInput[]
   }
 
-  export type ServicioCreateNestedManyWithoutBarberiaInput = {
-    create?: XOR<ServicioCreateWithoutBarberiaInput, ServicioUncheckedCreateWithoutBarberiaInput> | ServicioCreateWithoutBarberiaInput[] | ServicioUncheckedCreateWithoutBarberiaInput[]
-    connectOrCreate?: ServicioCreateOrConnectWithoutBarberiaInput | ServicioCreateOrConnectWithoutBarberiaInput[]
-    createMany?: ServicioCreateManyBarberiaInputEnvelope
-    connect?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
-  }
-
   export type ServicioActivoCreateNestedManyWithoutBarberiaInput = {
     create?: XOR<ServicioActivoCreateWithoutBarberiaInput, ServicioActivoUncheckedCreateWithoutBarberiaInput> | ServicioActivoCreateWithoutBarberiaInput[] | ServicioActivoUncheckedCreateWithoutBarberiaInput[]
     connectOrCreate?: ServicioActivoCreateOrConnectWithoutBarberiaInput | ServicioActivoCreateOrConnectWithoutBarberiaInput[]
@@ -12920,13 +11617,6 @@ export namespace Prisma {
     connectOrCreate?: BarberoCreateOrConnectWithoutBarberiaInput | BarberoCreateOrConnectWithoutBarberiaInput[]
     createMany?: BarberoCreateManyBarberiaInputEnvelope
     connect?: BarberoWhereUniqueInput | BarberoWhereUniqueInput[]
-  }
-
-  export type ServicioUncheckedCreateNestedManyWithoutBarberiaInput = {
-    create?: XOR<ServicioCreateWithoutBarberiaInput, ServicioUncheckedCreateWithoutBarberiaInput> | ServicioCreateWithoutBarberiaInput[] | ServicioUncheckedCreateWithoutBarberiaInput[]
-    connectOrCreate?: ServicioCreateOrConnectWithoutBarberiaInput | ServicioCreateOrConnectWithoutBarberiaInput[]
-    createMany?: ServicioCreateManyBarberiaInputEnvelope
-    connect?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
   }
 
   export type ServicioActivoUncheckedCreateNestedManyWithoutBarberiaInput = {
@@ -12994,20 +11684,6 @@ export namespace Prisma {
     update?: BarberoUpdateWithWhereUniqueWithoutBarberiaInput | BarberoUpdateWithWhereUniqueWithoutBarberiaInput[]
     updateMany?: BarberoUpdateManyWithWhereWithoutBarberiaInput | BarberoUpdateManyWithWhereWithoutBarberiaInput[]
     deleteMany?: BarberoScalarWhereInput | BarberoScalarWhereInput[]
-  }
-
-  export type ServicioUpdateManyWithoutBarberiaNestedInput = {
-    create?: XOR<ServicioCreateWithoutBarberiaInput, ServicioUncheckedCreateWithoutBarberiaInput> | ServicioCreateWithoutBarberiaInput[] | ServicioUncheckedCreateWithoutBarberiaInput[]
-    connectOrCreate?: ServicioCreateOrConnectWithoutBarberiaInput | ServicioCreateOrConnectWithoutBarberiaInput[]
-    upsert?: ServicioUpsertWithWhereUniqueWithoutBarberiaInput | ServicioUpsertWithWhereUniqueWithoutBarberiaInput[]
-    createMany?: ServicioCreateManyBarberiaInputEnvelope
-    set?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
-    disconnect?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
-    delete?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
-    connect?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
-    update?: ServicioUpdateWithWhereUniqueWithoutBarberiaInput | ServicioUpdateWithWhereUniqueWithoutBarberiaInput[]
-    updateMany?: ServicioUpdateManyWithWhereWithoutBarberiaInput | ServicioUpdateManyWithWhereWithoutBarberiaInput[]
-    deleteMany?: ServicioScalarWhereInput | ServicioScalarWhereInput[]
   }
 
   export type ServicioActivoUpdateManyWithoutBarberiaNestedInput = {
@@ -13096,20 +11772,6 @@ export namespace Prisma {
     update?: BarberoUpdateWithWhereUniqueWithoutBarberiaInput | BarberoUpdateWithWhereUniqueWithoutBarberiaInput[]
     updateMany?: BarberoUpdateManyWithWhereWithoutBarberiaInput | BarberoUpdateManyWithWhereWithoutBarberiaInput[]
     deleteMany?: BarberoScalarWhereInput | BarberoScalarWhereInput[]
-  }
-
-  export type ServicioUncheckedUpdateManyWithoutBarberiaNestedInput = {
-    create?: XOR<ServicioCreateWithoutBarberiaInput, ServicioUncheckedCreateWithoutBarberiaInput> | ServicioCreateWithoutBarberiaInput[] | ServicioUncheckedCreateWithoutBarberiaInput[]
-    connectOrCreate?: ServicioCreateOrConnectWithoutBarberiaInput | ServicioCreateOrConnectWithoutBarberiaInput[]
-    upsert?: ServicioUpsertWithWhereUniqueWithoutBarberiaInput | ServicioUpsertWithWhereUniqueWithoutBarberiaInput[]
-    createMany?: ServicioCreateManyBarberiaInputEnvelope
-    set?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
-    disconnect?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
-    delete?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
-    connect?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
-    update?: ServicioUpdateWithWhereUniqueWithoutBarberiaInput | ServicioUpdateWithWhereUniqueWithoutBarberiaInput[]
-    updateMany?: ServicioUpdateManyWithWhereWithoutBarberiaInput | ServicioUpdateManyWithWhereWithoutBarberiaInput[]
-    deleteMany?: ServicioScalarWhereInput | ServicioScalarWhereInput[]
   }
 
   export type ServicioActivoUncheckedUpdateManyWithoutBarberiaNestedInput = {
@@ -13332,74 +11994,6 @@ export namespace Prisma {
     deleteMany?: HorarioScalarWhereInput | HorarioScalarWhereInput[]
   }
 
-  export type BarberiaCreateNestedOneWithoutServiciosInput = {
-    create?: XOR<BarberiaCreateWithoutServiciosInput, BarberiaUncheckedCreateWithoutServiciosInput>
-    connectOrCreate?: BarberiaCreateOrConnectWithoutServiciosInput
-    connect?: BarberiaWhereUniqueInput
-  }
-
-  export type ReservaCreateNestedManyWithoutServicioInput = {
-    create?: XOR<ReservaCreateWithoutServicioInput, ReservaUncheckedCreateWithoutServicioInput> | ReservaCreateWithoutServicioInput[] | ReservaUncheckedCreateWithoutServicioInput[]
-    connectOrCreate?: ReservaCreateOrConnectWithoutServicioInput | ReservaCreateOrConnectWithoutServicioInput[]
-    createMany?: ReservaCreateManyServicioInputEnvelope
-    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-  }
-
-  export type ReservaUncheckedCreateNestedManyWithoutServicioInput = {
-    create?: XOR<ReservaCreateWithoutServicioInput, ReservaUncheckedCreateWithoutServicioInput> | ReservaCreateWithoutServicioInput[] | ReservaUncheckedCreateWithoutServicioInput[]
-    connectOrCreate?: ReservaCreateOrConnectWithoutServicioInput | ReservaCreateOrConnectWithoutServicioInput[]
-    createMany?: ReservaCreateManyServicioInputEnvelope
-    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-  }
-
-  export type FloatFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
-  export type BarberiaUpdateOneRequiredWithoutServiciosNestedInput = {
-    create?: XOR<BarberiaCreateWithoutServiciosInput, BarberiaUncheckedCreateWithoutServiciosInput>
-    connectOrCreate?: BarberiaCreateOrConnectWithoutServiciosInput
-    upsert?: BarberiaUpsertWithoutServiciosInput
-    connect?: BarberiaWhereUniqueInput
-    update?: XOR<XOR<BarberiaUpdateToOneWithWhereWithoutServiciosInput, BarberiaUpdateWithoutServiciosInput>, BarberiaUncheckedUpdateWithoutServiciosInput>
-  }
-
-  export type ReservaUpdateManyWithoutServicioNestedInput = {
-    create?: XOR<ReservaCreateWithoutServicioInput, ReservaUncheckedCreateWithoutServicioInput> | ReservaCreateWithoutServicioInput[] | ReservaUncheckedCreateWithoutServicioInput[]
-    connectOrCreate?: ReservaCreateOrConnectWithoutServicioInput | ReservaCreateOrConnectWithoutServicioInput[]
-    upsert?: ReservaUpsertWithWhereUniqueWithoutServicioInput | ReservaUpsertWithWhereUniqueWithoutServicioInput[]
-    createMany?: ReservaCreateManyServicioInputEnvelope
-    set?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    disconnect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    delete?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    update?: ReservaUpdateWithWhereUniqueWithoutServicioInput | ReservaUpdateWithWhereUniqueWithoutServicioInput[]
-    updateMany?: ReservaUpdateManyWithWhereWithoutServicioInput | ReservaUpdateManyWithWhereWithoutServicioInput[]
-    deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
-  }
-
-  export type ReservaUncheckedUpdateManyWithoutServicioNestedInput = {
-    create?: XOR<ReservaCreateWithoutServicioInput, ReservaUncheckedCreateWithoutServicioInput> | ReservaCreateWithoutServicioInput[] | ReservaUncheckedCreateWithoutServicioInput[]
-    connectOrCreate?: ReservaCreateOrConnectWithoutServicioInput | ReservaCreateOrConnectWithoutServicioInput[]
-    upsert?: ReservaUpsertWithWhereUniqueWithoutServicioInput | ReservaUpsertWithWhereUniqueWithoutServicioInput[]
-    createMany?: ReservaCreateManyServicioInputEnvelope
-    set?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    disconnect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    delete?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    update?: ReservaUpdateWithWhereUniqueWithoutServicioInput | ReservaUpdateWithWhereUniqueWithoutServicioInput[]
-    updateMany?: ReservaUpdateManyWithWhereWithoutServicioInput | ReservaUpdateManyWithWhereWithoutServicioInput[]
-    deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
-  }
-
   export type ServicioActivoCreateNestedManyWithoutCatalogoInput = {
     create?: XOR<ServicioActivoCreateWithoutCatalogoInput, ServicioActivoUncheckedCreateWithoutCatalogoInput> | ServicioActivoCreateWithoutCatalogoInput[] | ServicioActivoUncheckedCreateWithoutCatalogoInput[]
     connectOrCreate?: ServicioActivoCreateOrConnectWithoutCatalogoInput | ServicioActivoCreateOrConnectWithoutCatalogoInput[]
@@ -13454,6 +12048,32 @@ export namespace Prisma {
     connect?: ServicioCatalogoWhereUniqueInput
   }
 
+  export type ReservaCreateNestedManyWithoutServicioInput = {
+    create?: XOR<ReservaCreateWithoutServicioInput, ReservaUncheckedCreateWithoutServicioInput> | ReservaCreateWithoutServicioInput[] | ReservaUncheckedCreateWithoutServicioInput[]
+    connectOrCreate?: ReservaCreateOrConnectWithoutServicioInput | ReservaCreateOrConnectWithoutServicioInput[]
+    createMany?: ReservaCreateManyServicioInputEnvelope
+    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+  }
+
+  export type ReservaUncheckedCreateNestedManyWithoutServicioInput = {
+    create?: XOR<ReservaCreateWithoutServicioInput, ReservaUncheckedCreateWithoutServicioInput> | ReservaCreateWithoutServicioInput[] | ReservaUncheckedCreateWithoutServicioInput[]
+    connectOrCreate?: ReservaCreateOrConnectWithoutServicioInput | ReservaCreateOrConnectWithoutServicioInput[]
+    createMany?: ReservaCreateManyServicioInputEnvelope
+    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type BarberiaUpdateOneRequiredWithoutServiciosActivosNestedInput = {
     create?: XOR<BarberiaCreateWithoutServiciosActivosInput, BarberiaUncheckedCreateWithoutServiciosActivosInput>
     connectOrCreate?: BarberiaCreateOrConnectWithoutServiciosActivosInput
@@ -13472,6 +12092,34 @@ export namespace Prisma {
     update?: XOR<XOR<ServicioCatalogoUpdateToOneWithWhereWithoutServiciosActivosInput, ServicioCatalogoUpdateWithoutServiciosActivosInput>, ServicioCatalogoUncheckedUpdateWithoutServiciosActivosInput>
   }
 
+  export type ReservaUpdateManyWithoutServicioNestedInput = {
+    create?: XOR<ReservaCreateWithoutServicioInput, ReservaUncheckedCreateWithoutServicioInput> | ReservaCreateWithoutServicioInput[] | ReservaUncheckedCreateWithoutServicioInput[]
+    connectOrCreate?: ReservaCreateOrConnectWithoutServicioInput | ReservaCreateOrConnectWithoutServicioInput[]
+    upsert?: ReservaUpsertWithWhereUniqueWithoutServicioInput | ReservaUpsertWithWhereUniqueWithoutServicioInput[]
+    createMany?: ReservaCreateManyServicioInputEnvelope
+    set?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    disconnect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    delete?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    update?: ReservaUpdateWithWhereUniqueWithoutServicioInput | ReservaUpdateWithWhereUniqueWithoutServicioInput[]
+    updateMany?: ReservaUpdateManyWithWhereWithoutServicioInput | ReservaUpdateManyWithWhereWithoutServicioInput[]
+    deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
+  }
+
+  export type ReservaUncheckedUpdateManyWithoutServicioNestedInput = {
+    create?: XOR<ReservaCreateWithoutServicioInput, ReservaUncheckedCreateWithoutServicioInput> | ReservaCreateWithoutServicioInput[] | ReservaUncheckedCreateWithoutServicioInput[]
+    connectOrCreate?: ReservaCreateOrConnectWithoutServicioInput | ReservaCreateOrConnectWithoutServicioInput[]
+    upsert?: ReservaUpsertWithWhereUniqueWithoutServicioInput | ReservaUpsertWithWhereUniqueWithoutServicioInput[]
+    createMany?: ReservaCreateManyServicioInputEnvelope
+    set?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    disconnect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    delete?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    update?: ReservaUpdateWithWhereUniqueWithoutServicioInput | ReservaUpdateWithWhereUniqueWithoutServicioInput[]
+    updateMany?: ReservaUpdateManyWithWhereWithoutServicioInput | ReservaUpdateManyWithWhereWithoutServicioInput[]
+    deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
+  }
+
   export type UsuarioCreateNestedOneWithoutReservasInput = {
     create?: XOR<UsuarioCreateWithoutReservasInput, UsuarioUncheckedCreateWithoutReservasInput>
     connectOrCreate?: UsuarioCreateOrConnectWithoutReservasInput
@@ -13484,10 +12132,10 @@ export namespace Prisma {
     connect?: BarberoWhereUniqueInput
   }
 
-  export type ServicioCreateNestedOneWithoutReservasInput = {
-    create?: XOR<ServicioCreateWithoutReservasInput, ServicioUncheckedCreateWithoutReservasInput>
-    connectOrCreate?: ServicioCreateOrConnectWithoutReservasInput
-    connect?: ServicioWhereUniqueInput
+  export type ServicioActivoCreateNestedOneWithoutReservasInput = {
+    create?: XOR<ServicioActivoCreateWithoutReservasInput, ServicioActivoUncheckedCreateWithoutReservasInput>
+    connectOrCreate?: ServicioActivoCreateOrConnectWithoutReservasInput
+    connect?: ServicioActivoWhereUniqueInput
   }
 
   export type BarberiaCreateNestedOneWithoutReservasInput = {
@@ -13512,12 +12160,12 @@ export namespace Prisma {
     update?: XOR<XOR<BarberoUpdateToOneWithWhereWithoutReservasInput, BarberoUpdateWithoutReservasInput>, BarberoUncheckedUpdateWithoutReservasInput>
   }
 
-  export type ServicioUpdateOneRequiredWithoutReservasNestedInput = {
-    create?: XOR<ServicioCreateWithoutReservasInput, ServicioUncheckedCreateWithoutReservasInput>
-    connectOrCreate?: ServicioCreateOrConnectWithoutReservasInput
-    upsert?: ServicioUpsertWithoutReservasInput
-    connect?: ServicioWhereUniqueInput
-    update?: XOR<XOR<ServicioUpdateToOneWithWhereWithoutReservasInput, ServicioUpdateWithoutReservasInput>, ServicioUncheckedUpdateWithoutReservasInput>
+  export type ServicioActivoUpdateOneRequiredWithoutReservasNestedInput = {
+    create?: XOR<ServicioActivoCreateWithoutReservasInput, ServicioActivoUncheckedCreateWithoutReservasInput>
+    connectOrCreate?: ServicioActivoCreateOrConnectWithoutReservasInput
+    upsert?: ServicioActivoUpsertWithoutReservasInput
+    connect?: ServicioActivoWhereUniqueInput
+    update?: XOR<XOR<ServicioActivoUpdateToOneWithWhereWithoutReservasInput, ServicioActivoUpdateWithoutReservasInput>, ServicioActivoUncheckedUpdateWithoutReservasInput>
   }
 
   export type BarberiaUpdateOneRequiredWithoutReservasNestedInput = {
@@ -13853,37 +12501,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ServicioCreateWithoutBarberiaInput = {
-    nombre: string
-    precio: number
-    duracion_minutos: number
-    categoria?: string
-    activo?: boolean
-    predefinido?: boolean
-    reservas?: ReservaCreateNestedManyWithoutServicioInput
-  }
-
-  export type ServicioUncheckedCreateWithoutBarberiaInput = {
-    id?: number
-    nombre: string
-    precio: number
-    duracion_minutos: number
-    categoria?: string
-    activo?: boolean
-    predefinido?: boolean
-    reservas?: ReservaUncheckedCreateNestedManyWithoutServicioInput
-  }
-
-  export type ServicioCreateOrConnectWithoutBarberiaInput = {
-    where: ServicioWhereUniqueInput
-    create: XOR<ServicioCreateWithoutBarberiaInput, ServicioUncheckedCreateWithoutBarberiaInput>
-  }
-
-  export type ServicioCreateManyBarberiaInputEnvelope = {
-    data: ServicioCreateManyBarberiaInput | ServicioCreateManyBarberiaInput[]
-    skipDuplicates?: boolean
-  }
-
   export type ServicioActivoCreateWithoutBarberiaInput = {
     nombre: string
     precio: number
@@ -13892,6 +12509,7 @@ export namespace Prisma {
     activo?: boolean
     createdAt?: Date | string
     catalogo?: ServicioCatalogoCreateNestedOneWithoutServiciosActivosInput
+    reservas?: ReservaCreateNestedManyWithoutServicioInput
   }
 
   export type ServicioActivoUncheckedCreateWithoutBarberiaInput = {
@@ -13903,6 +12521,7 @@ export namespace Prisma {
     categoria?: string
     activo?: boolean
     createdAt?: Date | string
+    reservas?: ReservaUncheckedCreateNestedManyWithoutServicioInput
   }
 
   export type ServicioActivoCreateOrConnectWithoutBarberiaInput = {
@@ -13923,7 +12542,7 @@ export namespace Prisma {
     createdAt?: Date | string
     usuario: UsuarioCreateNestedOneWithoutReservasInput
     barbero: BarberoCreateNestedOneWithoutReservasInput
-    servicio: ServicioCreateNestedOneWithoutReservasInput
+    servicio: ServicioActivoCreateNestedOneWithoutReservasInput
   }
 
   export type ReservaUncheckedCreateWithoutBarberiaInput = {
@@ -14062,36 +12681,6 @@ export namespace Prisma {
     barberiaId?: IntFilter<"Barbero"> | number
   }
 
-  export type ServicioUpsertWithWhereUniqueWithoutBarberiaInput = {
-    where: ServicioWhereUniqueInput
-    update: XOR<ServicioUpdateWithoutBarberiaInput, ServicioUncheckedUpdateWithoutBarberiaInput>
-    create: XOR<ServicioCreateWithoutBarberiaInput, ServicioUncheckedCreateWithoutBarberiaInput>
-  }
-
-  export type ServicioUpdateWithWhereUniqueWithoutBarberiaInput = {
-    where: ServicioWhereUniqueInput
-    data: XOR<ServicioUpdateWithoutBarberiaInput, ServicioUncheckedUpdateWithoutBarberiaInput>
-  }
-
-  export type ServicioUpdateManyWithWhereWithoutBarberiaInput = {
-    where: ServicioScalarWhereInput
-    data: XOR<ServicioUpdateManyMutationInput, ServicioUncheckedUpdateManyWithoutBarberiaInput>
-  }
-
-  export type ServicioScalarWhereInput = {
-    AND?: ServicioScalarWhereInput | ServicioScalarWhereInput[]
-    OR?: ServicioScalarWhereInput[]
-    NOT?: ServicioScalarWhereInput | ServicioScalarWhereInput[]
-    id?: IntFilter<"Servicio"> | number
-    nombre?: StringFilter<"Servicio"> | string
-    precio?: FloatFilter<"Servicio"> | number
-    duracion_minutos?: IntFilter<"Servicio"> | number
-    categoria?: StringFilter<"Servicio"> | string
-    activo?: BoolFilter<"Servicio"> | boolean
-    predefinido?: BoolFilter<"Servicio"> | boolean
-    barberiaId?: IntFilter<"Servicio"> | number
-  }
-
   export type ServicioActivoUpsertWithWhereUniqueWithoutBarberiaInput = {
     where: ServicioActivoWhereUniqueInput
     update: XOR<ServicioActivoUpdateWithoutBarberiaInput, ServicioActivoUncheckedUpdateWithoutBarberiaInput>
@@ -14223,7 +12812,6 @@ export namespace Prisma {
     logo?: string | null
     createdAt?: Date | string
     barberos?: BarberoCreateNestedManyWithoutBarberiaInput
-    servicios?: ServicioCreateNestedManyWithoutBarberiaInput
     serviciosActivos?: ServicioActivoCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioCreateNestedManyWithoutBarberiaInput
@@ -14237,7 +12825,6 @@ export namespace Prisma {
     logo?: string | null
     createdAt?: Date | string
     barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
-    servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
     serviciosActivos?: ServicioActivoUncheckedCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
@@ -14256,7 +12843,7 @@ export namespace Prisma {
     notif5?: boolean
     createdAt?: Date | string
     barbero: BarberoCreateNestedOneWithoutReservasInput
-    servicio: ServicioCreateNestedOneWithoutReservasInput
+    servicio: ServicioActivoCreateNestedOneWithoutReservasInput
     barberia: BarberiaCreateNestedOneWithoutReservasInput
   }
 
@@ -14299,7 +12886,6 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
-    servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
     serviciosActivos?: ServicioActivoUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
@@ -14313,7 +12899,6 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
-    servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
     serviciosActivos?: ServicioActivoUncheckedUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
@@ -14342,7 +12927,6 @@ export namespace Prisma {
     logo?: string | null
     createdAt?: Date | string
     usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
-    servicios?: ServicioCreateNestedManyWithoutBarberiaInput
     serviciosActivos?: ServicioActivoCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioCreateNestedManyWithoutBarberiaInput
@@ -14356,7 +12940,6 @@ export namespace Prisma {
     logo?: string | null
     createdAt?: Date | string
     usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
-    servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
     serviciosActivos?: ServicioActivoUncheckedCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
@@ -14375,7 +12958,7 @@ export namespace Prisma {
     notif5?: boolean
     createdAt?: Date | string
     usuario: UsuarioCreateNestedOneWithoutReservasInput
-    servicio: ServicioCreateNestedOneWithoutReservasInput
+    servicio: ServicioActivoCreateNestedOneWithoutReservasInput
     barberia: BarberiaCreateNestedOneWithoutReservasInput
   }
 
@@ -14443,7 +13026,6 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
-    servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
     serviciosActivos?: ServicioActivoUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
@@ -14457,7 +13039,6 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
-    servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
     serviciosActivos?: ServicioActivoUncheckedUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
@@ -14496,125 +13077,6 @@ export namespace Prisma {
     data: XOR<HorarioUpdateManyMutationInput, HorarioUncheckedUpdateManyWithoutBarberoInput>
   }
 
-  export type BarberiaCreateWithoutServiciosInput = {
-    nombre: string
-    codigo: string
-    logo?: string | null
-    createdAt?: Date | string
-    usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
-    barberos?: BarberoCreateNestedManyWithoutBarberiaInput
-    serviciosActivos?: ServicioActivoCreateNestedManyWithoutBarberiaInput
-    reservas?: ReservaCreateNestedManyWithoutBarberiaInput
-    horarios?: HorarioCreateNestedManyWithoutBarberiaInput
-    configuracion?: ConfiguracionCreateNestedOneWithoutBarberiaInput
-  }
-
-  export type BarberiaUncheckedCreateWithoutServiciosInput = {
-    id?: number
-    nombre: string
-    codigo: string
-    logo?: string | null
-    createdAt?: Date | string
-    usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
-    barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
-    serviciosActivos?: ServicioActivoUncheckedCreateNestedManyWithoutBarberiaInput
-    reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
-    horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
-    configuracion?: ConfiguracionUncheckedCreateNestedOneWithoutBarberiaInput
-  }
-
-  export type BarberiaCreateOrConnectWithoutServiciosInput = {
-    where: BarberiaWhereUniqueInput
-    create: XOR<BarberiaCreateWithoutServiciosInput, BarberiaUncheckedCreateWithoutServiciosInput>
-  }
-
-  export type ReservaCreateWithoutServicioInput = {
-    fecha: Date | string
-    estado?: string
-    notif15?: boolean
-    notif5?: boolean
-    createdAt?: Date | string
-    usuario: UsuarioCreateNestedOneWithoutReservasInput
-    barbero: BarberoCreateNestedOneWithoutReservasInput
-    barberia: BarberiaCreateNestedOneWithoutReservasInput
-  }
-
-  export type ReservaUncheckedCreateWithoutServicioInput = {
-    id?: number
-    usuarioId: number
-    barberoId: number
-    barberiaId: number
-    fecha: Date | string
-    estado?: string
-    notif15?: boolean
-    notif5?: boolean
-    createdAt?: Date | string
-  }
-
-  export type ReservaCreateOrConnectWithoutServicioInput = {
-    where: ReservaWhereUniqueInput
-    create: XOR<ReservaCreateWithoutServicioInput, ReservaUncheckedCreateWithoutServicioInput>
-  }
-
-  export type ReservaCreateManyServicioInputEnvelope = {
-    data: ReservaCreateManyServicioInput | ReservaCreateManyServicioInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type BarberiaUpsertWithoutServiciosInput = {
-    update: XOR<BarberiaUpdateWithoutServiciosInput, BarberiaUncheckedUpdateWithoutServiciosInput>
-    create: XOR<BarberiaCreateWithoutServiciosInput, BarberiaUncheckedCreateWithoutServiciosInput>
-    where?: BarberiaWhereInput
-  }
-
-  export type BarberiaUpdateToOneWithWhereWithoutServiciosInput = {
-    where?: BarberiaWhereInput
-    data: XOR<BarberiaUpdateWithoutServiciosInput, BarberiaUncheckedUpdateWithoutServiciosInput>
-  }
-
-  export type BarberiaUpdateWithoutServiciosInput = {
-    nombre?: StringFieldUpdateOperationsInput | string
-    codigo?: StringFieldUpdateOperationsInput | string
-    logo?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
-    barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
-    serviciosActivos?: ServicioActivoUpdateManyWithoutBarberiaNestedInput
-    reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
-    horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
-    configuracion?: ConfiguracionUpdateOneWithoutBarberiaNestedInput
-  }
-
-  export type BarberiaUncheckedUpdateWithoutServiciosInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    nombre?: StringFieldUpdateOperationsInput | string
-    codigo?: StringFieldUpdateOperationsInput | string
-    logo?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
-    barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
-    serviciosActivos?: ServicioActivoUncheckedUpdateManyWithoutBarberiaNestedInput
-    reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
-    horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
-    configuracion?: ConfiguracionUncheckedUpdateOneWithoutBarberiaNestedInput
-  }
-
-  export type ReservaUpsertWithWhereUniqueWithoutServicioInput = {
-    where: ReservaWhereUniqueInput
-    update: XOR<ReservaUpdateWithoutServicioInput, ReservaUncheckedUpdateWithoutServicioInput>
-    create: XOR<ReservaCreateWithoutServicioInput, ReservaUncheckedCreateWithoutServicioInput>
-  }
-
-  export type ReservaUpdateWithWhereUniqueWithoutServicioInput = {
-    where: ReservaWhereUniqueInput
-    data: XOR<ReservaUpdateWithoutServicioInput, ReservaUncheckedUpdateWithoutServicioInput>
-  }
-
-  export type ReservaUpdateManyWithWhereWithoutServicioInput = {
-    where: ReservaScalarWhereInput
-    data: XOR<ReservaUpdateManyMutationInput, ReservaUncheckedUpdateManyWithoutServicioInput>
-  }
-
   export type ServicioActivoCreateWithoutCatalogoInput = {
     nombre: string
     precio: number
@@ -14623,6 +13085,7 @@ export namespace Prisma {
     activo?: boolean
     createdAt?: Date | string
     barberia: BarberiaCreateNestedOneWithoutServiciosActivosInput
+    reservas?: ReservaCreateNestedManyWithoutServicioInput
   }
 
   export type ServicioActivoUncheckedCreateWithoutCatalogoInput = {
@@ -14634,6 +13097,7 @@ export namespace Prisma {
     categoria?: string
     activo?: boolean
     createdAt?: Date | string
+    reservas?: ReservaUncheckedCreateNestedManyWithoutServicioInput
   }
 
   export type ServicioActivoCreateOrConnectWithoutCatalogoInput = {
@@ -14669,7 +13133,6 @@ export namespace Prisma {
     createdAt?: Date | string
     usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoCreateNestedManyWithoutBarberiaInput
-    servicios?: ServicioCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioCreateNestedManyWithoutBarberiaInput
     configuracion?: ConfiguracionCreateNestedOneWithoutBarberiaInput
@@ -14683,7 +13146,6 @@ export namespace Prisma {
     createdAt?: Date | string
     usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
-    servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
     configuracion?: ConfiguracionUncheckedCreateNestedOneWithoutBarberiaInput
@@ -14712,6 +13174,39 @@ export namespace Prisma {
     create: XOR<ServicioCatalogoCreateWithoutServiciosActivosInput, ServicioCatalogoUncheckedCreateWithoutServiciosActivosInput>
   }
 
+  export type ReservaCreateWithoutServicioInput = {
+    fecha: Date | string
+    estado?: string
+    notif15?: boolean
+    notif5?: boolean
+    createdAt?: Date | string
+    usuario: UsuarioCreateNestedOneWithoutReservasInput
+    barbero: BarberoCreateNestedOneWithoutReservasInput
+    barberia: BarberiaCreateNestedOneWithoutReservasInput
+  }
+
+  export type ReservaUncheckedCreateWithoutServicioInput = {
+    id?: number
+    usuarioId: number
+    barberoId: number
+    barberiaId: number
+    fecha: Date | string
+    estado?: string
+    notif15?: boolean
+    notif5?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ReservaCreateOrConnectWithoutServicioInput = {
+    where: ReservaWhereUniqueInput
+    create: XOR<ReservaCreateWithoutServicioInput, ReservaUncheckedCreateWithoutServicioInput>
+  }
+
+  export type ReservaCreateManyServicioInputEnvelope = {
+    data: ReservaCreateManyServicioInput | ReservaCreateManyServicioInput[]
+    skipDuplicates?: boolean
+  }
+
   export type BarberiaUpsertWithoutServiciosActivosInput = {
     update: XOR<BarberiaUpdateWithoutServiciosActivosInput, BarberiaUncheckedUpdateWithoutServiciosActivosInput>
     create: XOR<BarberiaCreateWithoutServiciosActivosInput, BarberiaUncheckedCreateWithoutServiciosActivosInput>
@@ -14730,7 +13225,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
-    servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
     configuracion?: ConfiguracionUpdateOneWithoutBarberiaNestedInput
@@ -14744,7 +13238,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
-    servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
     configuracion?: ConfiguracionUncheckedUpdateOneWithoutBarberiaNestedInput
@@ -14772,6 +13265,22 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     duracion_minutos?: IntFieldUpdateOperationsInput | number
     categoria?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ReservaUpsertWithWhereUniqueWithoutServicioInput = {
+    where: ReservaWhereUniqueInput
+    update: XOR<ReservaUpdateWithoutServicioInput, ReservaUncheckedUpdateWithoutServicioInput>
+    create: XOR<ReservaCreateWithoutServicioInput, ReservaUncheckedCreateWithoutServicioInput>
+  }
+
+  export type ReservaUpdateWithWhereUniqueWithoutServicioInput = {
+    where: ReservaWhereUniqueInput
+    data: XOR<ReservaUpdateWithoutServicioInput, ReservaUncheckedUpdateWithoutServicioInput>
+  }
+
+  export type ReservaUpdateManyWithWhereWithoutServicioInput = {
+    where: ReservaScalarWhereInput
+    data: XOR<ReservaUpdateManyMutationInput, ReservaUncheckedUpdateManyWithoutServicioInput>
   }
 
   export type UsuarioCreateWithoutReservasInput = {
@@ -14830,30 +13339,32 @@ export namespace Prisma {
     create: XOR<BarberoCreateWithoutReservasInput, BarberoUncheckedCreateWithoutReservasInput>
   }
 
-  export type ServicioCreateWithoutReservasInput = {
+  export type ServicioActivoCreateWithoutReservasInput = {
     nombre: string
     precio: number
     duracion_minutos: number
     categoria?: string
     activo?: boolean
-    predefinido?: boolean
-    barberia: BarberiaCreateNestedOneWithoutServiciosInput
+    createdAt?: Date | string
+    barberia: BarberiaCreateNestedOneWithoutServiciosActivosInput
+    catalogo?: ServicioCatalogoCreateNestedOneWithoutServiciosActivosInput
   }
 
-  export type ServicioUncheckedCreateWithoutReservasInput = {
+  export type ServicioActivoUncheckedCreateWithoutReservasInput = {
     id?: number
+    barberiaId: number
+    catalogoId?: number | null
     nombre: string
     precio: number
     duracion_minutos: number
     categoria?: string
     activo?: boolean
-    predefinido?: boolean
-    barberiaId: number
+    createdAt?: Date | string
   }
 
-  export type ServicioCreateOrConnectWithoutReservasInput = {
-    where: ServicioWhereUniqueInput
-    create: XOR<ServicioCreateWithoutReservasInput, ServicioUncheckedCreateWithoutReservasInput>
+  export type ServicioActivoCreateOrConnectWithoutReservasInput = {
+    where: ServicioActivoWhereUniqueInput
+    create: XOR<ServicioActivoCreateWithoutReservasInput, ServicioActivoUncheckedCreateWithoutReservasInput>
   }
 
   export type BarberiaCreateWithoutReservasInput = {
@@ -14863,7 +13374,6 @@ export namespace Prisma {
     createdAt?: Date | string
     usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoCreateNestedManyWithoutBarberiaInput
-    servicios?: ServicioCreateNestedManyWithoutBarberiaInput
     serviciosActivos?: ServicioActivoCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioCreateNestedManyWithoutBarberiaInput
     configuracion?: ConfiguracionCreateNestedOneWithoutBarberiaInput
@@ -14877,7 +13387,6 @@ export namespace Prisma {
     createdAt?: Date | string
     usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
-    servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
     serviciosActivos?: ServicioActivoUncheckedCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
     configuracion?: ConfiguracionUncheckedCreateNestedOneWithoutBarberiaInput
@@ -14956,36 +13465,38 @@ export namespace Prisma {
     horarios?: HorarioUncheckedUpdateManyWithoutBarberoNestedInput
   }
 
-  export type ServicioUpsertWithoutReservasInput = {
-    update: XOR<ServicioUpdateWithoutReservasInput, ServicioUncheckedUpdateWithoutReservasInput>
-    create: XOR<ServicioCreateWithoutReservasInput, ServicioUncheckedCreateWithoutReservasInput>
-    where?: ServicioWhereInput
+  export type ServicioActivoUpsertWithoutReservasInput = {
+    update: XOR<ServicioActivoUpdateWithoutReservasInput, ServicioActivoUncheckedUpdateWithoutReservasInput>
+    create: XOR<ServicioActivoCreateWithoutReservasInput, ServicioActivoUncheckedCreateWithoutReservasInput>
+    where?: ServicioActivoWhereInput
   }
 
-  export type ServicioUpdateToOneWithWhereWithoutReservasInput = {
-    where?: ServicioWhereInput
-    data: XOR<ServicioUpdateWithoutReservasInput, ServicioUncheckedUpdateWithoutReservasInput>
+  export type ServicioActivoUpdateToOneWithWhereWithoutReservasInput = {
+    where?: ServicioActivoWhereInput
+    data: XOR<ServicioActivoUpdateWithoutReservasInput, ServicioActivoUncheckedUpdateWithoutReservasInput>
   }
 
-  export type ServicioUpdateWithoutReservasInput = {
+  export type ServicioActivoUpdateWithoutReservasInput = {
     nombre?: StringFieldUpdateOperationsInput | string
     precio?: FloatFieldUpdateOperationsInput | number
     duracion_minutos?: IntFieldUpdateOperationsInput | number
     categoria?: StringFieldUpdateOperationsInput | string
     activo?: BoolFieldUpdateOperationsInput | boolean
-    predefinido?: BoolFieldUpdateOperationsInput | boolean
-    barberia?: BarberiaUpdateOneRequiredWithoutServiciosNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    barberia?: BarberiaUpdateOneRequiredWithoutServiciosActivosNestedInput
+    catalogo?: ServicioCatalogoUpdateOneWithoutServiciosActivosNestedInput
   }
 
-  export type ServicioUncheckedUpdateWithoutReservasInput = {
+  export type ServicioActivoUncheckedUpdateWithoutReservasInput = {
     id?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
+    catalogoId?: NullableIntFieldUpdateOperationsInput | number | null
     nombre?: StringFieldUpdateOperationsInput | string
     precio?: FloatFieldUpdateOperationsInput | number
     duracion_minutos?: IntFieldUpdateOperationsInput | number
     categoria?: StringFieldUpdateOperationsInput | string
     activo?: BoolFieldUpdateOperationsInput | boolean
-    predefinido?: BoolFieldUpdateOperationsInput | boolean
-    barberiaId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BarberiaUpsertWithoutReservasInput = {
@@ -15006,7 +13517,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
-    servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
     serviciosActivos?: ServicioActivoUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
     configuracion?: ConfiguracionUpdateOneWithoutBarberiaNestedInput
@@ -15020,7 +13530,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
-    servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
     serviciosActivos?: ServicioActivoUncheckedUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
     configuracion?: ConfiguracionUncheckedUpdateOneWithoutBarberiaNestedInput
@@ -15057,7 +13566,6 @@ export namespace Prisma {
     createdAt?: Date | string
     usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoCreateNestedManyWithoutBarberiaInput
-    servicios?: ServicioCreateNestedManyWithoutBarberiaInput
     serviciosActivos?: ServicioActivoCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaCreateNestedManyWithoutBarberiaInput
     configuracion?: ConfiguracionCreateNestedOneWithoutBarberiaInput
@@ -15071,7 +13579,6 @@ export namespace Prisma {
     createdAt?: Date | string
     usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
-    servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
     serviciosActivos?: ServicioActivoUncheckedCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
     configuracion?: ConfiguracionUncheckedCreateNestedOneWithoutBarberiaInput
@@ -15130,7 +13637,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
-    servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
     serviciosActivos?: ServicioActivoUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
     configuracion?: ConfiguracionUpdateOneWithoutBarberiaNestedInput
@@ -15144,7 +13650,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
-    servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
     serviciosActivos?: ServicioActivoUncheckedUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
     configuracion?: ConfiguracionUncheckedUpdateOneWithoutBarberiaNestedInput
@@ -15157,7 +13662,6 @@ export namespace Prisma {
     createdAt?: Date | string
     usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoCreateNestedManyWithoutBarberiaInput
-    servicios?: ServicioCreateNestedManyWithoutBarberiaInput
     serviciosActivos?: ServicioActivoCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioCreateNestedManyWithoutBarberiaInput
@@ -15171,7 +13675,6 @@ export namespace Prisma {
     createdAt?: Date | string
     usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
-    servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
     serviciosActivos?: ServicioActivoUncheckedCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
@@ -15200,7 +13703,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
-    servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
     serviciosActivos?: ServicioActivoUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
@@ -15214,7 +13716,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
-    servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
     serviciosActivos?: ServicioActivoUncheckedUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
@@ -15239,16 +13740,6 @@ export namespace Prisma {
     especialidad: string
     foto?: string | null
     categorias?: string
-  }
-
-  export type ServicioCreateManyBarberiaInput = {
-    id?: number
-    nombre: string
-    precio: number
-    duracion_minutos: number
-    categoria?: string
-    activo?: boolean
-    predefinido?: boolean
   }
 
   export type ServicioActivoCreateManyBarberiaInput = {
@@ -15349,37 +13840,6 @@ export namespace Prisma {
     categorias?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ServicioUpdateWithoutBarberiaInput = {
-    nombre?: StringFieldUpdateOperationsInput | string
-    precio?: FloatFieldUpdateOperationsInput | number
-    duracion_minutos?: IntFieldUpdateOperationsInput | number
-    categoria?: StringFieldUpdateOperationsInput | string
-    activo?: BoolFieldUpdateOperationsInput | boolean
-    predefinido?: BoolFieldUpdateOperationsInput | boolean
-    reservas?: ReservaUpdateManyWithoutServicioNestedInput
-  }
-
-  export type ServicioUncheckedUpdateWithoutBarberiaInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    nombre?: StringFieldUpdateOperationsInput | string
-    precio?: FloatFieldUpdateOperationsInput | number
-    duracion_minutos?: IntFieldUpdateOperationsInput | number
-    categoria?: StringFieldUpdateOperationsInput | string
-    activo?: BoolFieldUpdateOperationsInput | boolean
-    predefinido?: BoolFieldUpdateOperationsInput | boolean
-    reservas?: ReservaUncheckedUpdateManyWithoutServicioNestedInput
-  }
-
-  export type ServicioUncheckedUpdateManyWithoutBarberiaInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    nombre?: StringFieldUpdateOperationsInput | string
-    precio?: FloatFieldUpdateOperationsInput | number
-    duracion_minutos?: IntFieldUpdateOperationsInput | number
-    categoria?: StringFieldUpdateOperationsInput | string
-    activo?: BoolFieldUpdateOperationsInput | boolean
-    predefinido?: BoolFieldUpdateOperationsInput | boolean
-  }
-
   export type ServicioActivoUpdateWithoutBarberiaInput = {
     nombre?: StringFieldUpdateOperationsInput | string
     precio?: FloatFieldUpdateOperationsInput | number
@@ -15388,6 +13848,7 @@ export namespace Prisma {
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     catalogo?: ServicioCatalogoUpdateOneWithoutServiciosActivosNestedInput
+    reservas?: ReservaUpdateManyWithoutServicioNestedInput
   }
 
   export type ServicioActivoUncheckedUpdateWithoutBarberiaInput = {
@@ -15399,6 +13860,7 @@ export namespace Prisma {
     categoria?: StringFieldUpdateOperationsInput | string
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reservas?: ReservaUncheckedUpdateManyWithoutServicioNestedInput
   }
 
   export type ServicioActivoUncheckedUpdateManyWithoutBarberiaInput = {
@@ -15420,7 +13882,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuario?: UsuarioUpdateOneRequiredWithoutReservasNestedInput
     barbero?: BarberoUpdateOneRequiredWithoutReservasNestedInput
-    servicio?: ServicioUpdateOneRequiredWithoutReservasNestedInput
+    servicio?: ServicioActivoUpdateOneRequiredWithoutReservasNestedInput
   }
 
   export type ReservaUncheckedUpdateWithoutBarberiaInput = {
@@ -15489,7 +13951,7 @@ export namespace Prisma {
     notif5?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     barbero?: BarberoUpdateOneRequiredWithoutReservasNestedInput
-    servicio?: ServicioUpdateOneRequiredWithoutReservasNestedInput
+    servicio?: ServicioActivoUpdateOneRequiredWithoutReservasNestedInput
     barberia?: BarberiaUpdateOneRequiredWithoutReservasNestedInput
   }
 
@@ -15544,7 +14006,7 @@ export namespace Prisma {
     notif5?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuario?: UsuarioUpdateOneRequiredWithoutReservasNestedInput
-    servicio?: ServicioUpdateOneRequiredWithoutReservasNestedInput
+    servicio?: ServicioActivoUpdateOneRequiredWithoutReservasNestedInput
     barberia?: BarberiaUpdateOneRequiredWithoutReservasNestedInput
   }
 
@@ -15595,6 +14057,51 @@ export namespace Prisma {
     hora_fin?: StringFieldUpdateOperationsInput | string
   }
 
+  export type ServicioActivoCreateManyCatalogoInput = {
+    id?: number
+    barberiaId: number
+    nombre: string
+    precio: number
+    duracion_minutos: number
+    categoria?: string
+    activo?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ServicioActivoUpdateWithoutCatalogoInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    barberia?: BarberiaUpdateOneRequiredWithoutServiciosActivosNestedInput
+    reservas?: ReservaUpdateManyWithoutServicioNestedInput
+  }
+
+  export type ServicioActivoUncheckedUpdateWithoutCatalogoInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reservas?: ReservaUncheckedUpdateManyWithoutServicioNestedInput
+  }
+
+  export type ServicioActivoUncheckedUpdateManyWithoutCatalogoInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ReservaCreateManyServicioInput = {
     id?: number
     usuarioId: number
@@ -15642,49 +14149,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ServicioActivoCreateManyCatalogoInput = {
-    id?: number
-    barberiaId: number
-    nombre: string
-    precio: number
-    duracion_minutos: number
-    categoria?: string
-    activo?: boolean
-    createdAt?: Date | string
-  }
-
-  export type ServicioActivoUpdateWithoutCatalogoInput = {
-    nombre?: StringFieldUpdateOperationsInput | string
-    precio?: FloatFieldUpdateOperationsInput | number
-    duracion_minutos?: IntFieldUpdateOperationsInput | number
-    categoria?: StringFieldUpdateOperationsInput | string
-    activo?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    barberia?: BarberiaUpdateOneRequiredWithoutServiciosActivosNestedInput
-  }
-
-  export type ServicioActivoUncheckedUpdateWithoutCatalogoInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    barberiaId?: IntFieldUpdateOperationsInput | number
-    nombre?: StringFieldUpdateOperationsInput | string
-    precio?: FloatFieldUpdateOperationsInput | number
-    duracion_minutos?: IntFieldUpdateOperationsInput | number
-    categoria?: StringFieldUpdateOperationsInput | string
-    activo?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ServicioActivoUncheckedUpdateManyWithoutCatalogoInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    barberiaId?: IntFieldUpdateOperationsInput | number
-    nombre?: StringFieldUpdateOperationsInput | string
-    precio?: FloatFieldUpdateOperationsInput | number
-    duracion_minutos?: IntFieldUpdateOperationsInput | number
-    categoria?: StringFieldUpdateOperationsInput | string
-    activo?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
 
 
   /**
@@ -15703,13 +14167,13 @@ export namespace Prisma {
      */
     export type BarberoCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BarberoCountOutputTypeDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use ServicioCountOutputTypeDefaultArgs instead
-     */
-    export type ServicioCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ServicioCountOutputTypeDefaultArgs<ExtArgs>
-    /**
      * @deprecated Use ServicioCatalogoCountOutputTypeDefaultArgs instead
      */
     export type ServicioCatalogoCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ServicioCatalogoCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ServicioActivoCountOutputTypeDefaultArgs instead
+     */
+    export type ServicioActivoCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ServicioActivoCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use BarberiaDefaultArgs instead
      */
@@ -15722,10 +14186,6 @@ export namespace Prisma {
      * @deprecated Use BarberoDefaultArgs instead
      */
     export type BarberoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BarberoDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use ServicioDefaultArgs instead
-     */
-    export type ServicioArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ServicioDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ServicioCatalogoDefaultArgs instead
      */

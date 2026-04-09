@@ -16,7 +16,6 @@ model Barberia {
   createdAt        DateTime         @default(now())
   usuarios         Usuario[]
   barberos         Barbero[]
-  servicios        Servicio[]
   serviciosActivos ServicioActivo[]
   reservas         Reserva[]
   horarios         Horario[]
@@ -51,19 +50,6 @@ model Barbero {
   horarios     Horario[]
 }
 
-model Servicio {
-  id               Int       @id @default(autoincrement())
-  nombre           String
-  precio           Float
-  duracion_minutos Int
-  categoria        String    @default("General")
-  activo           Boolean   @default(true)
-  predefinido      Boolean   @default(false)
-  barberiaId       Int
-  barberia         Barberia  @relation(fields: [barberiaId], references: [id])
-  reservas         Reserva[]
-}
-
 model ServicioCatalogo {
   id               Int              @id @default(autoincrement())
   nombre           String           @unique
@@ -84,23 +70,24 @@ model ServicioActivo {
   categoria        String            @default("General")
   activo           Boolean           @default(false)
   createdAt        DateTime          @default(now())
+  reservas         Reserva[]
 }
 
 model Reserva {
-  id         Int      @id @default(autoincrement())
-  usuario    Usuario  @relation(fields: [usuarioId], references: [id])
+  id         Int            @id @default(autoincrement())
+  usuario    Usuario        @relation(fields: [usuarioId], references: [id])
   usuarioId  Int
-  barbero    Barbero  @relation(fields: [barberoId], references: [id])
+  barbero    Barbero        @relation(fields: [barberoId], references: [id])
   barberoId  Int
-  servicio   Servicio @relation(fields: [servicioId], references: [id])
+  servicio   ServicioActivo @relation(fields: [servicioId], references: [id])
   servicioId Int
   barberiaId Int
-  barberia   Barberia @relation(fields: [barberiaId], references: [id])
+  barberia   Barberia       @relation(fields: [barberiaId], references: [id])
   fecha      DateTime
-  estado     String   @default("pendiente")
-  notif15    Boolean  @default(false)
-  notif5     Boolean  @default(false)
-  createdAt  DateTime @default(now())
+  estado     String         @default("pendiente")
+  notif15    Boolean        @default(false)
+  notif5     Boolean        @default(false)
+  createdAt  DateTime       @default(now())
 }
 
 model Horario {

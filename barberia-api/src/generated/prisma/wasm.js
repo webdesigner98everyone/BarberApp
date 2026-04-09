@@ -153,17 +153,6 @@ exports.Prisma.BarberoScalarFieldEnum = {
   barberiaId: 'barberiaId'
 };
 
-exports.Prisma.ServicioScalarFieldEnum = {
-  id: 'id',
-  nombre: 'nombre',
-  precio: 'precio',
-  duracion_minutos: 'duracion_minutos',
-  categoria: 'categoria',
-  activo: 'activo',
-  predefinido: 'predefinido',
-  barberiaId: 'barberiaId'
-};
-
 exports.Prisma.ServicioCatalogoScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
@@ -233,7 +222,6 @@ exports.Prisma.ModelName = {
   Barberia: 'Barberia',
   Usuario: 'Usuario',
   Barbero: 'Barbero',
-  Servicio: 'Servicio',
   ServicioCatalogo: 'ServicioCatalogo',
   ServicioActivo: 'ServicioActivo',
   Reserva: 'Reserva',

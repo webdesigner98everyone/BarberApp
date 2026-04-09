@@ -1,4 +1,6 @@
-import prisma from './prisma';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 const CATALOGO = [
   { nombre: 'Corte clásico', duracion_minutos: 30, categoria: 'Cabello' },

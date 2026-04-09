@@ -3,11 +3,10 @@ import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert, Image, Modal
 import { useFocusEffect } from '@react-navigation/native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { theme, formatPrecio } from '../theme';
-import { useConfig, formatearPrecio } from '../context/ConfigContext';
+import { formatearPrecio } from '../context/ConfigContext';
 import api from '../services/api';
 
 export default function MisCitasScreen() {
-  const config = useConfig();
   const [reservas, setReservas] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [reservaSeleccionada, setReservaSeleccionada] = useState<any>(null);
@@ -46,7 +45,7 @@ export default function MisCitasScreen() {
     setLoadingSlots(true);
     try {
       const { data } = await api.get('/horarios/disponibles', {
-        params: { barberoId: reservaSeleccionada.barbero.id, fecha: fechaSeleccionada.toISOString() }
+        params: { barberoId: reservaSeleccionada.barbero.id, fecha: fechaSeleccionada.toISOString(), servicioId: reservaSeleccionada.servicio.id }
       });
       setSlots(data.slots);
       setHoraSeleccionada(null);
@@ -117,7 +116,7 @@ export default function MisCitasScreen() {
                 <Text style={styles.barbero}>{item.barbero.nombre}</Text>
                 <Text style={styles.servicio}>{item.servicio.nombre}</Text>
               </View>
-              <Text style={styles.precio}>{formatearPrecio(item.servicio.precio, config)}</Text>
+              <Text style={styles.precio}>{formatearPrecio(item.servicio.precio)}</Text>
             </View>
             <View style={styles.divider} />
             <View style={styles.cardFooter}>

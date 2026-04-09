@@ -4,37 +4,35 @@ import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../theme';
 import api from '../services/api';
 
-const MONEDAS = [
-  { moneda: 'COP', simbolo: '$', separador_miles: '.', separador_decimal: ',', label: '🇨🇴 Peso colombiano (COP)' },
-  { moneda: 'USD', simbolo: '$', separador_miles: ',', separador_decimal: '.', label: '🇺🇸 Dólar americano (USD)' },
-  { moneda: 'EUR', simbolo: '€', separador_miles: '.', separador_decimal: ',', label: '🇪🇺 Euro (EUR)' },
-  { moneda: 'MXN', simbolo: '$', separador_miles: ',', separador_decimal: '.', label: '🇲🇽 Peso mexicano (MXN)' },
-  { moneda: 'GBP', simbolo: '£', separador_miles: ',', separador_decimal: '.', label: '🇬🇧 Libra esterlina (GBP)' },
-];
+const DIAS = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
 
 export default function ConfiguracionScreen({ navigation }: any) {
   const [nombreBarberia, setNombreBarberia] = useState('');
-  const [monedaSeleccionada, setMonedaSeleccionada] = useState('COP');
+  const [diasDescanso, setDiasDescanso] = useState<number[]>([]);
+  const [mensajeBienvenida, setMensajeBienvenida] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     api.get('/configuracion').then(({ data }) => {
       setNombreBarberia(data.nombre_barberia);
-      setMonedaSeleccionada(data.moneda);
+      setDiasDescanso(data.dias_descanso ? data.dias_descanso.split(',').map(Number) : []);
+      setMensajeBienvenida(data.mensaje_bienvenida ?? '');
     });
   }, []);
 
+  const toggleDia = (dia: number) => {
+    setDiasDescanso((prev) => prev.includes(dia) ? prev.filter((d) => d !== dia) : [...prev, dia]);
+  };
+
   const handleGuardar = async () => {
     if (!nombreBarberia.trim()) return Alert.alert('Error', 'El nombre de la barbería es requerido');
-    const moneda = MONEDAS.find((m) => m.moneda === monedaSeleccionada)!;
     try {
       setLoading(true);
       await api.put('/admin/configuracion', {
         nombre_barberia: nombreBarberia,
-        moneda: moneda.moneda,
-        simbolo: moneda.simbolo,
-        separador_miles: moneda.separador_miles,
-        separador_decimal: moneda.separador_decimal
+        duracion_turno: 30,
+        dias_descanso: diasDescanso.join(','),
+        mensaje_bienvenida: mensajeBienvenida
       });
       Alert.alert('✅ Configuración guardada', 'Los cambios se verán al reiniciar la app');
     } catch {
@@ -55,7 +53,6 @@ export default function ConfiguracionScreen({ navigation }: any) {
       </View>
 
       <Text style={styles.sectionTitle}>INFORMACIÓN DEL NEGOCIO</Text>
-      <Text style={styles.label}>Nombre de la barbería</Text>
       <TextInput
         style={styles.input}
         value={nombreBarberia}
@@ -64,21 +61,30 @@ export default function ConfiguracionScreen({ navigation }: any) {
         placeholderTextColor={theme.colors.gray}
       />
 
-      <Text style={styles.sectionTitle}>MONEDA</Text>
-      <Text style={styles.sublabel}>Selecciona la moneda de tu país</Text>
+      <Text style={styles.sectionTitle}>DÍAS DE DESCANSO</Text>
+      <Text style={styles.sublabel}>Días en que no se trabaja</Text>
+      <View style={styles.chipRow}>
+        {DIAS.map((dia, i) => (
+          <TouchableOpacity
+            key={i}
+            style={[styles.chip, diasDescanso.includes(i) && styles.chipDescanso]}
+            onPress={() => toggleDia(i)}
+          >
+            <Text style={[styles.chipText, diasDescanso.includes(i) && styles.chipTextSelected]}>{dia}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
 
-      {MONEDAS.map((m) => (
-        <TouchableOpacity
-          key={m.moneda}
-          style={[styles.monedaCard, monedaSeleccionada === m.moneda && styles.monedaCardSelected]}
-          onPress={() => setMonedaSeleccionada(m.moneda)}
-        >
-          <Text style={[styles.monedaLabel, monedaSeleccionada === m.moneda && styles.monedaLabelSelected]}>
-            {m.label}
-          </Text>
-          {monedaSeleccionada === m.moneda && <Text style={styles.check}>✓</Text>}
-        </TouchableOpacity>
-      ))}
+      <Text style={styles.sectionTitle}>MENSAJE DE BIENVENIDA</Text>
+      <Text style={styles.sublabel}>Texto que verá el cliente al entrar</Text>
+      <TextInput
+        style={[styles.input, { height: 80, textAlignVertical: 'top' }]}
+        value={mensajeBienvenida}
+        onChangeText={setMensajeBienvenida}
+        placeholder="Ej: ¡Bienvenido! Reserva tu cita con nosotros"
+        placeholderTextColor={theme.colors.gray}
+        multiline
+      />
 
       <TouchableOpacity style={[styles.btn, loading && styles.btnDisabled]} onPress={handleGuardar} disabled={loading}>
         {loading ? <ActivityIndicator color={theme.colors.background} /> : <Text style={styles.btnText}>GUARDAR CONFIGURACIÓN</Text>}
@@ -102,6 +108,12 @@ const styles = StyleSheet.create({
   title: { fontSize: 26, fontWeight: 'bold', color: theme.colors.white },
   sectionTitle: { fontSize: 11, fontWeight: 'bold', color: theme.colors.gold, letterSpacing: 2, marginBottom: 12, marginTop: 8 },
   sublabel: { color: theme.colors.gray, fontSize: 13, marginBottom: 12 },
+  chipRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 20 },
+  chip: { paddingHorizontal: 16, paddingVertical: 8, borderRadius: 20, borderWidth: 1, borderColor: theme.colors.lightGray, backgroundColor: theme.colors.card },
+  chipSelected: { backgroundColor: theme.colors.gold, borderColor: theme.colors.gold },
+  chipDescanso: { backgroundColor: theme.colors.error, borderColor: theme.colors.error },
+  chipText: { color: theme.colors.gray, fontWeight: 'bold', fontSize: 13 },
+  chipTextSelected: { color: theme.colors.background },
   label: { fontSize: 12, color: theme.colors.gray, fontWeight: '600', marginBottom: 6, letterSpacing: 1 },
   input: { backgroundColor: theme.colors.card, borderRadius: 8, padding: 14, color: theme.colors.white, borderWidth: 1, borderColor: theme.colors.lightGray, marginBottom: 20, fontSize: 15 },
   monedaCard: { backgroundColor: theme.colors.card, borderRadius: 10, padding: 14, marginBottom: 8, borderWidth: 1, borderColor: theme.colors.lightGray, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },

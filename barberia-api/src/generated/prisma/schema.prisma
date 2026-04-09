@@ -94,12 +94,15 @@ model Horario {
 }
 
 model Configuracion {
-  id                Int      @id @default(autoincrement())
-  nombre_barberia   String   @default("The Barber")
-  moneda            String   @default("COP")
-  simbolo           String   @default("$")
-  separador_miles   String   @default(".")
-  separador_decimal String   @default(",")
-  barberiaId        Int      @unique
-  barberia          Barberia @relation(fields: [barberiaId], references: [id])
+  id                 Int      @id @default(autoincrement())
+  nombre_barberia    String   @default("The Barber")
+  moneda             String   @default("COP")
+  simbolo            String   @default("$")
+  separador_miles    String   @default(".")
+  separador_decimal  String   @default(",")
+  duracion_turno     Int      @default(30)
+  dias_descanso      String   @default("")
+  mensaje_bienvenida String?
+  barberiaId         Int      @unique
+  barberia           Barberia @relation(fields: [barberiaId], references: [id])
 }

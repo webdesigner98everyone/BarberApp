@@ -26,6 +26,7 @@ export default function BarberoPerfil({ route, navigation }: any) {
     DIAS.map((d) => ({ dia_semana: d.value, hora_inicio: '09:00', hora_fin: '18:00', activo: false }))
   );
   const [loading, setLoading] = useState(false);
+  const [diasDescanso, setDiasDescanso] = useState<number[]>([]);
 
   useEffect(() => {
     api.get(`/admin/barberos/${barbero.id}/horarios`).then(({ data }) => {
@@ -38,6 +39,9 @@ export default function BarberoPerfil({ route, navigation }: any) {
           activo: !!existente
         };
       }));
+    });
+    api.get('/configuracion').then(({ data }) => {
+      setDiasDescanso(data.dias_descanso ? data.dias_descanso.split(',').map(Number) : []);
     });
   }, []);
 
@@ -91,13 +95,17 @@ export default function BarberoPerfil({ route, navigation }: any) {
 
       {DIAS.map((dia) => {
         const horario = horarios.find((h) => h.dia_semana === dia.value)!;
+        const esDescanso = diasDescanso.includes(dia.value);
         return (
-          <View key={dia.value} style={[styles.diaCard, horario.activo && styles.diaCardActivo]}>
-            <TouchableOpacity style={styles.diaHeader} onPress={() => toggleDia(dia.value)}>
-              <View style={[styles.toggle, horario.activo && styles.toggleActivo]}>
-                <Text style={styles.toggleText}>{horario.activo ? '✓' : ''}</Text>
+          <View key={dia.value} style={[styles.diaCard, horario.activo && styles.diaCardActivo, esDescanso && styles.diaCardDescanso]}>
+            <TouchableOpacity style={styles.diaHeader} onPress={() => !esDescanso && toggleDia(dia.value)} disabled={esDescanso}>
+              <View style={[styles.toggle, horario.activo && styles.toggleActivo, esDescanso && styles.toggleDescanso]}>
+                <Text style={styles.toggleText}>{esDescanso ? '✕' : horario.activo ? '✓' : ''}</Text>
               </View>
-              <Text style={[styles.diaLabel, horario.activo && styles.diaLabelActivo]}>{dia.label}</Text>
+              <View style={{ flex: 1 }}>
+                <Text style={[styles.diaLabel, horario.activo && styles.diaLabelActivo, esDescanso && styles.diaLabelDescanso]}>{dia.label}</Text>
+                {esDescanso && <Text style={styles.descansoTag}>Día de descanso</Text>}
+              </View>
             </TouchableOpacity>
 
             {horario.activo && (
@@ -149,12 +157,16 @@ const styles = StyleSheet.create({
   sectionSubtitle: { color: theme.colors.gray, fontSize: 13, marginBottom: 16 },
   diaCard: { backgroundColor: theme.colors.card, borderRadius: 10, marginBottom: 8, padding: 14, borderWidth: 1, borderColor: theme.colors.lightGray },
   diaCardActivo: { borderColor: theme.colors.gold },
+  diaCardDescanso: { borderColor: theme.colors.error, opacity: 0.6 },
   diaHeader: { flexDirection: 'row', alignItems: 'center' },
   toggle: { width: 24, height: 24, borderRadius: 6, borderWidth: 2, borderColor: theme.colors.lightGray, justifyContent: 'center', alignItems: 'center', marginRight: 12 },
   toggleActivo: { backgroundColor: theme.colors.gold, borderColor: theme.colors.gold },
   toggleText: { color: theme.colors.background, fontWeight: 'bold', fontSize: 12 },
   diaLabel: { fontSize: 15, color: theme.colors.gray, fontWeight: '600' },
   diaLabelActivo: { color: theme.colors.white },
+  diaLabelDescanso: { color: theme.colors.error },
+  toggleDescanso: { backgroundColor: theme.colors.error, borderColor: theme.colors.error },
+  descansoTag: { fontSize: 11, color: theme.colors.error, marginTop: 2 },
   horasRow: { flexDirection: 'row', alignItems: 'center', marginTop: 12 },
   horaInput: { flex: 1 },
   horaLabel: { fontSize: 10, color: theme.colors.gold, fontWeight: 'bold', letterSpacing: 1, marginBottom: 4 },

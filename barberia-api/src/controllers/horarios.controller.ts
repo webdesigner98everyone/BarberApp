@@ -2,12 +2,26 @@ import { Request, Response } from 'express';
 import prisma from '../lib/prisma';
 
 export const getHorariosDisponibles = async (req: Request, res: Response) => {
-  const { barberoId, fecha } = req.query;
+  const { barberoId, fecha, servicioId } = req.query;
 
   if (!barberoId || !fecha) return res.status(400).json({ error: 'barberoId y fecha son requeridos' });
 
   const fechaDate = new Date(fecha as string);
   const diaSemana = fechaDate.getDay();
+
+  const barbero = await prisma.barbero.findUnique({ where: { id: Number(barberoId) } });
+  const config = await prisma.configuracion.findFirst({ where: { barberiaId: barbero?.barberiaId } });
+
+  // Usar duración del servicio si se provee, sino la config global
+  let duracion = config?.duracion_turno ?? 30;
+  if (servicioId) {
+    const servicio = await prisma.servicio.findUnique({ where: { id: Number(servicioId) } });
+    if (servicio) duracion = servicio.duracion_minutos;
+  }
+
+  // Verificar dias de descanso
+  const diasDescanso = config?.dias_descanso ? config.dias_descanso.split(',').map(Number) : [];
+  if (diasDescanso.includes(diaSemana)) return res.json({ slots: [] });
 
   const horario = await prisma.horario.findFirst({
     where: { barberoId: Number(barberoId), dia_semana: diaSemana }
@@ -26,7 +40,7 @@ export const getHorariosDisponibles = async (req: Request, res: Response) => {
     const h = Math.floor(current / 60).toString().padStart(2, '0');
     const m = (current % 60).toString().padStart(2, '0');
     slots.push(`${h}:${m}`);
-    current += 30;
+    current += duracion;
   }
 
   const inicioDia = new Date(fechaDate);

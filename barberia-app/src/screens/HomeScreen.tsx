@@ -10,9 +10,11 @@ export default function HomeScreen({ navigation }: any) {
   const [rol, setRol] = useState<string | null>(null);
   const [esCumpleanos, setEsCumpleanos] = useState(false);
   const [nombreUsuario, setNombreUsuario] = useState('');
+  const [mensajeBienvenida, setMensajeBienvenida] = useState('');
 
   useFocusEffect(useCallback(() => {
     api.get('/barberos').then(({ data }) => setBarberos(data));
+    api.get('/configuracion').then(({ data }) => setMensajeBienvenida(data.mensaje_bienvenida ?? ''));
     AsyncStorage.getItem('usuario').then((u) => {
       if (u) {
         const usuario = JSON.parse(u);
@@ -38,6 +40,12 @@ export default function HomeScreen({ navigation }: any) {
         <Text style={styles.title}>Nuestros Especialistas</Text>
         <Text style={styles.subtitle}>Selecciona tu especialista</Text>
       </View>
+
+      {mensajeBienvenida ? (
+        <View style={styles.bienvenidaBanner}>
+          <Text style={styles.bienvenidaText}>{mensajeBienvenida}</Text>
+        </View>
+      ) : null}
 
       {esCumpleanos && (
         <View style={styles.cumpleBanner}>
@@ -84,6 +92,8 @@ const styles = StyleSheet.create({
   subtitle: { color: theme.colors.gray, marginTop: 4 },
   card: { flexDirection: 'row', alignItems: 'center', backgroundColor: theme.colors.card, marginHorizontal: 16, marginBottom: 12, borderRadius: 12, padding: 16, borderLeftWidth: 3, borderLeftColor: theme.colors.gold },
   cardDisabled: { opacity: 0.6, borderLeftColor: theme.colors.gray },
+  bienvenidaBanner: { backgroundColor: theme.colors.card, marginHorizontal: 16, marginBottom: 12, borderRadius: 10, padding: 14, borderLeftWidth: 3, borderLeftColor: theme.colors.gold },
+  bienvenidaText: { color: theme.colors.white, fontSize: 13, lineHeight: 20 },
   cumpleBanner: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#2a1a3a', marginHorizontal: 16, marginBottom: 16, borderRadius: 12, padding: 16, borderWidth: 1, borderColor: '#C9A84C', gap: 12 },
   cumpleEmoji: { fontSize: 36 },
   cumpleTextos: { flex: 1 },

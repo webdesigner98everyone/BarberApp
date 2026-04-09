@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert, ScrollView } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { theme, formatPrecio } from '../theme';
-import { useConfig, formatearPrecio } from '../context/ConfigContext';
+import { formatearPrecio } from '../context/ConfigContext';
 import api from '../services/api';
 
 export default function BookingScreen({ route, navigation }: any) {
   const { barbero } = route.params;
-  const config = useConfig();
   const [servicios, setServicios] = useState([]);
   const [servicioId, setServicioId] = useState<number | null>(null);
   const [fecha, setFecha] = useState<Date | null>(null);
@@ -15,19 +14,23 @@ export default function BookingScreen({ route, navigation }: any) {
   const [slots, setSlots] = useState<{ hora: string; disponible: boolean }[]>([]);
   const [horaSeleccionada, setHoraSeleccionada] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [diasDescanso, setDiasDescanso] = useState<number[]>([]);
 
   useEffect(() => {
     api.get(`/barberos/${barbero.id}/servicios`).then(({ data }) => setServicios(data));
+    api.get('/configuracion').then(({ data }) => {
+      setDiasDescanso(data.dias_descanso ? data.dias_descanso.split(',').map(Number) : []);
+    });
   }, []);
 
   useEffect(() => {
-    if (fecha) cargarSlots(fecha);
-  }, [fecha]);
+    if (fecha && servicioId) cargarSlots(fecha, servicioId);
+  }, [fecha, servicioId]);
 
-  const cargarSlots = async (fechaSeleccionada: Date) => {
+  const cargarSlots = async (fechaSeleccionada: Date, servId: number) => {
     try {
       const { data } = await api.get('/horarios/disponibles', {
-        params: { barberoId: barbero.id, fecha: fechaSeleccionada.toISOString() }
+        params: { barberoId: barbero.id, fecha: fechaSeleccionada.toISOString(), servicioId: servId }
       });
       setSlots(data.slots);
       setHoraSeleccionada(null);
@@ -81,7 +84,7 @@ export default function BookingScreen({ route, navigation }: any) {
             <Text style={styles.servicioNombre}>{item.nombre}</Text>
             <Text style={styles.servicioDuracion}>{item.duracion_minutos} min</Text>
           </View>
-          <Text style={styles.servicioPrecio}>{formatearPrecio(item.precio, config)}</Text>
+          <Text style={styles.servicioPrecio}>{formatearPrecio(item.precio)}</Text>
           {servicioId === item.id && <Text style={styles.check}> ✓</Text>}
         </TouchableOpacity>
       ))}
@@ -98,8 +101,9 @@ export default function BookingScreen({ route, navigation }: any) {
         isVisible={showPicker}
         mode="date"
         minimumDate={new Date()}
-        onConfirm={(date) => { setFecha(date); setShowPicker(false); }}
+        onConfirm={(date) => { setFecha(date); setShowPicker(false); if (servicioId) cargarSlots(date, servicioId); }}
         onCancel={() => setShowPicker(false)}
+        dayOfWeekDisabled={[0, 1, 2, 3, 4, 5, 6].map((d) => diasDescanso.includes(d))}
       />
 
       {slots.length > 0 && (

@@ -3,7 +3,7 @@ import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert, TextInput, M
 import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { theme, formatPrecio } from '../theme';
-import { useConfig, formatearPrecio } from '../context/ConfigContext';
+import { formatearPrecio } from '../context/ConfigContext';
 import api from '../services/api';
 
 interface Servicio {
@@ -82,7 +82,6 @@ const CATEGORIA_ICONS: any = {
 };
 
 export default function ServiciosAdminScreen() {
-  const config = useConfig();
   const [servicios, setServicios] = useState<Servicio[]>([]);
   const [filtro, setFiltro] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
@@ -188,7 +187,7 @@ export default function ServiciosAdminScreen() {
             </TouchableOpacity>
             <View style={styles.info}>
               <Text style={[styles.nombre, !item.activo && styles.nombreInactivo]}>{item.nombre}</Text>
-              <Text style={styles.detalle}>{item.duracion_minutos} min · {item.precio > 0 ? formatearPrecio(item.precio, config) : 'Sin precio'}</Text>
+              <Text style={styles.detalle}>{item.duracion_minutos} min · {item.precio > 0 ? formatearPrecio(item.precio) : 'Sin precio'}</Text>
             </View>
             <View style={styles.acciones}>
               <TouchableOpacity style={styles.editBtn} onPress={() => { setServicioEditando(item); setModalVisible(true); }}>

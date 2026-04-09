@@ -193,6 +193,9 @@ exports.Prisma.ConfiguracionScalarFieldEnum = {
   simbolo: 'simbolo',
   separador_miles: 'separador_miles',
   separador_decimal: 'separador_decimal',
+  duracion_turno: 'duracion_turno',
+  dias_descanso: 'dias_descanso',
+  mensaje_bienvenida: 'mensaje_bienvenida',
   barberiaId: 'barberiaId'
 };
 

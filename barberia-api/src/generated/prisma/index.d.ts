@@ -7485,11 +7485,13 @@ export namespace Prisma {
 
   export type ConfiguracionAvgAggregateOutputType = {
     id: number | null
+    duracion_turno: number | null
     barberiaId: number | null
   }
 
   export type ConfiguracionSumAggregateOutputType = {
     id: number | null
+    duracion_turno: number | null
     barberiaId: number | null
   }
 
@@ -7500,6 +7502,9 @@ export namespace Prisma {
     simbolo: string | null
     separador_miles: string | null
     separador_decimal: string | null
+    duracion_turno: number | null
+    dias_descanso: string | null
+    mensaje_bienvenida: string | null
     barberiaId: number | null
   }
 
@@ -7510,6 +7515,9 @@ export namespace Prisma {
     simbolo: string | null
     separador_miles: string | null
     separador_decimal: string | null
+    duracion_turno: number | null
+    dias_descanso: string | null
+    mensaje_bienvenida: string | null
     barberiaId: number | null
   }
 
@@ -7520,6 +7528,9 @@ export namespace Prisma {
     simbolo: number
     separador_miles: number
     separador_decimal: number
+    duracion_turno: number
+    dias_descanso: number
+    mensaje_bienvenida: number
     barberiaId: number
     _all: number
   }
@@ -7527,11 +7538,13 @@ export namespace Prisma {
 
   export type ConfiguracionAvgAggregateInputType = {
     id?: true
+    duracion_turno?: true
     barberiaId?: true
   }
 
   export type ConfiguracionSumAggregateInputType = {
     id?: true
+    duracion_turno?: true
     barberiaId?: true
   }
 
@@ -7542,6 +7555,9 @@ export namespace Prisma {
     simbolo?: true
     separador_miles?: true
     separador_decimal?: true
+    duracion_turno?: true
+    dias_descanso?: true
+    mensaje_bienvenida?: true
     barberiaId?: true
   }
 
@@ -7552,6 +7568,9 @@ export namespace Prisma {
     simbolo?: true
     separador_miles?: true
     separador_decimal?: true
+    duracion_turno?: true
+    dias_descanso?: true
+    mensaje_bienvenida?: true
     barberiaId?: true
   }
 
@@ -7562,6 +7581,9 @@ export namespace Prisma {
     simbolo?: true
     separador_miles?: true
     separador_decimal?: true
+    duracion_turno?: true
+    dias_descanso?: true
+    mensaje_bienvenida?: true
     barberiaId?: true
     _all?: true
   }
@@ -7659,6 +7681,9 @@ export namespace Prisma {
     simbolo: string
     separador_miles: string
     separador_decimal: string
+    duracion_turno: number
+    dias_descanso: string
+    mensaje_bienvenida: string | null
     barberiaId: number
     _count: ConfiguracionCountAggregateOutputType | null
     _avg: ConfiguracionAvgAggregateOutputType | null
@@ -7688,6 +7713,9 @@ export namespace Prisma {
     simbolo?: boolean
     separador_miles?: boolean
     separador_decimal?: boolean
+    duracion_turno?: boolean
+    dias_descanso?: boolean
+    mensaje_bienvenida?: boolean
     barberiaId?: boolean
     barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["configuracion"]>
@@ -7700,6 +7728,9 @@ export namespace Prisma {
     simbolo?: boolean
     separador_miles?: boolean
     separador_decimal?: boolean
+    duracion_turno?: boolean
+    dias_descanso?: boolean
+    mensaje_bienvenida?: boolean
     barberiaId?: boolean
   }
 
@@ -7719,6 +7750,9 @@ export namespace Prisma {
       simbolo: string
       separador_miles: string
       separador_decimal: string
+      duracion_turno: number
+      dias_descanso: string
+      mensaje_bienvenida: string | null
       barberiaId: number
     }, ExtArgs["result"]["configuracion"]>
     composites: {}
@@ -8096,6 +8130,9 @@ export namespace Prisma {
     readonly simbolo: FieldRef<"Configuracion", 'String'>
     readonly separador_miles: FieldRef<"Configuracion", 'String'>
     readonly separador_decimal: FieldRef<"Configuracion", 'String'>
+    readonly duracion_turno: FieldRef<"Configuracion", 'Int'>
+    readonly dias_descanso: FieldRef<"Configuracion", 'String'>
+    readonly mensaje_bienvenida: FieldRef<"Configuracion", 'String'>
     readonly barberiaId: FieldRef<"Configuracion", 'Int'>
   }
     
@@ -8513,6 +8550,9 @@ export namespace Prisma {
     simbolo: 'simbolo',
     separador_miles: 'separador_miles',
     separador_decimal: 'separador_decimal',
+    duracion_turno: 'duracion_turno',
+    dias_descanso: 'dias_descanso',
+    mensaje_bienvenida: 'mensaje_bienvenida',
     barberiaId: 'barberiaId'
   };
 
@@ -9050,6 +9090,9 @@ export namespace Prisma {
     simbolo?: StringFilter<"Configuracion"> | string
     separador_miles?: StringFilter<"Configuracion"> | string
     separador_decimal?: StringFilter<"Configuracion"> | string
+    duracion_turno?: IntFilter<"Configuracion"> | number
+    dias_descanso?: StringFilter<"Configuracion"> | string
+    mensaje_bienvenida?: StringNullableFilter<"Configuracion"> | string | null
     barberiaId?: IntFilter<"Configuracion"> | number
     barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
   }
@@ -9061,6 +9104,9 @@ export namespace Prisma {
     simbolo?: SortOrder
     separador_miles?: SortOrder
     separador_decimal?: SortOrder
+    duracion_turno?: SortOrder
+    dias_descanso?: SortOrder
+    mensaje_bienvenida?: SortOrderInput | SortOrder
     barberiaId?: SortOrder
     barberia?: BarberiaOrderByWithRelationInput
   }
@@ -9076,6 +9122,9 @@ export namespace Prisma {
     simbolo?: StringFilter<"Configuracion"> | string
     separador_miles?: StringFilter<"Configuracion"> | string
     separador_decimal?: StringFilter<"Configuracion"> | string
+    duracion_turno?: IntFilter<"Configuracion"> | number
+    dias_descanso?: StringFilter<"Configuracion"> | string
+    mensaje_bienvenida?: StringNullableFilter<"Configuracion"> | string | null
     barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
   }, "id" | "barberiaId">
 
@@ -9086,6 +9135,9 @@ export namespace Prisma {
     simbolo?: SortOrder
     separador_miles?: SortOrder
     separador_decimal?: SortOrder
+    duracion_turno?: SortOrder
+    dias_descanso?: SortOrder
+    mensaje_bienvenida?: SortOrderInput | SortOrder
     barberiaId?: SortOrder
     _count?: ConfiguracionCountOrderByAggregateInput
     _avg?: ConfiguracionAvgOrderByAggregateInput
@@ -9104,6 +9156,9 @@ export namespace Prisma {
     simbolo?: StringWithAggregatesFilter<"Configuracion"> | string
     separador_miles?: StringWithAggregatesFilter<"Configuracion"> | string
     separador_decimal?: StringWithAggregatesFilter<"Configuracion"> | string
+    duracion_turno?: IntWithAggregatesFilter<"Configuracion"> | number
+    dias_descanso?: StringWithAggregatesFilter<"Configuracion"> | string
+    mensaje_bienvenida?: StringNullableWithAggregatesFilter<"Configuracion"> | string | null
     barberiaId?: IntWithAggregatesFilter<"Configuracion"> | number
   }
 
@@ -9574,6 +9629,9 @@ export namespace Prisma {
     simbolo?: string
     separador_miles?: string
     separador_decimal?: string
+    duracion_turno?: number
+    dias_descanso?: string
+    mensaje_bienvenida?: string | null
     barberia: BarberiaCreateNestedOneWithoutConfiguracionInput
   }
 
@@ -9584,6 +9642,9 @@ export namespace Prisma {
     simbolo?: string
     separador_miles?: string
     separador_decimal?: string
+    duracion_turno?: number
+    dias_descanso?: string
+    mensaje_bienvenida?: string | null
     barberiaId: number
   }
 
@@ -9593,6 +9654,9 @@ export namespace Prisma {
     simbolo?: StringFieldUpdateOperationsInput | string
     separador_miles?: StringFieldUpdateOperationsInput | string
     separador_decimal?: StringFieldUpdateOperationsInput | string
+    duracion_turno?: IntFieldUpdateOperationsInput | number
+    dias_descanso?: StringFieldUpdateOperationsInput | string
+    mensaje_bienvenida?: NullableStringFieldUpdateOperationsInput | string | null
     barberia?: BarberiaUpdateOneRequiredWithoutConfiguracionNestedInput
   }
 
@@ -9603,6 +9667,9 @@ export namespace Prisma {
     simbolo?: StringFieldUpdateOperationsInput | string
     separador_miles?: StringFieldUpdateOperationsInput | string
     separador_decimal?: StringFieldUpdateOperationsInput | string
+    duracion_turno?: IntFieldUpdateOperationsInput | number
+    dias_descanso?: StringFieldUpdateOperationsInput | string
+    mensaje_bienvenida?: NullableStringFieldUpdateOperationsInput | string | null
     barberiaId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -9613,6 +9680,9 @@ export namespace Prisma {
     simbolo?: string
     separador_miles?: string
     separador_decimal?: string
+    duracion_turno?: number
+    dias_descanso?: string
+    mensaje_bienvenida?: string | null
     barberiaId: number
   }
 
@@ -9622,6 +9692,9 @@ export namespace Prisma {
     simbolo?: StringFieldUpdateOperationsInput | string
     separador_miles?: StringFieldUpdateOperationsInput | string
     separador_decimal?: StringFieldUpdateOperationsInput | string
+    duracion_turno?: IntFieldUpdateOperationsInput | number
+    dias_descanso?: StringFieldUpdateOperationsInput | string
+    mensaje_bienvenida?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ConfiguracionUncheckedUpdateManyInput = {
@@ -9631,6 +9704,9 @@ export namespace Prisma {
     simbolo?: StringFieldUpdateOperationsInput | string
     separador_miles?: StringFieldUpdateOperationsInput | string
     separador_decimal?: StringFieldUpdateOperationsInput | string
+    duracion_turno?: IntFieldUpdateOperationsInput | number
+    dias_descanso?: StringFieldUpdateOperationsInput | string
+    mensaje_bienvenida?: NullableStringFieldUpdateOperationsInput | string | null
     barberiaId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -10201,11 +10277,15 @@ export namespace Prisma {
     simbolo?: SortOrder
     separador_miles?: SortOrder
     separador_decimal?: SortOrder
+    duracion_turno?: SortOrder
+    dias_descanso?: SortOrder
+    mensaje_bienvenida?: SortOrder
     barberiaId?: SortOrder
   }
 
   export type ConfiguracionAvgOrderByAggregateInput = {
     id?: SortOrder
+    duracion_turno?: SortOrder
     barberiaId?: SortOrder
   }
 
@@ -10216,6 +10296,9 @@ export namespace Prisma {
     simbolo?: SortOrder
     separador_miles?: SortOrder
     separador_decimal?: SortOrder
+    duracion_turno?: SortOrder
+    dias_descanso?: SortOrder
+    mensaje_bienvenida?: SortOrder
     barberiaId?: SortOrder
   }
 
@@ -10226,11 +10309,15 @@ export namespace Prisma {
     simbolo?: SortOrder
     separador_miles?: SortOrder
     separador_decimal?: SortOrder
+    duracion_turno?: SortOrder
+    dias_descanso?: SortOrder
+    mensaje_bienvenida?: SortOrder
     barberiaId?: SortOrder
   }
 
   export type ConfiguracionSumOrderByAggregateInput = {
     id?: SortOrder
+    duracion_turno?: SortOrder
     barberiaId?: SortOrder
   }
 
@@ -11208,6 +11295,9 @@ export namespace Prisma {
     simbolo?: string
     separador_miles?: string
     separador_decimal?: string
+    duracion_turno?: number
+    dias_descanso?: string
+    mensaje_bienvenida?: string | null
   }
 
   export type ConfiguracionUncheckedCreateWithoutBarberiaInput = {
@@ -11217,6 +11307,9 @@ export namespace Prisma {
     simbolo?: string
     separador_miles?: string
     separador_decimal?: string
+    duracion_turno?: number
+    dias_descanso?: string
+    mensaje_bienvenida?: string | null
   }
 
   export type ConfiguracionCreateOrConnectWithoutBarberiaInput = {
@@ -11392,6 +11485,9 @@ export namespace Prisma {
     simbolo?: StringFieldUpdateOperationsInput | string
     separador_miles?: StringFieldUpdateOperationsInput | string
     separador_decimal?: StringFieldUpdateOperationsInput | string
+    duracion_turno?: IntFieldUpdateOperationsInput | number
+    dias_descanso?: StringFieldUpdateOperationsInput | string
+    mensaje_bienvenida?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ConfiguracionUncheckedUpdateWithoutBarberiaInput = {
@@ -11401,6 +11497,9 @@ export namespace Prisma {
     simbolo?: StringFieldUpdateOperationsInput | string
     separador_miles?: StringFieldUpdateOperationsInput | string
     separador_decimal?: StringFieldUpdateOperationsInput | string
+    duracion_turno?: IntFieldUpdateOperationsInput | number
+    dias_descanso?: StringFieldUpdateOperationsInput | string
+    mensaje_bienvenida?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type BarberiaCreateWithoutUsuariosInput = {

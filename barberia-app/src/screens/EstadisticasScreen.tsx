@@ -3,11 +3,10 @@ import { View, Text, StyleSheet, ScrollView, ActivityIndicator, Image } from 're
 import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../theme';
-import { useConfig, formatearPrecio } from '../context/ConfigContext';
+import { formatearPrecio } from '../context/ConfigContext';
 import api from '../services/api';
 
 export default function EstadisticasScreen() {
-  const config = useConfig();
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -69,7 +68,7 @@ export default function EstadisticasScreen() {
         <Ionicons name="cash" size={28} color={theme.colors.gold} />
         <View style={styles.ingresosInfo}>
           <Text style={styles.ingresosLabel}>Ingresos estimados del mes</Text>
-          <Text style={styles.ingresosValor}>{formatearPrecio(data.resumen.ingresosMes, config)}</Text>
+          <Text style={styles.ingresosValor}>{formatearPrecio(data.resumen.ingresosMes)}</Text>
           <Text style={styles.ingresosSubtexto}>Basado en citas completadas</Text>
         </View>
       </View>

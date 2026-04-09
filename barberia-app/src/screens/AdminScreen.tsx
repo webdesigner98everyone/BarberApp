@@ -2,11 +2,10 @@ import React, { useState, useCallback } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { theme, formatPrecio } from '../theme';
-import { useConfig, formatearPrecio } from '../context/ConfigContext';
+import { formatearPrecio } from '../context/ConfigContext';
 import api from '../services/api';
 
 export default function AdminScreen() {
-  const config = useConfig();
   const [reservas, setReservas] = useState([]);
   const [filtro, setFiltro] = useState<'hoy' | 'todas'>('hoy');
   const [cumpleaneros, setCumpleaneros] = useState<any[]>([]);
@@ -125,7 +124,7 @@ export default function AdminScreen() {
                 </View>
                 <View style={styles.clienteRow}>
                   <Text style={styles.clienteLabel}>SERVICIO</Text>
-                  <Text style={styles.servicio}>{item.servicio.nombre} · {formatearPrecio(item.servicio.precio, config)}</Text>
+                  <Text style={styles.servicio}>{item.servicio.nombre} · {formatearPrecio(item.servicio.precio)}</Text>
                 </View>
               </View>
             </View>

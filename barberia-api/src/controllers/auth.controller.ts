@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import prisma from '../lib/prisma';
-import { SERVICIOS_PREDEFINIDOS } from '../lib/serviciosPredefinidos';
 
 const generarCodigo = (nombre: string): string => {
   const base = nombre.toUpperCase().replace(/\s+/g, '').substring(0, 6);
@@ -24,9 +23,6 @@ export const register = async (req: Request, res: Response) => {
         codigo,
         configuracion: {
           create: { nombre_barberia: nombreBarberia, moneda: 'COP', simbolo: '$', separador_miles: '.', separador_decimal: ',' }
-        },
-        servicios: {
-          create: SERVICIOS_PREDEFINIDOS
         }
       }
     });

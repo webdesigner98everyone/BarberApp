@@ -8,6 +8,7 @@ import api from '../services/api';
 
 export default function MisCitasScreen() {
   const [reservas, setReservas] = useState([]);
+  const [filtro, setFiltro] = useState<'activas' | 'historial'>('activas');
   const [modalVisible, setModalVisible] = useState(false);
   const [reservaSeleccionada, setReservaSeleccionada] = useState<any>(null);
   const [fecha, setFecha] = useState<Date | null>(null);
@@ -71,6 +72,12 @@ export default function MisCitasScreen() {
     }
   };
 
+  const reservasFiltradas: any[] = (reservas as any[]).filter((r) =>
+    filtro === 'activas'
+      ? ['pendiente', 'en_proceso'].includes(r.estado)
+      : ['completada', 'cancelada'].includes(r.estado)
+  );
+
   const estadoColor: any = {
     pendiente: theme.colors.warning,
     en_proceso: '#4A90D9',
@@ -95,14 +102,29 @@ export default function MisCitasScreen() {
         <Text style={styles.title}>Mis Reservas</Text>
       </View>
 
+      <View style={styles.filtros}>
+        <TouchableOpacity
+          style={[styles.filtroBtn, filtro === 'activas' && styles.filtroBtnActive]}
+          onPress={() => setFiltro('activas')}
+        >
+          <Text style={[styles.filtroText, filtro === 'activas' && styles.filtroTextActive]}>Activas</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.filtroBtn, filtro === 'historial' && styles.filtroBtnActive]}
+          onPress={() => setFiltro('historial')}
+        >
+          <Text style={[styles.filtroText, filtro === 'historial' && styles.filtroTextActive]}>Historial</Text>
+        </TouchableOpacity>
+      </View>
+
       <FlatList
-        data={reservas}
+        data={reservasFiltradas}
         keyExtractor={(item: any) => item.id.toString()}
         contentContainerStyle={{ paddingBottom: 20 }}
         ListEmptyComponent={
           <View style={styles.empty}>
             <Text style={styles.emptyIcon}>📅</Text>
-            <Text style={styles.emptyText}>No tienes reservas aún</Text>
+            <Text style={styles.emptyText}>No tienes reservas {filtro === 'activas' ? 'activas' : 'en el historial'}</Text>
             <Text style={styles.emptySubtext}>Reserva con uno de nuestros barberos</Text>
           </View>
         }
@@ -209,6 +231,11 @@ const styles = StyleSheet.create({
   brandLogo: { width: 28, height: 28, borderRadius: 6, marginRight: 8 },
   brand: { fontSize: 13, color: theme.colors.gold, letterSpacing: 3, fontWeight: 'bold' },
   title: { fontSize: 26, fontWeight: 'bold', color: theme.colors.white },
+  filtros: { flexDirection: 'row', marginHorizontal: 16, marginBottom: 16, backgroundColor: theme.colors.card, borderRadius: 10, padding: 4 },
+  filtroBtn: { flex: 1, paddingVertical: 10, alignItems: 'center', borderRadius: 8 },
+  filtroBtnActive: { backgroundColor: theme.colors.gold },
+  filtroText: { color: theme.colors.gray, fontWeight: 'bold' },
+  filtroTextActive: { color: theme.colors.background },
   card: { backgroundColor: theme.colors.card, marginHorizontal: 16, marginBottom: 12, borderRadius: 12, padding: 16, borderLeftWidth: 3, borderLeftColor: theme.colors.gold },
   cardHeader: { flexDirection: 'row', alignItems: 'center' },
   avatar: { width: 44, height: 44, borderRadius: 22, backgroundColor: theme.colors.gold, justifyContent: 'center', alignItems: 'center', marginRight: 12 },

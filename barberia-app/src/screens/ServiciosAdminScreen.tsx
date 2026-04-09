@@ -7,13 +7,14 @@ import { formatearPrecio } from '../context/ConfigContext';
 import api from '../services/api';
 
 interface Servicio {
-  id: number;
+  id: number | null;
+  catalogoId?: number | null;
   nombre: string;
   precio: number;
   duracion_minutos: number;
   categoria: string;
   activo: boolean;
-  predefinido: boolean;
+  predefinido?: boolean;
 }
 
 const ServicioModal = ({ visible, servicio, onClose, onSave }: any) => {
@@ -109,7 +110,13 @@ export default function ServiciosAdminScreen() {
 
   const handleToggle = async (servicio: Servicio) => {
     try {
-      await api.patch(`/admin/servicios/${servicio.id}/toggle`);
+      await api.patch(`/admin/servicios/${servicio.id}/toggle`, {
+        catalogoId: servicio.catalogoId,
+        nombre: servicio.nombre,
+        precio: servicio.precio,
+        duracion_minutos: servicio.duracion_minutos,
+        categoria: servicio.categoria
+      });
       cargar();
     } catch {
       Alert.alert('Error', 'No se pudo actualizar el servicio');
@@ -172,7 +179,7 @@ export default function ServiciosAdminScreen() {
 
       <SectionList
         sections={secciones as any}
-        keyExtractor={(item: any) => item.id.toString()}
+        keyExtractor={(item: any) => (item.id ?? `cat-${item.catalogoId}`).toString()}
         contentContainerStyle={{ paddingBottom: 20 }}
         renderSectionHeader={({ section: { titulo } }: any) => (
           <View style={styles.seccionHeader}>
@@ -193,7 +200,7 @@ export default function ServiciosAdminScreen() {
               <TouchableOpacity style={styles.editBtn} onPress={() => { setServicioEditando(item); setModalVisible(true); }}>
                 <Ionicons name="pencil" size={16} color={theme.colors.white} />
               </TouchableOpacity>
-              {!item.predefinido && (
+              {!item.catalogoId && (
                 <TouchableOpacity style={styles.deleteBtn} onPress={() => handleEliminar(item)}>
                   <Ionicons name="trash" size={16} color={theme.colors.error} />
                 </TouchableOpacity>

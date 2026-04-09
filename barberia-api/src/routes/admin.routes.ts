@@ -111,32 +111,87 @@ router.post('/barberos/:id/horarios', async (req, res) => {
 router.get('/servicios', async (req, res) => {
   const barberiaId = (req as any).usuario.barberiaId;
   const prisma = (await import('../lib/prisma')).default;
-  const servicios = await prisma.servicio.findMany({ where: { barberiaId: Number(barberiaId) }, orderBy: [{ categoria: 'asc' }, { nombre: 'asc' }] });
-  res.json(servicios);
+
+  // Servicios activos de esta barberia
+  const activos = await prisma.servicioActivo.findMany({
+    where: { barberiaId: Number(barberiaId) }
+  });
+
+  // Catalogo global - excluir los que ya tiene activos
+  const catalogoIdsActivos = activos.filter((s) => s.catalogoId).map((s) => s.catalogoId!);
+  const catalogo = await prisma.servicioCatalogo.findMany({
+    where: { id: { notIn: catalogoIdsActivos } }
+  });
+
+  // Combinar: activos propios + catalogo no activado aun
+  const resultado = [
+    ...activos,
+    ...catalogo.map((c) => ({
+      id: null,
+      catalogoId: c.id,
+      nombre: c.nombre,
+      precio: 0,
+      duracion_minutos: c.duracion_minutos,
+      categoria: c.categoria,
+      activo: false,
+      predefinido: true,
+      barberiaId: Number(barberiaId)
+    }))
+  ].sort((a, b) => a.categoria.localeCompare(b.categoria) || a.nombre.localeCompare(b.nombre));
+
+  res.json(resultado);
 });
-router.post('/servicios', createServicio);
+router.post('/servicios', async (req, res) => {
+  const barberiaId = (req as any).usuario.barberiaId;
+  const { nombre, precio, duracion_minutos, categoria, catalogoId } = req.body;
+  const prisma = (await import('../lib/prisma')).default;
+  const servicio = await prisma.servicioActivo.create({
+    data: { nombre, precio: Number(precio), duracion_minutos: Number(duracion_minutos), categoria: categoria ?? 'General', barberiaId: Number(barberiaId), activo: true, catalogoId: catalogoId ?? null }
+  });
+  res.json(servicio);
+});
 router.put('/servicios/:id', async (req, res) => {
   const { id } = req.params;
   const { nombre, precio, duracion_minutos, categoria } = req.body;
   const prisma = (await import('../lib/prisma')).default;
-  const servicio = await prisma.servicio.update({ where: { id: Number(id) }, data: { nombre, precio: Number(precio), duracion_minutos: Number(duracion_minutos), categoria } });
+  const servicio = await prisma.servicioActivo.update({ where: { id: Number(id) }, data: { nombre, precio: Number(precio), duracion_minutos: Number(duracion_minutos), categoria } });
   res.json(servicio);
 });
 router.patch('/servicios/:id/toggle', async (req, res) => {
+  const barberiaId = (req as any).usuario.barberiaId;
   const { id } = req.params;
+  const { catalogoId, nombre, precio, duracion_minutos, categoria } = req.body;
   const prisma = (await import('../lib/prisma')).default;
-  const servicio = await prisma.servicio.findUnique({ where: { id: Number(id) } });
+
+  // Si id es null viene del catalogo, hay que crearlo
+  if (!id || id === 'null') {
+    const nuevo = await prisma.servicioActivo.create({
+      data: { catalogoId: Number(catalogoId), nombre, precio: Number(precio) || 0, duracion_minutos: Number(duracion_minutos), categoria, barberiaId: Number(barberiaId), activo: true }
+    });
+    return res.json(nuevo);
+  }
+
+  const servicio = await prisma.servicioActivo.findUnique({ where: { id: Number(id) } });
   if (!servicio) return res.status(404).json({ error: 'Servicio no encontrado' });
-  const updated = await prisma.servicio.update({ where: { id: Number(id) }, data: { activo: !servicio.activo } });
+
+  // Si se desactiva un servicio del catalogo, eliminarlo directamente
+  if (servicio.catalogoId) {
+    await prisma.servicioActivo.delete({ where: { id: Number(id) } });
+    return res.json({ deleted: true });
+  }
+
+  const updated = await prisma.servicioActivo.update({ where: { id: Number(id) }, data: { activo: !servicio.activo } });
   res.json(updated);
 });
 router.delete('/servicios/:id', async (req, res) => {
   const { id } = req.params;
   const prisma = (await import('../lib/prisma')).default;
+  const servicio = await prisma.servicioActivo.findUnique({ where: { id: Number(id) } });
+  if (!servicio) return res.status(404).json({ error: 'Servicio no encontrado' });
+  if (servicio.catalogoId) return res.status(400).json({ error: 'Los servicios del catálogo no se pueden eliminar, solo desactivar' });
   const pendientes = await prisma.reserva.count({ where: { servicioId: Number(id), estado: 'pendiente' } });
   if (pendientes > 0) return res.status(400).json({ error: `Este servicio tiene ${pendientes} cita(s) pendiente(s). Cancélalas primero.` });
-  await prisma.reserva.deleteMany({ where: { servicioId: Number(id) } });
-  await prisma.servicio.delete({ where: { id: Number(id) } });
+  await prisma.servicioActivo.delete({ where: { id: Number(id) } });
   res.json({ message: 'Servicio eliminado' });
 });
 

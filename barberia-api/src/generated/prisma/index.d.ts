@@ -34,6 +34,16 @@ export type Barbero = $Result.DefaultSelection<Prisma.$BarberoPayload>
  */
 export type Servicio = $Result.DefaultSelection<Prisma.$ServicioPayload>
 /**
+ * Model ServicioCatalogo
+ * 
+ */
+export type ServicioCatalogo = $Result.DefaultSelection<Prisma.$ServicioCatalogoPayload>
+/**
+ * Model ServicioActivo
+ * 
+ */
+export type ServicioActivo = $Result.DefaultSelection<Prisma.$ServicioActivoPayload>
+/**
  * Model Reserva
  * 
  */
@@ -211,6 +221,26 @@ export class PrismaClient<
     * ```
     */
   get servicio(): Prisma.ServicioDelegate<ExtArgs>;
+
+  /**
+   * `prisma.servicioCatalogo`: Exposes CRUD operations for the **ServicioCatalogo** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ServicioCatalogos
+    * const servicioCatalogos = await prisma.servicioCatalogo.findMany()
+    * ```
+    */
+  get servicioCatalogo(): Prisma.ServicioCatalogoDelegate<ExtArgs>;
+
+  /**
+   * `prisma.servicioActivo`: Exposes CRUD operations for the **ServicioActivo** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ServicioActivos
+    * const servicioActivos = await prisma.servicioActivo.findMany()
+    * ```
+    */
+  get servicioActivo(): Prisma.ServicioActivoDelegate<ExtArgs>;
 
   /**
    * `prisma.reserva`: Exposes CRUD operations for the **Reserva** model.
@@ -686,6 +716,8 @@ export namespace Prisma {
     Usuario: 'Usuario',
     Barbero: 'Barbero',
     Servicio: 'Servicio',
+    ServicioCatalogo: 'ServicioCatalogo',
+    ServicioActivo: 'ServicioActivo',
     Reserva: 'Reserva',
     Horario: 'Horario',
     Configuracion: 'Configuracion'
@@ -704,7 +736,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "barberia" | "usuario" | "barbero" | "servicio" | "reserva" | "horario" | "configuracion"
+      modelProps: "barberia" | "usuario" | "barbero" | "servicio" | "servicioCatalogo" | "servicioActivo" | "reserva" | "horario" | "configuracion"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -969,6 +1001,138 @@ export namespace Prisma {
           count: {
             args: Prisma.ServicioCountArgs<ExtArgs>
             result: $Utils.Optional<ServicioCountAggregateOutputType> | number
+          }
+        }
+      }
+      ServicioCatalogo: {
+        payload: Prisma.$ServicioCatalogoPayload<ExtArgs>
+        fields: Prisma.ServicioCatalogoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ServicioCatalogoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicioCatalogoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ServicioCatalogoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicioCatalogoPayload>
+          }
+          findFirst: {
+            args: Prisma.ServicioCatalogoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicioCatalogoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ServicioCatalogoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicioCatalogoPayload>
+          }
+          findMany: {
+            args: Prisma.ServicioCatalogoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicioCatalogoPayload>[]
+          }
+          create: {
+            args: Prisma.ServicioCatalogoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicioCatalogoPayload>
+          }
+          createMany: {
+            args: Prisma.ServicioCatalogoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ServicioCatalogoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicioCatalogoPayload>
+          }
+          update: {
+            args: Prisma.ServicioCatalogoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicioCatalogoPayload>
+          }
+          deleteMany: {
+            args: Prisma.ServicioCatalogoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ServicioCatalogoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ServicioCatalogoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicioCatalogoPayload>
+          }
+          aggregate: {
+            args: Prisma.ServicioCatalogoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateServicioCatalogo>
+          }
+          groupBy: {
+            args: Prisma.ServicioCatalogoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ServicioCatalogoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ServicioCatalogoCountArgs<ExtArgs>
+            result: $Utils.Optional<ServicioCatalogoCountAggregateOutputType> | number
+          }
+        }
+      }
+      ServicioActivo: {
+        payload: Prisma.$ServicioActivoPayload<ExtArgs>
+        fields: Prisma.ServicioActivoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ServicioActivoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicioActivoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ServicioActivoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicioActivoPayload>
+          }
+          findFirst: {
+            args: Prisma.ServicioActivoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicioActivoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ServicioActivoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicioActivoPayload>
+          }
+          findMany: {
+            args: Prisma.ServicioActivoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicioActivoPayload>[]
+          }
+          create: {
+            args: Prisma.ServicioActivoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicioActivoPayload>
+          }
+          createMany: {
+            args: Prisma.ServicioActivoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ServicioActivoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicioActivoPayload>
+          }
+          update: {
+            args: Prisma.ServicioActivoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicioActivoPayload>
+          }
+          deleteMany: {
+            args: Prisma.ServicioActivoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ServicioActivoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ServicioActivoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicioActivoPayload>
+          }
+          aggregate: {
+            args: Prisma.ServicioActivoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateServicioActivo>
+          }
+          groupBy: {
+            args: Prisma.ServicioActivoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ServicioActivoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ServicioActivoCountArgs<ExtArgs>
+            result: $Utils.Optional<ServicioActivoCountAggregateOutputType> | number
           }
         }
       }
@@ -1334,6 +1498,7 @@ export namespace Prisma {
     usuarios: number
     barberos: number
     servicios: number
+    serviciosActivos: number
     reservas: number
     horarios: number
   }
@@ -1342,6 +1507,7 @@ export namespace Prisma {
     usuarios?: boolean | BarberiaCountOutputTypeCountUsuariosArgs
     barberos?: boolean | BarberiaCountOutputTypeCountBarberosArgs
     servicios?: boolean | BarberiaCountOutputTypeCountServiciosArgs
+    serviciosActivos?: boolean | BarberiaCountOutputTypeCountServiciosActivosArgs
     reservas?: boolean | BarberiaCountOutputTypeCountReservasArgs
     horarios?: boolean | BarberiaCountOutputTypeCountHorariosArgs
   }
@@ -1376,6 +1542,13 @@ export namespace Prisma {
    */
   export type BarberiaCountOutputTypeCountServiciosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ServicioWhereInput
+  }
+
+  /**
+   * BarberiaCountOutputType without action
+   */
+  export type BarberiaCountOutputTypeCountServiciosActivosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServicioActivoWhereInput
   }
 
   /**
@@ -1492,6 +1665,37 @@ export namespace Prisma {
    */
   export type ServicioCountOutputTypeCountReservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ReservaWhereInput
+  }
+
+
+  /**
+   * Count Type ServicioCatalogoCountOutputType
+   */
+
+  export type ServicioCatalogoCountOutputType = {
+    serviciosActivos: number
+  }
+
+  export type ServicioCatalogoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    serviciosActivos?: boolean | ServicioCatalogoCountOutputTypeCountServiciosActivosArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ServicioCatalogoCountOutputType without action
+   */
+  export type ServicioCatalogoCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioCatalogoCountOutputType
+     */
+    select?: ServicioCatalogoCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ServicioCatalogoCountOutputType without action
+   */
+  export type ServicioCatalogoCountOutputTypeCountServiciosActivosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServicioActivoWhereInput
   }
 
 
@@ -1700,6 +1904,7 @@ export namespace Prisma {
     usuarios?: boolean | Barberia$usuariosArgs<ExtArgs>
     barberos?: boolean | Barberia$barberosArgs<ExtArgs>
     servicios?: boolean | Barberia$serviciosArgs<ExtArgs>
+    serviciosActivos?: boolean | Barberia$serviciosActivosArgs<ExtArgs>
     reservas?: boolean | Barberia$reservasArgs<ExtArgs>
     horarios?: boolean | Barberia$horariosArgs<ExtArgs>
     configuracion?: boolean | Barberia$configuracionArgs<ExtArgs>
@@ -1719,6 +1924,7 @@ export namespace Prisma {
     usuarios?: boolean | Barberia$usuariosArgs<ExtArgs>
     barberos?: boolean | Barberia$barberosArgs<ExtArgs>
     servicios?: boolean | Barberia$serviciosArgs<ExtArgs>
+    serviciosActivos?: boolean | Barberia$serviciosActivosArgs<ExtArgs>
     reservas?: boolean | Barberia$reservasArgs<ExtArgs>
     horarios?: boolean | Barberia$horariosArgs<ExtArgs>
     configuracion?: boolean | Barberia$configuracionArgs<ExtArgs>
@@ -1731,6 +1937,7 @@ export namespace Prisma {
       usuarios: Prisma.$UsuarioPayload<ExtArgs>[]
       barberos: Prisma.$BarberoPayload<ExtArgs>[]
       servicios: Prisma.$ServicioPayload<ExtArgs>[]
+      serviciosActivos: Prisma.$ServicioActivoPayload<ExtArgs>[]
       reservas: Prisma.$ReservaPayload<ExtArgs>[]
       horarios: Prisma.$HorarioPayload<ExtArgs>[]
       configuracion: Prisma.$ConfiguracionPayload<ExtArgs> | null
@@ -2084,6 +2291,7 @@ export namespace Prisma {
     usuarios<T extends Barberia$usuariosArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$usuariosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findMany"> | Null>
     barberos<T extends Barberia$barberosArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$barberosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BarberoPayload<ExtArgs>, T, "findMany"> | Null>
     servicios<T extends Barberia$serviciosArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$serviciosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicioPayload<ExtArgs>, T, "findMany"> | Null>
+    serviciosActivos<T extends Barberia$serviciosActivosArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$serviciosActivosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicioActivoPayload<ExtArgs>, T, "findMany"> | Null>
     reservas<T extends Barberia$reservasArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$reservasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservaPayload<ExtArgs>, T, "findMany"> | Null>
     horarios<T extends Barberia$horariosArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$horariosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HorarioPayload<ExtArgs>, T, "findMany"> | Null>
     configuracion<T extends Barberia$configuracionArgs<ExtArgs> = {}>(args?: Subset<T, Barberia$configuracionArgs<ExtArgs>>): Prisma__ConfiguracionClient<$Result.GetResult<Prisma.$ConfiguracionPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
@@ -2477,6 +2685,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ServicioScalarFieldEnum | ServicioScalarFieldEnum[]
+  }
+
+  /**
+   * Barberia.serviciosActivos
+   */
+  export type Barberia$serviciosActivosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioActivo
+     */
+    select?: ServicioActivoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioActivoInclude<ExtArgs> | null
+    where?: ServicioActivoWhereInput
+    orderBy?: ServicioActivoOrderByWithRelationInput | ServicioActivoOrderByWithRelationInput[]
+    cursor?: ServicioActivoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ServicioActivoScalarFieldEnum | ServicioActivoScalarFieldEnum[]
   }
 
   /**
@@ -5536,6 +5764,1926 @@ export namespace Prisma {
 
 
   /**
+   * Model ServicioCatalogo
+   */
+
+  export type AggregateServicioCatalogo = {
+    _count: ServicioCatalogoCountAggregateOutputType | null
+    _avg: ServicioCatalogoAvgAggregateOutputType | null
+    _sum: ServicioCatalogoSumAggregateOutputType | null
+    _min: ServicioCatalogoMinAggregateOutputType | null
+    _max: ServicioCatalogoMaxAggregateOutputType | null
+  }
+
+  export type ServicioCatalogoAvgAggregateOutputType = {
+    id: number | null
+    duracion_minutos: number | null
+  }
+
+  export type ServicioCatalogoSumAggregateOutputType = {
+    id: number | null
+    duracion_minutos: number | null
+  }
+
+  export type ServicioCatalogoMinAggregateOutputType = {
+    id: number | null
+    nombre: string | null
+    duracion_minutos: number | null
+    categoria: string | null
+  }
+
+  export type ServicioCatalogoMaxAggregateOutputType = {
+    id: number | null
+    nombre: string | null
+    duracion_minutos: number | null
+    categoria: string | null
+  }
+
+  export type ServicioCatalogoCountAggregateOutputType = {
+    id: number
+    nombre: number
+    duracion_minutos: number
+    categoria: number
+    _all: number
+  }
+
+
+  export type ServicioCatalogoAvgAggregateInputType = {
+    id?: true
+    duracion_minutos?: true
+  }
+
+  export type ServicioCatalogoSumAggregateInputType = {
+    id?: true
+    duracion_minutos?: true
+  }
+
+  export type ServicioCatalogoMinAggregateInputType = {
+    id?: true
+    nombre?: true
+    duracion_minutos?: true
+    categoria?: true
+  }
+
+  export type ServicioCatalogoMaxAggregateInputType = {
+    id?: true
+    nombre?: true
+    duracion_minutos?: true
+    categoria?: true
+  }
+
+  export type ServicioCatalogoCountAggregateInputType = {
+    id?: true
+    nombre?: true
+    duracion_minutos?: true
+    categoria?: true
+    _all?: true
+  }
+
+  export type ServicioCatalogoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServicioCatalogo to aggregate.
+     */
+    where?: ServicioCatalogoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServicioCatalogos to fetch.
+     */
+    orderBy?: ServicioCatalogoOrderByWithRelationInput | ServicioCatalogoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ServicioCatalogoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServicioCatalogos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServicioCatalogos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ServicioCatalogos
+    **/
+    _count?: true | ServicioCatalogoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ServicioCatalogoAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ServicioCatalogoSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ServicioCatalogoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ServicioCatalogoMaxAggregateInputType
+  }
+
+  export type GetServicioCatalogoAggregateType<T extends ServicioCatalogoAggregateArgs> = {
+        [P in keyof T & keyof AggregateServicioCatalogo]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateServicioCatalogo[P]>
+      : GetScalarType<T[P], AggregateServicioCatalogo[P]>
+  }
+
+
+
+
+  export type ServicioCatalogoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServicioCatalogoWhereInput
+    orderBy?: ServicioCatalogoOrderByWithAggregationInput | ServicioCatalogoOrderByWithAggregationInput[]
+    by: ServicioCatalogoScalarFieldEnum[] | ServicioCatalogoScalarFieldEnum
+    having?: ServicioCatalogoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ServicioCatalogoCountAggregateInputType | true
+    _avg?: ServicioCatalogoAvgAggregateInputType
+    _sum?: ServicioCatalogoSumAggregateInputType
+    _min?: ServicioCatalogoMinAggregateInputType
+    _max?: ServicioCatalogoMaxAggregateInputType
+  }
+
+  export type ServicioCatalogoGroupByOutputType = {
+    id: number
+    nombre: string
+    duracion_minutos: number
+    categoria: string
+    _count: ServicioCatalogoCountAggregateOutputType | null
+    _avg: ServicioCatalogoAvgAggregateOutputType | null
+    _sum: ServicioCatalogoSumAggregateOutputType | null
+    _min: ServicioCatalogoMinAggregateOutputType | null
+    _max: ServicioCatalogoMaxAggregateOutputType | null
+  }
+
+  type GetServicioCatalogoGroupByPayload<T extends ServicioCatalogoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ServicioCatalogoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ServicioCatalogoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ServicioCatalogoGroupByOutputType[P]>
+            : GetScalarType<T[P], ServicioCatalogoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ServicioCatalogoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nombre?: boolean
+    duracion_minutos?: boolean
+    categoria?: boolean
+    serviciosActivos?: boolean | ServicioCatalogo$serviciosActivosArgs<ExtArgs>
+    _count?: boolean | ServicioCatalogoCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["servicioCatalogo"]>
+
+
+  export type ServicioCatalogoSelectScalar = {
+    id?: boolean
+    nombre?: boolean
+    duracion_minutos?: boolean
+    categoria?: boolean
+  }
+
+  export type ServicioCatalogoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    serviciosActivos?: boolean | ServicioCatalogo$serviciosActivosArgs<ExtArgs>
+    _count?: boolean | ServicioCatalogoCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $ServicioCatalogoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ServicioCatalogo"
+    objects: {
+      serviciosActivos: Prisma.$ServicioActivoPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      nombre: string
+      duracion_minutos: number
+      categoria: string
+    }, ExtArgs["result"]["servicioCatalogo"]>
+    composites: {}
+  }
+
+  type ServicioCatalogoGetPayload<S extends boolean | null | undefined | ServicioCatalogoDefaultArgs> = $Result.GetResult<Prisma.$ServicioCatalogoPayload, S>
+
+  type ServicioCatalogoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ServicioCatalogoFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ServicioCatalogoCountAggregateInputType | true
+    }
+
+  export interface ServicioCatalogoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServicioCatalogo'], meta: { name: 'ServicioCatalogo' } }
+    /**
+     * Find zero or one ServicioCatalogo that matches the filter.
+     * @param {ServicioCatalogoFindUniqueArgs} args - Arguments to find a ServicioCatalogo
+     * @example
+     * // Get one ServicioCatalogo
+     * const servicioCatalogo = await prisma.servicioCatalogo.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ServicioCatalogoFindUniqueArgs>(args: SelectSubset<T, ServicioCatalogoFindUniqueArgs<ExtArgs>>): Prisma__ServicioCatalogoClient<$Result.GetResult<Prisma.$ServicioCatalogoPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one ServicioCatalogo that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ServicioCatalogoFindUniqueOrThrowArgs} args - Arguments to find a ServicioCatalogo
+     * @example
+     * // Get one ServicioCatalogo
+     * const servicioCatalogo = await prisma.servicioCatalogo.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ServicioCatalogoFindUniqueOrThrowArgs>(args: SelectSubset<T, ServicioCatalogoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ServicioCatalogoClient<$Result.GetResult<Prisma.$ServicioCatalogoPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first ServicioCatalogo that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicioCatalogoFindFirstArgs} args - Arguments to find a ServicioCatalogo
+     * @example
+     * // Get one ServicioCatalogo
+     * const servicioCatalogo = await prisma.servicioCatalogo.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ServicioCatalogoFindFirstArgs>(args?: SelectSubset<T, ServicioCatalogoFindFirstArgs<ExtArgs>>): Prisma__ServicioCatalogoClient<$Result.GetResult<Prisma.$ServicioCatalogoPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first ServicioCatalogo that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicioCatalogoFindFirstOrThrowArgs} args - Arguments to find a ServicioCatalogo
+     * @example
+     * // Get one ServicioCatalogo
+     * const servicioCatalogo = await prisma.servicioCatalogo.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ServicioCatalogoFindFirstOrThrowArgs>(args?: SelectSubset<T, ServicioCatalogoFindFirstOrThrowArgs<ExtArgs>>): Prisma__ServicioCatalogoClient<$Result.GetResult<Prisma.$ServicioCatalogoPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more ServicioCatalogos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicioCatalogoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ServicioCatalogos
+     * const servicioCatalogos = await prisma.servicioCatalogo.findMany()
+     * 
+     * // Get first 10 ServicioCatalogos
+     * const servicioCatalogos = await prisma.servicioCatalogo.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const servicioCatalogoWithIdOnly = await prisma.servicioCatalogo.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ServicioCatalogoFindManyArgs>(args?: SelectSubset<T, ServicioCatalogoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicioCatalogoPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a ServicioCatalogo.
+     * @param {ServicioCatalogoCreateArgs} args - Arguments to create a ServicioCatalogo.
+     * @example
+     * // Create one ServicioCatalogo
+     * const ServicioCatalogo = await prisma.servicioCatalogo.create({
+     *   data: {
+     *     // ... data to create a ServicioCatalogo
+     *   }
+     * })
+     * 
+     */
+    create<T extends ServicioCatalogoCreateArgs>(args: SelectSubset<T, ServicioCatalogoCreateArgs<ExtArgs>>): Prisma__ServicioCatalogoClient<$Result.GetResult<Prisma.$ServicioCatalogoPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many ServicioCatalogos.
+     * @param {ServicioCatalogoCreateManyArgs} args - Arguments to create many ServicioCatalogos.
+     * @example
+     * // Create many ServicioCatalogos
+     * const servicioCatalogo = await prisma.servicioCatalogo.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ServicioCatalogoCreateManyArgs>(args?: SelectSubset<T, ServicioCatalogoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ServicioCatalogo.
+     * @param {ServicioCatalogoDeleteArgs} args - Arguments to delete one ServicioCatalogo.
+     * @example
+     * // Delete one ServicioCatalogo
+     * const ServicioCatalogo = await prisma.servicioCatalogo.delete({
+     *   where: {
+     *     // ... filter to delete one ServicioCatalogo
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ServicioCatalogoDeleteArgs>(args: SelectSubset<T, ServicioCatalogoDeleteArgs<ExtArgs>>): Prisma__ServicioCatalogoClient<$Result.GetResult<Prisma.$ServicioCatalogoPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one ServicioCatalogo.
+     * @param {ServicioCatalogoUpdateArgs} args - Arguments to update one ServicioCatalogo.
+     * @example
+     * // Update one ServicioCatalogo
+     * const servicioCatalogo = await prisma.servicioCatalogo.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ServicioCatalogoUpdateArgs>(args: SelectSubset<T, ServicioCatalogoUpdateArgs<ExtArgs>>): Prisma__ServicioCatalogoClient<$Result.GetResult<Prisma.$ServicioCatalogoPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more ServicioCatalogos.
+     * @param {ServicioCatalogoDeleteManyArgs} args - Arguments to filter ServicioCatalogos to delete.
+     * @example
+     * // Delete a few ServicioCatalogos
+     * const { count } = await prisma.servicioCatalogo.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ServicioCatalogoDeleteManyArgs>(args?: SelectSubset<T, ServicioCatalogoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServicioCatalogos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicioCatalogoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ServicioCatalogos
+     * const servicioCatalogo = await prisma.servicioCatalogo.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ServicioCatalogoUpdateManyArgs>(args: SelectSubset<T, ServicioCatalogoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ServicioCatalogo.
+     * @param {ServicioCatalogoUpsertArgs} args - Arguments to update or create a ServicioCatalogo.
+     * @example
+     * // Update or create a ServicioCatalogo
+     * const servicioCatalogo = await prisma.servicioCatalogo.upsert({
+     *   create: {
+     *     // ... data to create a ServicioCatalogo
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ServicioCatalogo we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ServicioCatalogoUpsertArgs>(args: SelectSubset<T, ServicioCatalogoUpsertArgs<ExtArgs>>): Prisma__ServicioCatalogoClient<$Result.GetResult<Prisma.$ServicioCatalogoPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of ServicioCatalogos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicioCatalogoCountArgs} args - Arguments to filter ServicioCatalogos to count.
+     * @example
+     * // Count the number of ServicioCatalogos
+     * const count = await prisma.servicioCatalogo.count({
+     *   where: {
+     *     // ... the filter for the ServicioCatalogos we want to count
+     *   }
+     * })
+    **/
+    count<T extends ServicioCatalogoCountArgs>(
+      args?: Subset<T, ServicioCatalogoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ServicioCatalogoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ServicioCatalogo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicioCatalogoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ServicioCatalogoAggregateArgs>(args: Subset<T, ServicioCatalogoAggregateArgs>): Prisma.PrismaPromise<GetServicioCatalogoAggregateType<T>>
+
+    /**
+     * Group by ServicioCatalogo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicioCatalogoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ServicioCatalogoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ServicioCatalogoGroupByArgs['orderBy'] }
+        : { orderBy?: ServicioCatalogoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ServicioCatalogoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServicioCatalogoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ServicioCatalogo model
+   */
+  readonly fields: ServicioCatalogoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ServicioCatalogo.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ServicioCatalogoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    serviciosActivos<T extends ServicioCatalogo$serviciosActivosArgs<ExtArgs> = {}>(args?: Subset<T, ServicioCatalogo$serviciosActivosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicioActivoPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ServicioCatalogo model
+   */ 
+  interface ServicioCatalogoFieldRefs {
+    readonly id: FieldRef<"ServicioCatalogo", 'Int'>
+    readonly nombre: FieldRef<"ServicioCatalogo", 'String'>
+    readonly duracion_minutos: FieldRef<"ServicioCatalogo", 'Int'>
+    readonly categoria: FieldRef<"ServicioCatalogo", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ServicioCatalogo findUnique
+   */
+  export type ServicioCatalogoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioCatalogo
+     */
+    select?: ServicioCatalogoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioCatalogoInclude<ExtArgs> | null
+    /**
+     * Filter, which ServicioCatalogo to fetch.
+     */
+    where: ServicioCatalogoWhereUniqueInput
+  }
+
+  /**
+   * ServicioCatalogo findUniqueOrThrow
+   */
+  export type ServicioCatalogoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioCatalogo
+     */
+    select?: ServicioCatalogoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioCatalogoInclude<ExtArgs> | null
+    /**
+     * Filter, which ServicioCatalogo to fetch.
+     */
+    where: ServicioCatalogoWhereUniqueInput
+  }
+
+  /**
+   * ServicioCatalogo findFirst
+   */
+  export type ServicioCatalogoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioCatalogo
+     */
+    select?: ServicioCatalogoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioCatalogoInclude<ExtArgs> | null
+    /**
+     * Filter, which ServicioCatalogo to fetch.
+     */
+    where?: ServicioCatalogoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServicioCatalogos to fetch.
+     */
+    orderBy?: ServicioCatalogoOrderByWithRelationInput | ServicioCatalogoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServicioCatalogos.
+     */
+    cursor?: ServicioCatalogoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServicioCatalogos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServicioCatalogos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServicioCatalogos.
+     */
+    distinct?: ServicioCatalogoScalarFieldEnum | ServicioCatalogoScalarFieldEnum[]
+  }
+
+  /**
+   * ServicioCatalogo findFirstOrThrow
+   */
+  export type ServicioCatalogoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioCatalogo
+     */
+    select?: ServicioCatalogoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioCatalogoInclude<ExtArgs> | null
+    /**
+     * Filter, which ServicioCatalogo to fetch.
+     */
+    where?: ServicioCatalogoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServicioCatalogos to fetch.
+     */
+    orderBy?: ServicioCatalogoOrderByWithRelationInput | ServicioCatalogoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServicioCatalogos.
+     */
+    cursor?: ServicioCatalogoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServicioCatalogos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServicioCatalogos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServicioCatalogos.
+     */
+    distinct?: ServicioCatalogoScalarFieldEnum | ServicioCatalogoScalarFieldEnum[]
+  }
+
+  /**
+   * ServicioCatalogo findMany
+   */
+  export type ServicioCatalogoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioCatalogo
+     */
+    select?: ServicioCatalogoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioCatalogoInclude<ExtArgs> | null
+    /**
+     * Filter, which ServicioCatalogos to fetch.
+     */
+    where?: ServicioCatalogoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServicioCatalogos to fetch.
+     */
+    orderBy?: ServicioCatalogoOrderByWithRelationInput | ServicioCatalogoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ServicioCatalogos.
+     */
+    cursor?: ServicioCatalogoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServicioCatalogos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServicioCatalogos.
+     */
+    skip?: number
+    distinct?: ServicioCatalogoScalarFieldEnum | ServicioCatalogoScalarFieldEnum[]
+  }
+
+  /**
+   * ServicioCatalogo create
+   */
+  export type ServicioCatalogoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioCatalogo
+     */
+    select?: ServicioCatalogoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioCatalogoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ServicioCatalogo.
+     */
+    data: XOR<ServicioCatalogoCreateInput, ServicioCatalogoUncheckedCreateInput>
+  }
+
+  /**
+   * ServicioCatalogo createMany
+   */
+  export type ServicioCatalogoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ServicioCatalogos.
+     */
+    data: ServicioCatalogoCreateManyInput | ServicioCatalogoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ServicioCatalogo update
+   */
+  export type ServicioCatalogoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioCatalogo
+     */
+    select?: ServicioCatalogoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioCatalogoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ServicioCatalogo.
+     */
+    data: XOR<ServicioCatalogoUpdateInput, ServicioCatalogoUncheckedUpdateInput>
+    /**
+     * Choose, which ServicioCatalogo to update.
+     */
+    where: ServicioCatalogoWhereUniqueInput
+  }
+
+  /**
+   * ServicioCatalogo updateMany
+   */
+  export type ServicioCatalogoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ServicioCatalogos.
+     */
+    data: XOR<ServicioCatalogoUpdateManyMutationInput, ServicioCatalogoUncheckedUpdateManyInput>
+    /**
+     * Filter which ServicioCatalogos to update
+     */
+    where?: ServicioCatalogoWhereInput
+  }
+
+  /**
+   * ServicioCatalogo upsert
+   */
+  export type ServicioCatalogoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioCatalogo
+     */
+    select?: ServicioCatalogoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioCatalogoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ServicioCatalogo to update in case it exists.
+     */
+    where: ServicioCatalogoWhereUniqueInput
+    /**
+     * In case the ServicioCatalogo found by the `where` argument doesn't exist, create a new ServicioCatalogo with this data.
+     */
+    create: XOR<ServicioCatalogoCreateInput, ServicioCatalogoUncheckedCreateInput>
+    /**
+     * In case the ServicioCatalogo was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ServicioCatalogoUpdateInput, ServicioCatalogoUncheckedUpdateInput>
+  }
+
+  /**
+   * ServicioCatalogo delete
+   */
+  export type ServicioCatalogoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioCatalogo
+     */
+    select?: ServicioCatalogoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioCatalogoInclude<ExtArgs> | null
+    /**
+     * Filter which ServicioCatalogo to delete.
+     */
+    where: ServicioCatalogoWhereUniqueInput
+  }
+
+  /**
+   * ServicioCatalogo deleteMany
+   */
+  export type ServicioCatalogoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServicioCatalogos to delete
+     */
+    where?: ServicioCatalogoWhereInput
+  }
+
+  /**
+   * ServicioCatalogo.serviciosActivos
+   */
+  export type ServicioCatalogo$serviciosActivosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioActivo
+     */
+    select?: ServicioActivoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioActivoInclude<ExtArgs> | null
+    where?: ServicioActivoWhereInput
+    orderBy?: ServicioActivoOrderByWithRelationInput | ServicioActivoOrderByWithRelationInput[]
+    cursor?: ServicioActivoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ServicioActivoScalarFieldEnum | ServicioActivoScalarFieldEnum[]
+  }
+
+  /**
+   * ServicioCatalogo without action
+   */
+  export type ServicioCatalogoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioCatalogo
+     */
+    select?: ServicioCatalogoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioCatalogoInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ServicioActivo
+   */
+
+  export type AggregateServicioActivo = {
+    _count: ServicioActivoCountAggregateOutputType | null
+    _avg: ServicioActivoAvgAggregateOutputType | null
+    _sum: ServicioActivoSumAggregateOutputType | null
+    _min: ServicioActivoMinAggregateOutputType | null
+    _max: ServicioActivoMaxAggregateOutputType | null
+  }
+
+  export type ServicioActivoAvgAggregateOutputType = {
+    id: number | null
+    barberiaId: number | null
+    catalogoId: number | null
+    precio: number | null
+    duracion_minutos: number | null
+  }
+
+  export type ServicioActivoSumAggregateOutputType = {
+    id: number | null
+    barberiaId: number | null
+    catalogoId: number | null
+    precio: number | null
+    duracion_minutos: number | null
+  }
+
+  export type ServicioActivoMinAggregateOutputType = {
+    id: number | null
+    barberiaId: number | null
+    catalogoId: number | null
+    nombre: string | null
+    precio: number | null
+    duracion_minutos: number | null
+    categoria: string | null
+    activo: boolean | null
+    createdAt: Date | null
+  }
+
+  export type ServicioActivoMaxAggregateOutputType = {
+    id: number | null
+    barberiaId: number | null
+    catalogoId: number | null
+    nombre: string | null
+    precio: number | null
+    duracion_minutos: number | null
+    categoria: string | null
+    activo: boolean | null
+    createdAt: Date | null
+  }
+
+  export type ServicioActivoCountAggregateOutputType = {
+    id: number
+    barberiaId: number
+    catalogoId: number
+    nombre: number
+    precio: number
+    duracion_minutos: number
+    categoria: number
+    activo: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ServicioActivoAvgAggregateInputType = {
+    id?: true
+    barberiaId?: true
+    catalogoId?: true
+    precio?: true
+    duracion_minutos?: true
+  }
+
+  export type ServicioActivoSumAggregateInputType = {
+    id?: true
+    barberiaId?: true
+    catalogoId?: true
+    precio?: true
+    duracion_minutos?: true
+  }
+
+  export type ServicioActivoMinAggregateInputType = {
+    id?: true
+    barberiaId?: true
+    catalogoId?: true
+    nombre?: true
+    precio?: true
+    duracion_minutos?: true
+    categoria?: true
+    activo?: true
+    createdAt?: true
+  }
+
+  export type ServicioActivoMaxAggregateInputType = {
+    id?: true
+    barberiaId?: true
+    catalogoId?: true
+    nombre?: true
+    precio?: true
+    duracion_minutos?: true
+    categoria?: true
+    activo?: true
+    createdAt?: true
+  }
+
+  export type ServicioActivoCountAggregateInputType = {
+    id?: true
+    barberiaId?: true
+    catalogoId?: true
+    nombre?: true
+    precio?: true
+    duracion_minutos?: true
+    categoria?: true
+    activo?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ServicioActivoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServicioActivo to aggregate.
+     */
+    where?: ServicioActivoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServicioActivos to fetch.
+     */
+    orderBy?: ServicioActivoOrderByWithRelationInput | ServicioActivoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ServicioActivoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServicioActivos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServicioActivos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ServicioActivos
+    **/
+    _count?: true | ServicioActivoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ServicioActivoAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ServicioActivoSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ServicioActivoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ServicioActivoMaxAggregateInputType
+  }
+
+  export type GetServicioActivoAggregateType<T extends ServicioActivoAggregateArgs> = {
+        [P in keyof T & keyof AggregateServicioActivo]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateServicioActivo[P]>
+      : GetScalarType<T[P], AggregateServicioActivo[P]>
+  }
+
+
+
+
+  export type ServicioActivoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServicioActivoWhereInput
+    orderBy?: ServicioActivoOrderByWithAggregationInput | ServicioActivoOrderByWithAggregationInput[]
+    by: ServicioActivoScalarFieldEnum[] | ServicioActivoScalarFieldEnum
+    having?: ServicioActivoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ServicioActivoCountAggregateInputType | true
+    _avg?: ServicioActivoAvgAggregateInputType
+    _sum?: ServicioActivoSumAggregateInputType
+    _min?: ServicioActivoMinAggregateInputType
+    _max?: ServicioActivoMaxAggregateInputType
+  }
+
+  export type ServicioActivoGroupByOutputType = {
+    id: number
+    barberiaId: number
+    catalogoId: number | null
+    nombre: string
+    precio: number
+    duracion_minutos: number
+    categoria: string
+    activo: boolean
+    createdAt: Date
+    _count: ServicioActivoCountAggregateOutputType | null
+    _avg: ServicioActivoAvgAggregateOutputType | null
+    _sum: ServicioActivoSumAggregateOutputType | null
+    _min: ServicioActivoMinAggregateOutputType | null
+    _max: ServicioActivoMaxAggregateOutputType | null
+  }
+
+  type GetServicioActivoGroupByPayload<T extends ServicioActivoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ServicioActivoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ServicioActivoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ServicioActivoGroupByOutputType[P]>
+            : GetScalarType<T[P], ServicioActivoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ServicioActivoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    barberiaId?: boolean
+    catalogoId?: boolean
+    nombre?: boolean
+    precio?: boolean
+    duracion_minutos?: boolean
+    categoria?: boolean
+    activo?: boolean
+    createdAt?: boolean
+    barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
+    catalogo?: boolean | ServicioActivo$catalogoArgs<ExtArgs>
+  }, ExtArgs["result"]["servicioActivo"]>
+
+
+  export type ServicioActivoSelectScalar = {
+    id?: boolean
+    barberiaId?: boolean
+    catalogoId?: boolean
+    nombre?: boolean
+    precio?: boolean
+    duracion_minutos?: boolean
+    categoria?: boolean
+    activo?: boolean
+    createdAt?: boolean
+  }
+
+  export type ServicioActivoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    barberia?: boolean | BarberiaDefaultArgs<ExtArgs>
+    catalogo?: boolean | ServicioActivo$catalogoArgs<ExtArgs>
+  }
+
+  export type $ServicioActivoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ServicioActivo"
+    objects: {
+      barberia: Prisma.$BarberiaPayload<ExtArgs>
+      catalogo: Prisma.$ServicioCatalogoPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      barberiaId: number
+      catalogoId: number | null
+      nombre: string
+      precio: number
+      duracion_minutos: number
+      categoria: string
+      activo: boolean
+      createdAt: Date
+    }, ExtArgs["result"]["servicioActivo"]>
+    composites: {}
+  }
+
+  type ServicioActivoGetPayload<S extends boolean | null | undefined | ServicioActivoDefaultArgs> = $Result.GetResult<Prisma.$ServicioActivoPayload, S>
+
+  type ServicioActivoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ServicioActivoFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ServicioActivoCountAggregateInputType | true
+    }
+
+  export interface ServicioActivoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServicioActivo'], meta: { name: 'ServicioActivo' } }
+    /**
+     * Find zero or one ServicioActivo that matches the filter.
+     * @param {ServicioActivoFindUniqueArgs} args - Arguments to find a ServicioActivo
+     * @example
+     * // Get one ServicioActivo
+     * const servicioActivo = await prisma.servicioActivo.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ServicioActivoFindUniqueArgs>(args: SelectSubset<T, ServicioActivoFindUniqueArgs<ExtArgs>>): Prisma__ServicioActivoClient<$Result.GetResult<Prisma.$ServicioActivoPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one ServicioActivo that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ServicioActivoFindUniqueOrThrowArgs} args - Arguments to find a ServicioActivo
+     * @example
+     * // Get one ServicioActivo
+     * const servicioActivo = await prisma.servicioActivo.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ServicioActivoFindUniqueOrThrowArgs>(args: SelectSubset<T, ServicioActivoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ServicioActivoClient<$Result.GetResult<Prisma.$ServicioActivoPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first ServicioActivo that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicioActivoFindFirstArgs} args - Arguments to find a ServicioActivo
+     * @example
+     * // Get one ServicioActivo
+     * const servicioActivo = await prisma.servicioActivo.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ServicioActivoFindFirstArgs>(args?: SelectSubset<T, ServicioActivoFindFirstArgs<ExtArgs>>): Prisma__ServicioActivoClient<$Result.GetResult<Prisma.$ServicioActivoPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first ServicioActivo that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicioActivoFindFirstOrThrowArgs} args - Arguments to find a ServicioActivo
+     * @example
+     * // Get one ServicioActivo
+     * const servicioActivo = await prisma.servicioActivo.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ServicioActivoFindFirstOrThrowArgs>(args?: SelectSubset<T, ServicioActivoFindFirstOrThrowArgs<ExtArgs>>): Prisma__ServicioActivoClient<$Result.GetResult<Prisma.$ServicioActivoPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more ServicioActivos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicioActivoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ServicioActivos
+     * const servicioActivos = await prisma.servicioActivo.findMany()
+     * 
+     * // Get first 10 ServicioActivos
+     * const servicioActivos = await prisma.servicioActivo.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const servicioActivoWithIdOnly = await prisma.servicioActivo.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ServicioActivoFindManyArgs>(args?: SelectSubset<T, ServicioActivoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicioActivoPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a ServicioActivo.
+     * @param {ServicioActivoCreateArgs} args - Arguments to create a ServicioActivo.
+     * @example
+     * // Create one ServicioActivo
+     * const ServicioActivo = await prisma.servicioActivo.create({
+     *   data: {
+     *     // ... data to create a ServicioActivo
+     *   }
+     * })
+     * 
+     */
+    create<T extends ServicioActivoCreateArgs>(args: SelectSubset<T, ServicioActivoCreateArgs<ExtArgs>>): Prisma__ServicioActivoClient<$Result.GetResult<Prisma.$ServicioActivoPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many ServicioActivos.
+     * @param {ServicioActivoCreateManyArgs} args - Arguments to create many ServicioActivos.
+     * @example
+     * // Create many ServicioActivos
+     * const servicioActivo = await prisma.servicioActivo.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ServicioActivoCreateManyArgs>(args?: SelectSubset<T, ServicioActivoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ServicioActivo.
+     * @param {ServicioActivoDeleteArgs} args - Arguments to delete one ServicioActivo.
+     * @example
+     * // Delete one ServicioActivo
+     * const ServicioActivo = await prisma.servicioActivo.delete({
+     *   where: {
+     *     // ... filter to delete one ServicioActivo
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ServicioActivoDeleteArgs>(args: SelectSubset<T, ServicioActivoDeleteArgs<ExtArgs>>): Prisma__ServicioActivoClient<$Result.GetResult<Prisma.$ServicioActivoPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one ServicioActivo.
+     * @param {ServicioActivoUpdateArgs} args - Arguments to update one ServicioActivo.
+     * @example
+     * // Update one ServicioActivo
+     * const servicioActivo = await prisma.servicioActivo.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ServicioActivoUpdateArgs>(args: SelectSubset<T, ServicioActivoUpdateArgs<ExtArgs>>): Prisma__ServicioActivoClient<$Result.GetResult<Prisma.$ServicioActivoPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more ServicioActivos.
+     * @param {ServicioActivoDeleteManyArgs} args - Arguments to filter ServicioActivos to delete.
+     * @example
+     * // Delete a few ServicioActivos
+     * const { count } = await prisma.servicioActivo.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ServicioActivoDeleteManyArgs>(args?: SelectSubset<T, ServicioActivoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServicioActivos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicioActivoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ServicioActivos
+     * const servicioActivo = await prisma.servicioActivo.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ServicioActivoUpdateManyArgs>(args: SelectSubset<T, ServicioActivoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ServicioActivo.
+     * @param {ServicioActivoUpsertArgs} args - Arguments to update or create a ServicioActivo.
+     * @example
+     * // Update or create a ServicioActivo
+     * const servicioActivo = await prisma.servicioActivo.upsert({
+     *   create: {
+     *     // ... data to create a ServicioActivo
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ServicioActivo we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ServicioActivoUpsertArgs>(args: SelectSubset<T, ServicioActivoUpsertArgs<ExtArgs>>): Prisma__ServicioActivoClient<$Result.GetResult<Prisma.$ServicioActivoPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of ServicioActivos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicioActivoCountArgs} args - Arguments to filter ServicioActivos to count.
+     * @example
+     * // Count the number of ServicioActivos
+     * const count = await prisma.servicioActivo.count({
+     *   where: {
+     *     // ... the filter for the ServicioActivos we want to count
+     *   }
+     * })
+    **/
+    count<T extends ServicioActivoCountArgs>(
+      args?: Subset<T, ServicioActivoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ServicioActivoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ServicioActivo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicioActivoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ServicioActivoAggregateArgs>(args: Subset<T, ServicioActivoAggregateArgs>): Prisma.PrismaPromise<GetServicioActivoAggregateType<T>>
+
+    /**
+     * Group by ServicioActivo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicioActivoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ServicioActivoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ServicioActivoGroupByArgs['orderBy'] }
+        : { orderBy?: ServicioActivoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ServicioActivoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServicioActivoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ServicioActivo model
+   */
+  readonly fields: ServicioActivoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ServicioActivo.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ServicioActivoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    barberia<T extends BarberiaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BarberiaDefaultArgs<ExtArgs>>): Prisma__BarberiaClient<$Result.GetResult<Prisma.$BarberiaPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    catalogo<T extends ServicioActivo$catalogoArgs<ExtArgs> = {}>(args?: Subset<T, ServicioActivo$catalogoArgs<ExtArgs>>): Prisma__ServicioCatalogoClient<$Result.GetResult<Prisma.$ServicioCatalogoPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ServicioActivo model
+   */ 
+  interface ServicioActivoFieldRefs {
+    readonly id: FieldRef<"ServicioActivo", 'Int'>
+    readonly barberiaId: FieldRef<"ServicioActivo", 'Int'>
+    readonly catalogoId: FieldRef<"ServicioActivo", 'Int'>
+    readonly nombre: FieldRef<"ServicioActivo", 'String'>
+    readonly precio: FieldRef<"ServicioActivo", 'Float'>
+    readonly duracion_minutos: FieldRef<"ServicioActivo", 'Int'>
+    readonly categoria: FieldRef<"ServicioActivo", 'String'>
+    readonly activo: FieldRef<"ServicioActivo", 'Boolean'>
+    readonly createdAt: FieldRef<"ServicioActivo", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ServicioActivo findUnique
+   */
+  export type ServicioActivoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioActivo
+     */
+    select?: ServicioActivoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioActivoInclude<ExtArgs> | null
+    /**
+     * Filter, which ServicioActivo to fetch.
+     */
+    where: ServicioActivoWhereUniqueInput
+  }
+
+  /**
+   * ServicioActivo findUniqueOrThrow
+   */
+  export type ServicioActivoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioActivo
+     */
+    select?: ServicioActivoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioActivoInclude<ExtArgs> | null
+    /**
+     * Filter, which ServicioActivo to fetch.
+     */
+    where: ServicioActivoWhereUniqueInput
+  }
+
+  /**
+   * ServicioActivo findFirst
+   */
+  export type ServicioActivoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioActivo
+     */
+    select?: ServicioActivoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioActivoInclude<ExtArgs> | null
+    /**
+     * Filter, which ServicioActivo to fetch.
+     */
+    where?: ServicioActivoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServicioActivos to fetch.
+     */
+    orderBy?: ServicioActivoOrderByWithRelationInput | ServicioActivoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServicioActivos.
+     */
+    cursor?: ServicioActivoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServicioActivos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServicioActivos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServicioActivos.
+     */
+    distinct?: ServicioActivoScalarFieldEnum | ServicioActivoScalarFieldEnum[]
+  }
+
+  /**
+   * ServicioActivo findFirstOrThrow
+   */
+  export type ServicioActivoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioActivo
+     */
+    select?: ServicioActivoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioActivoInclude<ExtArgs> | null
+    /**
+     * Filter, which ServicioActivo to fetch.
+     */
+    where?: ServicioActivoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServicioActivos to fetch.
+     */
+    orderBy?: ServicioActivoOrderByWithRelationInput | ServicioActivoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServicioActivos.
+     */
+    cursor?: ServicioActivoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServicioActivos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServicioActivos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServicioActivos.
+     */
+    distinct?: ServicioActivoScalarFieldEnum | ServicioActivoScalarFieldEnum[]
+  }
+
+  /**
+   * ServicioActivo findMany
+   */
+  export type ServicioActivoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioActivo
+     */
+    select?: ServicioActivoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioActivoInclude<ExtArgs> | null
+    /**
+     * Filter, which ServicioActivos to fetch.
+     */
+    where?: ServicioActivoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServicioActivos to fetch.
+     */
+    orderBy?: ServicioActivoOrderByWithRelationInput | ServicioActivoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ServicioActivos.
+     */
+    cursor?: ServicioActivoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServicioActivos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServicioActivos.
+     */
+    skip?: number
+    distinct?: ServicioActivoScalarFieldEnum | ServicioActivoScalarFieldEnum[]
+  }
+
+  /**
+   * ServicioActivo create
+   */
+  export type ServicioActivoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioActivo
+     */
+    select?: ServicioActivoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioActivoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ServicioActivo.
+     */
+    data: XOR<ServicioActivoCreateInput, ServicioActivoUncheckedCreateInput>
+  }
+
+  /**
+   * ServicioActivo createMany
+   */
+  export type ServicioActivoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ServicioActivos.
+     */
+    data: ServicioActivoCreateManyInput | ServicioActivoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ServicioActivo update
+   */
+  export type ServicioActivoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioActivo
+     */
+    select?: ServicioActivoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioActivoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ServicioActivo.
+     */
+    data: XOR<ServicioActivoUpdateInput, ServicioActivoUncheckedUpdateInput>
+    /**
+     * Choose, which ServicioActivo to update.
+     */
+    where: ServicioActivoWhereUniqueInput
+  }
+
+  /**
+   * ServicioActivo updateMany
+   */
+  export type ServicioActivoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ServicioActivos.
+     */
+    data: XOR<ServicioActivoUpdateManyMutationInput, ServicioActivoUncheckedUpdateManyInput>
+    /**
+     * Filter which ServicioActivos to update
+     */
+    where?: ServicioActivoWhereInput
+  }
+
+  /**
+   * ServicioActivo upsert
+   */
+  export type ServicioActivoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioActivo
+     */
+    select?: ServicioActivoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioActivoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ServicioActivo to update in case it exists.
+     */
+    where: ServicioActivoWhereUniqueInput
+    /**
+     * In case the ServicioActivo found by the `where` argument doesn't exist, create a new ServicioActivo with this data.
+     */
+    create: XOR<ServicioActivoCreateInput, ServicioActivoUncheckedCreateInput>
+    /**
+     * In case the ServicioActivo was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ServicioActivoUpdateInput, ServicioActivoUncheckedUpdateInput>
+  }
+
+  /**
+   * ServicioActivo delete
+   */
+  export type ServicioActivoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioActivo
+     */
+    select?: ServicioActivoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioActivoInclude<ExtArgs> | null
+    /**
+     * Filter which ServicioActivo to delete.
+     */
+    where: ServicioActivoWhereUniqueInput
+  }
+
+  /**
+   * ServicioActivo deleteMany
+   */
+  export type ServicioActivoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServicioActivos to delete
+     */
+    where?: ServicioActivoWhereInput
+  }
+
+  /**
+   * ServicioActivo.catalogo
+   */
+  export type ServicioActivo$catalogoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioCatalogo
+     */
+    select?: ServicioCatalogoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioCatalogoInclude<ExtArgs> | null
+    where?: ServicioCatalogoWhereInput
+  }
+
+  /**
+   * ServicioActivo without action
+   */
+  export type ServicioActivoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicioActivo
+     */
+    select?: ServicioActivoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicioActivoInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Reserva
    */
 
@@ -8515,6 +10663,31 @@ export namespace Prisma {
   export type ServicioScalarFieldEnum = (typeof ServicioScalarFieldEnum)[keyof typeof ServicioScalarFieldEnum]
 
 
+  export const ServicioCatalogoScalarFieldEnum: {
+    id: 'id',
+    nombre: 'nombre',
+    duracion_minutos: 'duracion_minutos',
+    categoria: 'categoria'
+  };
+
+  export type ServicioCatalogoScalarFieldEnum = (typeof ServicioCatalogoScalarFieldEnum)[keyof typeof ServicioCatalogoScalarFieldEnum]
+
+
+  export const ServicioActivoScalarFieldEnum: {
+    id: 'id',
+    barberiaId: 'barberiaId',
+    catalogoId: 'catalogoId',
+    nombre: 'nombre',
+    precio: 'precio',
+    duracion_minutos: 'duracion_minutos',
+    categoria: 'categoria',
+    activo: 'activo',
+    createdAt: 'createdAt'
+  };
+
+  export type ServicioActivoScalarFieldEnum = (typeof ServicioActivoScalarFieldEnum)[keyof typeof ServicioActivoScalarFieldEnum]
+
+
   export const ReservaScalarFieldEnum: {
     id: 'id',
     usuarioId: 'usuarioId',
@@ -8630,6 +10803,7 @@ export namespace Prisma {
     usuarios?: UsuarioListRelationFilter
     barberos?: BarberoListRelationFilter
     servicios?: ServicioListRelationFilter
+    serviciosActivos?: ServicioActivoListRelationFilter
     reservas?: ReservaListRelationFilter
     horarios?: HorarioListRelationFilter
     configuracion?: XOR<ConfiguracionNullableRelationFilter, ConfiguracionWhereInput> | null
@@ -8644,6 +10818,7 @@ export namespace Prisma {
     usuarios?: UsuarioOrderByRelationAggregateInput
     barberos?: BarberoOrderByRelationAggregateInput
     servicios?: ServicioOrderByRelationAggregateInput
+    serviciosActivos?: ServicioActivoOrderByRelationAggregateInput
     reservas?: ReservaOrderByRelationAggregateInput
     horarios?: HorarioOrderByRelationAggregateInput
     configuracion?: ConfiguracionOrderByWithRelationInput
@@ -8661,6 +10836,7 @@ export namespace Prisma {
     usuarios?: UsuarioListRelationFilter
     barberos?: BarberoListRelationFilter
     servicios?: ServicioListRelationFilter
+    serviciosActivos?: ServicioActivoListRelationFilter
     reservas?: ReservaListRelationFilter
     horarios?: HorarioListRelationFilter
     configuracion?: XOR<ConfiguracionNullableRelationFilter, ConfiguracionWhereInput> | null
@@ -8923,6 +11099,138 @@ export namespace Prisma {
     barberiaId?: IntWithAggregatesFilter<"Servicio"> | number
   }
 
+  export type ServicioCatalogoWhereInput = {
+    AND?: ServicioCatalogoWhereInput | ServicioCatalogoWhereInput[]
+    OR?: ServicioCatalogoWhereInput[]
+    NOT?: ServicioCatalogoWhereInput | ServicioCatalogoWhereInput[]
+    id?: IntFilter<"ServicioCatalogo"> | number
+    nombre?: StringFilter<"ServicioCatalogo"> | string
+    duracion_minutos?: IntFilter<"ServicioCatalogo"> | number
+    categoria?: StringFilter<"ServicioCatalogo"> | string
+    serviciosActivos?: ServicioActivoListRelationFilter
+  }
+
+  export type ServicioCatalogoOrderByWithRelationInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    duracion_minutos?: SortOrder
+    categoria?: SortOrder
+    serviciosActivos?: ServicioActivoOrderByRelationAggregateInput
+  }
+
+  export type ServicioCatalogoWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    nombre?: string
+    AND?: ServicioCatalogoWhereInput | ServicioCatalogoWhereInput[]
+    OR?: ServicioCatalogoWhereInput[]
+    NOT?: ServicioCatalogoWhereInput | ServicioCatalogoWhereInput[]
+    duracion_minutos?: IntFilter<"ServicioCatalogo"> | number
+    categoria?: StringFilter<"ServicioCatalogo"> | string
+    serviciosActivos?: ServicioActivoListRelationFilter
+  }, "id" | "nombre">
+
+  export type ServicioCatalogoOrderByWithAggregationInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    duracion_minutos?: SortOrder
+    categoria?: SortOrder
+    _count?: ServicioCatalogoCountOrderByAggregateInput
+    _avg?: ServicioCatalogoAvgOrderByAggregateInput
+    _max?: ServicioCatalogoMaxOrderByAggregateInput
+    _min?: ServicioCatalogoMinOrderByAggregateInput
+    _sum?: ServicioCatalogoSumOrderByAggregateInput
+  }
+
+  export type ServicioCatalogoScalarWhereWithAggregatesInput = {
+    AND?: ServicioCatalogoScalarWhereWithAggregatesInput | ServicioCatalogoScalarWhereWithAggregatesInput[]
+    OR?: ServicioCatalogoScalarWhereWithAggregatesInput[]
+    NOT?: ServicioCatalogoScalarWhereWithAggregatesInput | ServicioCatalogoScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ServicioCatalogo"> | number
+    nombre?: StringWithAggregatesFilter<"ServicioCatalogo"> | string
+    duracion_minutos?: IntWithAggregatesFilter<"ServicioCatalogo"> | number
+    categoria?: StringWithAggregatesFilter<"ServicioCatalogo"> | string
+  }
+
+  export type ServicioActivoWhereInput = {
+    AND?: ServicioActivoWhereInput | ServicioActivoWhereInput[]
+    OR?: ServicioActivoWhereInput[]
+    NOT?: ServicioActivoWhereInput | ServicioActivoWhereInput[]
+    id?: IntFilter<"ServicioActivo"> | number
+    barberiaId?: IntFilter<"ServicioActivo"> | number
+    catalogoId?: IntNullableFilter<"ServicioActivo"> | number | null
+    nombre?: StringFilter<"ServicioActivo"> | string
+    precio?: FloatFilter<"ServicioActivo"> | number
+    duracion_minutos?: IntFilter<"ServicioActivo"> | number
+    categoria?: StringFilter<"ServicioActivo"> | string
+    activo?: BoolFilter<"ServicioActivo"> | boolean
+    createdAt?: DateTimeFilter<"ServicioActivo"> | Date | string
+    barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
+    catalogo?: XOR<ServicioCatalogoNullableRelationFilter, ServicioCatalogoWhereInput> | null
+  }
+
+  export type ServicioActivoOrderByWithRelationInput = {
+    id?: SortOrder
+    barberiaId?: SortOrder
+    catalogoId?: SortOrderInput | SortOrder
+    nombre?: SortOrder
+    precio?: SortOrder
+    duracion_minutos?: SortOrder
+    categoria?: SortOrder
+    activo?: SortOrder
+    createdAt?: SortOrder
+    barberia?: BarberiaOrderByWithRelationInput
+    catalogo?: ServicioCatalogoOrderByWithRelationInput
+  }
+
+  export type ServicioActivoWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ServicioActivoWhereInput | ServicioActivoWhereInput[]
+    OR?: ServicioActivoWhereInput[]
+    NOT?: ServicioActivoWhereInput | ServicioActivoWhereInput[]
+    barberiaId?: IntFilter<"ServicioActivo"> | number
+    catalogoId?: IntNullableFilter<"ServicioActivo"> | number | null
+    nombre?: StringFilter<"ServicioActivo"> | string
+    precio?: FloatFilter<"ServicioActivo"> | number
+    duracion_minutos?: IntFilter<"ServicioActivo"> | number
+    categoria?: StringFilter<"ServicioActivo"> | string
+    activo?: BoolFilter<"ServicioActivo"> | boolean
+    createdAt?: DateTimeFilter<"ServicioActivo"> | Date | string
+    barberia?: XOR<BarberiaRelationFilter, BarberiaWhereInput>
+    catalogo?: XOR<ServicioCatalogoNullableRelationFilter, ServicioCatalogoWhereInput> | null
+  }, "id">
+
+  export type ServicioActivoOrderByWithAggregationInput = {
+    id?: SortOrder
+    barberiaId?: SortOrder
+    catalogoId?: SortOrderInput | SortOrder
+    nombre?: SortOrder
+    precio?: SortOrder
+    duracion_minutos?: SortOrder
+    categoria?: SortOrder
+    activo?: SortOrder
+    createdAt?: SortOrder
+    _count?: ServicioActivoCountOrderByAggregateInput
+    _avg?: ServicioActivoAvgOrderByAggregateInput
+    _max?: ServicioActivoMaxOrderByAggregateInput
+    _min?: ServicioActivoMinOrderByAggregateInput
+    _sum?: ServicioActivoSumOrderByAggregateInput
+  }
+
+  export type ServicioActivoScalarWhereWithAggregatesInput = {
+    AND?: ServicioActivoScalarWhereWithAggregatesInput | ServicioActivoScalarWhereWithAggregatesInput[]
+    OR?: ServicioActivoScalarWhereWithAggregatesInput[]
+    NOT?: ServicioActivoScalarWhereWithAggregatesInput | ServicioActivoScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ServicioActivo"> | number
+    barberiaId?: IntWithAggregatesFilter<"ServicioActivo"> | number
+    catalogoId?: IntNullableWithAggregatesFilter<"ServicioActivo"> | number | null
+    nombre?: StringWithAggregatesFilter<"ServicioActivo"> | string
+    precio?: FloatWithAggregatesFilter<"ServicioActivo"> | number
+    duracion_minutos?: IntWithAggregatesFilter<"ServicioActivo"> | number
+    categoria?: StringWithAggregatesFilter<"ServicioActivo"> | string
+    activo?: BoolWithAggregatesFilter<"ServicioActivo"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"ServicioActivo"> | Date | string
+  }
+
   export type ReservaWhereInput = {
     AND?: ReservaWhereInput | ReservaWhereInput[]
     OR?: ReservaWhereInput[]
@@ -9170,6 +11478,7 @@ export namespace Prisma {
     usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoCreateNestedManyWithoutBarberiaInput
     servicios?: ServicioCreateNestedManyWithoutBarberiaInput
+    serviciosActivos?: ServicioActivoCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioCreateNestedManyWithoutBarberiaInput
     configuracion?: ConfiguracionCreateNestedOneWithoutBarberiaInput
@@ -9184,6 +11493,7 @@ export namespace Prisma {
     usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
     servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
+    serviciosActivos?: ServicioActivoUncheckedCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
     configuracion?: ConfiguracionUncheckedCreateNestedOneWithoutBarberiaInput
@@ -9197,6 +11507,7 @@ export namespace Prisma {
     usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
     servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
+    serviciosActivos?: ServicioActivoUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
     configuracion?: ConfiguracionUpdateOneWithoutBarberiaNestedInput
@@ -9211,6 +11522,7 @@ export namespace Prisma {
     usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
     servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
+    serviciosActivos?: ServicioActivoUncheckedUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
     configuracion?: ConfiguracionUncheckedUpdateOneWithoutBarberiaNestedInput
@@ -9479,6 +11791,135 @@ export namespace Prisma {
     activo?: BoolFieldUpdateOperationsInput | boolean
     predefinido?: BoolFieldUpdateOperationsInput | boolean
     barberiaId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ServicioCatalogoCreateInput = {
+    nombre: string
+    duracion_minutos: number
+    categoria?: string
+    serviciosActivos?: ServicioActivoCreateNestedManyWithoutCatalogoInput
+  }
+
+  export type ServicioCatalogoUncheckedCreateInput = {
+    id?: number
+    nombre: string
+    duracion_minutos: number
+    categoria?: string
+    serviciosActivos?: ServicioActivoUncheckedCreateNestedManyWithoutCatalogoInput
+  }
+
+  export type ServicioCatalogoUpdateInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    serviciosActivos?: ServicioActivoUpdateManyWithoutCatalogoNestedInput
+  }
+
+  export type ServicioCatalogoUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    serviciosActivos?: ServicioActivoUncheckedUpdateManyWithoutCatalogoNestedInput
+  }
+
+  export type ServicioCatalogoCreateManyInput = {
+    id?: number
+    nombre: string
+    duracion_minutos: number
+    categoria?: string
+  }
+
+  export type ServicioCatalogoUpdateManyMutationInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServicioCatalogoUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServicioActivoCreateInput = {
+    nombre: string
+    precio: number
+    duracion_minutos: number
+    categoria?: string
+    activo?: boolean
+    createdAt?: Date | string
+    barberia: BarberiaCreateNestedOneWithoutServiciosActivosInput
+    catalogo?: ServicioCatalogoCreateNestedOneWithoutServiciosActivosInput
+  }
+
+  export type ServicioActivoUncheckedCreateInput = {
+    id?: number
+    barberiaId: number
+    catalogoId?: number | null
+    nombre: string
+    precio: number
+    duracion_minutos: number
+    categoria?: string
+    activo?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ServicioActivoUpdateInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    barberia?: BarberiaUpdateOneRequiredWithoutServiciosActivosNestedInput
+    catalogo?: ServicioCatalogoUpdateOneWithoutServiciosActivosNestedInput
+  }
+
+  export type ServicioActivoUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
+    catalogoId?: NullableIntFieldUpdateOperationsInput | number | null
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServicioActivoCreateManyInput = {
+    id?: number
+    barberiaId: number
+    catalogoId?: number | null
+    nombre: string
+    precio: number
+    duracion_minutos: number
+    categoria?: string
+    activo?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ServicioActivoUpdateManyMutationInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServicioActivoUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
+    catalogoId?: NullableIntFieldUpdateOperationsInput | number | null
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReservaCreateInput = {
@@ -9778,6 +12219,12 @@ export namespace Prisma {
     none?: ServicioWhereInput
   }
 
+  export type ServicioActivoListRelationFilter = {
+    every?: ServicioActivoWhereInput
+    some?: ServicioActivoWhereInput
+    none?: ServicioActivoWhereInput
+  }
+
   export type ReservaListRelationFilter = {
     every?: ReservaWhereInput
     some?: ReservaWhereInput
@@ -9809,6 +12256,10 @@ export namespace Prisma {
   }
 
   export type ServicioOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ServicioActivoOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -10154,6 +12605,94 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type ServicioCatalogoCountOrderByAggregateInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    duracion_minutos?: SortOrder
+    categoria?: SortOrder
+  }
+
+  export type ServicioCatalogoAvgOrderByAggregateInput = {
+    id?: SortOrder
+    duracion_minutos?: SortOrder
+  }
+
+  export type ServicioCatalogoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    duracion_minutos?: SortOrder
+    categoria?: SortOrder
+  }
+
+  export type ServicioCatalogoMinOrderByAggregateInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    duracion_minutos?: SortOrder
+    categoria?: SortOrder
+  }
+
+  export type ServicioCatalogoSumOrderByAggregateInput = {
+    id?: SortOrder
+    duracion_minutos?: SortOrder
+  }
+
+  export type ServicioCatalogoNullableRelationFilter = {
+    is?: ServicioCatalogoWhereInput | null
+    isNot?: ServicioCatalogoWhereInput | null
+  }
+
+  export type ServicioActivoCountOrderByAggregateInput = {
+    id?: SortOrder
+    barberiaId?: SortOrder
+    catalogoId?: SortOrder
+    nombre?: SortOrder
+    precio?: SortOrder
+    duracion_minutos?: SortOrder
+    categoria?: SortOrder
+    activo?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ServicioActivoAvgOrderByAggregateInput = {
+    id?: SortOrder
+    barberiaId?: SortOrder
+    catalogoId?: SortOrder
+    precio?: SortOrder
+    duracion_minutos?: SortOrder
+  }
+
+  export type ServicioActivoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    barberiaId?: SortOrder
+    catalogoId?: SortOrder
+    nombre?: SortOrder
+    precio?: SortOrder
+    duracion_minutos?: SortOrder
+    categoria?: SortOrder
+    activo?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ServicioActivoMinOrderByAggregateInput = {
+    id?: SortOrder
+    barberiaId?: SortOrder
+    catalogoId?: SortOrder
+    nombre?: SortOrder
+    precio?: SortOrder
+    duracion_minutos?: SortOrder
+    categoria?: SortOrder
+    activo?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ServicioActivoSumOrderByAggregateInput = {
+    id?: SortOrder
+    barberiaId?: SortOrder
+    catalogoId?: SortOrder
+    precio?: SortOrder
+    duracion_minutos?: SortOrder
+  }
+
   export type UsuarioRelationFilter = {
     is?: UsuarioWhereInput
     isNot?: UsuarioWhereInput
@@ -10342,6 +12881,13 @@ export namespace Prisma {
     connect?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
   }
 
+  export type ServicioActivoCreateNestedManyWithoutBarberiaInput = {
+    create?: XOR<ServicioActivoCreateWithoutBarberiaInput, ServicioActivoUncheckedCreateWithoutBarberiaInput> | ServicioActivoCreateWithoutBarberiaInput[] | ServicioActivoUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: ServicioActivoCreateOrConnectWithoutBarberiaInput | ServicioActivoCreateOrConnectWithoutBarberiaInput[]
+    createMany?: ServicioActivoCreateManyBarberiaInputEnvelope
+    connect?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+  }
+
   export type ReservaCreateNestedManyWithoutBarberiaInput = {
     create?: XOR<ReservaCreateWithoutBarberiaInput, ReservaUncheckedCreateWithoutBarberiaInput> | ReservaCreateWithoutBarberiaInput[] | ReservaUncheckedCreateWithoutBarberiaInput[]
     connectOrCreate?: ReservaCreateOrConnectWithoutBarberiaInput | ReservaCreateOrConnectWithoutBarberiaInput[]
@@ -10381,6 +12927,13 @@ export namespace Prisma {
     connectOrCreate?: ServicioCreateOrConnectWithoutBarberiaInput | ServicioCreateOrConnectWithoutBarberiaInput[]
     createMany?: ServicioCreateManyBarberiaInputEnvelope
     connect?: ServicioWhereUniqueInput | ServicioWhereUniqueInput[]
+  }
+
+  export type ServicioActivoUncheckedCreateNestedManyWithoutBarberiaInput = {
+    create?: XOR<ServicioActivoCreateWithoutBarberiaInput, ServicioActivoUncheckedCreateWithoutBarberiaInput> | ServicioActivoCreateWithoutBarberiaInput[] | ServicioActivoUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: ServicioActivoCreateOrConnectWithoutBarberiaInput | ServicioActivoCreateOrConnectWithoutBarberiaInput[]
+    createMany?: ServicioActivoCreateManyBarberiaInputEnvelope
+    connect?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
   }
 
   export type ReservaUncheckedCreateNestedManyWithoutBarberiaInput = {
@@ -10455,6 +13008,20 @@ export namespace Prisma {
     update?: ServicioUpdateWithWhereUniqueWithoutBarberiaInput | ServicioUpdateWithWhereUniqueWithoutBarberiaInput[]
     updateMany?: ServicioUpdateManyWithWhereWithoutBarberiaInput | ServicioUpdateManyWithWhereWithoutBarberiaInput[]
     deleteMany?: ServicioScalarWhereInput | ServicioScalarWhereInput[]
+  }
+
+  export type ServicioActivoUpdateManyWithoutBarberiaNestedInput = {
+    create?: XOR<ServicioActivoCreateWithoutBarberiaInput, ServicioActivoUncheckedCreateWithoutBarberiaInput> | ServicioActivoCreateWithoutBarberiaInput[] | ServicioActivoUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: ServicioActivoCreateOrConnectWithoutBarberiaInput | ServicioActivoCreateOrConnectWithoutBarberiaInput[]
+    upsert?: ServicioActivoUpsertWithWhereUniqueWithoutBarberiaInput | ServicioActivoUpsertWithWhereUniqueWithoutBarberiaInput[]
+    createMany?: ServicioActivoCreateManyBarberiaInputEnvelope
+    set?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+    disconnect?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+    delete?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+    connect?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+    update?: ServicioActivoUpdateWithWhereUniqueWithoutBarberiaInput | ServicioActivoUpdateWithWhereUniqueWithoutBarberiaInput[]
+    updateMany?: ServicioActivoUpdateManyWithWhereWithoutBarberiaInput | ServicioActivoUpdateManyWithWhereWithoutBarberiaInput[]
+    deleteMany?: ServicioActivoScalarWhereInput | ServicioActivoScalarWhereInput[]
   }
 
   export type ReservaUpdateManyWithoutBarberiaNestedInput = {
@@ -10543,6 +13110,20 @@ export namespace Prisma {
     update?: ServicioUpdateWithWhereUniqueWithoutBarberiaInput | ServicioUpdateWithWhereUniqueWithoutBarberiaInput[]
     updateMany?: ServicioUpdateManyWithWhereWithoutBarberiaInput | ServicioUpdateManyWithWhereWithoutBarberiaInput[]
     deleteMany?: ServicioScalarWhereInput | ServicioScalarWhereInput[]
+  }
+
+  export type ServicioActivoUncheckedUpdateManyWithoutBarberiaNestedInput = {
+    create?: XOR<ServicioActivoCreateWithoutBarberiaInput, ServicioActivoUncheckedCreateWithoutBarberiaInput> | ServicioActivoCreateWithoutBarberiaInput[] | ServicioActivoUncheckedCreateWithoutBarberiaInput[]
+    connectOrCreate?: ServicioActivoCreateOrConnectWithoutBarberiaInput | ServicioActivoCreateOrConnectWithoutBarberiaInput[]
+    upsert?: ServicioActivoUpsertWithWhereUniqueWithoutBarberiaInput | ServicioActivoUpsertWithWhereUniqueWithoutBarberiaInput[]
+    createMany?: ServicioActivoCreateManyBarberiaInputEnvelope
+    set?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+    disconnect?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+    delete?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+    connect?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+    update?: ServicioActivoUpdateWithWhereUniqueWithoutBarberiaInput | ServicioActivoUpdateWithWhereUniqueWithoutBarberiaInput[]
+    updateMany?: ServicioActivoUpdateManyWithWhereWithoutBarberiaInput | ServicioActivoUpdateManyWithWhereWithoutBarberiaInput[]
+    deleteMany?: ServicioActivoScalarWhereInput | ServicioActivoScalarWhereInput[]
   }
 
   export type ReservaUncheckedUpdateManyWithoutBarberiaNestedInput = {
@@ -10817,6 +13398,78 @@ export namespace Prisma {
     update?: ReservaUpdateWithWhereUniqueWithoutServicioInput | ReservaUpdateWithWhereUniqueWithoutServicioInput[]
     updateMany?: ReservaUpdateManyWithWhereWithoutServicioInput | ReservaUpdateManyWithWhereWithoutServicioInput[]
     deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
+  }
+
+  export type ServicioActivoCreateNestedManyWithoutCatalogoInput = {
+    create?: XOR<ServicioActivoCreateWithoutCatalogoInput, ServicioActivoUncheckedCreateWithoutCatalogoInput> | ServicioActivoCreateWithoutCatalogoInput[] | ServicioActivoUncheckedCreateWithoutCatalogoInput[]
+    connectOrCreate?: ServicioActivoCreateOrConnectWithoutCatalogoInput | ServicioActivoCreateOrConnectWithoutCatalogoInput[]
+    createMany?: ServicioActivoCreateManyCatalogoInputEnvelope
+    connect?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+  }
+
+  export type ServicioActivoUncheckedCreateNestedManyWithoutCatalogoInput = {
+    create?: XOR<ServicioActivoCreateWithoutCatalogoInput, ServicioActivoUncheckedCreateWithoutCatalogoInput> | ServicioActivoCreateWithoutCatalogoInput[] | ServicioActivoUncheckedCreateWithoutCatalogoInput[]
+    connectOrCreate?: ServicioActivoCreateOrConnectWithoutCatalogoInput | ServicioActivoCreateOrConnectWithoutCatalogoInput[]
+    createMany?: ServicioActivoCreateManyCatalogoInputEnvelope
+    connect?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+  }
+
+  export type ServicioActivoUpdateManyWithoutCatalogoNestedInput = {
+    create?: XOR<ServicioActivoCreateWithoutCatalogoInput, ServicioActivoUncheckedCreateWithoutCatalogoInput> | ServicioActivoCreateWithoutCatalogoInput[] | ServicioActivoUncheckedCreateWithoutCatalogoInput[]
+    connectOrCreate?: ServicioActivoCreateOrConnectWithoutCatalogoInput | ServicioActivoCreateOrConnectWithoutCatalogoInput[]
+    upsert?: ServicioActivoUpsertWithWhereUniqueWithoutCatalogoInput | ServicioActivoUpsertWithWhereUniqueWithoutCatalogoInput[]
+    createMany?: ServicioActivoCreateManyCatalogoInputEnvelope
+    set?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+    disconnect?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+    delete?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+    connect?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+    update?: ServicioActivoUpdateWithWhereUniqueWithoutCatalogoInput | ServicioActivoUpdateWithWhereUniqueWithoutCatalogoInput[]
+    updateMany?: ServicioActivoUpdateManyWithWhereWithoutCatalogoInput | ServicioActivoUpdateManyWithWhereWithoutCatalogoInput[]
+    deleteMany?: ServicioActivoScalarWhereInput | ServicioActivoScalarWhereInput[]
+  }
+
+  export type ServicioActivoUncheckedUpdateManyWithoutCatalogoNestedInput = {
+    create?: XOR<ServicioActivoCreateWithoutCatalogoInput, ServicioActivoUncheckedCreateWithoutCatalogoInput> | ServicioActivoCreateWithoutCatalogoInput[] | ServicioActivoUncheckedCreateWithoutCatalogoInput[]
+    connectOrCreate?: ServicioActivoCreateOrConnectWithoutCatalogoInput | ServicioActivoCreateOrConnectWithoutCatalogoInput[]
+    upsert?: ServicioActivoUpsertWithWhereUniqueWithoutCatalogoInput | ServicioActivoUpsertWithWhereUniqueWithoutCatalogoInput[]
+    createMany?: ServicioActivoCreateManyCatalogoInputEnvelope
+    set?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+    disconnect?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+    delete?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+    connect?: ServicioActivoWhereUniqueInput | ServicioActivoWhereUniqueInput[]
+    update?: ServicioActivoUpdateWithWhereUniqueWithoutCatalogoInput | ServicioActivoUpdateWithWhereUniqueWithoutCatalogoInput[]
+    updateMany?: ServicioActivoUpdateManyWithWhereWithoutCatalogoInput | ServicioActivoUpdateManyWithWhereWithoutCatalogoInput[]
+    deleteMany?: ServicioActivoScalarWhereInput | ServicioActivoScalarWhereInput[]
+  }
+
+  export type BarberiaCreateNestedOneWithoutServiciosActivosInput = {
+    create?: XOR<BarberiaCreateWithoutServiciosActivosInput, BarberiaUncheckedCreateWithoutServiciosActivosInput>
+    connectOrCreate?: BarberiaCreateOrConnectWithoutServiciosActivosInput
+    connect?: BarberiaWhereUniqueInput
+  }
+
+  export type ServicioCatalogoCreateNestedOneWithoutServiciosActivosInput = {
+    create?: XOR<ServicioCatalogoCreateWithoutServiciosActivosInput, ServicioCatalogoUncheckedCreateWithoutServiciosActivosInput>
+    connectOrCreate?: ServicioCatalogoCreateOrConnectWithoutServiciosActivosInput
+    connect?: ServicioCatalogoWhereUniqueInput
+  }
+
+  export type BarberiaUpdateOneRequiredWithoutServiciosActivosNestedInput = {
+    create?: XOR<BarberiaCreateWithoutServiciosActivosInput, BarberiaUncheckedCreateWithoutServiciosActivosInput>
+    connectOrCreate?: BarberiaCreateOrConnectWithoutServiciosActivosInput
+    upsert?: BarberiaUpsertWithoutServiciosActivosInput
+    connect?: BarberiaWhereUniqueInput
+    update?: XOR<XOR<BarberiaUpdateToOneWithWhereWithoutServiciosActivosInput, BarberiaUpdateWithoutServiciosActivosInput>, BarberiaUncheckedUpdateWithoutServiciosActivosInput>
+  }
+
+  export type ServicioCatalogoUpdateOneWithoutServiciosActivosNestedInput = {
+    create?: XOR<ServicioCatalogoCreateWithoutServiciosActivosInput, ServicioCatalogoUncheckedCreateWithoutServiciosActivosInput>
+    connectOrCreate?: ServicioCatalogoCreateOrConnectWithoutServiciosActivosInput
+    upsert?: ServicioCatalogoUpsertWithoutServiciosActivosInput
+    disconnect?: ServicioCatalogoWhereInput | boolean
+    delete?: ServicioCatalogoWhereInput | boolean
+    connect?: ServicioCatalogoWhereUniqueInput
+    update?: XOR<XOR<ServicioCatalogoUpdateToOneWithWhereWithoutServiciosActivosInput, ServicioCatalogoUpdateWithoutServiciosActivosInput>, ServicioCatalogoUncheckedUpdateWithoutServiciosActivosInput>
   }
 
   export type UsuarioCreateNestedOneWithoutReservasInput = {
@@ -11231,6 +13884,37 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ServicioActivoCreateWithoutBarberiaInput = {
+    nombre: string
+    precio: number
+    duracion_minutos: number
+    categoria?: string
+    activo?: boolean
+    createdAt?: Date | string
+    catalogo?: ServicioCatalogoCreateNestedOneWithoutServiciosActivosInput
+  }
+
+  export type ServicioActivoUncheckedCreateWithoutBarberiaInput = {
+    id?: number
+    catalogoId?: number | null
+    nombre: string
+    precio: number
+    duracion_minutos: number
+    categoria?: string
+    activo?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ServicioActivoCreateOrConnectWithoutBarberiaInput = {
+    where: ServicioActivoWhereUniqueInput
+    create: XOR<ServicioActivoCreateWithoutBarberiaInput, ServicioActivoUncheckedCreateWithoutBarberiaInput>
+  }
+
+  export type ServicioActivoCreateManyBarberiaInputEnvelope = {
+    data: ServicioActivoCreateManyBarberiaInput | ServicioActivoCreateManyBarberiaInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ReservaCreateWithoutBarberiaInput = {
     fecha: Date | string
     estado?: string
@@ -11408,6 +14092,37 @@ export namespace Prisma {
     barberiaId?: IntFilter<"Servicio"> | number
   }
 
+  export type ServicioActivoUpsertWithWhereUniqueWithoutBarberiaInput = {
+    where: ServicioActivoWhereUniqueInput
+    update: XOR<ServicioActivoUpdateWithoutBarberiaInput, ServicioActivoUncheckedUpdateWithoutBarberiaInput>
+    create: XOR<ServicioActivoCreateWithoutBarberiaInput, ServicioActivoUncheckedCreateWithoutBarberiaInput>
+  }
+
+  export type ServicioActivoUpdateWithWhereUniqueWithoutBarberiaInput = {
+    where: ServicioActivoWhereUniqueInput
+    data: XOR<ServicioActivoUpdateWithoutBarberiaInput, ServicioActivoUncheckedUpdateWithoutBarberiaInput>
+  }
+
+  export type ServicioActivoUpdateManyWithWhereWithoutBarberiaInput = {
+    where: ServicioActivoScalarWhereInput
+    data: XOR<ServicioActivoUpdateManyMutationInput, ServicioActivoUncheckedUpdateManyWithoutBarberiaInput>
+  }
+
+  export type ServicioActivoScalarWhereInput = {
+    AND?: ServicioActivoScalarWhereInput | ServicioActivoScalarWhereInput[]
+    OR?: ServicioActivoScalarWhereInput[]
+    NOT?: ServicioActivoScalarWhereInput | ServicioActivoScalarWhereInput[]
+    id?: IntFilter<"ServicioActivo"> | number
+    barberiaId?: IntFilter<"ServicioActivo"> | number
+    catalogoId?: IntNullableFilter<"ServicioActivo"> | number | null
+    nombre?: StringFilter<"ServicioActivo"> | string
+    precio?: FloatFilter<"ServicioActivo"> | number
+    duracion_minutos?: IntFilter<"ServicioActivo"> | number
+    categoria?: StringFilter<"ServicioActivo"> | string
+    activo?: BoolFilter<"ServicioActivo"> | boolean
+    createdAt?: DateTimeFilter<"ServicioActivo"> | Date | string
+  }
+
   export type ReservaUpsertWithWhereUniqueWithoutBarberiaInput = {
     where: ReservaWhereUniqueInput
     update: XOR<ReservaUpdateWithoutBarberiaInput, ReservaUncheckedUpdateWithoutBarberiaInput>
@@ -11509,6 +14224,7 @@ export namespace Prisma {
     createdAt?: Date | string
     barberos?: BarberoCreateNestedManyWithoutBarberiaInput
     servicios?: ServicioCreateNestedManyWithoutBarberiaInput
+    serviciosActivos?: ServicioActivoCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioCreateNestedManyWithoutBarberiaInput
     configuracion?: ConfiguracionCreateNestedOneWithoutBarberiaInput
@@ -11522,6 +14238,7 @@ export namespace Prisma {
     createdAt?: Date | string
     barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
     servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
+    serviciosActivos?: ServicioActivoUncheckedCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
     configuracion?: ConfiguracionUncheckedCreateNestedOneWithoutBarberiaInput
@@ -11583,6 +14300,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
     servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
+    serviciosActivos?: ServicioActivoUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
     configuracion?: ConfiguracionUpdateOneWithoutBarberiaNestedInput
@@ -11596,6 +14314,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
     servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
+    serviciosActivos?: ServicioActivoUncheckedUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
     configuracion?: ConfiguracionUncheckedUpdateOneWithoutBarberiaNestedInput
@@ -11624,6 +14343,7 @@ export namespace Prisma {
     createdAt?: Date | string
     usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
     servicios?: ServicioCreateNestedManyWithoutBarberiaInput
+    serviciosActivos?: ServicioActivoCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioCreateNestedManyWithoutBarberiaInput
     configuracion?: ConfiguracionCreateNestedOneWithoutBarberiaInput
@@ -11637,6 +14357,7 @@ export namespace Prisma {
     createdAt?: Date | string
     usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
     servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
+    serviciosActivos?: ServicioActivoUncheckedCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
     configuracion?: ConfiguracionUncheckedCreateNestedOneWithoutBarberiaInput
@@ -11723,6 +14444,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
     servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
+    serviciosActivos?: ServicioActivoUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
     configuracion?: ConfiguracionUpdateOneWithoutBarberiaNestedInput
@@ -11736,6 +14458,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
     servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
+    serviciosActivos?: ServicioActivoUncheckedUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
     configuracion?: ConfiguracionUncheckedUpdateOneWithoutBarberiaNestedInput
@@ -11780,6 +14503,7 @@ export namespace Prisma {
     createdAt?: Date | string
     usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoCreateNestedManyWithoutBarberiaInput
+    serviciosActivos?: ServicioActivoCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioCreateNestedManyWithoutBarberiaInput
     configuracion?: ConfiguracionCreateNestedOneWithoutBarberiaInput
@@ -11793,6 +14517,7 @@ export namespace Prisma {
     createdAt?: Date | string
     usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
+    serviciosActivos?: ServicioActivoUncheckedCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
     configuracion?: ConfiguracionUncheckedCreateNestedOneWithoutBarberiaInput
@@ -11854,6 +14579,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
+    serviciosActivos?: ServicioActivoUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
     configuracion?: ConfiguracionUpdateOneWithoutBarberiaNestedInput
@@ -11867,6 +14593,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
+    serviciosActivos?: ServicioActivoUncheckedUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
     configuracion?: ConfiguracionUncheckedUpdateOneWithoutBarberiaNestedInput
@@ -11886,6 +14613,165 @@ export namespace Prisma {
   export type ReservaUpdateManyWithWhereWithoutServicioInput = {
     where: ReservaScalarWhereInput
     data: XOR<ReservaUpdateManyMutationInput, ReservaUncheckedUpdateManyWithoutServicioInput>
+  }
+
+  export type ServicioActivoCreateWithoutCatalogoInput = {
+    nombre: string
+    precio: number
+    duracion_minutos: number
+    categoria?: string
+    activo?: boolean
+    createdAt?: Date | string
+    barberia: BarberiaCreateNestedOneWithoutServiciosActivosInput
+  }
+
+  export type ServicioActivoUncheckedCreateWithoutCatalogoInput = {
+    id?: number
+    barberiaId: number
+    nombre: string
+    precio: number
+    duracion_minutos: number
+    categoria?: string
+    activo?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ServicioActivoCreateOrConnectWithoutCatalogoInput = {
+    where: ServicioActivoWhereUniqueInput
+    create: XOR<ServicioActivoCreateWithoutCatalogoInput, ServicioActivoUncheckedCreateWithoutCatalogoInput>
+  }
+
+  export type ServicioActivoCreateManyCatalogoInputEnvelope = {
+    data: ServicioActivoCreateManyCatalogoInput | ServicioActivoCreateManyCatalogoInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ServicioActivoUpsertWithWhereUniqueWithoutCatalogoInput = {
+    where: ServicioActivoWhereUniqueInput
+    update: XOR<ServicioActivoUpdateWithoutCatalogoInput, ServicioActivoUncheckedUpdateWithoutCatalogoInput>
+    create: XOR<ServicioActivoCreateWithoutCatalogoInput, ServicioActivoUncheckedCreateWithoutCatalogoInput>
+  }
+
+  export type ServicioActivoUpdateWithWhereUniqueWithoutCatalogoInput = {
+    where: ServicioActivoWhereUniqueInput
+    data: XOR<ServicioActivoUpdateWithoutCatalogoInput, ServicioActivoUncheckedUpdateWithoutCatalogoInput>
+  }
+
+  export type ServicioActivoUpdateManyWithWhereWithoutCatalogoInput = {
+    where: ServicioActivoScalarWhereInput
+    data: XOR<ServicioActivoUpdateManyMutationInput, ServicioActivoUncheckedUpdateManyWithoutCatalogoInput>
+  }
+
+  export type BarberiaCreateWithoutServiciosActivosInput = {
+    nombre: string
+    codigo: string
+    logo?: string | null
+    createdAt?: Date | string
+    usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
+    barberos?: BarberoCreateNestedManyWithoutBarberiaInput
+    servicios?: ServicioCreateNestedManyWithoutBarberiaInput
+    reservas?: ReservaCreateNestedManyWithoutBarberiaInput
+    horarios?: HorarioCreateNestedManyWithoutBarberiaInput
+    configuracion?: ConfiguracionCreateNestedOneWithoutBarberiaInput
+  }
+
+  export type BarberiaUncheckedCreateWithoutServiciosActivosInput = {
+    id?: number
+    nombre: string
+    codigo: string
+    logo?: string | null
+    createdAt?: Date | string
+    usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
+    barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
+    servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
+    reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
+    horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
+    configuracion?: ConfiguracionUncheckedCreateNestedOneWithoutBarberiaInput
+  }
+
+  export type BarberiaCreateOrConnectWithoutServiciosActivosInput = {
+    where: BarberiaWhereUniqueInput
+    create: XOR<BarberiaCreateWithoutServiciosActivosInput, BarberiaUncheckedCreateWithoutServiciosActivosInput>
+  }
+
+  export type ServicioCatalogoCreateWithoutServiciosActivosInput = {
+    nombre: string
+    duracion_minutos: number
+    categoria?: string
+  }
+
+  export type ServicioCatalogoUncheckedCreateWithoutServiciosActivosInput = {
+    id?: number
+    nombre: string
+    duracion_minutos: number
+    categoria?: string
+  }
+
+  export type ServicioCatalogoCreateOrConnectWithoutServiciosActivosInput = {
+    where: ServicioCatalogoWhereUniqueInput
+    create: XOR<ServicioCatalogoCreateWithoutServiciosActivosInput, ServicioCatalogoUncheckedCreateWithoutServiciosActivosInput>
+  }
+
+  export type BarberiaUpsertWithoutServiciosActivosInput = {
+    update: XOR<BarberiaUpdateWithoutServiciosActivosInput, BarberiaUncheckedUpdateWithoutServiciosActivosInput>
+    create: XOR<BarberiaCreateWithoutServiciosActivosInput, BarberiaUncheckedCreateWithoutServiciosActivosInput>
+    where?: BarberiaWhereInput
+  }
+
+  export type BarberiaUpdateToOneWithWhereWithoutServiciosActivosInput = {
+    where?: BarberiaWhereInput
+    data: XOR<BarberiaUpdateWithoutServiciosActivosInput, BarberiaUncheckedUpdateWithoutServiciosActivosInput>
+  }
+
+  export type BarberiaUpdateWithoutServiciosActivosInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
+    barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
+    servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
+    reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
+    horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
+    configuracion?: ConfiguracionUpdateOneWithoutBarberiaNestedInput
+  }
+
+  export type BarberiaUncheckedUpdateWithoutServiciosActivosInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
+    barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
+    servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
+    reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
+    horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
+    configuracion?: ConfiguracionUncheckedUpdateOneWithoutBarberiaNestedInput
+  }
+
+  export type ServicioCatalogoUpsertWithoutServiciosActivosInput = {
+    update: XOR<ServicioCatalogoUpdateWithoutServiciosActivosInput, ServicioCatalogoUncheckedUpdateWithoutServiciosActivosInput>
+    create: XOR<ServicioCatalogoCreateWithoutServiciosActivosInput, ServicioCatalogoUncheckedCreateWithoutServiciosActivosInput>
+    where?: ServicioCatalogoWhereInput
+  }
+
+  export type ServicioCatalogoUpdateToOneWithWhereWithoutServiciosActivosInput = {
+    where?: ServicioCatalogoWhereInput
+    data: XOR<ServicioCatalogoUpdateWithoutServiciosActivosInput, ServicioCatalogoUncheckedUpdateWithoutServiciosActivosInput>
+  }
+
+  export type ServicioCatalogoUpdateWithoutServiciosActivosInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServicioCatalogoUncheckedUpdateWithoutServiciosActivosInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
   }
 
   export type UsuarioCreateWithoutReservasInput = {
@@ -11978,6 +14864,7 @@ export namespace Prisma {
     usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoCreateNestedManyWithoutBarberiaInput
     servicios?: ServicioCreateNestedManyWithoutBarberiaInput
+    serviciosActivos?: ServicioActivoCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioCreateNestedManyWithoutBarberiaInput
     configuracion?: ConfiguracionCreateNestedOneWithoutBarberiaInput
   }
@@ -11991,6 +14878,7 @@ export namespace Prisma {
     usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
     servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
+    serviciosActivos?: ServicioActivoUncheckedCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
     configuracion?: ConfiguracionUncheckedCreateNestedOneWithoutBarberiaInput
   }
@@ -12119,6 +15007,7 @@ export namespace Prisma {
     usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
     servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
+    serviciosActivos?: ServicioActivoUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
     configuracion?: ConfiguracionUpdateOneWithoutBarberiaNestedInput
   }
@@ -12132,6 +15021,7 @@ export namespace Prisma {
     usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
     servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
+    serviciosActivos?: ServicioActivoUncheckedUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
     configuracion?: ConfiguracionUncheckedUpdateOneWithoutBarberiaNestedInput
   }
@@ -12168,6 +15058,7 @@ export namespace Prisma {
     usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoCreateNestedManyWithoutBarberiaInput
     servicios?: ServicioCreateNestedManyWithoutBarberiaInput
+    serviciosActivos?: ServicioActivoCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaCreateNestedManyWithoutBarberiaInput
     configuracion?: ConfiguracionCreateNestedOneWithoutBarberiaInput
   }
@@ -12181,6 +15072,7 @@ export namespace Prisma {
     usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
     servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
+    serviciosActivos?: ServicioActivoUncheckedCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
     configuracion?: ConfiguracionUncheckedCreateNestedOneWithoutBarberiaInput
   }
@@ -12239,6 +15131,7 @@ export namespace Prisma {
     usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
     servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
+    serviciosActivos?: ServicioActivoUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
     configuracion?: ConfiguracionUpdateOneWithoutBarberiaNestedInput
   }
@@ -12252,6 +15145,7 @@ export namespace Prisma {
     usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
     servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
+    serviciosActivos?: ServicioActivoUncheckedUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
     configuracion?: ConfiguracionUncheckedUpdateOneWithoutBarberiaNestedInput
   }
@@ -12264,6 +15158,7 @@ export namespace Prisma {
     usuarios?: UsuarioCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoCreateNestedManyWithoutBarberiaInput
     servicios?: ServicioCreateNestedManyWithoutBarberiaInput
+    serviciosActivos?: ServicioActivoCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioCreateNestedManyWithoutBarberiaInput
   }
@@ -12277,6 +15172,7 @@ export namespace Prisma {
     usuarios?: UsuarioUncheckedCreateNestedManyWithoutBarberiaInput
     barberos?: BarberoUncheckedCreateNestedManyWithoutBarberiaInput
     servicios?: ServicioUncheckedCreateNestedManyWithoutBarberiaInput
+    serviciosActivos?: ServicioActivoUncheckedCreateNestedManyWithoutBarberiaInput
     reservas?: ReservaUncheckedCreateNestedManyWithoutBarberiaInput
     horarios?: HorarioUncheckedCreateNestedManyWithoutBarberiaInput
   }
@@ -12305,6 +15201,7 @@ export namespace Prisma {
     usuarios?: UsuarioUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUpdateManyWithoutBarberiaNestedInput
     servicios?: ServicioUpdateManyWithoutBarberiaNestedInput
+    serviciosActivos?: ServicioActivoUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUpdateManyWithoutBarberiaNestedInput
   }
@@ -12318,6 +15215,7 @@ export namespace Prisma {
     usuarios?: UsuarioUncheckedUpdateManyWithoutBarberiaNestedInput
     barberos?: BarberoUncheckedUpdateManyWithoutBarberiaNestedInput
     servicios?: ServicioUncheckedUpdateManyWithoutBarberiaNestedInput
+    serviciosActivos?: ServicioActivoUncheckedUpdateManyWithoutBarberiaNestedInput
     reservas?: ReservaUncheckedUpdateManyWithoutBarberiaNestedInput
     horarios?: HorarioUncheckedUpdateManyWithoutBarberiaNestedInput
   }
@@ -12351,6 +15249,17 @@ export namespace Prisma {
     categoria?: string
     activo?: boolean
     predefinido?: boolean
+  }
+
+  export type ServicioActivoCreateManyBarberiaInput = {
+    id?: number
+    catalogoId?: number | null
+    nombre: string
+    precio: number
+    duracion_minutos: number
+    categoria?: string
+    activo?: boolean
+    createdAt?: Date | string
   }
 
   export type ReservaCreateManyBarberiaInput = {
@@ -12469,6 +15378,38 @@ export namespace Prisma {
     categoria?: StringFieldUpdateOperationsInput | string
     activo?: BoolFieldUpdateOperationsInput | boolean
     predefinido?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ServicioActivoUpdateWithoutBarberiaInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    catalogo?: ServicioCatalogoUpdateOneWithoutServiciosActivosNestedInput
+  }
+
+  export type ServicioActivoUncheckedUpdateWithoutBarberiaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    catalogoId?: NullableIntFieldUpdateOperationsInput | number | null
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServicioActivoUncheckedUpdateManyWithoutBarberiaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    catalogoId?: NullableIntFieldUpdateOperationsInput | number | null
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReservaUpdateWithoutBarberiaInput = {
@@ -12701,6 +15642,49 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ServicioActivoCreateManyCatalogoInput = {
+    id?: number
+    barberiaId: number
+    nombre: string
+    precio: number
+    duracion_minutos: number
+    categoria?: string
+    activo?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ServicioActivoUpdateWithoutCatalogoInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    barberia?: BarberiaUpdateOneRequiredWithoutServiciosActivosNestedInput
+  }
+
+  export type ServicioActivoUncheckedUpdateWithoutCatalogoInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServicioActivoUncheckedUpdateManyWithoutCatalogoInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    barberiaId?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    duracion_minutos?: IntFieldUpdateOperationsInput | number
+    categoria?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
 
 
   /**
@@ -12723,6 +15707,10 @@ export namespace Prisma {
      */
     export type ServicioCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ServicioCountOutputTypeDefaultArgs<ExtArgs>
     /**
+     * @deprecated Use ServicioCatalogoCountOutputTypeDefaultArgs instead
+     */
+    export type ServicioCatalogoCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ServicioCatalogoCountOutputTypeDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use BarberiaDefaultArgs instead
      */
     export type BarberiaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BarberiaDefaultArgs<ExtArgs>
@@ -12738,6 +15726,14 @@ export namespace Prisma {
      * @deprecated Use ServicioDefaultArgs instead
      */
     export type ServicioArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ServicioDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ServicioCatalogoDefaultArgs instead
+     */
+    export type ServicioCatalogoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ServicioCatalogoDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ServicioActivoDefaultArgs instead
+     */
+    export type ServicioActivoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ServicioActivoDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ReservaDefaultArgs instead
      */

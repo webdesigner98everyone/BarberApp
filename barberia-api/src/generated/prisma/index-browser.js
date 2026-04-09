@@ -164,6 +164,25 @@ exports.Prisma.ServicioScalarFieldEnum = {
   barberiaId: 'barberiaId'
 };
 
+exports.Prisma.ServicioCatalogoScalarFieldEnum = {
+  id: 'id',
+  nombre: 'nombre',
+  duracion_minutos: 'duracion_minutos',
+  categoria: 'categoria'
+};
+
+exports.Prisma.ServicioActivoScalarFieldEnum = {
+  id: 'id',
+  barberiaId: 'barberiaId',
+  catalogoId: 'catalogoId',
+  nombre: 'nombre',
+  precio: 'precio',
+  duracion_minutos: 'duracion_minutos',
+  categoria: 'categoria',
+  activo: 'activo',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.ReservaScalarFieldEnum = {
   id: 'id',
   usuarioId: 'usuarioId',
@@ -215,6 +234,8 @@ exports.Prisma.ModelName = {
   Usuario: 'Usuario',
   Barbero: 'Barbero',
   Servicio: 'Servicio',
+  ServicioCatalogo: 'ServicioCatalogo',
+  ServicioActivo: 'ServicioActivo',
   Reserva: 'Reserva',
   Horario: 'Horario',
   Configuracion: 'Configuracion'

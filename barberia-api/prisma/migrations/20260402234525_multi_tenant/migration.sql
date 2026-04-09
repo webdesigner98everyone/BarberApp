@@ -10,22 +10,22 @@
 
 */
 -- AlterTable
-ALTER TABLE `barbero` ADD COLUMN `barberiaId` INTEGER NOT NULL;
+ALTER TABLE `Barbero` ADD COLUMN `barberiaId` INTEGER NOT NULL;
 
 -- AlterTable
-ALTER TABLE `configuracion` ADD COLUMN `barberiaId` INTEGER NOT NULL;
+ALTER TABLE `Configuracion` ADD COLUMN `barberiaId` INTEGER NOT NULL;
 
 -- AlterTable
-ALTER TABLE `horario` ADD COLUMN `barberiaId` INTEGER NOT NULL;
+ALTER TABLE `Horario` ADD COLUMN `barberiaId` INTEGER NOT NULL;
 
 -- AlterTable
-ALTER TABLE `reserva` ADD COLUMN `barberiaId` INTEGER NOT NULL;
+ALTER TABLE `Reserva` ADD COLUMN `barberiaId` INTEGER NOT NULL;
 
 -- AlterTable
-ALTER TABLE `servicio` ADD COLUMN `barberiaId` INTEGER NOT NULL;
+ALTER TABLE `Servicio` ADD COLUMN `barberiaId` INTEGER NOT NULL;
 
 -- AlterTable
-ALTER TABLE `usuario` ADD COLUMN `barberiaId` INTEGER NULL;
+ALTER TABLE `Usuario` ADD COLUMN `barberiaId` INTEGER NULL;
 
 -- CreateTable
 CREATE TABLE `Barberia` (

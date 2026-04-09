@@ -1,2 +1,2 @@
 -- AlterTable
-ALTER TABLE `usuario` MODIFY `foto_url` LONGTEXT NULL;
+ALTER TABLE `Usuario` MODIFY `foto_url` LONGTEXT NULL;
